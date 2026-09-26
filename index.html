@@ -1502,6 +1502,19 @@ const LANGUAGES = [
   {code:'UK', label:'Українська', iso:'uk'},
 ];
 let EDITIONS = null; // { slug: { iso: [ext,...] } } lu depuis manifest.json
+let AUDIO = {};       // { slug: { iso: {url, duration, bytes} } } lu depuis audio.json
+function audioFor(book, code){ const a = AUDIO[hostedSlug(book)]; return a ? a[langByCode(code||'EN').iso.toLowerCase()] : null; }
+function hasAnyAudio(book){ const a = AUDIO[hostedSlug(book)]; return !!(a && Object.keys(a).length); }
+function formatsFor(book, code){ return book.formats.concat(audioFor(book, code) ? ['MP3'] : []); }
+function fmtDuration(s){ const h=Math.floor(s/3600), m=Math.round((s%3600)/60); return h ? `${h} h ${String(m).padStart(2,'0')}` : `${m} min`; }
+function downloadMp3(book, code){
+  const a = audioFor(book, code);
+  if(!a || !a.url){ toast(SOON_LABEL()); return; }
+  const link = document.createElement('a'); link.href = a.url; link.target = '_blank'; link.rel = 'noopener';
+  link.download = slugFile(book.title) + '-' + langByCode(code||'EN').iso + '.mp3';
+  document.body.appendChild(link); link.click(); link.remove();
+  toast(t('toast.downloadSaved'));
+}
 function bookEditions(book){ return EDITIONS ? (EDITIONS[hostedSlug(book)] || null) : null; }
 function bookAvailable(book){ if(!EDITIONS) return true; const e=bookEditions(book); return !!(e && Object.keys(e).length); }
 function bookLanguages(book){
@@ -1522,6 +1535,7 @@ async function loadEditions(){
     if(!res.ok) return;
     const data = await res.json();
     EDITIONS = data.books || {};
+    try{ const ra = await fetch(GITHUB_HOSTED_BASE + 'audio.json?t=' + Math.floor(Date.now()/300000), {cache:'no-store'}); if(ra.ok) AUDIO = await ra.json(); }catch(e){}
     BOOKS.forEach(b => { if(!bookAvailable(b)){ b.badge = SOON_LABEL(); } });
     try{ renderHome(); }catch(e){}
     try{ if(state.view==='catalog') renderCatalog(); }catch(e){}
@@ -2195,7 +2209,7 @@ function bookCard(book){
         </button>
       </div>
     </div>
-    <div class="fmt-row">${book.formats.map(f=>`<span class="fmt-tag">${f}</span>`).join('')}</div>`;
+    <div class="fmt-row">${book.formats.concat(hasAnyAudio(book)?['MP3']:[]).map(f=>`<span class="fmt-tag">${f}</span>`).join('')}</div>`;
   card.appendChild(info);
   return card;
 }
@@ -2654,7 +2668,7 @@ function renderBookDetail(){
       <span style="color:var(--text-muted);">·</span>
       <span class="num" style="color:var(--text-muted);">${book.pages} ${t('bd.pages')}</span>
     </div>
-    <div class="bd-formats">${book.formats.map(f=>`<span class="fmt-tag${f===bdSelectedFormat?' active':''}" data-format="${f}" onclick="handleBdFormatClick('${book.id}','${f}')">${f}</span>`).join('')}</div>
+    <div class="bd-formats">${formatsFor(book, bdSelectedLangCode).map(f=>`<span class="fmt-tag${f===bdSelectedFormat?' active':''}" data-format="${f}" onclick="handleBdFormatClick('${book.id}','${f}')">${f}</span>`).join('')}</div>
     <div class="bd-languages">${bookLanguages(book).map(l=>`<span class="lang-pill${l.code===bdSelectedLangCode?' active':''}" data-code="${l.code}" onclick="selectBdLang('${l.code}')">${l.label}</span>`).join('')}</div>
     <p id="bdHelperText" style="font-size:.74rem; color:var(--text-muted); margin-top:4px;">${bdParts.helper}</p>
     <a class="section-link" href="#" onclick="showView('guide');return false;" style="font-size:.72rem; margin-top:6px;">${t('bd.whichFormat')} <span aria-hidden="true">→</span></a>
@@ -2703,6 +2717,12 @@ function selectBdLang(code){
   const helperEl=document.getElementById('bdHelperText'); if(helperEl) helperEl.textContent = parts.helper;
   const badgeEl=document.getElementById('bdOwnedBadge'); if(badgeEl) badgeEl.innerHTML = parts.badge;
   const actionsEl=document.getElementById('bdActionButtons'); if(actionsEl) actionsEl.innerHTML = parts.actions;
+  const fmtEl=document.querySelector('.bd-formats');
+  if(fmtEl){
+    const fl = formatsFor(book, code);
+    if(!fl.includes(bdSelectedFormat)) bdSelectedFormat = fl[0];
+    fmtEl.innerHTML = fl.map(f=>`<span class="fmt-tag${f===bdSelectedFormat?' active':''}" data-format="${f}" onclick="handleBdFormatClick('${book.id}','${f}')">${f}</span>`).join('');
+  }
 }
 function handleBdFormatClick(bookId, format){
   // Selecting a format here only sets the preference used for the
@@ -2878,7 +2898,7 @@ function goToCheckout(){
   selectPayMethod('card');
   renderCheckoutLines();
   const guestNotice=document.getElementById('checkoutGuestNotice');
-  if(guestNotice) guestNotice.hidden = state.hasIdentity;
+  if(guestNotice) guestNotice.hidden = state.hasIdentity || !dbNS;
   const emailEl=document.getElementById('coEmail'); if(emailEl) emailEl.value='';
   const newsEl=document.getElementById('coNewsletter'); if(newsEl) newsEl.checked=false;
 }
@@ -2927,6 +2947,7 @@ async function placeOrder(){
         else if(format==='PDF') downloadPdf(dlBook, lang);
         else if(format==='TXT') downloadTxt(dlBook, lang);
         else if(format==='HTML') downloadHtml(dlBook, lang);
+        else if(format==='MP3') downloadMp3(dlBook, lang);
         autoDlNote = t('confirm.autoDownload',{format, title:dlBook.title});
       }
     }
@@ -2994,7 +3015,7 @@ async function toggleNotifyNewBooks(checked){
 function renderLibrary(){
   const gate=document.getElementById('libraryGate');
   const content=document.getElementById('libraryContent');
-  if(!state.hasIdentity){
+  if(!state.hasIdentity && dbNS){
     if(gate) gate.hidden=false;
     if(content) content.hidden=true;
     return;
@@ -3035,6 +3056,15 @@ function renderLibrary(){
       const htmlBtn=document.createElement('button'); htmlBtn.className='dl-btn'; htmlBtn.textContent='⭳ HTML';
       htmlBtn.onclick=()=>downloadHtml(b, langCode);
       row.appendChild(htmlBtn);
+      const au = audioFor(b, langCode);
+      if(au && au.url){
+        const mp3Btn=document.createElement('button'); mp3Btn.className='dl-btn'; mp3Btn.textContent='⭳ MP3' + (au.duration ? ' · ' + fmtDuration(au.duration) : '');
+        mp3Btn.onclick=()=>downloadMp3(b, langCode);
+        row.appendChild(mp3Btn);
+        const player=document.createElement('audio'); player.controls=true; player.preload='none'; player.src=au.url;
+        player.style.cssText='width:100%;margin-top:8px;height:36px';
+        body.appendChild(player);
+      }
       card.appendChild(body);
       grid.appendChild(card);
     });
