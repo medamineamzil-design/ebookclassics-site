@@ -80,6 +80,9 @@ button.btn.primary,a.btn.primary{background:var(--accent);color:var(--accent-ink
 .gate-x{position:absolute;top:12px;right:12px;border:0;background:transparent;font-size:1.1rem;cursor:pointer;color:var(--muted);}
 .gate-err{color:#8C4030;font-size:.85rem;margin:-6px 0 10px;}
 .gate-err[hidden]{display:none;}
+.rm-btn{display:inline-block;margin-top:4px;padding:0;border:0;background:none;color:var(--accent);font:600 .9rem "Archivo",sans-serif;cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
+.rm-more[hidden]{display:none;}
+blockquote .rm-btn{font-family:"Archivo",sans-serif;}
 .gate-fine{font-size:.78rem;color:var(--muted);margin:12px 0 0;}
 @media (max-width:680px){.hero{grid-template-columns:1fr;gap:20px;}.cover{width:180px;}}
 </style>
@@ -110,7 +113,7 @@ button.btn.primary,a.btn.primary{background:var(--accent);color:var(--accent-ink
   </div>
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Beowulf</b><span>English · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
-
+<section class="card"><h2>About the book</h2><p>Beowulf is a long poem in Old English, set not in England but in the Scandinavian world of the Danes and the Geats. For years the great hall of Heorot, built by the Danish king Hrothgar, has been terrorised by the monster Grendel, who attacks by night. A young Geatish warrior, Beowulf, sails across the sea with his companions to offer help. The poem follows his struggles against Grendel and then Grendel&#x27;s mother in her underwater lair, and later, many years on, against a fire-breathing dragon threatening his own people.</p><div class="rm-more" hidden><p>Beyond the monster fights, the poem reflects on loyalty, generosity, fame, kingship and the shortness of human life. It is written in alliterative verse rich in kennings, compound phrases such as whale-road for the sea, and it weaves in older stories and feuds that deepen its sense of history. Its mix of pagan heroic values and Christian outlook makes it a fascinating window into early medieval thought.</p><p>The poem survives in a single manuscript copied around the year 1000 and damaged in a fire in 1731. Its date of composition is still debated. It was first printed in 1815, and J. R. R. Tolkien&#x27;s 1936 lecture helped establish it as a work of literary art. It has been translated many times, notably by Seamus Heaney in 1999, and retold in novels, films, comics and opera.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>Origins of the work</h2><p>Old English epic poem by an unknown poet, composed some time between the 8th and early 11th centuries and preserved in a single manuscript, the Nowell Codex, now in the British Library.</p></section>
 
 <section class="card"><h2>More by Anonymous and similar classics</h2><div class="grid"><a href="/books/the-arabian-nights/"><span class="ph">The Arabian Nights</span>The Arabian Nights<small>Anonymous</small></a><a href="/books/around-the-world-in-eighty-days/"><img src="/covers/around-the-world-in-eighty-days.jpg" alt="" loading="lazy">Around the World in Eighty Days<small>Jules Verne</small></a><a href="/books/journey-to-the-centre-of-the-earth/"><img src="/covers/journey-to-the-centre-of-the-earth.jpg" alt="" loading="lazy">Journey to the Centre of the Earth<small>Jules Verne</small></a><a href="/books/moby-dick/"><img src="/covers/moby-dick.jpg" alt="" loading="lazy">Moby-Dick<small>Herman Melville</small></a><a href="/books/don-quixote/"><img src="/covers/don-quixote.jpg" alt="" loading="lazy">Don Quixote<small>Miguel de Cervantes</small></a><a href="/books/the-adventures-of-huckleberry-finn/"><img src="/covers/the-adventures-of-huckleberry-finn.jpg" alt="" loading="lazy">The Adventures of Huckleberry Finn<small>Mark Twain</small></a></div></section>
@@ -130,6 +133,9 @@ button.btn.primary,a.btn.primary{background:var(--accent);color:var(--accent-ink
     <p class="gate-fine">By continuing, you agree to receive our new-book announcements by email. Unsubscribe in one click from any email. Your address is never shared or sold. <a href="/privacy.html">Privacy</a></p>
   </div>
 </div><script>
+(function(){
+[].forEach.call(document.querySelectorAll('.rm-btn'),function(b){ b.onclick=function(){ var m=b.previousElementSibling; var open=m.hidden; m.hidden=!open; b.textContent=open?'Show less':'Read more'; b.setAttribute('aria-expanded',String(open)); if(!open) b.parentNode.scrollIntoView({block:'nearest'}); }; });
+})();
 (function(){
 var KIT='9985086', REG='ebc_reader_email_v1', RAW='https://raw.githubusercontent.com/medamineamzil-design/ebookclassics-files/main/';
 var lang=BC.lang, pending=null, $=function(i){return document.getElementById(i);};

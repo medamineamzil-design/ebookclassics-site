@@ -80,6 +80,9 @@ button.btn.primary,a.btn.primary{background:var(--accent);color:var(--accent-ink
 .gate-x{position:absolute;top:12px;right:12px;border:0;background:transparent;font-size:1.1rem;cursor:pointer;color:var(--muted);}
 .gate-err{color:#8C4030;font-size:.85rem;margin:-6px 0 10px;}
 .gate-err[hidden]{display:none;}
+.rm-btn{display:inline-block;margin-top:4px;padding:0;border:0;background:none;color:var(--accent);font:600 .9rem "Archivo",sans-serif;cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
+.rm-more[hidden]{display:none;}
+blockquote .rm-btn{font-family:"Archivo",sans-serif;}
 .gate-fine{font-size:.78rem;color:var(--muted);margin:12px 0 0;}
 @media (max-width:680px){.hero{grid-template-columns:1fr;gap:20px;}.cover{width:180px;}}
 </style>
@@ -110,8 +113,8 @@ button.btn.primary,a.btn.primary{background:var(--accent);color:var(--accent-ink
   </div>
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Canterbury Tales</b><span>English · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
-
-<section class="card"><h2>About Geoffrey Chaucer</h2><p>English poet (c. 1343-1400), often called the father of English literature, author of The Canterbury Tales.</p></section>
+<section class="card"><h2>About the book</h2><p>On a spring day, a group of about thirty pilgrims gathers at the Tabard Inn in Southwark, ready to travel to the shrine of Saint Thomas Becket at Canterbury. The innkeeper, Harry Bailly, proposes a contest: each pilgrim will tell stories on the journey, and the best teller will win a free supper. The General Prologue introduces the company, including the Knight, the Miller, the Prioress, the Wife of Bath, the Pardoner and many more, and the tales that follow range from courtly romance and saints&#x27; lives to sermons, fables and riotous comic stories.</p><div class="rm-more" hidden><p>Chaucer gives each pilgrim a distinctive voice, so that the tales reveal as much about their tellers as about their subjects. The work offers a lively cross-section of medieval society and its attitudes to love, marriage, religion, money and power, often with sharp irony toward hypocrisy. Its humour, its range of styles and its gallery of characters make it as entertaining as it is historically revealing.</p><p>Chaucer worked on the collection from the late 1380s until his death in 1400, and it was left unfinished, with only some of the planned tales completed. Written in Middle English, it helped establish English as a language of serious literature. It survives in many manuscripts and was among the early books printed in England by William Caxton. It has inspired modernisations, stage versions, films and television retellings.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<section class="card"><h2>About Geoffrey Chaucer</h2><p>Geoffrey Chaucer was born in London around 1343, the son of a wine merchant. As a youth he served in an aristocratic household and fought in France, where he was captured and ransomed. He went on to a long career in royal service, including as controller of customs for the port of London, and travelled on missions to Italy, where he encountered the works of Dante, Petrarch and Boccaccio. He died in 1400 and was buried in Westminster Abbey.</p><div class="rm-more" hidden><p>His early poems include The Book of the Duchess, and his Troilus and Criseyde is a moving tale of love set in the Trojan War. His most famous work, the unfinished Canterbury Tales, imagines pilgrims travelling to Canterbury who tell stories to pass the time. Pilgrims such as the knight, the miller and the Wife of Bath reveal themselves through tales ranging from courtly romance to bawdy comedy. Writing in English when French and Latin dominated, Chaucer showed what the language could do.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/the-brothers-karamazov/"><img src="/covers/the-brothers-karamazov.jpg" alt="" loading="lazy">The Brothers Karamazov<small>Fyodor Dostoevsky</small></a><a href="/books/the-idiot/"><img src="/covers/the-idiot.jpg" alt="" loading="lazy">The Idiot<small>Fyodor Dostoevsky</small></a><a href="/books/the-hunchback-of-notre-dame/"><img src="/covers/the-hunchback-of-notre-dame.jpg" alt="" loading="lazy">The Hunchback of Notre-Dame<small>Victor Hugo</small></a><a href="/books/germinal/"><img src="/covers/germinal.jpg" alt="" loading="lazy">Germinal<small>Émile Zola</small></a><a href="/books/the-red-and-the-black/"><span class="ph">The Red and the Black</span>The Red and the Black<small>Stendhal</small></a><a href="/books/father-goriot/"><span class="ph">Father Goriot</span>Father Goriot<small>Honoré de Balzac</small></a></div></section>
 <script>const BC={"slug":"the-canterbury-tales","ed":{"en":["epub","html","pdf","txt"]},"audio":{},"lang":"en"};</script>
@@ -130,6 +133,9 @@ button.btn.primary,a.btn.primary{background:var(--accent);color:var(--accent-ink
     <p class="gate-fine">By continuing, you agree to receive our new-book announcements by email. Unsubscribe in one click from any email. Your address is never shared or sold. <a href="/privacy.html">Privacy</a></p>
   </div>
 </div><script>
+(function(){
+[].forEach.call(document.querySelectorAll('.rm-btn'),function(b){ b.onclick=function(){ var m=b.previousElementSibling; var open=m.hidden; m.hidden=!open; b.textContent=open?'Show less':'Read more'; b.setAttribute('aria-expanded',String(open)); if(!open) b.parentNode.scrollIntoView({block:'nearest'}); }; });
+})();
 (function(){
 var KIT='9985086', REG='ebc_reader_email_v1', RAW='https://raw.githubusercontent.com/medamineamzil-design/ebookclassics-files/main/';
 var lang=BC.lang, pending=null, $=function(i){return document.getElementById(i);};
