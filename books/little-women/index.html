@@ -55,6 +55,32 @@ blockquote p{margin:0 0 12px;}
 .grid small{color:var(--muted);display:block;}
 footer.bottom{border-top:1px solid var(--border);padding-block:22px;margin-top:30px;color:var(--muted);font-size:.85rem;}
 footer.bottom a{color:var(--muted);margin-right:16px;}
+button.btn{font:600 .95rem "Archivo",sans-serif;cursor:pointer;background:transparent;color:var(--text);}
+button.btn.primary,a.btn.primary{background:var(--accent);color:var(--accent-ink);}
+.btn:hover{box-shadow:0 2px 8px rgba(30,20,5,.12);}
+.btn[hidden]{display:none;}
+.eds .ed{width:100%;text-align:left;border:1px solid var(--border);border-radius:10px;padding:10px 14px;background:transparent;color:var(--text);cursor:pointer;font:inherit;}
+.eds .ed.active{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);}
+.eds li{border:0;padding:0;}
+.fmts{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:2px 0 12px;font-size:.88rem;color:var(--muted);}
+.fmts[hidden],.player[hidden]{display:none;}
+.chip{font:600 .85rem "Archivo",sans-serif;padding:7px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;}
+.chip:hover{border-color:var(--accent);}
+.player{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:4px 0 12px;max-width:560px;}
+.player audio{width:100%;display:block;}
+.player span{display:block;font-size:.8rem;color:var(--muted);margin-top:6px;}
+.gate{position:fixed;inset:0;background:rgba(20,15,5,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50;}
+.gate[hidden]{display:none;}
+.gate-box{position:relative;background:var(--surface);color:var(--text);border-radius:16px;max-width:430px;width:100%;padding:26px 24px;box-shadow:0 20px 60px rgba(0,0,0,.35);}
+.gate-box h2{margin:0 0 8px;font-size:1.4rem;}
+.gate-box ul{padding-left:20px;margin:10px 0 16px;font-size:.92rem;}
+.gate-box label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px;}
+.gate-box input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--border);font:inherit;background:var(--bg);color:var(--text);margin-bottom:12px;}
+.gate-box .btn{width:100%;}
+.gate-x{position:absolute;top:12px;right:12px;border:0;background:transparent;font-size:1.1rem;cursor:pointer;color:var(--muted);}
+.gate-err{color:#8C4030;font-size:.85rem;margin:-6px 0 10px;}
+.gate-err[hidden]{display:none;}
+.gate-fine{font-size:.78rem;color:var(--muted);margin:12px 0 0;}
 @media (max-width:680px){.hero{grid-template-columns:1fr;gap:20px;}.cover{width:180px;}}
 </style>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Book", "name": "Little Women", "author": {"@type": "Person", "name": "Louisa May Alcott"}, "url": "https://bookclassics.org/books/little-women/", "inLanguage": ["en"], "genre": "Children's Classics", "isAccessibleForFree": true, "bookFormat": "https://schema.org/EBook", "description": "The four March sisters — Meg, Jo, Beth, and Amy — grow up together through love, loss, and ambition in Civil War-era New England.", "publisher": {"@type": "Organization", "name": "BookClassics", "url": "https://bookclassics.org"}, "datePublished": "1868", "numberOfPages": 449, "image": "https://bookclassics.org/covers/little-women.jpg"}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Books", "item": "https://bookclassics.org/books/"}, {"@type": "ListItem", "position": 2, "name": "Little Women", "item": "https://bookclassics.org/books/little-women/"}]}]</script>
@@ -74,19 +100,89 @@ footer.bottom a{color:var(--muted);margin-right:16px;}
     <p class="facts">United States · 1868 · Children&#x27;s Classics · 449 pages</p>
     <p class="lead">The four March sisters — Meg, Jo, Beth, and Amy — grow up together through love, loss, and ambition in Civil War-era New England.</p>
     <div class="actions">
-      <a class="btn primary" href="/#livre-little-women">Read online for free</a>
-      <a class="btn ghost" href="/#livre-little-women">Download EPUB · PDF · TXT · HTML</a>
-      <a class="btn ghost" href="/#livre-little-women">Listen to the audiobook</a>
+      <a class="btn primary" id="bcRead" href="/#lire-little-women.en">Read online for free</a>
+      <button type="button" class="btn ghost" id="bcDl" aria-expanded="false">Download EPUB · PDF · TXT · HTML</button>
+      <button type="button" class="btn ghost" id="bcListen">Listen to the audiobook</button>
     </div>
+    <div id="bcFormats" class="fmts" hidden></div>
+    <div id="bcPlayer" class="player" hidden></div>
     <p class="free">Free · public domain · editions in English</p>
   </div>
 </div>
-<section class="card"><h2>Editions</h2><ul class="eds"><li lang="en"><b>Little Women</b><span>English · EPUB, HTML, PDF, TXT · audiobook 19 h 38 min</span></li></ul></section>
+<section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Little Women</b><span>English · EPUB, HTML, PDF, TXT · audiobook 19 h 38 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Little Women follows the four March sisters, Meg, Jo, Beth, and Amy, growing up in Concord, Massachusetts during and after the Civil War, with their father away serving as a chaplain and their mother, Marmee, holding the household together on modest means. The novel opens on a lean Christmas and quickly establishes each sister&#x27;s temperament: Meg is gentle and a little vain about the finer things she cannot afford; Jo is headstrong, bookish, and impatient with the constraints placed on girls, dreaming of becoming a writer; Beth is shy, musical, and almost saintly in her selflessness; Amy is artistic, image-conscious, and prone to childish vanity that slowly matures into genuine grace. Their world expands through friendship with the wealthy boy next door, Laurie, who becomes a near-brother to them all and, for a long stretch of the novel, is presumed to be Jo&#x27;s eventual match. The first half follows small domestic dramas, a burned manuscript, a disastrous skating accident, a matchmaking scheme, a trip to a fashionable but morally hollow social set, that teach the sisters lessons about vanity, temper, and generosity. The second half, often published separately as Good Wives, follows the sisters into adulthood: Meg marries the tutor John Brooke and adjusts to genteel poverty; Jo moves to New York, pursues writing, and eventually finds an unexpected match in the older, intellectual Professor Bhaer rather than Laurie, who proposes to her and is turned down; Beth&#x27;s fragile health, weakened years earlier by scarlet fever contracted while helping a poor family, gradually fails, and her death is one of the novel&#x27;s most enduring set pieces; Amy travels to Europe, refines her art and manners, and ultimately marries Laurie herself. The novel closes with the surviving sisters settled into domestic and professional lives, gathered again at Marmee&#x27;s side, the family bond intact despite loss and change.</p></section>
 <section class="card"><h2>About Louisa May Alcott</h2><p>American novelist (1832-1888), best known for the semi-autobiographical novel Little Women and its sequels about the March family.</p></section>
-<section class="card"><h2>How it begins</h2><blockquote><p>Jo was the first to wake in the gray dawn of Christmas morning. No stockings hung at the fireplace, and for a moment she felt as much disappointed as she did long ago, when her little sock fell down because it was crammed so full of goodies. Then she remembered her mother’s promise and, slipping her hand under her pillow, drew out a little crimson-covered book. She knew it very well, for it was that beautiful old story of the best life ever lived, and Jo felt that it was a true guidebook for any pilgrim going on a long journey. She woke Meg with a “Merry Christmas,” and bade her see what was under her pillow. A green-covered book appeared, with the same picture inside, and a few words written by their mother, which made their one present very precious in their eyes. Presently Beth and Amy woke to rummage and find their little books also, one dove-colored, the other blue, and all sat looking at and talking about them, while the east grew rosy with the coming day.</p></blockquote><p class="free" style="margin-top:12px"><a href="/#livre-little-women">Continue reading →</a></p></section>
+<section class="card"><h2>How it begins</h2><blockquote><p>Jo was the first to wake in the gray dawn of Christmas morning. No stockings hung at the fireplace, and for a moment she felt as much disappointed as she did long ago, when her little sock fell down because it was crammed so full of goodies. Then she remembered her mother’s promise and, slipping her hand under her pillow, drew out a little crimson-covered book. She knew it very well, for it was that beautiful old story of the best life ever lived, and Jo felt that it was a true guidebook for any pilgrim going on a long journey. She woke Meg with a “Merry Christmas,” and bade her see what was under her pillow. A green-covered book appeared, with the same picture inside, and a few words written by their mother, which made their one present very precious in their eyes. Presently Beth and Amy woke to rummage and find their little books also, one dove-colored, the other blue, and all sat looking at and talking about them, while the east grew rosy with the coming day.</p></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-little-women.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/the-adventures-of-pinocchio/"><img src="/covers/the-adventures-of-pinocchio.jpg" alt="" loading="lazy">The Adventures of Pinocchio<small>Carlo Collodi</small></a><a href="/books/heart/"><img src="/covers/heart.jpg" alt="" loading="lazy">Heart<small>Edmondo De Amicis</small></a><a href="/books/the-prince-and-the-pauper/"><img src="/covers/the-prince-and-the-pauper.jpg" alt="" loading="lazy">The Prince and the Pauper<small>Mark Twain</small></a><a href="/books/the-adventures-of-tom-sawyer/"><img src="/covers/the-adventures-of-tom-sawyer.jpg" alt="" loading="lazy">The Adventures of Tom Sawyer<small>Mark Twain</small></a><a href="/books/the-wind-in-the-willows/"><img src="/covers/the-wind-in-the-willows.jpg" alt="" loading="lazy">The Wind in the Willows<small>Kenneth Grahame</small></a><a href="/books/peter-pan/"><img src="/covers/peter-pan.jpg" alt="" loading="lazy">Peter Pan<small>J. M. Barrie</small></a></div></section>
-
+<script>const BC={"slug":"little-women","ed":{"en":["epub","html","pdf","txt"]},"audio":{"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/little-women/little-women.mp3","d":70707}},"lang":"en"};</script>
+<div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
+  <div class="gate-box">
+    <button type="button" class="gate-x" id="bcGateClose" aria-label="Close">✕</button>
+    <h2 id="bcGateTitle">Free sign-up</h2>
+    <p>Enter your email once to read, download and listen to all our books for free.</p>
+    <ul><li>Over 120 classics in 7 languages, free</li><li>EPUB, PDF, TXT, HTML and audiobooks</li><li>An email each time new books arrive</li></ul>
+    <form id="bcGateForm" novalidate>
+      <label for="bcGateEmail">Your email</label>
+      <input id="bcGateEmail" type="email" autocomplete="email" placeholder="name@email.com" required>
+      <p class="gate-err" id="bcGateErr" hidden>Please enter a valid email address.</p>
+      <button class="btn primary" type="submit" id="bcGateBtn">Continue for free</button>
+    </form>
+    <p class="gate-fine">By continuing, you agree to receive our new-book announcements by email. Unsubscribe in one click from any email. Your address is never shared or sold. <a href="/privacy.html">Privacy</a></p>
+  </div>
+</div><script>
+(function(){
+var KIT='9985086', REG='ebc_reader_email_v1', RAW='https://raw.githubusercontent.com/medamineamzil-design/ebookclassics-files/main/';
+var lang=BC.lang, pending=null, $=function(i){return document.getElementById(i);};
+function reg(){try{return !!localStorage.getItem(REG);}catch(e){return false;}}
+function gate(fn){ if(reg()){fn();return;} pending=fn; $('bcGateErr').hidden=true; $('bcGate').hidden=false; setTimeout(function(){$('bcGateEmail').focus();},50); }
+function closeGate(){ $('bcGate').hidden=true; pending=null; }
+$('bcGateClose').onclick=closeGate;
+$('bcGate').addEventListener('click',function(e){ if(e.target===$('bcGate')) closeGate(); });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !$('bcGate').hidden) closeGate(); });
+$('bcGateForm').onsubmit=function(ev){
+  ev.preventDefault();
+  var em=String($('bcGateEmail').value||'').trim().toLowerCase();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ $('bcGateErr').hidden=false; $('bcGateEmail').focus(); return; }
+  $('bcGateBtn').disabled=true;
+  var ui='EN'; try{ ui=localStorage.getItem('ebc_ui_lang')||'EN'; }catch(e){}
+  var fd=new FormData(); fd.append('email_address',em); fd.append('fields[langue]',ui);
+  var done=function(){ try{localStorage.setItem(REG,em);}catch(e){} $('bcGateBtn').disabled=false; var n=pending; pending=null; $('bcGate').hidden=true; if(n) n(); };
+  fetch('https://app.kit.com/forms/'+KIT+'/subscriptions',{method:'POST',body:fd,mode:'no-cors'}).then(done,done);
+};
+function fileUrl(ext){ return RAW+BC.slug+'/'+(lang==='en'?BC.slug:BC.slug+'-'+lang)+'.'+ext; }
+function save(blob,name){ var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},4000); }
+function download(ext){
+  gate(function(){
+    if(ext==='mp3'){ var au=BC.audio[lang]; if(au) window.open(au.u,'_blank','noopener'); return; }
+    var chip=document.querySelector('[data-ext="'+ext+'"]'); if(chip){ chip.disabled=true; chip.textContent='…'; }
+    fetch(fileUrl(ext)).then(function(r){ if(!r.ok) throw r.status; return r.blob(); })
+      .then(function(b){ save(b, BC.slug+'-'+lang+'.'+ext); })
+      .catch(function(){ window.open(fileUrl(ext),'_blank','noopener'); })
+      .then(function(){ if(chip){ chip.disabled=false; chip.textContent=ext.toUpperCase(); } });
+  });
+}
+function renderFormats(){
+  var O=['epub','pdf','txt','html']; var exts=(BC.ed[lang]||[]).slice().sort(function(x,y){return O.indexOf(x)-O.indexOf(y);}); if(BC.audio[lang]) exts.push('mp3');
+  $('bcFormats').innerHTML='<span>Choose a format:</span>'+exts.map(function(x){return '<button type="button" class="chip" data-ext="'+x+'">'+x.toUpperCase()+'</button>';}).join('');
+  [].forEach.call($('bcFormats').querySelectorAll('.chip'),function(c){ c.onclick=function(){ download(c.dataset.ext); }; });
+}
+$('bcDl').onclick=function(){ var f=$('bcFormats'); f.hidden=!f.hidden; this.setAttribute('aria-expanded',String(!f.hidden)); if(!f.hidden) renderFormats(); };
+var lb=$('bcListen');
+if(lb) lb.onclick=function(){ gate(function(){ var au=BC.audio[lang]; if(!au) return; var p=$('bcPlayer');
+  var h=Math.floor(au.d/3600), m=Math.round((au.d%3600)/60);
+  p.innerHTML='<audio controls autoplay preload="none" src="'+au.u+'"></audio><span>'+(h?h+' h '+(m<10?'0':'')+m+' min':m+' min')+' · LibriVox volunteer recording · public domain</span>';
+  p.hidden=false; }); };
+function setLang(l){
+  lang=l;
+  [].forEach.call(document.querySelectorAll('.ed'),function(e){ var on=e.dataset.lang===l; e.classList.toggle('active',on); e.setAttribute('aria-pressed',String(on)); });
+  var href='/#lire-'+BC.slug+'.'+l; $('bcRead').href=href; [].forEach.call(document.querySelectorAll('.bcReadLink'),function(a){a.href=href;});
+  if(lb) lb.hidden=!BC.audio[l];
+  var p=$('bcPlayer'); p.hidden=true; p.innerHTML='';
+  if(!$('bcFormats').hidden) renderFormats();
+}
+[].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
+})();
+</script>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>

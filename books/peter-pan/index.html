@@ -55,6 +55,32 @@ blockquote p{margin:0 0 12px;}
 .grid small{color:var(--muted);display:block;}
 footer.bottom{border-top:1px solid var(--border);padding-block:22px;margin-top:30px;color:var(--muted);font-size:.85rem;}
 footer.bottom a{color:var(--muted);margin-right:16px;}
+button.btn{font:600 .95rem "Archivo",sans-serif;cursor:pointer;background:transparent;color:var(--text);}
+button.btn.primary,a.btn.primary{background:var(--accent);color:var(--accent-ink);}
+.btn:hover{box-shadow:0 2px 8px rgba(30,20,5,.12);}
+.btn[hidden]{display:none;}
+.eds .ed{width:100%;text-align:left;border:1px solid var(--border);border-radius:10px;padding:10px 14px;background:transparent;color:var(--text);cursor:pointer;font:inherit;}
+.eds .ed.active{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);}
+.eds li{border:0;padding:0;}
+.fmts{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:2px 0 12px;font-size:.88rem;color:var(--muted);}
+.fmts[hidden],.player[hidden]{display:none;}
+.chip{font:600 .85rem "Archivo",sans-serif;padding:7px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;}
+.chip:hover{border-color:var(--accent);}
+.player{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:4px 0 12px;max-width:560px;}
+.player audio{width:100%;display:block;}
+.player span{display:block;font-size:.8rem;color:var(--muted);margin-top:6px;}
+.gate{position:fixed;inset:0;background:rgba(20,15,5,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50;}
+.gate[hidden]{display:none;}
+.gate-box{position:relative;background:var(--surface);color:var(--text);border-radius:16px;max-width:430px;width:100%;padding:26px 24px;box-shadow:0 20px 60px rgba(0,0,0,.35);}
+.gate-box h2{margin:0 0 8px;font-size:1.4rem;}
+.gate-box ul{padding-left:20px;margin:10px 0 16px;font-size:.92rem;}
+.gate-box label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px;}
+.gate-box input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--border);font:inherit;background:var(--bg);color:var(--text);margin-bottom:12px;}
+.gate-box .btn{width:100%;}
+.gate-x{position:absolute;top:12px;right:12px;border:0;background:transparent;font-size:1.1rem;cursor:pointer;color:var(--muted);}
+.gate-err{color:#8C4030;font-size:.85rem;margin:-6px 0 10px;}
+.gate-err[hidden]{display:none;}
+.gate-fine{font-size:.78rem;color:var(--muted);margin:12px 0 0;}
 @media (max-width:680px){.hero{grid-template-columns:1fr;gap:20px;}.cover{width:180px;}}
 </style>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Book", "name": "Peter Pan", "author": {"@type": "Person", "name": "J. M. Barrie"}, "url": "https://bookclassics.org/books/peter-pan/", "inLanguage": ["en"], "genre": "Children's Classics", "isAccessibleForFree": true, "bookFormat": "https://schema.org/EBook", "description": "The boy who never grows up whisks the Darling children away to Neverland, where fairies, pirates, and a ticking crocodile await.", "publisher": {"@type": "Organization", "name": "BookClassics", "url": "https://bookclassics.org"}, "datePublished": "1911", "numberOfPages": 216, "image": "https://bookclassics.org/covers/peter-pan.jpg"}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Books", "item": "https://bookclassics.org/books/"}, {"@type": "ListItem", "position": 2, "name": "Peter Pan", "item": "https://bookclassics.org/books/peter-pan/"}]}]</script>
@@ -74,19 +100,89 @@ footer.bottom a{color:var(--muted);margin-right:16px;}
     <p class="facts">England · 1911 · Children&#x27;s Classics · 216 pages</p>
     <p class="lead">The boy who never grows up whisks the Darling children away to Neverland, where fairies, pirates, and a ticking crocodile await.</p>
     <div class="actions">
-      <a class="btn primary" href="/#livre-peter-pan">Read online for free</a>
-      <a class="btn ghost" href="/#livre-peter-pan">Download EPUB · PDF · TXT · HTML</a>
-      <a class="btn ghost" href="/#livre-peter-pan">Listen to the audiobook</a>
+      <a class="btn primary" id="bcRead" href="/#lire-peter-pan.en">Read online for free</a>
+      <button type="button" class="btn ghost" id="bcDl" aria-expanded="false">Download EPUB · PDF · TXT · HTML</button>
+      <button type="button" class="btn ghost" id="bcListen">Listen to the audiobook</button>
     </div>
+    <div id="bcFormats" class="fmts" hidden></div>
+    <div id="bcPlayer" class="player" hidden></div>
     <p class="free">Free · public domain · editions in English</p>
   </div>
 </div>
-<section class="card"><h2>Editions</h2><ul class="eds"><li lang="en"><b>Peter Pan</b><span>English · EPUB, HTML, PDF, TXT · audiobook 5 h 22 min</span></li></ul></section>
+<section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Peter Pan</b><span>English · EPUB, HTML, PDF, TXT · audiobook 5 h 22 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Peter Pan tells the story of the Darling children, Wendy, John, and Michael, in Edwardian London, whose nursery is visited one night by Peter Pan, a boy who never grows up, searching for his shadow, which Wendy sews back onto him. Peter, accompanied by the fiercely jealous fairy Tinker Bell, invites the children to fly with him, using fairy dust and happy thoughts, to Neverland, an island of perpetual childhood adventure populated by the Lost Boys, who fell out of their prams and were never claimed; hostile pirates led by the menacing Captain Hook, who lost his hand to a crocodile in a duel with Peter and now lives in terror of the same crocodile, which swallowed a ticking clock and now announces its approach; and a native tribe led by the princess Tiger Lily. In Neverland Wendy quickly settles into a maternal role for the Lost Boys, telling them stories and mending their clothes, while the children have a series of episodic adventures, rescuing Tiger Lily from the pirates, an encounter with a mermaid lagoon, and repeated skirmishes with Hook&#x27;s crew, all narrated with Peter as the fearless, forgetful, and often startlingly callous hero at the center. Hook, obsessed with defeating Peter and reclaiming his dignity, eventually captures the Lost Boys and Wendy, forcing them toward his ship, and poisons Peter&#x27;s medicine, a plot foiled when Tink drinks the poison herself to save him, nearly dying before Peter&#x27;s belief, and that of children everywhere clapping to affirm they believe in fairies, revives her. Peter storms Hook&#x27;s ship alone, defeats the pirates and finally Hook himself, who leaps into the jaws of the waiting crocodile. Wendy, having grown homesick and increasingly aware that Neverland&#x27;s timeless adventure cannot substitute for real family, decides to return to London with her brothers and the Lost Boys, who are adopted by the Darling parents. Peter, incapable of accepting ordinary domestic life or growing up, returns alone to Neverland, though the book&#x27;s closing pages reveal he continues to visit Wendy each spring for her to do his &quot;spring cleaning,&quot; until, years later, an adult Wendy watches her own daughter fly off with Peter in her place, the cycle of childhood renewing itself endlessly without him.</p></section>
 <section class="card"><h2>About J. M. Barrie</h2><p>Scottish novelist and playwright (1860-1937), best known for creating the character Peter Pan.</p></section>
-<section class="card"><h2>How it begins</h2><blockquote><p>All children, except one, grow up. They soon know that they will grow up, and the way Wendy knew was this. One day when she was two years old she was playing in a garden, and she plucked another flower and ran with it to her mother. I suppose she must have looked rather delightful, for Mrs. Darling put her hand to her heart and cried, “Oh, why can’t you remain like this for ever!” This was all that passed between them on the subject, but henceforth Wendy knew that she must grow up. You always know after you are two. Two is the beginning of the end.</p><p>Of course they lived at 14, and until Wendy came her mother was the chief one. She was a lovely lady, with a romantic mind and such a sweet mocking mouth. Her romantic mind was like the tiny boxes, one within the other, that come from the puzzling East, however many you discover there is always one more; and her sweet mocking mouth had one kiss on it that Wendy could never get, though there it was, perfectly conspicuous in the right-hand corner.</p></blockquote><p class="free" style="margin-top:12px"><a href="/#livre-peter-pan">Continue reading →</a></p></section>
+<section class="card"><h2>How it begins</h2><blockquote><p>All children, except one, grow up. They soon know that they will grow up, and the way Wendy knew was this. One day when she was two years old she was playing in a garden, and she plucked another flower and ran with it to her mother. I suppose she must have looked rather delightful, for Mrs. Darling put her hand to her heart and cried, “Oh, why can’t you remain like this for ever!” This was all that passed between them on the subject, but henceforth Wendy knew that she must grow up. You always know after you are two. Two is the beginning of the end.</p><p>Of course they lived at 14, and until Wendy came her mother was the chief one. She was a lovely lady, with a romantic mind and such a sweet mocking mouth. Her romantic mind was like the tiny boxes, one within the other, that come from the puzzling East, however many you discover there is always one more; and her sweet mocking mouth had one kiss on it that Wendy could never get, though there it was, perfectly conspicuous in the right-hand corner.</p></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-peter-pan.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/the-railway-children/"><img src="/covers/the-railway-children.jpg" alt="" loading="lazy">The Railway Children<small>E. Nesbit</small></a><a href="/books/the-wonderful-adventures-of-nils/"><img src="/covers/the-wonderful-adventures-of-nils.jpg" alt="" loading="lazy">The Wonderful Adventures of Nils<small>Selma Lagerlöf</small></a><a href="/books/anne-of-green-gables/"><img src="/covers/anne-of-green-gables.jpg" alt="" loading="lazy">Anne of Green Gables<small>L. M. Montgomery</small></a><a href="/books/grimm-s-fairy-tales/"><span class="ph">Grimm&#x27;s Fairy Tales</span>Grimm&#x27;s Fairy Tales<small>Jacob &amp; Wilhelm Grimm</small></a><a href="/books/andersen-s-fairy-tales/"><span class="ph">Andersen&#x27;s Fairy Tales</span>Andersen&#x27;s Fairy Tales<small>Hans Christian Andersen</small></a><a href="/books/alice-s-adventures-in-wonderland/"><img src="/covers/alice-s-adventures-in-wonderland.jpg" alt="" loading="lazy">Alice&#x27;s Adventures in Wonderland<small>Lewis Carroll</small></a></div></section>
-
+<script>const BC={"slug":"peter-pan","ed":{"en":["epub","html","pdf","txt"]},"audio":{"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/peter-pan/peter-pan.mp3","d":19329}},"lang":"en"};</script>
+<div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
+  <div class="gate-box">
+    <button type="button" class="gate-x" id="bcGateClose" aria-label="Close">✕</button>
+    <h2 id="bcGateTitle">Free sign-up</h2>
+    <p>Enter your email once to read, download and listen to all our books for free.</p>
+    <ul><li>Over 120 classics in 7 languages, free</li><li>EPUB, PDF, TXT, HTML and audiobooks</li><li>An email each time new books arrive</li></ul>
+    <form id="bcGateForm" novalidate>
+      <label for="bcGateEmail">Your email</label>
+      <input id="bcGateEmail" type="email" autocomplete="email" placeholder="name@email.com" required>
+      <p class="gate-err" id="bcGateErr" hidden>Please enter a valid email address.</p>
+      <button class="btn primary" type="submit" id="bcGateBtn">Continue for free</button>
+    </form>
+    <p class="gate-fine">By continuing, you agree to receive our new-book announcements by email. Unsubscribe in one click from any email. Your address is never shared or sold. <a href="/privacy.html">Privacy</a></p>
+  </div>
+</div><script>
+(function(){
+var KIT='9985086', REG='ebc_reader_email_v1', RAW='https://raw.githubusercontent.com/medamineamzil-design/ebookclassics-files/main/';
+var lang=BC.lang, pending=null, $=function(i){return document.getElementById(i);};
+function reg(){try{return !!localStorage.getItem(REG);}catch(e){return false;}}
+function gate(fn){ if(reg()){fn();return;} pending=fn; $('bcGateErr').hidden=true; $('bcGate').hidden=false; setTimeout(function(){$('bcGateEmail').focus();},50); }
+function closeGate(){ $('bcGate').hidden=true; pending=null; }
+$('bcGateClose').onclick=closeGate;
+$('bcGate').addEventListener('click',function(e){ if(e.target===$('bcGate')) closeGate(); });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !$('bcGate').hidden) closeGate(); });
+$('bcGateForm').onsubmit=function(ev){
+  ev.preventDefault();
+  var em=String($('bcGateEmail').value||'').trim().toLowerCase();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ $('bcGateErr').hidden=false; $('bcGateEmail').focus(); return; }
+  $('bcGateBtn').disabled=true;
+  var ui='EN'; try{ ui=localStorage.getItem('ebc_ui_lang')||'EN'; }catch(e){}
+  var fd=new FormData(); fd.append('email_address',em); fd.append('fields[langue]',ui);
+  var done=function(){ try{localStorage.setItem(REG,em);}catch(e){} $('bcGateBtn').disabled=false; var n=pending; pending=null; $('bcGate').hidden=true; if(n) n(); };
+  fetch('https://app.kit.com/forms/'+KIT+'/subscriptions',{method:'POST',body:fd,mode:'no-cors'}).then(done,done);
+};
+function fileUrl(ext){ return RAW+BC.slug+'/'+(lang==='en'?BC.slug:BC.slug+'-'+lang)+'.'+ext; }
+function save(blob,name){ var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},4000); }
+function download(ext){
+  gate(function(){
+    if(ext==='mp3'){ var au=BC.audio[lang]; if(au) window.open(au.u,'_blank','noopener'); return; }
+    var chip=document.querySelector('[data-ext="'+ext+'"]'); if(chip){ chip.disabled=true; chip.textContent='…'; }
+    fetch(fileUrl(ext)).then(function(r){ if(!r.ok) throw r.status; return r.blob(); })
+      .then(function(b){ save(b, BC.slug+'-'+lang+'.'+ext); })
+      .catch(function(){ window.open(fileUrl(ext),'_blank','noopener'); })
+      .then(function(){ if(chip){ chip.disabled=false; chip.textContent=ext.toUpperCase(); } });
+  });
+}
+function renderFormats(){
+  var O=['epub','pdf','txt','html']; var exts=(BC.ed[lang]||[]).slice().sort(function(x,y){return O.indexOf(x)-O.indexOf(y);}); if(BC.audio[lang]) exts.push('mp3');
+  $('bcFormats').innerHTML='<span>Choose a format:</span>'+exts.map(function(x){return '<button type="button" class="chip" data-ext="'+x+'">'+x.toUpperCase()+'</button>';}).join('');
+  [].forEach.call($('bcFormats').querySelectorAll('.chip'),function(c){ c.onclick=function(){ download(c.dataset.ext); }; });
+}
+$('bcDl').onclick=function(){ var f=$('bcFormats'); f.hidden=!f.hidden; this.setAttribute('aria-expanded',String(!f.hidden)); if(!f.hidden) renderFormats(); };
+var lb=$('bcListen');
+if(lb) lb.onclick=function(){ gate(function(){ var au=BC.audio[lang]; if(!au) return; var p=$('bcPlayer');
+  var h=Math.floor(au.d/3600), m=Math.round((au.d%3600)/60);
+  p.innerHTML='<audio controls autoplay preload="none" src="'+au.u+'"></audio><span>'+(h?h+' h '+(m<10?'0':'')+m+' min':m+' min')+' · LibriVox volunteer recording · public domain</span>';
+  p.hidden=false; }); };
+function setLang(l){
+  lang=l;
+  [].forEach.call(document.querySelectorAll('.ed'),function(e){ var on=e.dataset.lang===l; e.classList.toggle('active',on); e.setAttribute('aria-pressed',String(on)); });
+  var href='/#lire-'+BC.slug+'.'+l; $('bcRead').href=href; [].forEach.call(document.querySelectorAll('.bcReadLink'),function(a){a.href=href;});
+  if(lb) lb.hidden=!BC.audio[l];
+  var p=$('bcPlayer'); p.hidden=true; p.innerHTML='';
+  if(!$('bcFormats').hidden) renderFormats();
+}
+[].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
+})();
+</script>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>

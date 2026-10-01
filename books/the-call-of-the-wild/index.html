@@ -55,6 +55,32 @@ blockquote p{margin:0 0 12px;}
 .grid small{color:var(--muted);display:block;}
 footer.bottom{border-top:1px solid var(--border);padding-block:22px;margin-top:30px;color:var(--muted);font-size:.85rem;}
 footer.bottom a{color:var(--muted);margin-right:16px;}
+button.btn{font:600 .95rem "Archivo",sans-serif;cursor:pointer;background:transparent;color:var(--text);}
+button.btn.primary,a.btn.primary{background:var(--accent);color:var(--accent-ink);}
+.btn:hover{box-shadow:0 2px 8px rgba(30,20,5,.12);}
+.btn[hidden]{display:none;}
+.eds .ed{width:100%;text-align:left;border:1px solid var(--border);border-radius:10px;padding:10px 14px;background:transparent;color:var(--text);cursor:pointer;font:inherit;}
+.eds .ed.active{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);}
+.eds li{border:0;padding:0;}
+.fmts{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:2px 0 12px;font-size:.88rem;color:var(--muted);}
+.fmts[hidden],.player[hidden]{display:none;}
+.chip{font:600 .85rem "Archivo",sans-serif;padding:7px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;}
+.chip:hover{border-color:var(--accent);}
+.player{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:4px 0 12px;max-width:560px;}
+.player audio{width:100%;display:block;}
+.player span{display:block;font-size:.8rem;color:var(--muted);margin-top:6px;}
+.gate{position:fixed;inset:0;background:rgba(20,15,5,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50;}
+.gate[hidden]{display:none;}
+.gate-box{position:relative;background:var(--surface);color:var(--text);border-radius:16px;max-width:430px;width:100%;padding:26px 24px;box-shadow:0 20px 60px rgba(0,0,0,.35);}
+.gate-box h2{margin:0 0 8px;font-size:1.4rem;}
+.gate-box ul{padding-left:20px;margin:10px 0 16px;font-size:.92rem;}
+.gate-box label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px;}
+.gate-box input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--border);font:inherit;background:var(--bg);color:var(--text);margin-bottom:12px;}
+.gate-box .btn{width:100%;}
+.gate-x{position:absolute;top:12px;right:12px;border:0;background:transparent;font-size:1.1rem;cursor:pointer;color:var(--muted);}
+.gate-err{color:#8C4030;font-size:.85rem;margin:-6px 0 10px;}
+.gate-err[hidden]{display:none;}
+.gate-fine{font-size:.78rem;color:var(--muted);margin:12px 0 0;}
 @media (max-width:680px){.hero{grid-template-columns:1fr;gap:20px;}.cover{width:180px;}}
 </style>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Book", "name": "The Call of the Wild", "author": {"@type": "Person", "name": "Jack London"}, "url": "https://bookclassics.org/books/the-call-of-the-wild/", "inLanguage": ["en"], "genre": "Adventure & Epics", "isAccessibleForFree": true, "bookFormat": "https://schema.org/EBook", "description": "A pampered family dog is stolen and sold into the brutal life of an Alaskan sled dog, where he must answer the wild call of his ancestors.", "publisher": {"@type": "Organization", "name": "BookClassics", "url": "https://bookclassics.org"}, "datePublished": "1903", "numberOfPages": 172, "image": "https://bookclassics.org/covers/the-call-of-the-wild.jpg"}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Books", "item": "https://bookclassics.org/books/"}, {"@type": "ListItem", "position": 2, "name": "The Call of the Wild", "item": "https://bookclassics.org/books/the-call-of-the-wild/"}]}]</script>
@@ -74,19 +100,89 @@ footer.bottom a{color:var(--muted);margin-right:16px;}
     <p class="facts">United States · 1903 · Adventure &amp; Epics · 172 pages</p>
     <p class="lead">A pampered family dog is stolen and sold into the brutal life of an Alaskan sled dog, where he must answer the wild call of his ancestors.</p>
     <div class="actions">
-      <a class="btn primary" href="/#livre-the-call-of-the-wild">Read online for free</a>
-      <a class="btn ghost" href="/#livre-the-call-of-the-wild">Download EPUB · PDF · TXT · HTML</a>
-      <a class="btn ghost" href="/#livre-the-call-of-the-wild">Listen to the audiobook</a>
+      <a class="btn primary" id="bcRead" href="/#lire-the-call-of-the-wild.en">Read online for free</a>
+      <button type="button" class="btn ghost" id="bcDl" aria-expanded="false">Download EPUB · PDF · TXT · HTML</button>
+      <button type="button" class="btn ghost" id="bcListen">Listen to the audiobook</button>
     </div>
+    <div id="bcFormats" class="fmts" hidden></div>
+    <div id="bcPlayer" class="player" hidden></div>
     <p class="free">Free · public domain · editions in English</p>
   </div>
 </div>
-<section class="card"><h2>Editions</h2><ul class="eds"><li lang="en"><b>The Call of the Wild</b><span>English · EPUB, HTML, PDF, TXT · audiobook 3 h 34 min</span></li></ul></section>
+<section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Call of the Wild</b><span>English · EPUB, HTML, PDF, TXT · audiobook 3 h 34 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>First serialized in The Saturday Evening Post in 1903.</p><p>The Call of the Wild follows Buck, a large, comfortable dog living on a California estate, who is stolen from his home and sold into the brutal world of the Klondike Gold Rush, where he is shipped north to become a sled dog. Thrust abruptly from domestic comfort into a harsh, often violent world governed by &quot;the law of club and fang,&quot; Buck quickly learns that survival requires abandoning civilized restraint: he watches the dominant sled dog Spitz enforce order through violence, endures brutal treatment from careless and cruel owners, and steals food to survive, feeling ancestral instincts long dormant beneath his domesticated nature beginning to stir. After a grueling rivalry, Buck kills Spitz in a fight for pack leadership and proves himself an exceptional lead dog under a competent, careful team of mail carriers, before being sold through a succession of owners of varying competence and cruelty, culminating in the incompetent, needlessly cruel Hal, Charles, and Mercedes, who nearly work the team to death through their ignorance of the trail. Buck and the surviving dogs are rescued just before near-certain death by John Thornton, an experienced, humane outdoorsman who nurses Buck back to health and with whom Buck forms the deepest bond of loyalty and love in his life, saving Thornton&#x27;s life more than once and winning a substantial wager by single-handedly pulling an enormously overloaded sled. Even amid this profound devotion, Buck feels an increasingly powerful pull toward the wild, drawn by the howling of wolves in the surrounding forest and by dreams of a primitive, ancestral past, making brief forays into the wilderness to hunt before returning each time to Thornton&#x27;s camp. When Thornton and his companions are killed by raiding Yeehat natives while Buck is away hunting, the last tether binding Buck to human civilization is severed. Buck kills several of the Yeehats in a display of terrifying, primal power, and, finally free of any human claim upon him, answers the call he has felt building throughout the novel, joining a wolf pack and disappearing fully into the wild, eventually becoming the subject of Yeehat legend as a fearsome Ghost Dog running at the head of the wolves.</p></section>
 <section class="card"><h2>About Jack London</h2><p>American author and journalist (1876-1916), known for adventure and wilderness fiction including The Call of the Wild and White Fang.</p></section>
-<section class="card"><h2>How it begins</h2><blockquote><p>Buck did not read the newspapers, or he would have known that trouble was brewing, not alone for himself, but for every tide-water dog, strong of muscle and with warm, long hair, from Puget Sound to San Diego. Because men, groping in the Arctic darkness, had found a yellow metal, and because steamship and transportation companies were booming the find, thousands of men were rushing into the Northland. These men wanted dogs, and the dogs they wanted were heavy dogs, with strong muscles by which to toil, and furry coats to protect them from the frost.</p><p>Buck lived at a big house in the sun-kissed Santa Clara Valley. Judge Miller’s place, it was called. It stood back from the road, half hidden among the trees, through which glimpses could be caught of the wide cool veranda that ran around its four sides. The house was approached by gravelled driveways which wound about through wide-spreading lawns and under the interlacing boughs of tall poplars. At the rear things were on even a more spacious scale than at the front. There were great stables, where a dozen grooms and boys held forth, rows of vine-clad servants’ cottages, an endless and orderly array of outhouses, long grape arbors, green pastures, orchards, and berry patches. Then there was the pumping plant for the artesian well, and the big cement tank where Judge Miller’s boys took their morning plunge and kept cool in the hot afternoon.</p></blockquote><p class="free" style="margin-top:12px"><a href="/#livre-the-call-of-the-wild">Continue reading →</a></p></section>
+<section class="card"><h2>How it begins</h2><blockquote><p>Buck did not read the newspapers, or he would have known that trouble was brewing, not alone for himself, but for every tide-water dog, strong of muscle and with warm, long hair, from Puget Sound to San Diego. Because men, groping in the Arctic darkness, had found a yellow metal, and because steamship and transportation companies were booming the find, thousands of men were rushing into the Northland. These men wanted dogs, and the dogs they wanted were heavy dogs, with strong muscles by which to toil, and furry coats to protect them from the frost.</p><p>Buck lived at a big house in the sun-kissed Santa Clara Valley. Judge Miller’s place, it was called. It stood back from the road, half hidden among the trees, through which glimpses could be caught of the wide cool veranda that ran around its four sides. The house was approached by gravelled driveways which wound about through wide-spreading lawns and under the interlacing boughs of tall poplars. At the rear things were on even a more spacious scale than at the front. There were great stables, where a dozen grooms and boys held forth, rows of vine-clad servants’ cottages, an endless and orderly array of outhouses, long grape arbors, green pastures, orchards, and berry patches. Then there was the pumping plant for the artesian well, and the big cement tank where Judge Miller’s boys took their morning plunge and kept cool in the hot afternoon.</p></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-call-of-the-wild.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/the-last-of-the-mohicans/"><img src="/covers/the-last-of-the-mohicans.jpg" alt="" loading="lazy">The Last of the Mohicans<small>James Fenimore Cooper</small></a><a href="/books/the-three-musketeers/"><img src="/covers/the-three-musketeers.jpg" alt="" loading="lazy">The Three Musketeers<small>Alexandre Dumas</small></a><a href="/books/metamorphoses/"><img src="/covers/metamorphoses.jpg" alt="" loading="lazy">Metamorphoses<small>Ovid</small></a><a href="/books/robinson-crusoe/"><img src="/covers/robinson-crusoe.jpg" alt="" loading="lazy">Robinson Crusoe<small>Daniel Defoe</small></a><a href="/books/gulliver-s-travels/"><img src="/covers/gulliver-s-travels.jpg" alt="" loading="lazy">Gulliver&#x27;s Travels<small>Jonathan Swift</small></a><a href="/books/treasure-island/"><img src="/covers/treasure-island.jpg" alt="" loading="lazy">Treasure Island<small>Robert Louis Stevenson</small></a></div></section>
-
+<script>const BC={"slug":"the-call-of-the-wild","ed":{"en":["epub","html","pdf","txt"]},"audio":{"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/the-call-of-the-wild/the-call-of-the-wild.mp3","d":12846}},"lang":"en"};</script>
+<div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
+  <div class="gate-box">
+    <button type="button" class="gate-x" id="bcGateClose" aria-label="Close">✕</button>
+    <h2 id="bcGateTitle">Free sign-up</h2>
+    <p>Enter your email once to read, download and listen to all our books for free.</p>
+    <ul><li>Over 120 classics in 7 languages, free</li><li>EPUB, PDF, TXT, HTML and audiobooks</li><li>An email each time new books arrive</li></ul>
+    <form id="bcGateForm" novalidate>
+      <label for="bcGateEmail">Your email</label>
+      <input id="bcGateEmail" type="email" autocomplete="email" placeholder="name@email.com" required>
+      <p class="gate-err" id="bcGateErr" hidden>Please enter a valid email address.</p>
+      <button class="btn primary" type="submit" id="bcGateBtn">Continue for free</button>
+    </form>
+    <p class="gate-fine">By continuing, you agree to receive our new-book announcements by email. Unsubscribe in one click from any email. Your address is never shared or sold. <a href="/privacy.html">Privacy</a></p>
+  </div>
+</div><script>
+(function(){
+var KIT='9985086', REG='ebc_reader_email_v1', RAW='https://raw.githubusercontent.com/medamineamzil-design/ebookclassics-files/main/';
+var lang=BC.lang, pending=null, $=function(i){return document.getElementById(i);};
+function reg(){try{return !!localStorage.getItem(REG);}catch(e){return false;}}
+function gate(fn){ if(reg()){fn();return;} pending=fn; $('bcGateErr').hidden=true; $('bcGate').hidden=false; setTimeout(function(){$('bcGateEmail').focus();},50); }
+function closeGate(){ $('bcGate').hidden=true; pending=null; }
+$('bcGateClose').onclick=closeGate;
+$('bcGate').addEventListener('click',function(e){ if(e.target===$('bcGate')) closeGate(); });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !$('bcGate').hidden) closeGate(); });
+$('bcGateForm').onsubmit=function(ev){
+  ev.preventDefault();
+  var em=String($('bcGateEmail').value||'').trim().toLowerCase();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ $('bcGateErr').hidden=false; $('bcGateEmail').focus(); return; }
+  $('bcGateBtn').disabled=true;
+  var ui='EN'; try{ ui=localStorage.getItem('ebc_ui_lang')||'EN'; }catch(e){}
+  var fd=new FormData(); fd.append('email_address',em); fd.append('fields[langue]',ui);
+  var done=function(){ try{localStorage.setItem(REG,em);}catch(e){} $('bcGateBtn').disabled=false; var n=pending; pending=null; $('bcGate').hidden=true; if(n) n(); };
+  fetch('https://app.kit.com/forms/'+KIT+'/subscriptions',{method:'POST',body:fd,mode:'no-cors'}).then(done,done);
+};
+function fileUrl(ext){ return RAW+BC.slug+'/'+(lang==='en'?BC.slug:BC.slug+'-'+lang)+'.'+ext; }
+function save(blob,name){ var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(a.href); a.remove();},4000); }
+function download(ext){
+  gate(function(){
+    if(ext==='mp3'){ var au=BC.audio[lang]; if(au) window.open(au.u,'_blank','noopener'); return; }
+    var chip=document.querySelector('[data-ext="'+ext+'"]'); if(chip){ chip.disabled=true; chip.textContent='…'; }
+    fetch(fileUrl(ext)).then(function(r){ if(!r.ok) throw r.status; return r.blob(); })
+      .then(function(b){ save(b, BC.slug+'-'+lang+'.'+ext); })
+      .catch(function(){ window.open(fileUrl(ext),'_blank','noopener'); })
+      .then(function(){ if(chip){ chip.disabled=false; chip.textContent=ext.toUpperCase(); } });
+  });
+}
+function renderFormats(){
+  var O=['epub','pdf','txt','html']; var exts=(BC.ed[lang]||[]).slice().sort(function(x,y){return O.indexOf(x)-O.indexOf(y);}); if(BC.audio[lang]) exts.push('mp3');
+  $('bcFormats').innerHTML='<span>Choose a format:</span>'+exts.map(function(x){return '<button type="button" class="chip" data-ext="'+x+'">'+x.toUpperCase()+'</button>';}).join('');
+  [].forEach.call($('bcFormats').querySelectorAll('.chip'),function(c){ c.onclick=function(){ download(c.dataset.ext); }; });
+}
+$('bcDl').onclick=function(){ var f=$('bcFormats'); f.hidden=!f.hidden; this.setAttribute('aria-expanded',String(!f.hidden)); if(!f.hidden) renderFormats(); };
+var lb=$('bcListen');
+if(lb) lb.onclick=function(){ gate(function(){ var au=BC.audio[lang]; if(!au) return; var p=$('bcPlayer');
+  var h=Math.floor(au.d/3600), m=Math.round((au.d%3600)/60);
+  p.innerHTML='<audio controls autoplay preload="none" src="'+au.u+'"></audio><span>'+(h?h+' h '+(m<10?'0':'')+m+' min':m+' min')+' · LibriVox volunteer recording · public domain</span>';
+  p.hidden=false; }); };
+function setLang(l){
+  lang=l;
+  [].forEach.call(document.querySelectorAll('.ed'),function(e){ var on=e.dataset.lang===l; e.classList.toggle('active',on); e.setAttribute('aria-pressed',String(on)); });
+  var href='/#lire-'+BC.slug+'.'+l; $('bcRead').href=href; [].forEach.call(document.querySelectorAll('.bcReadLink'),function(a){a.href=href;});
+  if(lb) lb.hidden=!BC.audio[l];
+  var p=$('bcPlayer'); p.hidden=true; p.innerHTML='';
+  if(!$('bcFormats').hidden) renderFormats();
+}
+[].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
+})();
+</script>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
