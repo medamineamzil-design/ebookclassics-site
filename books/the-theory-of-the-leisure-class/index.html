@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://bookclassics.org/books/the-theory-of-the-leisure-class/">
 <meta property="og:image" content="https://bookclassics.org/covers/the-theory-of-the-leisure-class.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Archivo:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&display=swap">
 <style>
 :root{--bg:#EAE7DE;--surface:#FFFFFF;--text:#2A2015;--muted:#6B5D45;--border:#D9D4C4;--accent:#A9823D;--accent-ink:#221806;--wood:#20392C;}
 @media (prefers-color-scheme: dark){:root{--bg:#151109;--surface:#1E1810;--text:#EEE4CC;--muted:#B3A282;--border:#3A2C18;--accent:#D3AC5C;--accent-ink:#201704;--wood:#13251C;}}
@@ -85,6 +85,37 @@ button.btn.primary,a.btn.primary{background:var(--accent);color:var(--accent-ink
 blockquote .rm-btn{font-family:"Archivo",sans-serif;}
 .gate-fine{font-size:.78rem;color:var(--muted);margin:12px 0 0;}
 @media (max-width:680px){.hero{grid-template-columns:1fr;gap:20px;}.cover{width:180px;}}
+
+/* ---- Thème Kiosque + Écoute ---- */
+:root{--bg:#F6F3EC;--surface:#FFFFFF;--text:#16130F;--muted:#6B655B;--border:#E6E0D3;--accent:#2D4BE0;--accent-ink:#FFFFFF;--wood:#12352A;--lime:#C8F27A;}
+@media (prefers-color-scheme: dark){:root{--bg:#F6F3EC;--surface:#FFFFFF;--text:#16130F;--muted:#6B655B;--border:#E6E0D3;--accent:#2D4BE0;--accent-ink:#FFFFFF;--wood:#12352A;}}
+body{font-family:"Bricolage Grotesque",system-ui,sans-serif;}
+h1,h2,h3,.eds b,blockquote,.cover.text,.grid .ph{font-family:"Bricolage Grotesque",sans-serif;}
+h1{font-weight:800;letter-spacing:-.035em;line-height:1;}
+h2,h3{font-weight:800;letter-spacing:-.02em;}
+header.top{background:#fff;color:var(--text);border-bottom:1px solid var(--border);}
+header.top a.brand{font:800 1.5rem "Bricolage Grotesque",sans-serif;letter-spacing:-.03em;color:var(--text);display:flex;align-items:center;gap:10px;}
+header.top a.brand::before{content:"";width:30px;height:30px;border-radius:9px;background:var(--accent);display:inline-block;}
+header.top nav a{color:var(--text);font-weight:700;padding:8px 12px;border-radius:999px;margin-left:4px;}
+header.top nav a:hover{background:var(--bg);}
+.wrap{max-width:1120px;}
+.cover{border-radius:16px;box-shadow:0 18px 40px rgba(22,19,15,.18);}
+.btn{border-radius:999px;font-weight:800;padding:13px 22px;border:1px solid var(--text);}
+.btn.primary,button.btn.primary,a.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
+#bcListen{background:var(--wood);border-color:var(--wood);color:var(--lime);}
+button.btn,.chip,.rm-btn,blockquote .rm-btn{font-family:"Bricolage Grotesque",sans-serif;}
+section.card{border:0;border-radius:24px;padding:26px 28px;}
+.eds .ed{border-radius:14px;background:var(--bg);border:1px solid transparent;}
+.eds .ed.active{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:#fff;}
+blockquote{border-left:4px solid var(--accent);font-family:"Libre Caslon Text",Georgia,serif;font-size:1.05rem;line-height:1.75;}
+.player{background:var(--wood);border:0;border-radius:20px;color:#F3EFE4;}
+.player span{color:#BFD0C6;}
+.grid a{background:#fff;border-radius:18px;padding:10px;}
+.grid img,.grid .ph{border-radius:12px;box-shadow:none;}
+.rm-btn,a{color:var(--accent);}
+.crumbs a{color:var(--muted);}
+footer.bottom{background:#fff;}
+.gate-box{border-radius:24px;}
 </style>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Book", "name": "The Theory of the Leisure Class", "author": {"@type": "Person", "name": "Thorstein Veblen"}, "url": "https://bookclassics.org/books/the-theory-of-the-leisure-class/", "inLanguage": ["en"], "genre": "Philosophy & Essays", "isAccessibleForFree": true, "bookFormat": "https://schema.org/EBook", "description": "A biting study of how the wealthy display status through visible waste and idleness — the book that gave the world the phrase \"conspicuous consumption.\"", "publisher": {"@type": "Organization", "name": "BookClassics", "url": "https://bookclassics.org"}, "datePublished": "1899", "numberOfPages": 256, "image": "https://bookclassics.org/covers/the-theory-of-the-leisure-class.jpg"}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Books", "item": "https://bookclassics.org/books/"}, {"@type": "ListItem", "position": 2, "name": "The Theory of the Leisure Class", "item": "https://bookclassics.org/books/the-theory-of-the-leisure-class/"}]}]</script>
 </head>

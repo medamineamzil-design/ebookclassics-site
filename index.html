@@ -1083,6 +1083,24 @@
   .hx-news input{ border:0; border-radius:999px; padding:15px 22px; font:inherit; font-size:16px; min-width:min(250px,100%); }
   .hx-news button{ border:0; border-radius:999px; padding:15px 24px; font:inherit; font-weight:800; background:var(--hx-pop); color:#fff; cursor:pointer; }
   .hx-sr{ position:absolute; left:-9999px; }
+
+  /* Catalogue, bibliothèque, auteur : cartes au style Kiosque */
+  .section-title, #view-catalog h2, #view-library h2, #view-author h1, #view-author h2{ font-family:"Bricolage Grotesque", sans-serif !important; font-weight:800 !important; letter-spacing:-.03em; }
+  .bookcase{ background:none !important; box-shadow:none !important; border:0 !important; padding:0 !important; }
+  .bookcase::before, .bookcase::after{ display:none !important; }
+  .grid .card{ background:#fff !important; border:0 !important; border-radius:20px !important; box-shadow:none !important; padding:12px !important; transition:transform .15s; }
+  .grid .card:hover{ transform:translateY(-3px); }
+  .grid .card .book3d-wrap{ padding:0 !important; perspective:none !important; width:100% !important; max-width:none !important; }
+  .bookcase .book3d-wrap::after, .bookcase .book3d-wrap::before{ display:none !important; }
+  .grid .card .book3d{ transform:none !important; width:100% !important; }
+  .grid .card .spine-edge, .grid .card .pages, .grid .card .shadow-drop{ display:none !important; }
+  .grid .card .cover-face{ width:100% !important; aspect-ratio:2/3; border-radius:12px !important; overflow:hidden; box-shadow:none !important; transform:none !important; }
+  .grid .card .cover-img{ width:100% !important; height:100% !important; object-fit:cover; }
+  .grid .card .title{ font-family:"Bricolage Grotesque", sans-serif !important; font-weight:700 !important; }
+  .grid .card .fmt-tag{ border-radius:999px !important; background:var(--hx-paper) !important; border:0 !important; }
+  .grid .card .free-tag{ color:#12805F !important; }
+  .filters{ background:#fff !important; border:0 !important; border-radius:20px !important; }
+  .sortsel{ border-radius:999px !important; }
   @media (max-width:560px){ .hx-player-title{ font-size:26px; } .hx-player img{ width:84px; } }
 </style>
 
@@ -2252,7 +2270,7 @@ function coverEl(book){
     const img = wrap.querySelector('.cover-img');
     if(img){
       img.onerror = function(){ img.onerror = null; img.src = book.coverImg; };
-      img.src = hostedFileUrl(book, 'jpg', 'EN');
+      img.src = BOOK_EXTRA[hostedSlug(book)] ? '/covers/' + hostedSlug(book) + '.jpg' : hostedFileUrl(book, 'jpg', 'EN');
     }
   }
   return wrap;
