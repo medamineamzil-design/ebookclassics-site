@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#philosophie">Philosophy &amp; Essays</a> › On the Origin of Species</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/on-the-origin-of-species.jpg" width="400" height="600" alt="Cover of On the Origin of Species by Charles Darwin"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/on-the-origin-of-species.jpg" width="400" height="600" alt="Cover of On the Origin of Species by Charles Darwin"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>On the Origin of Species</h1>
     <p class="by">by <strong>Charles Darwin</strong></p>
@@ -153,8 +179,10 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">On the Origin of Species</b><span>English · EPUB, HTML, PDF, TXT</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">De l&#x27;origine des espèces</b><span>Français · EPUB, HTML, PDF, TXT</span></button></li><li><button type="button" class="ed" data-lang="de" aria-pressed="false"><b lang="de">Über die Entstehung der Arten im Thier- und Pflanzen-Reich durch natürliche Züchtung</b><span>Deutsch · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Charles Darwin argues that living species are not fixed but have changed over immense periods of time, and that the main force behind this change is natural selection. He begins with something familiar to his readers, the way breeders improve pigeons, dogs and crops by choosing which animals and plants reproduce. He then shows how variation, inheritance and the struggle for existence in nature produce a similar effect without any breeder at all, and goes on to examine instinct, hybrids, the fossil record, geographical distribution and the similarities between living things.</p><div class="rm-more" hidden><p>Darwin called his book one long argument, and its strength lies in how patiently he gathers evidence, anticipates objections and admits difficulties. Writing for a general educated audience rather than specialists, he uses clear prose and countless examples from his own observations, including those made during his voyage on HMS Beagle. Reading it today shows how a revolutionary idea was built step by step.</p><p>The book was published by John Murray in London on 24 November 1859, a year after Darwin&#x27;s and Alfred Russel Wallace&#x27;s ideas were jointly presented to the Linnean Society. It caused immediate scientific and religious debate. Darwin revised it through six editions, adding the phrase survival of the fittest, borrowed from Herbert Spencer, in 1869. It became the foundation of modern biology.</p><p>The first edition of 1,250 copies sold out on its first day of publication, November 24, 1859.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Charles Darwin</h2><p>Charles Darwin was born in 1809 in Shrewsbury, England; his grandfathers were the physician Erasmus Darwin and the potter Josiah Wedgwood. He abandoned medicine at Edinburgh and studied at Cambridge, but his real passion was natural history. From 1831 to 1836 he sailed around the world as naturalist on HMS Beagle, collecting specimens and observing wildlife, notably in the Galápagos Islands. He then married his cousin Emma Wedgwood and settled at Down House in Kent, where he worked despite chronic illness. He died in 1882 and was buried in Westminster Abbey.</p><div class="rm-more" hidden><p>He spent two decades developing his theory of evolution and was prompted to publish when Alfred Russel Wallace reached similar conclusions. On the Origin of Species, published in 1859, argued that species change over time through natural selection. The Descent of Man followed in 1871. Written in clear prose for general readers, his books transformed biology and changed how humanity understands its place in nature.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>When we look to the individuals of the same variety or sub-variety of our older cultivated plants and animals, one of the first points which strikes us, is, that they generally differ much more from each other, than do the individuals of any one species or variety in a state of nature. When we reflect on the vast diversity of the plants and animals which have been cultivated, and which have varied during all ages under the most different climates and treatment, I think we are driven to conclude that this greater variability is simply due to our domestic productions having been raised under conditions of life not so uniform as, and somewhat different from, those to which the parent-species have been exposed under nature. There is, also, I think, some probability in the view propounded by Andrew Knight, that this variability may be partly connected with excess of food. It seems pretty clear that organic beings must be exposed during several generations to the new conditions of life to cause any appreciable amount of variation; and that when the organisation has once begun to vary, it generally continues to vary for many generations. No case is on record of a variable being ceasing to be variable under cultivation. Our oldest cultivated plants, such as wheat, still often yield new varieties: our oldest domesticated animals are still capable of rapid improvement or modification.</p><div class="rm-more" hidden><p>It has been disputed at what period of life the causes of variability, whatever they may be, generally act; whether during the early or late period of development of the embryo, or at the instant of conception. Geoffroy St. Hilaire’s experiments show that unnatural treatment of the embryo causes monstrosities; and monstrosities cannot be separated by any clear line of distinction from mere variations. But I am strongly inclined to suspect that the most frequent cause of variability may be attributed to the male and female reproductive elements having been affected prior to the act of conception. Several reasons make me believe in this; but the chief one is the remarkable effect which confinement or cultivation has on the functions of the reproductive system; this system appearing to be far more susceptible than any other part of the organisation, to the action of any change in the conditions of life. Nothing is more easy than to tame an animal, and few things more difficult than to get it to breed freely under confinement, even in the many cases when the male and female unite. How many animals there are which will not breed, though living long under not very close confinement in their native country! This is generally attributed to vitiated instincts; but how many cultivated plants display the utmost vigour, and yet rarely or never seed! In some few such cases it has been found out that very trifling changes, such as a little more or less water at some particular period of gr…</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-on-the-origin-of-species.en">Continue reading →</a></p></section>
+<div class="bc-ad" id="bcAd2"></div>
 <section class="card"><h2>More by Charles Darwin and similar classics</h2><div class="grid"><a href="/books/the-descent-of-man/"><img src="/covers/the-descent-of-man.jpg" alt="" loading="lazy">The Descent of Man<small>Charles Darwin</small></a><a href="/books/the-republic/"><img src="/covers/the-republic.jpg" alt="" loading="lazy">The Republic<small>Plato</small></a><a href="/books/nicomachean-ethics/"><img src="/covers/nicomachean-ethics.jpg" alt="" loading="lazy">Nicomachean Ethics<small>Aristotle</small></a><a href="/books/walden/"><img src="/covers/walden.jpg" alt="" loading="lazy">Walden<small>Henry David Thoreau</small></a><a href="/books/civil-disobedience/"><img src="/covers/civil-disobedience.jpg" alt="" loading="lazy">Civil Disobedience<small>Henry David Thoreau</small></a><a href="/books/the-pilgrim-s-progress/"><img src="/covers/the-pilgrim-s-progress.jpg" alt="" loading="lazy">The Pilgrim&#x27;s Progress<small>John Bunyan</small></a></div></section>
 <script>const BC={"slug":"on-the-origin-of-species","ed":{"en":["epub","html","pdf","txt"],"fr":["epub","html","pdf","txt"],"de":["epub","html","pdf","txt"]},"audio":{},"lang":"en"};</script>
 <div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
@@ -228,11 +256,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

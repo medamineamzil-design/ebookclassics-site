@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › Dracula</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/dracula.jpg" width="400" height="600" alt="Cover of Dracula by Bram Stoker"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/dracula.jpg" width="400" height="600" alt="Cover of Dracula by Bram Stoker"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Dracula</h1>
     <p class="by">by <strong>Bram Stoker</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Dracula</b><span>English · EPUB, HTML, PDF, TXT · audiobook 16 h 31 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Dracula opens with Jonathan Harker, a young English solicitor, travelling to Transylvania to help a mysterious nobleman, Count Dracula, complete the purchase of a house near London. What begins as a business trip turns into an unsettling stay in a remote castle where Harker slowly realises he is more prisoner than guest. The danger then moves to England, touching his fiancée Mina Murray and her friend Lucy Westenra, and drawing in a small group of allies led by the Dutch professor Abraham Van Helsing, who understands the nature of the threat they face.</p><div class="rm-more" hidden><p>Stoker tells the story entirely through documents: diaries, letters, newspaper cuttings, a ship&#x27;s log and phonograph records. This patchwork gives the novel a gripping sense of immediacy, as each character knows only part of the truth. Beneath the Gothic thrills lie anxieties about modern technology, sexuality, foreign influence and the fragility of reason.</p><p>Dracula was published in London in 1897. Stoker, an Irish writer who also worked as manager of the Lyceum Theatre, did not invent the vampire, but his Count became the definitive version of the figure. The novel has shaped horror fiction ever since and has been adapted countless times for the stage, film, television, radio and comics, making its villain one of the most recognisable characters in popular culture.</p><p>Told in epistolary form: diary entries, letters, and telegrams.</p><p>Dracula is told entirely through letters, diary entries, telegrams, and newspaper clippings, opening with the young English solicitor Jonathan Harker traveling to Transylvania to finalize a property transaction for the mysterious Count Dracula. Harker gradually realizes he is a prisoner in the count&#x27;s remote castle, observes Dracula&#x27;s inhuman abilities, scaling walls like a lizard, commanding wolves, and escapes only after the count departs for England aboard a ship, the Demeter, whose crew are all found dead or missing upon arrival, the vessel steered into port by a corpse lashed to the helm. In England, Dracula begins preying upon Lucy Westenra, a friend of Harker&#x27;s fiancée Mina, who grows mysteriously ill despite multiple blood transfusions arranged by her suitor Dr. Seward and the eccentric Dutch specialist Professor Abraham Van Helsing, who alone recognizes the vampiric cause of her decline. Lucy dies and is buried, but soon after is discovered to be rising from her grave at night to prey on local children as one of the undead; Van Helsing, Seward, Lucy&#x27;s fiancé Arthur Holmwood, and the American Quincey Morris hunt her down, and Arthur, in an agonizing act of mercy, drives a stake through her heart to release her soul and restore her to peaceful death. Meanwhile Harker returns and marries Mina, and the group, now including the Harkers, unites against Dracula, who has relocated to London and begun secretly feeding on Mina herself, forcing her to drink his blood in a horrifying scene that spiritually binds her to him and marks her for eventual transformation unless he is destroyed. Using Mina&#x27;s resulting telepathic connection to the count, alongside Van Helsing&#x27;s expertise in vampire lore and an array of religious and folkloric countermeasures, garlic, crucifixes, communion wafers, the group tracks Dracula as he flees back toward his Transylvanian castle. In a final pursuit across the Carpathian countryside, they intercept Dracula&#x27;s coffin at sunset, and Jonathan Harker and Quincey Morris kill the count, Harker slitting his throat and Morris stabbing him through the heart, though Morris dies of wounds sustained in the fight. Dracula crumbles to dust, Mina is freed of the curse, and an epilogue reveals the Harkers married with a son partly named after the fallen Quincey.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Bram Stoker</h2><p>Abraham Stoker was born in 1847 in Clontarf, near Dublin. A sickly child, he was bedridden for years but grew into a strong athlete at Trinity College Dublin. He worked as a civil servant at Dublin Castle and wrote theatre reviews, one of which began a lifelong friendship with the actor Henry Irving. In 1878 he moved to London with his wife, Florence Balcombe, to manage Irving&#x27;s Lyceum Theatre for decades, writing fiction on the side. He died in London in 1912.</p><div class="rm-more" hidden><p>Stoker wrote several novels, including The Lair of the White Worm, but one book overshadows them all. Dracula, published in 1897, tells of a Transylvanian count who travels to England in search of new victims, through diaries, letters and newspaper cuttings. Drawing on vampire folklore and Gothic tradition, it fixed the image of the aristocratic vampire in popular imagination. Through stage plays and films, Count Dracula became one of the most famous figures in horror fiction.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>3 May. Bistritz.--Left Munich at 8:35 P. M., on 1st May, arriving at Vienna early next morning; should have arrived at 6:46, but train was an hour late. Buda-Pesth seems a wonderful place, from the glimpse which I got of it from the train and the little I could walk through the streets. I feared to go very far from the station, as we had arrived late and would start as near the correct time as possible. The impression I had was that we were leaving the West and entering the East; the most western of splendid bridges over the Danube, which is here of noble width and depth, took us among the traditions of Turkish rule.</p><div class="rm-more" hidden><p>We left in pretty good time, and came after nightfall to Klausenburgh. Here I stopped for the night at the Hotel Royale. I had for dinner, or rather supper, a chicken done up some way with red pepper, which was very good but thirsty. (Mem., get recipe for Mina.) I asked the waiter, and he said it was called “paprika hendl,” and that, as it was a national dish, I should be able to get it anywhere along the Carpathians. I found my smattering of German very useful here; indeed, I don’t know how I should be able to get on without it.</p><p>Having had some time at my disposal when in London, I had visited the British Museum, and made search among the books and maps in the library regarding Transylvania; it had struck me that some foreknowledge of the country could hardly fail to have some importance in dealing with a nobleman of that country. I find that the district he named is in the extreme east of the country, just on the borders of three states, Transylvania, Moldavia and Bukovina, in the midst of the Carpathian mountains; one of the wildest and least known portions of Europe. I was not able to light on any map or work giving the exact locality of the Castle Dracula, as there are no maps of this country as yet to compare with our own Ordnance Survey maps; but I found that Bistritz, the post town named by Count Dracula, is a fairly well-known place. I shall enter here some of my notes, as they may refresh my memory when I talk over my travels with Mina.</p><p>In the population of Transylvania there are four distinct nationalities: Saxons in the South, and mixed with them the Wallachs, who are the descendants of the Dacians; Magyars in the West, and Szekelys in the East and North. I am going among the latter, who claim to be descended from Attila and the Huns. This may be so, for when the Magyars conquered the country in the eleventh century they found the Huns settled in it. I read that every known superstition in the world is gathered into the horseshoe of the Carpathians, as if it were the centre of some sort of imaginative whirlpool; if so my stay may be very interesting. (Mem., I must ask the Count all about them.)</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-dracula.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/the-strange-case-of-dr-jekyll-and-mr-hyde/"><img src="/covers/the-strange-case-of-dr-jekyll-and-mr-hyde.jpg" alt="" loading="lazy">The Strange Case of Dr Jekyll and Mr Hyde<small>Robert Louis Stevenson</small></a><a href="/books/the-adventures-of-sherlock-holmes/"><img src="/covers/the-adventures-of-sherlock-holmes.jpg" alt="" loading="lazy">The Adventures of Sherlock Holmes<small>Arthur Conan Doyle</small></a><a href="/books/wuthering-heights/"><img src="/covers/wuthering-heights.jpg" alt="" loading="lazy">Wuthering Heights<small>Emily Brontë</small></a><a href="/books/the-picture-of-dorian-gray/"><img src="/covers/the-picture-of-dorian-gray.jpg" alt="" loading="lazy">The Picture of Dorian Gray<small>Oscar Wilde</small></a><a href="/books/the-phantom-of-the-opera/"><img src="/covers/the-phantom-of-the-opera.jpg" alt="" loading="lazy">The Phantom of the Opera<small>Gaston Leroux</small></a><a href="/books/twenty-thousand-leagues-under-the-sea/"><img src="/covers/twenty-thousand-leagues-under-the-sea.jpg" alt="" loading="lazy">Twenty Thousand Leagues Under the Sea<small>Jules Verne</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

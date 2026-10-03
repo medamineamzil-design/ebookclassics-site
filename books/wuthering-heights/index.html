@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › Wuthering Heights</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/wuthering-heights.jpg" width="400" height="600" alt="Cover of Wuthering Heights by Emily Brontë"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/wuthering-heights.jpg" width="400" height="600" alt="Cover of Wuthering Heights by Emily Brontë"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Wuthering Heights</h1>
     <p class="by">by <strong>Emily Brontë</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Wuthering Heights</b><span>English · EPUB, HTML, PDF, TXT · audiobook 11 h 33 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>In 1801 a tenant named Lockwood visits his landlord, the brooding Heathcliff, at a remote farmhouse called Wuthering Heights on the Yorkshire moors. Puzzled by the hostile household and unsettled by a night of strange dreams, he asks the housekeeper Nelly Dean for its history. Her story goes back a generation, to the day old Mr. Earnshaw brought home a ragged foundling child, and traces the fierce bond that grew between that boy and Earnshaw&#x27;s daughter Catherine, and the resentments it stirred in the Earnshaw and Linton families.</p><div class="rm-more" hidden><p>The novel is famous for its layered narration, its untamed landscape and the sheer intensity of its emotions. Love, revenge, cruelty and social ambition are bound together, and Brontë refuses to make her characters simply good or bad, which is why readers still argue about them. Its blend of realism, poetry and something close to the supernatural makes it unlike any other Victorian novel, and it rewards rereading.</p><p>Emily Brontë published the book in 1847 under the pen name Ellis Bell, in the same set of volumes as her sister Anne&#x27;s Agnes Grey. Early reviewers were often shocked by its violence and passion. Emily died the following year, and her sister Charlotte prepared a new edition in 1850. Its reputation has grown steadily, and it has inspired numerous films, television series, operas, songs and stage adaptations.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Emily Brontë</h2><p>Emily Brontë was born in 1818 in Thornton, Yorkshire, and grew up in the parsonage at Haworth. With her younger sister Anne she created the imaginary kingdom of Gondal, writing poems and stories set there for years. Intensely private and homesick whenever away, she worked briefly as a teacher and studied in Brussels with Charlotte in 1842. In 1846 her poems appeared under the name Ellis Bell. She died of tuberculosis in December 1848, aged thirty, soon after the death of her brother Branwell.</p><div class="rm-more" hidden><p>Emily&#x27;s only novel, Wuthering Heights, was published in 1847. Told largely by the housekeeper Nelly Dean, it traces the fierce bond between Catherine Earnshaw and the foundling Heathcliff and the revenge that follows. Many early reviewers found it shocking, but its daring structure and raw emotional force eventually won it recognition as one of the greatest English novels. Her poetry, including No Coward Soul Is Mine, is also highly regarded.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>1801—I have just returned from a visit to my landlord—the solitary neighbour that I shall be troubled with. This is certainly a beautiful country! In all England, I do not believe that I could have fixed on a situation so completely removed from the stir of society. A perfect misanthropist’s Heaven—and Mr. Heathcliff and I are such a suitable pair to divide the desolation between us. A capital fellow! He little imagined how my heart warmed towards him when I beheld his black eyes withdraw so suspiciously under their brows, as I rode up, and when his fingers sheltered themselves, with a jealous resolution, still further in his waistcoat, as I announced my name.</p><p>“Mr. Heathcliff?” I said.</p><div class="rm-more" hidden><p>A nod was the answer.</p><p>“Mr. Lockwood, your new tenant, sir. I do myself the honour of calling as soon as possible after my arrival, to express the hope that I have not inconvenienced you by my perseverance in soliciting the occupation of Thrushcross Grange: I heard yesterday you had had some thoughts—”</p><p>“Thrushcross Grange is my own, sir,” he interrupted, wincing. “I should not allow any one to inconvenience me, if I could hinder it—walk in!”</p><p>The “walk in” was uttered with closed teeth, and expressed the sentiment, “Go to the Deuce!” even the gate over which he leant manifested no sympathising movement to the words; and I think that circumstance determined me to accept the invitation: I felt interested in a man who seemed more exaggeratedly reserved than myself.</p><p>When he saw my horse’s breast fairly pushing the barrier, he did put out his hand to unchain it, and then sullenly preceded me up the causeway, calling, as we entered the court,—“Joseph, take Mr. Lockwood’s horse; and bring up some wine.”</p><p>“Here we have the whole establishment of domestics, I suppose,” was the reflection suggested by this compound order. “No wonder the grass grows up between the flags, and cattle are the only hedge-cutters.”</p><p>Joseph was an elderly, nay, an old man, very old, perhaps, though hale and sinewy. “The Lord help us!” he soliloquised in an undertone of peevish displeasure, while relieving me of my horse: looking, meantime, in my face so sourly that I charitably conjectured he must have need of divine aid to digest his dinner, and his pious ejaculation had no reference to my unexpected advent.</p><p>Wuthering Heights is the name of Mr. Heathcliff’s dwelling. “Wuthering” being a significant provincial adjective, descriptive of the atmospheric tumult to which its station is exposed in stormy weather. Pure, bracing ventilation they must have up there at all times, indeed: one may guess the power of the north wind, blowing over the edge, by the excessive slant of a few stunted firs at the end of the house; and by a range of gaunt thorns all stretching their limbs one way, as if craving alms of the sun. Happily, the architect had foresight to build it strong: the narrow windows are deeply set in the wall, and the corners defended with large jutting stones.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-wuthering-heights.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/the-picture-of-dorian-gray/"><img src="/covers/the-picture-of-dorian-gray.jpg" alt="" loading="lazy">The Picture of Dorian Gray<small>Oscar Wilde</small></a><a href="/books/the-phantom-of-the-opera/"><img src="/covers/the-phantom-of-the-opera.jpg" alt="" loading="lazy">The Phantom of the Opera<small>Gaston Leroux</small></a><a href="/books/twenty-thousand-leagues-under-the-sea/"><img src="/covers/twenty-thousand-leagues-under-the-sea.jpg" alt="" loading="lazy">Twenty Thousand Leagues Under the Sea<small>Jules Verne</small></a><a href="/books/heart-of-darkness/"><img src="/covers/heart-of-darkness.jpg" alt="" loading="lazy">Heart of Darkness<small>Joseph Conrad</small></a><a href="/books/the-scarlet-letter/"><img src="/covers/the-scarlet-letter.jpg" alt="" loading="lazy">The Scarlet Letter<small>Nathaniel Hawthorne</small></a><a href="/books/uncle-tom-s-cabin/"><img src="/covers/uncle-tom-s-cabin.jpg" alt="" loading="lazy">Uncle Tom&#x27;s Cabin<small>Harriet Beecher Stowe</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

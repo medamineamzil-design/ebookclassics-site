@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#philosophie">Philosophy &amp; Essays</a> › Meditations</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/meditations.jpg" width="400" height="600" alt="Cover of Meditations by Marcus Aurelius"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/meditations.jpg" width="400" height="600" alt="Cover of Meditations by Marcus Aurelius"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Meditations</h1>
     <p class="by">by <strong>Marcus Aurelius</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Meditations</b><span>English · EPUB, HTML, PDF, TXT · audiobook 6 h 59 min</span></button></li><li><button type="button" class="ed" data-lang="de" aria-pressed="false"><b lang="de">Selbstbetrachtungen</b><span>Deutsch · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Meditations is a collection of private notes written by Marcus Aurelius, Roman emperor from 161 to 180 AD. He wrote them in Greek, apparently for himself alone, and much of the work dates from the years he spent on military campaigns along the Danube frontier. Organised into twelve books, it is not a systematic treatise but a series of reflections, reminders and short exercises in which the emperor tries to train his own mind to live well.</p><div class="rm-more" hidden><p>The central ideas come from Stoic philosophy, which Marcus learned in part from the teachings of Epictetus. He reminds himself that we control our own judgements but not external events, that life is short and change is constant, that other people&#x27;s faults should be met with patience, and that we are all parts of a single rational whole. Book One is a moving list of what he learned from family, teachers and friends. The writing is direct, honest and often self-critical, which is why so many readers today, from students to leaders, turn to it for practical guidance on anxiety, anger, duty and mortality.</p><p>The text survived through medieval manuscripts and was first printed in the sixteenth century. Since then it has been translated into many languages and has remained continuously in print, playing a central part in the modern revival of interest in Stoicism.</p><p>Meditations is not a book Marcus Aurelius ever intended to publish. Written in Greek during military campaigns along the Danube frontier in the last decade of his life, roughly 170 to 180 CE, these twelve books are a private diary of Stoic self-address: an emperor talking to himself about how to live well, remain patient, and meet death without complaint. There is no plot in the conventional sense. Instead, the work moves in short, often disconnected entries, some only a sentence, others a paragraph, circling back again and again to a handful of core convictions. Marcus reminds himself that the only things truly within his control are his own judgments, desires, and actions; everything else, wealth, reputation, health, the behavior of other people, belongs to fortune and should be met with equanimity. He repeatedly urges himself to view human life against the vastness of time and the cosmos, a perspective meant to shrink irritation and vanity alike. He writes about the ingratitude and pettiness he will inevitably encounter from others that day, rehearsing patience in advance. He meditates on death constantly, not morbidly but as a discipline: since everyone alive already carries the seeds of dissolution, fearing the end is simply resisting nature. Threaded throughout are debts of gratitude to teachers, family members, and predecessors, listed in Book One, who shaped his character. The tone is severe, exacting, sometimes weary, the voice of a man holding himself to a standard he doubts he can fully meet, in the intervals between administering an empire and fighting wars he did not choose. Because the entries were never revised into a polished treatise, the reader witnesses Stoic philosophy not as abstract doctrine but as a tool being used in real time, under real pressure, by someone whose power could not shield him from grief, plague, or the exhaustion of duty.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Marcus Aurelius</h2><p>Marcus Aurelius was born in Rome in AD 121 into a wealthy and well-connected family. The emperor Hadrian took an interest in him and arranged his adoption by the future emperor Antoninus Pius. He received an excellent education in rhetoric and philosophy and was drawn especially to Stoicism. He became emperor in 161, at first sharing power with Lucius Verus. His reign was troubled by plague and long wars along the Danube. He died in 180 and was succeeded by his son Commodus.</p><div class="rm-more" hidden><p>The Meditations, written in Greek, were private notes never intended for publication, probably composed partly on campaign. In short reflections he urges himself to act justly, accept what lies beyond his control, remember life&#x27;s brevity and treat others patiently. The book is a key source for Stoic philosophy and a rare window into the mind of a ruler trying to live well, still read for its practical wisdom.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>I. Of my grandfather Verus I have learned to be gentle and meek, and to refrain from all anger and passion. From the fame and memory of him that begot me I have learned both shamefastness and manlike behaviour. Of my mother I have learned to be religious, and bountiful; and to forbear, not only to do, but to intend any evil; to content myself with a spare diet, and to fly all such excess as is incidental to great wealth. Of my great-grandfather, both to frequent public schools and auditories, and to get me good and able teachers at home; and that I ought not to think much, if upon such occasions, I were at excessive charges.</p><div class="rm-more" hidden><p>II. Of him that brought me up, not to be fondly addicted to either of the two great factions of the coursers in the circus, called Prasini, and Veneti: nor in the amphitheatre partially to favour any of the gladiators, or fencers, as either the Parmularii, or the Secutores. Moreover, to endure labour; nor to need many things; when I have anything to do, to do it myself rather than by others; not to meddle with many businesses; and not easily to admit of any slander.</p><p>III. Of Diognetus, not to busy myself about vain things, and not easily to believe those things, which are commonly spoken, by such as take upon them to work wonders, and by sorcerers, or prestidigitators, and impostors; concerning the power of charms, and their driving out of demons, or evil spirits; and the like. Not to keep quails for the game; nor to be mad after such things. Not to be offended with other men&#x27;s liberty of speech, and to apply myself unto philosophy. Him also I must thank, that ever I heard first Bacchius, then Tandasis and Marcianus, and that I did write dialogues in my youth; and that I took liking to the philosophers&#x27; little couch and skins, and such other things, which by the Grecian discipline are proper to those who profess philosophy.</p><p>IV. To Rusticus I am beholding, that I first entered into the conceit that my life wanted some redress and cure. And then, that I did not fall into the ambition of ordinary sophists, either to write tracts concerning the common theorems, or to exhort men unto virtue and the study of philosophy by public orations; as also that I never by way of ostentation did affect to show myself an active able man, for any kind of bodily exercises. And that I gave over the study of rhetoric and poetry, and of elegant neat language. That I did not use to walk about the house in my long robe, nor to do any such things. Moreover I learned of him to write letters without any affectation, or curiosity; such as that was, which by him was written to my mother from Sinuessa: and to be easy and ready to be reconciled, and well pleased again with them that had offended me, as soon as any of them would be content to seek unto me again. To read with diligence; not to rest satisfied with a light and superficial knowledge, nor quickly to assent to things commonly spoken of: whom also I must thank that ever I lighted upon Epictetus his Hypomnemata, or moral commentaries and common-factions: which also he gave me of his own.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-meditations.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/candide/"><img src="/covers/candide.jpg" alt="" loading="lazy">Candide<small>Voltaire</small></a><a href="/books/the-prince/"><img src="/covers/the-prince.jpg" alt="" loading="lazy">The Prince<small>Niccolò Machiavelli</small></a><a href="/books/the-wealth-of-nations/"><img src="/covers/the-wealth-of-nations.jpg" alt="" loading="lazy">The Wealth of Nations<small>Adam Smith</small></a><a href="/books/the-theory-of-moral-sentiments/"><img src="/covers/the-theory-of-moral-sentiments.jpg" alt="" loading="lazy">The Theory of Moral Sentiments<small>Adam Smith</small></a><a href="/books/capital-volume-i/"><img src="/covers/capital-volume-i.jpg" alt="" loading="lazy">Capital, Volume I<small>Karl Marx</small></a><a href="/books/the-communist-manifesto/"><img src="/covers/the-communist-manifesto.jpg" alt="" loading="lazy">The Communist Manifesto<small>Karl Marx &amp; Friedrich Engels</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

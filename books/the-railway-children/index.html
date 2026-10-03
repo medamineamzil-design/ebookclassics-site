@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#jeunesse">Children&#x27;s Classics</a> › The Railway Children</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-railway-children.jpg" width="400" height="600" alt="Cover of The Railway Children by E. Nesbit"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-railway-children.jpg" width="400" height="600" alt="Cover of The Railway Children by E. Nesbit"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Railway Children</h1>
     <p class="by">by <strong>E. Nesbit</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Railway Children</b><span>English · EPUB, HTML, PDF, TXT · audiobook 6 h 07 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Roberta, called Bobbie, Peter and Phyllis live a happy, comfortable life in London until one evening their father is taken away by two strange men. Their mother will not explain what has happened, and the family must suddenly move to a modest country house called Three Chimneys, where Mother writes stories to pay the bills. With little money and plenty of free time, the children are drawn to the nearby railway line, where they make friends with the porter Perks, wave to an old gentleman on a passing train and find themselves caught up in a series of adventures and rescues.</p><div class="rm-more" hidden><p>Nesbit writes about children with warmth, humour and respect, letting them be brave, quarrelsome, generous and sometimes foolish. The book deals gently with poverty, injustice and kindness between strangers, and it shows how small acts of courage can change things. Its sense of community and hope makes it a favourite for families reading aloud.</p><p>The story was first serialised in The London Magazine in 1905 and published as a book in 1906. Nesbit, a founding member of the Fabian Society, was already a successful children&#x27;s author, known for The Story of the Treasure Seekers and Five Children and It. The Railway Children has been adapted several times for film, television, radio and the stage, including a much-loved film version.</p><p>First serialized in a magazine in 1905 before its 1906 book publication.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About E. Nesbit</h2><p>Edith Nesbit was born in 1858 in Kennington, London. Her father, an agricultural chemist, died when she was three. In 1880 she married Hubert Bland, and the couple were among the founders of the socialist Fabian Society. Their household was unconventional and often short of money, and Nesbit wrote poems, stories and journalism to support the family. Success came in her forties with books for children, published under the name E. Nesbit. She died in Kent in 1924.</p><div class="rm-more" hidden><p>The Story of the Treasure Seekers appeared in 1899, followed by Five Children and It, The Phoenix and the Carpet, The Railway Children and The Enchanted Castle. Nesbit wrote about lively, quarrelsome, believable children and placed magic in the middle of ordinary family life, often with comic results. Later fantasy writers, including C. S. Lewis, acknowledged her influence, and The Railway Children in particular has remained a much-loved classic on page and screen.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>They were not railway children to begin with. I don&#x27;t suppose they had ever thought about railways except as a means of getting to Maskelyne and Cook&#x27;s, the Pantomime, Zoological Gardens, and Madame Tussaud&#x27;s. They were just ordinary suburban children, and they lived with their Father and Mother in an ordinary red-brick-fronted villa, with coloured glass in the front door, a tiled passage that was called a hall, a bath-room with hot and cold water, electric bells, French windows, and a good deal of white paint, and &#x27;every modern convenience&#x27;, as the house-agents say.</p><p>There were three of them. Roberta was the eldest. Of course, Mothers never have favourites, but if their Mother HAD had a favourite, it might have been Roberta. Next came Peter, who wished to be an Engineer when he grew up; and the youngest was Phyllis, who meant extremely well.</p><div class="rm-more" hidden><p>Mother did not spend all her time in paying dull calls to dull ladies, and sitting dully at home waiting for dull ladies to pay calls to her. She was almost always there, ready to play with the children, and read to them, and help them to do their home-lessons. Besides this she used to write stories for them while they were at school, and read them aloud after tea, and she always made up funny pieces of poetry for their birthdays and for other great occasions, such as the christening of the new kittens, or the refurnishing of the doll&#x27;s house, or the time when they were getting over the mumps.</p><p>These three lucky children always had everything they needed: pretty clothes, good fires, a lovely nursery with heaps of toys, and a Mother Goose wall-paper. They had a kind and merry nursemaid, and a dog who was called James, and who was their very own. They also had a Father who was just perfect--never cross, never unjust, and always ready for a game--at least, if at any time he was NOT ready, he always had an excellent reason for it, and explained the reason to the children so interestingly and funnily that they felt sure he couldn&#x27;t help himself.</p><p>You will think that they ought to have been very happy. And so they were, but they did not know HOW happy till the pretty life in the Red Villa was over and done with, and they had to live a very different life indeed.</p><p>The dreadful change came quite suddenly.</p><p>Peter had a birthday--his tenth. Among his other presents was a model engine more perfect than you could ever have dreamed of. The other presents were full of charm, but the Engine was fuller of charm than any of the others were.</p><p>Its charm lasted in its full perfection for exactly three days. Then, owing either to Peter&#x27;s inexperience or Phyllis&#x27;s good intentions, which had been rather pressing, or to some other cause, the Engine suddenly went off with a bang. James was so frightened that he went out and did not come back all day. All the Noah&#x27;s Ark people who were in the tender were broken to bits, but nothing else was hurt except the poor little engine and the feelings of Peter. The others said he cried over it--but of course boys of ten do not cry, however terrible the tragedies may be which darken their lot. He said that his eyes were red because he had a cold. This turned out to be true, though Peter did not know it was when he said it, the next day he had to go to bed and stay there. Mother began to be afraid that he might be sickening for measles, when suddenly he sat up in bed and said:</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-railway-children.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/the-wonderful-adventures-of-nils/"><img src="/covers/the-wonderful-adventures-of-nils.jpg" alt="" loading="lazy">The Wonderful Adventures of Nils<small>Selma Lagerlöf</small></a><a href="/books/anne-of-green-gables/"><img src="/covers/anne-of-green-gables.jpg" alt="" loading="lazy">Anne of Green Gables<small>L. M. Montgomery</small></a><a href="/books/grimm-s-fairy-tales/"><img src="/covers/grimm-s-fairy-tales.jpg" alt="" loading="lazy">Grimm&#x27;s Fairy Tales<small>Jacob &amp; Wilhelm Grimm</small></a><a href="/books/andersen-s-fairy-tales/"><img src="/covers/andersen-s-fairy-tales.jpg" alt="" loading="lazy">Andersen&#x27;s Fairy Tales<small>Hans Christian Andersen</small></a><a href="/books/alice-s-adventures-in-wonderland/"><img src="/covers/alice-s-adventures-in-wonderland.jpg" alt="" loading="lazy">Alice&#x27;s Adventures in Wonderland<small>Lewis Carroll</small></a><a href="/books/aesop-s-fables/"><img src="/covers/aesop-s-fables.jpg" alt="" loading="lazy">Aesop&#x27;s Fables<small>Aesop</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

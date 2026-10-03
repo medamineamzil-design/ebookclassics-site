@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#jeunesse">Children&#x27;s Classics</a> › Andersen&#x27;s Fairy Tales</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/andersen-s-fairy-tales.jpg" width="400" height="600" alt="Cover of Andersen&#x27;s Fairy Tales by Hans Christian Andersen"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/andersen-s-fairy-tales.jpg" width="400" height="600" alt="Cover of Andersen&#x27;s Fairy Tales by Hans Christian Andersen"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Andersen&#x27;s Fairy Tales</h1>
     <p class="by">by <strong>Hans Christian Andersen</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Andersen&#x27;s Fairy Tales</b><span>English · EPUB, HTML, PDF, TXT · audiobook 5 h 51 min</span></button></li><li><button type="button" class="ed" data-lang="de" aria-pressed="false"><b lang="de">Märchen für Kinder</b><span>Deutsch · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>This collection gathers the stories of Hans Christian Andersen, who was born in the Danish town of Odense in 1805 and became one of the most beloved storytellers in the world. Among them are The Little Mermaid, about a sea princess who longs for a human soul; The Ugly Duckling, about a mocked outsider; The Snow Queen, in which the brave girl Gerda sets out to rescue her friend Kai; The Emperor&#x27;s New Clothes, The Princess and the Pea, The Steadfast Tin Soldier and The Little Match Girl. Some draw on folk tales Andersen heard as a child, but many are his own inventions.</p><div class="rm-more" hidden><p>Andersen&#x27;s tales are often playful and humorous, yet many carry deep melancholy, exploring loneliness, longing, vanity, faith and the gap between outward appearances and true worth. He wrote in a lively, conversational style that sounds like spoken storytelling, and he frequently gave voices to everyday objects and animals. The stories speak to children and adults on different levels.</p><p>Andersen published his first small booklet of tales for children in 1835 and continued writing new ones for decades. They were soon translated across Europe and have since appeared in a great many languages. The stories have inspired countless picture books, ballets, operas, animated films and stage works, and the statue of the Little Mermaid in Copenhagen has become a symbol of the city.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Hans Christian Andersen</h2><p>Hans Christian Andersen was born in 1805 in Odense, Denmark, the son of a poor shoemaker and a washerwoman. After his father&#x27;s death he left for Copenhagen at fourteen, hoping to become an actor or singer. He failed on the stage, but influential patrons, especially Jonas Collin, arranged for him to attend grammar school. He travelled widely across Europe, writing novels, plays, travel books and an autobiography. He never married, and he died in Copenhagen in 1875.</p><div class="rm-more" hidden><p>Andersen published his first small booklet of fairy tales in 1835 and wrote well over a hundred more. Unlike the Grimms, he invented most of his stories, among them The Emperor&#x27;s New Clothes, The Little Mermaid, The Ugly Duckling, The Snow Queen and The Little Match Girl. He wrote in a conversational style that appealed to children and adults alike, blending humour, sadness and moral insight. His tales have been translated into a great many languages and inspired ballets, films and picture books.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>Many years ago, there was an Emperor, who was so excessively fond of new clothes, that he spent all his money in dress. He did not trouble himself in the least about his soldiers; nor did he care to go either to the theatre or the chase, except for the opportunities then afforded him for displaying his new clothes. He had a different suit for each hour of the day; and as of any other king or emperor, one is accustomed to say, “he is sitting in council,” it was always said of him, “The Emperor is sitting in his wardrobe.”</p><p>Time passed merrily in the large town which was his capital; strangers arrived every day at the court. One day, two rogues, calling themselves weavers, made their appearance. They gave out that they knew how to weave stuffs of the most beautiful colors and elaborate patterns, the clothes manufactured from which should have the wonderful property of remaining invisible to everyone who was unfit for the office he held, or who was extraordinarily simple in character.</p><div class="rm-more" hidden><p>“These must, indeed, be splendid clothes!” thought the Emperor. “Had I such a suit, I might at once find out what men in my realms are unfit for their office, and also be able to distinguish the wise from the foolish! This stuff must be woven for me immediately.” And he caused large sums of money to be given to both the weavers in order that they might begin their work directly.</p><p>So the two pretended weavers set up two looms, and affected to work very busily, though in reality they did nothing at all. They asked for the most delicate silk and the purest gold thread; put both into their own knapsacks; and then continued their pretended work at the empty looms until late at night.</p><p>“I should like to know how the weavers are getting on with my cloth,” said the Emperor to himself, after some little time had elapsed; he was, however, rather embarrassed, when he remembered that a simpleton, or one unfit for his office, would be unable to see the manufacture. To be sure, he thought he had nothing to risk in his own person; but yet, he would prefer sending somebody else, to bring him intelligence about the weavers, and their work, before he troubled himself in the affair. All the people throughout the city had heard of the wonderful property the cloth was to possess; and all were anxious to learn how wise, or how ignorant, their neighbors might prove to be.</p><p>“I will send my faithful old minister to the weavers,” said the Emperor at last, after some deliberation, “he will be best able to see how the cloth looks; for he is a man of sense, and no one can be more suitable for his office than he is.”</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-andersen-s-fairy-tales.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/alice-s-adventures-in-wonderland/"><img src="/covers/alice-s-adventures-in-wonderland.jpg" alt="" loading="lazy">Alice&#x27;s Adventures in Wonderland<small>Lewis Carroll</small></a><a href="/books/aesop-s-fables/"><img src="/covers/aesop-s-fables.jpg" alt="" loading="lazy">Aesop&#x27;s Fables<small>Aesop</small></a><a href="/books/the-secret-garden/"><img src="/covers/the-secret-garden.jpg" alt="" loading="lazy">The Secret Garden<small>Frances Hodgson Burnett</small></a><a href="/books/the-wonderful-wizard-of-oz/"><img src="/covers/the-wonderful-wizard-of-oz.jpg" alt="" loading="lazy">The Wonderful Wizard of Oz<small>L. Frank Baum</small></a><a href="/books/the-jungle-book/"><img src="/covers/the-jungle-book.jpg" alt="" loading="lazy">The Jungle Book<small>Rudyard Kipling</small></a><a href="/books/little-women/"><img src="/covers/little-women.jpg" alt="" loading="lazy">Little Women<small>Louisa May Alcott</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

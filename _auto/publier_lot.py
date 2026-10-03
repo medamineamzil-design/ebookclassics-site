@@ -15,7 +15,8 @@ traducteur), les textes « À propos » et la biographie de l'auteur, et les enr
 Un livre déjà présent dans le dépôt n'est jamais modifié. Un livre dont aucune édition
 n'est fabriquée correctement n'apparaît pas sur le site.
 
-Usage : python3 publier_lot.py <lot.json> [--sans-push] [--sans-audio]
+Usage : python3 publier_lot.py <lot.json> [--sans-push] [--audio]
+        python3 publier_lot.py <lot.json> --audio-seulement   (livres audio LibriVox du lot, après publication)
         python3 publier_lot.py <lot.json> --verifier     (contrôle seulement, ne publie rien)
         (dépôts : ~/ebookclassics-files et ~/ebookclassics-site, ou variables EBC_FILES / EBC_SITE)
 """
@@ -31,7 +32,7 @@ WORK = os.environ.get("EBC_WORK", os.path.expanduser("~/bookclassics-auto/travai
 CATS = {"fiction", "aventure", "theatre", "philosophie", "jeunesse"}
 LANGS = {"en", "fr", "es", "de", "it", "pt", "sv"}
 PUSH = "--sans-push" not in sys.argv
-AUDIO = "--sans-audio" not in sys.argv
+AUDIO = "--audio" in sys.argv          # l'audio se fait à part (auto.sh, --audio-seulement)
 LOG = []
 
 
@@ -375,6 +376,20 @@ def main():
     lot = json.load(open(lot_path, encoding="utf-8"))
     if "--verifier" in sys.argv:
         return verifier(lot)
+    if "--audio-seulement" in sys.argv:
+        git(FILES, "pull", "-q", "--rebase", "--autostash")
+        git(SITE, "pull", "-q", "--rebase", "--autostash")
+        man = json.load(open(os.path.join(FILES, "manifest.json")))["books"]
+        import ebooks_build as EB
+        made = {}
+        for b in lot.get("books", []):
+            slug = EB.slug_of(b["title"])
+            if slug in man:
+                made[slug] = (b, None, sorted(man[slug]))
+        say(f"== Livres audio du lot {lot.get('lot')} ==")
+        if made:
+            audio(made)
+        return 0
     lot_name = lot.get("lot") or os.path.splitext(os.path.basename(lot_path))[0]
     say(f"=== BookClassics — lot {lot_name} — {datetime.datetime.now():%Y-%m-%d %H:%M} ===")
     books, errs = check_lot(lot)

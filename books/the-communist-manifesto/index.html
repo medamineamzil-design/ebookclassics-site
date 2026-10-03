@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#philosophie">Philosophy &amp; Essays</a> › The Communist Manifesto</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-communist-manifesto.jpg" width="400" height="600" alt="Cover of The Communist Manifesto by Karl Marx &amp; Friedrich Engels"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-communist-manifesto.jpg" width="400" height="600" alt="Cover of The Communist Manifesto by Karl Marx &amp; Friedrich Engels"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Communist Manifesto</h1>
     <p class="by">by <strong>Karl Marx &amp; Friedrich Engels</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Communist Manifesto</b><span>English · EPUB, HTML, PDF, TXT · audiobook 1 h 28 min</span></button></li><li><button type="button" class="ed" data-lang="de" aria-pressed="false"><b lang="de">Manifest der Kommunistischen Partei</b><span>Deutsch · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>The Communist Manifesto was written by Karl Marx and Friedrich Engels as a programme for the Communist League, a small organisation of radical workers and intellectuals. It sets out a view of history as a series of struggles between social classes and argues that modern industrial society has simplified this conflict into one between the bourgeoisie, who own the means of production, and the proletariat, who must sell their labour to survive. The text describes how capitalism has transformed the world with astonishing speed, then argues that its recurring crises and its treatment of workers will lead to its overthrow.</p><div class="rm-more" hidden><p>Its sections move from this historical analysis to the aims of the communists, a critique of rival socialist movements, and a short list of practical demands such as a progressive income tax and free public education for children. The style is vivid and forceful, more like a speech than an academic study. Whether one agrees with it or not, it remains essential reading for understanding modern political history, debates about inequality and globalisation, and the movements it inspired.</p><p>The pamphlet was first published in London in February 1848, in German, just as revolutions were breaking out across Europe. It attracted little attention at first, but later editions and translations spread it worldwide, and it became one of the most influential political documents ever written.</p><p>Commissioned by the Communist League and written jointly by Karl Marx and Friedrich Engels, The Communist Manifesto was first published in London in February 1848, just weeks before a wave of revolutions swept across Europe, and it opens with one of the most famous sentences in political writing: &quot;A spectre is haunting Europe — the spectre of communism.&quot; The pamphlet&#x27;s first and most influential section lays out a theory of history in which all previously existing society is described as the history of class struggles — between freemen and slaves, patricians and plebeians, lords and serfs — and argues that the modern age has simplified this ancient conflict into two starkly opposed camps: the bourgeoisie, who own the factories, land, and capital that constitute the means of production, and the proletariat, the propertyless industrial working class who survive only by selling their labor for wages. Marx and Engels trace how the rising bourgeoisie violently overturned the feudal order, sweeping away hereditary privilege and static tradition, only to replace it with a new and in some ways starker form of domination, one stripped of sentiment and reduced, in the pamphlet&#x27;s own phrase, to &quot;naked self-interest&quot; and &quot;callous cash payment.&quot; The second section directly answers accusations leveled against communists by their opponents — that they wish to abolish private property, the family, and national identity — reframing these charges as, in the authors&#x27; view, accurate descriptions of what capitalism has already done to the working class, who own no meaningful property, whose family lives are disrupted by factory labor, and who possess no real stake in any nation. A short third section surveys and dismisses rival strands of socialism circulating in Europe at the time as either reactionary, conservative, or merely utopian, contrasting them with the authors&#x27; own claim to scientific analysis. The pamphlet closes with a brief statement of immediate political demands — among them a progressive income tax, free public education, and the abolition of child factory labor — and ends with the rallying cry that would become its most quoted line: &quot;Working men of all countries, unite!&quot;</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Karl Marx &amp; Friedrich Engels</h2><p>Karl Marx was born in Trier in 1818 and studied law and philosophy before turning to radical journalism. Friedrich Engels, born in 1820 in Barmen, the son of a textile manufacturer, worked at his family&#x27;s cotton business in Manchester and wrote The Condition of the Working Class in England. The two men met in Paris in 1844 and began a partnership that lasted for life. After 1848 both settled in England, where Engels supported Marx financially for years. Marx died in London in 1883, Engels in 1895.</p><div class="rm-more" hidden><p>Published in London in February 1848 for the Communist League, The Communist Manifesto declared that history is the history of class struggles and called on workers to unite. After Marx&#x27;s death, Engels edited the remaining volumes of Capital and wrote popular works such as Socialism: Utopian and Scientific. Their ideas became the foundation of Marxism, and the Manifesto remains one of the most influential political texts ever written.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>II. It is high time that Communists should openly, in the face of the whole world, publish their views, their aims, their tendencies, and meet this nursery tale of the Spectre of Communism with a Manifesto of the party itself.</p><p>To this end, Communists of various nationalities have assembled in London, and sketched the following Manifesto, to be published in the English, French, German, Italian, Flemish and Danish languages.</p><div class="rm-more" hidden><p>I. BOURGEOIS AND PROLETARIANS</p><p>The history of all hitherto existing societies is the history of class struggles.</p><p>Freeman and slave, patrician and plebeian, lord and serf, guild-master and journeyman, in a word, oppressor and oppressed, stood in constant opposition to one another, carried on an uninterrupted, now hidden, now open fight, a fight that each time ended, either in a revolutionary re-constitution of society at large, or in the common ruin of the contending classes.</p><p>In the earlier epochs of history, we find almost everywhere a complicated arrangement of society into various orders, a manifold gradation of social rank. In ancient Rome we have patricians, knights, plebeians, slaves; in the Middle Ages, feudal lords, vassals, guild-masters, journeymen, apprentices, serfs; in almost all of these classes, again, subordinate gradations.</p><p>The modern bourgeois society that has sprouted from the ruins of feudal society has not done away with class antagonisms. It has but established new classes, new conditions of oppression, new forms of struggle in place of the old ones. Our epoch, the epoch of the bourgeoisie, possesses, however, this distinctive feature: it has simplified the class antagonisms. Society as a whole is more and more splitting up into two great hostile camps, into two great classes, directly facing each other: Bourgeoisie and Proletariat.</p><p>From the serfs of the Middle Ages sprang the chartered burghers of the earliest towns. From these burgesses the first elements of the bourgeoisie were developed.</p><p>The discovery of America, the rounding of the Cape, opened up fresh ground for the rising bourgeoisie. The East-Indian and Chinese markets, the colonisation of America, trade with the colonies, the increase in the means of exchange and in commodities generally, gave to commerce, to navigation, to industry, an impulse never before known, and thereby, to the revolutionary element in the tottering feudal society, a rapid development.</p><p>The feudal system of industry, under which industrial production was monopolised by closed guilds, now no longer sufficed for the growing wants of the new markets. The manufacturing system took its place. The guild-masters were pushed on one side by the manufacturing middle class; division of labour between the different corporate guilds vanished in the face of division of labour in each single workshop.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-communist-manifesto.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/on-the-principles-of-political-economy-and-taxation/"><img src="/covers/on-the-principles-of-political-economy-and-taxation.jpg" alt="" loading="lazy">On the Principles of Political Economy and Taxation<small>David Ricardo</small></a><a href="/books/an-essay-on-the-principle-of-population/"><img src="/covers/an-essay-on-the-principle-of-population.jpg" alt="" loading="lazy">An Essay on the Principle of Population<small>Thomas Malthus</small></a><a href="/books/principles-of-political-economy/"><img src="/covers/principles-of-political-economy.jpg" alt="" loading="lazy">Principles of Political Economy<small>John Stuart Mill</small></a><a href="/books/the-theory-of-the-leisure-class/"><img src="/covers/the-theory-of-the-leisure-class.jpg" alt="" loading="lazy">The Theory of the Leisure Class<small>Thorstein Veblen</small></a><a href="/books/extraordinary-popular-delusions-and-the-madness-of-crowds/"><img src="/covers/extraordinary-popular-delusions-and-the-madness-of-crowds.jpg" alt="" loading="lazy">Extraordinary Popular Delusions and the Madness of Crowds<small>Charles Mackay</small></a><a href="/books/the-federalist-papers/"><img src="/covers/the-federalist-papers.jpg" alt="" loading="lazy">The Federalist Papers<small>Alexander Hamilton, James Madison &amp; John Jay</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

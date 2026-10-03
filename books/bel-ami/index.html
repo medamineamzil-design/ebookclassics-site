@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › Bel-Ami</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/bel-ami.jpg" width="400" height="600" alt="Cover of Bel-Ami by Guy de Maupassant"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/bel-ami.jpg" width="400" height="600" alt="Cover of Bel-Ami by Guy de Maupassant"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Bel-Ami</h1>
     <p class="by">by <strong>Guy de Maupassant</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Bel-Ami</b><span>English · EPUB, HTML, PDF, TXT · audiobook 8 h 15 min</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">Bel-Ami</b><span>Français · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Georges Duroy, a former soldier, is drifting through Paris with little money and few prospects when he meets an old army comrade, Charles Forestier, now a successful journalist. Forestier helps him find work at the newspaper La Vie Française, though Duroy can barely write. What he lacks in talent he makes up for in good looks, charm and ambition, earning the nickname Bel-Ami. He soon learns that in this world, influence flows through the salons and bedrooms of influential women, and he begins to use his relationships with them to climb from the lowest rungs of journalism toward wealth and political influence.</p><div class="rm-more" hidden><p>Maupassant paints a cool, ironic portrait of Parisian society under the Third Republic, where journalism, finance, politics and love are entangled and corruption is taken for granted. Duroy is an antihero whose rise is fascinating precisely because he is so unscrupulous. The novel is sharp, economical and often darkly funny, and its picture of media power, opportunism and celebrity feels strikingly contemporary.</p><p>Bel-Ami was Maupassant&#x27;s second novel, after A Woman&#x27;s Life. It was serialised in the newspaper Gil Blas and published as a book in 1885. Some contemporaries took offence at its portrait of the press. It is regarded as one of the major French novels of the period and has been adapted for film, television and stage.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Guy de Maupassant</h2><p>Guy de Maupassant was born in Normandy in 1850 and grew up mainly with his mother after his parents separated. He served in the Franco-Prussian War and then worked as a clerk in government ministries in Paris. Gustave Flaubert, a friend of his mother, took him under his wing and guided his writing. In the 1880s he was enormously productive, but syphilis gradually destroyed his health. After a suicide attempt in 1892 he was confined to a clinic in Paris, where he died in 1893.</p><div class="rm-more" hidden><p>Maupassant became famous in 1880 with Boule de Suif, a story of a prostitute travelling with respectable citizens during the Prussian occupation. In little more than a decade he wrote around three hundred stories, including The Necklace and Le Horla, and novels such as Bel-Ami. His tales are economical, ironic and clear-eyed, often ending with a sharp twist. He shaped the modern short story and influenced writers around the world.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>After changing his five-franc piece Georges Duroy left the restaurant. He twisted his mustache in military style and cast a rapid, sweeping glance upon the diners, among whom were three saleswomen, an untidy music-teacher of uncertain age, and two women with their husbands.</p><p>When he reached the sidewalk, he paused to consider what route he should take. It was the twenty-eighth of June and he had only three francs in his pocket to last him the remainder of the month. That meant two dinners and no lunches, or two lunches and no dinners, according to choice. As he pondered upon this unpleasant state of affairs, he sauntered down Rue Notre Dame de Lorette, preserving his military air and carriage, and rudely jostled the people upon the streets in order to clear a path for himself. He appeared to be hostile to the passers-by, and even to the houses, the entire city.</p><div class="rm-more" hidden><p>Tall, well-built, fair, with blue eyes, a curled mustache, hair naturally wavy and parted in the middle, he recalled the hero of the popular romances.</p><p>It was one of those sultry, Parisian evenings when not a breath of air is stirring; the sewers exhaled poisonous gases and the restaurants the disagreeable odors of cooking and of kindred smells. Porters in their shirt-sleeves, astride their chairs, smoked their pipes at the carriage gates, and pedestrians strolled leisurely along, hats in hand.</p><p>When Georges Duroy reached the boulevard he halted again, undecided as to which road to choose. Finally he turned toward the Madeleine and followed the tide of people.</p><p>The large, well-patronized cafes tempted Duroy, but were he to drink only two glasses of beer in an evening, farewell to the meager supper the following night! Yet he said to himself: &quot;I will take a glass at the Americain. By Jove, I am thirsty.&quot;</p><p>He glanced at men seated at the tables, men who could afford to slake their thirst, and he scowled at them. &quot;Rascals!&quot; he muttered. If he could have caught one of them at a corner in the dark he would have choked him without a scruple! He recalled the two years spent in Africa, and the manner in which he had extorted money from the Arabs. A smile hovered about his lips at the recollection of an escapade which had cost three men their lives, a foray which had given his two comrades and himself seventy fowls, two sheep, money, and something to laugh about for six months. The culprits were never found; indeed, they were not sought for, the Arab being looked upon as the soldier&#x27;s prey.</p><p>But in Paris it was different; there one could not commit such deeds with impunity. He regretted that he had not remained where he was; but he had hoped to improve his condition--and for that reason he was in Paris!</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-bel-ami.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/the-metamorphosis/"><img src="/covers/the-metamorphosis.jpg" alt="" loading="lazy">The Metamorphosis<small>Franz Kafka</small></a><a href="/books/a-study-in-scarlet/"><img src="/covers/a-study-in-scarlet.jpg" alt="" loading="lazy">A Study in Scarlet<small>Arthur Conan Doyle</small></a><a href="/books/the-sign-of-the-four/"><img src="/covers/the-sign-of-the-four.jpg" alt="" loading="lazy">The Sign of the Four<small>Arthur Conan Doyle</small></a><a href="/books/the-mysteries-of-udolpho/"><img src="/covers/the-mysteries-of-udolpho.jpg" alt="" loading="lazy">The Mysteries of Udolpho<small>Ann Radcliffe</small></a><a href="/books/the-moonstone/"><img src="/covers/the-moonstone.jpg" alt="" loading="lazy">The Moonstone<small>Wilkie Collins</small></a><a href="/books/pride-and-prejudice/"><img src="/covers/pride-and-prejudice.jpg" alt="" loading="lazy">Pride and Prejudice<small>Jane Austen</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

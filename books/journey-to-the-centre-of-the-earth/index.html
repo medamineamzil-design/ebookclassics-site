@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#aventure">Adventure &amp; Epics</a> › Journey to the Centre of the Earth</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/journey-to-the-centre-of-the-earth.jpg" width="400" height="600" alt="Cover of Journey to the Centre of the Earth by Jules Verne"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/journey-to-the-centre-of-the-earth.jpg" width="400" height="600" alt="Cover of Journey to the Centre of the Earth by Jules Verne"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Journey to the Centre of the Earth</h1>
     <p class="by">by <strong>Jules Verne</strong></p>
@@ -153,8 +179,10 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Journey to the Centre of the Earth</b><span>English · EPUB, HTML, PDF, TXT · audiobook 10 h 36 min</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">Voyage au Centre de la Terre</b><span>Français · EPUB, HTML, PDF, TXT · audiobook 8 h 08 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>In Hamburg, the brilliant and impatient Professor Otto Lidenbrock discovers a coded message hidden in an old Icelandic manuscript. Deciphered with the help of his nephew Axel, it reveals that a sixteenth-century alchemist, Arne Saknussemm, claimed to have reached the centre of the earth by descending through the crater of the Icelandic volcano Snæfellsjökull. The professor sets off at once, dragging the reluctant Axel along. In Iceland they hire Hans, a calm and resourceful guide, and begin their descent into tunnels, caverns and an astonishing subterranean world.</p><div class="rm-more" hidden><p>Verne mixes science lesson and adventure story. The characters debate geology, palaeontology and the theory of the earth&#x27;s internal heat as they travel, and the underground landscapes grow ever more wondrous. Narrated by Axel, whose fears contrast comically with his uncle&#x27;s boundless enthusiasm, the story is full of suspense, humour and spectacle. It remains a perfect example of the pleasure of exploration and of the nineteenth century&#x27;s faith in scientific curiosity.</p><p>The novel was published in 1864 by Pierre-Jules Hetzel as part of the series of Verne&#x27;s adventure stories later known as the Voyages extraordinaires; an expanded edition appeared in 1867. It was widely translated and helped establish Verne as a pioneer of science fiction. The story has been adapted many times for film, television, radio and comics.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Jules Verne</h2><p>Jules Verne was born in 1828 in the port city of Nantes, France, the son of a lawyer. He studied law in Paris but was drawn to the theatre, writing plays and reading widely in science and geography. In 1863 the publisher Pierre-Jules Hetzel published Five Weeks in a Balloon and signed him for a long series of novels. Verne settled in Amiens, served on the town council and died there in 1905.</p><div class="rm-more" hidden><p>Verne&#x27;s series of Extraordinary Voyages combined adventure with scientific and geographical detail. Journey to the Centre of the Earth, From the Earth to the Moon, Twenty Thousand Leagues Under the Sea, with the enigmatic Captain Nemo and his submarine Nautilus, and Around the World in Eighty Days, with the punctual Phileas Fogg, are among the best known. His imaginative use of technology made him a pioneer of science fiction, and he is one of the most translated authors in the world.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>&quot;The manuscript volume and the smaller document are written in different hands,&quot; he said, &quot;the cryptograph is of much later date than the book; there is an undoubted proof of the correctness of my surmise. [An irrefragable proof I took it to be.] The first letter is a double M, which was only added to the Icelandic language in the twelfth century--this makes the parchment two hundred years posterior to the volume.&quot;</p><p>The circumstances appeared very probable and very logical, but it was all surmise to me.</p><div class="rm-more" hidden><p>&quot;To me it appears probable that this sentence was written by some owner of the book. Now who was the owner, is the next important question. Perhaps by great good luck it may be written somewhere in the volume.&quot;</p><p>With these words Professor Hardwigg took off his spectacles, and, taking a powerful magnifying glass, examined the book carefully.</p><p>On the fly leaf was what appeared to be a blot of ink, but on examination proved to be a line of writing almost effaced by time. This was what he sought; and, after some considerable time, he made out these letters:</p><p>&quot;Arne Saknussemm!&quot; he cried in a joyous and triumphant tone, &quot;that is not only an Icelandic name, but of a learned professor of the sixteenth century, a celebrated alchemist.&quot;</p><p>I bowed as a sign of respect.</p><p>&quot;These alchemists,&quot; he continued, &quot;Avicenna, Bacon, Lully, Paracelsus, were the true, the only learned men of the day. They made surprising discoveries. May not this Saknussemm, nephew mine, have hidden on this bit of parchment some astounding invention? I believe the cryptograph to have a profound meaning--which I must make out.&quot;</p><p>My uncle walked about the room in a state of excitement almost impossible to describe.</p><p>&quot;It may be so, sir,&quot; I timidly observed, &quot;but why conceal it from posterity, if it be a useful, a worthy discovery?&quot;</p><p>&quot;Why--how should I know? Did not Galileo make a secret of his discoveries in connection with Saturn? But we shall see. Until I discover the meaning of this sentence I will neither eat nor sleep.&quot;</p><p>&quot;My dear uncle--&quot; I began.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-journey-to-the-centre-of-the-earth.en">Continue reading →</a></p></section>
+<div class="bc-ad" id="bcAd2"></div>
 <section class="card"><h2>More by Jules Verne and similar classics</h2><div class="grid"><a href="/books/twenty-thousand-leagues-under-the-sea/"><img src="/covers/twenty-thousand-leagues-under-the-sea.jpg" alt="" loading="lazy">Twenty Thousand Leagues Under the Sea<small>Jules Verne</small></a><a href="/books/around-the-world-in-eighty-days/"><img src="/covers/around-the-world-in-eighty-days.jpg" alt="" loading="lazy">Around the World in Eighty Days<small>Jules Verne</small></a><a href="/books/the-arabian-nights/"><img src="/covers/the-arabian-nights.jpg" alt="" loading="lazy">The Arabian Nights<small>Anonymous</small></a><a href="/books/white-fang/"><img src="/covers/white-fang.jpg" alt="" loading="lazy">White Fang<small>Jack London</small></a><a href="/books/moby-dick/"><img src="/covers/moby-dick.jpg" alt="" loading="lazy">Moby-Dick<small>Herman Melville</small></a><a href="/books/don-quixote/"><img src="/covers/don-quixote.jpg" alt="" loading="lazy">Don Quixote<small>Miguel de Cervantes</small></a></div></section>
 <script>const BC={"slug":"journey-to-the-centre-of-the-earth","ed":{"en":["epub","html","pdf","txt"],"fr":["epub","html","pdf","txt"]},"audio":{"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/journey-to-the-centre-of-the-earth/journey-to-the-centre-of-the-earth.mp3","d":38159},"fr":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/journey-to-the-centre-of-the-earth/journey-to-the-centre-of-the-earth-fr.mp3","d":29266}},"lang":"en"};</script>
 <div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
@@ -228,11 +256,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

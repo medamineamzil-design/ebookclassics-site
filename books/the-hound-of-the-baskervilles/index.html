@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › The Hound of the Baskervilles</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-hound-of-the-baskervilles.jpg" width="380" height="600" alt="Cover of The Hound of the Baskervilles by Arthur Conan Doyle"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-hound-of-the-baskervilles.jpg" width="380" height="600" alt="Cover of The Hound of the Baskervilles by Arthur Conan Doyle"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Hound of the Baskervilles</h1>
     <p class="by">by <strong>Arthur Conan Doyle</strong></p>
@@ -153,8 +179,10 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Hound of the Baskervilles</b><span>English · EPUB, HTML, PDF, TXT · audiobook 6 h 44 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Dr. Mortimer arrives at 221B Baker Street with an old family manuscript and a worrying story. Sir Charles Baskerville has been found dead on the grounds of his Devon home, and near the body were the footprints of an enormous hound. According to legend, a demonic dog has haunted the Baskervilles for generations. With the young heir, Sir Henry, about to take up his inheritance, Sherlock Holmes sends Dr. Watson to Dartmoor to watch over him, and Watson finds himself among mysterious neighbours, an escaped convict and the bleak, treacherous moor itself.</p><div class="rm-more" hidden><p>The novel blends detective fiction with Gothic horror, setting Holmes&#x27;s cool reasoning against superstition and fear. Much of the story is told through Watson&#x27;s reports and diary, which gives him a larger role than usual and builds suspense skilfully. The atmosphere of the moor, with its mists, mires and ancient stone huts, is one of the most memorable settings in crime fiction, and the puzzle remains satisfying for new readers.</p><p>Conan Doyle had killed off Holmes in 1893, but this story, set before the detective&#x27;s apparent death, brought him back. It ran in The Strand Magazine from 1901 to 1902 and was published as a book in 1902, to great popular enthusiasm. Doyle credited his friend Bertram Fletcher Robinson with suggesting the idea. It is among the most adapted Holmes stories, on film, radio, television and stage.</p><p>The Hound of the Baskervilles opens with Dr. Mortimer visiting Sherlock Holmes and Dr. Watson at Baker Street to relate a chilling family legend: generations ago, a Baskerville ancestor&#x27;s cruelty summoned a spectral, monstrous hound that has haunted and killed the family&#x27;s heirs ever since. The immediate trigger is the sudden death of Sir Charles Baskerville, found near his estate on the Devon moor with an expression of terror and, more troublingly, enormous paw prints nearby. The new heir, Sir Henry Baskerville, has just arrived from Canada, and Mortimer fears the legend will claim him too, especially after Sir Henry receives an anonymous warning note and has a boot stolen from his hotel. Holmes, tied up with another case in London, sends Watson to Dartmoor with Sir Henry to investigate and protect him, while promising to follow. Watson&#x27;s narration, largely delivered through his letters and diary entries, catalogs the moor&#x27;s bleak, fog-shrouded atmosphere, the eccentric neighbors, the naturalist Stapleton and his beautiful sister, the reclusive Mr. Frankland, and an escaped convict loose on the moor, and reports a series of unsettling incidents, ghostly cries at night, a mysterious figure spotted silhouetted against the moon. Watson eventually discovers that the silhouetted stranger is in fact Holmes himself, who arrived secretly earlier to investigate unobserved and has been camped in a stone hut, letting Watson&#x27;s official investigation serve as cover. Holmes reveals that Stapleton, the seemingly friendly naturalist, is actually a disinherited Baskerville relative plotting to eliminate Sir Henry and claim the estate, using a real, painted-with-phosphorus dog to exploit the family legend and terrify his victims to death or drive them into fatal accidents on the treacherous moor. In the climax, Holmes and Watson lie in wait as Stapleton sets the luminous hound on Sir Henry, shooting the beast down just in time; Stapleton himself later drowns while fleeing into the treacherous Grimpen Mire, and the supernatural legend is revealed to be entirely the product of human greed and cunning stagecraft.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Arthur Conan Doyle</h2><p>Arthur Conan Doyle was born in Edinburgh in 1859 into a family of Irish Catholic descent. Educated by Jesuits, he studied medicine at the University of Edinburgh, where his teacher Joseph Bell, famous for his powers of observation, became a model for his greatest creation. He served as a ship&#x27;s doctor on an Arctic whaler, then set up a medical practice in Southsea. Knighted in 1902, he later became a passionate advocate of spiritualism and died in Crowborough, Sussex, in 1930.</p><div class="rm-more" hidden><p>Sherlock Holmes first appeared in A Study in Scarlet in 1887, and the short stories published in The Strand Magazine made Holmes and his friend Dr Watson famous worldwide. Doyle tried to end the series by sending Holmes over the Reichenbach Falls, but public demand brought him back, notably in The Hound of the Baskervilles. Holmes&#x27;s method of careful observation and deduction shaped detective fiction for generations, and he remains one of the most adapted characters ever created.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>Mr. Sherlock Holmes, who was usually very late in the mornings, save upon those not infrequent occasions when he was up all night, was seated at the breakfast table. I stood upon the hearth-rug and picked up the stick which our visitor had left behind him the night before. It was a fine, thick piece of wood, bulbous-headed, of the sort which is known as a “Penang lawyer.” Just under the head was a broad silver band nearly an inch across. “To James Mortimer, M.R.C.S., from his friends of the C.C.H.,” was engraved upon it, with the date “1884.” It was just such a stick as the old-fashioned family practitioner used to carry—dignified, solid, and reassuring.</p><p>“Well, Watson, what do you make of it?”</p><div class="rm-more" hidden><p>Holmes was sitting with his back to me, and I had given him no sign of my occupation.</p><p>“How did you know what I was doing? I believe you have eyes in the back of your head.”</p><p>“I have, at least, a well-polished, silver-plated coffee-pot in front of me,” said he. “But, tell me, Watson, what do you make of our visitor’s stick? Since we have been so unfortunate as to miss him and have no notion of his errand, this accidental souvenir becomes of importance. Let me hear you reconstruct the man by an examination of it.”</p><p>“I think,” said I, following as far as I could the methods of my companion, “that Dr. Mortimer is a successful, elderly medical man, well-esteemed since those who know him give him this mark of their appreciation.”</p><p>“Good!” said Holmes. “Excellent!”</p><p>“I think also that the probability is in favour of his being a country practitioner who does a great deal of his visiting on foot.”</p><p>“Why so?”</p><p>“Because this stick, though originally a very handsome one has been so knocked about that I can hardly imagine a town practitioner carrying it. The thick-iron ferrule is worn down, so it is evident that he has done a great amount of walking with it.”</p><p>“Perfectly sound!” said Holmes.</p><p>“And then again, there is the ‘friends of the C.C.H.’ I should guess that to be the Something Hunt, the local hunt to whose members he has possibly given some surgical assistance, and which has made him a small presentation in return.”</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-hound-of-the-baskervilles.en">Continue reading →</a></p></section>
+<div class="bc-ad" id="bcAd2"></div>
 <section class="card"><h2>More by Arthur Conan Doyle and similar classics</h2><div class="grid"><a href="/books/the-adventures-of-sherlock-holmes/"><img src="/covers/the-adventures-of-sherlock-holmes.jpg" alt="" loading="lazy">The Adventures of Sherlock Holmes<small>Arthur Conan Doyle</small></a><a href="/books/a-study-in-scarlet/"><img src="/covers/a-study-in-scarlet.jpg" alt="" loading="lazy">A Study in Scarlet<small>Arthur Conan Doyle</small></a><a href="/books/the-sign-of-the-four/"><img src="/covers/the-sign-of-the-four.jpg" alt="" loading="lazy">The Sign of the Four<small>Arthur Conan Doyle</small></a><a href="/books/madame-bovary/"><img src="/covers/madame-bovary.jpg" alt="" loading="lazy">Madame Bovary<small>Gustave Flaubert</small></a><a href="/books/the-betrothed/"><img src="/covers/the-betrothed.jpg" alt="" loading="lazy">The Betrothed<small>Alessandro Manzoni</small></a><a href="/books/the-house-by-the-medlar-tree/"><img src="/covers/the-house-by-the-medlar-tree.jpg" alt="" loading="lazy">The House by the Medlar Tree<small>Giovanni Verga</small></a></div></section>
 <script>const BC={"slug":"the-hound-of-the-baskervilles","ed":{"en":["epub","html","pdf","txt"]},"audio":{"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/the-hound-of-the-baskervilles/the-hound-of-the-baskervilles.mp3","d":24267}},"lang":"en"};</script>
 <div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
@@ -228,11 +256,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

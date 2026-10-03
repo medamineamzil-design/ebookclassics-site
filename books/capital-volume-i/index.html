@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#philosophie">Philosophy &amp; Essays</a> › Capital, Volume I</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/capital-volume-i.jpg" width="400" height="600" alt="Cover of Capital, Volume I by Karl Marx"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/capital-volume-i.jpg" width="400" height="600" alt="Cover of Capital, Volume I by Karl Marx"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Capital, Volume I</h1>
     <p class="by">by <strong>Karl Marx</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Capital, Volume I</b><span>English · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Capital, Volume I is Karl Marx&#x27;s major analysis of how capitalist economies work. It begins with the commodity, the basic unit of wealth in a market society, and distinguishes between its usefulness and its exchange value. From there Marx examines money, then asks how capital grows. His answer centres on labour-power: workers sell their capacity to work for a wage, but produce more value than they are paid, and this surplus value is the source of profit. The book goes on to study the length of the working day, the rise of factories and machinery, wages, the accumulation of capital, and the often violent separation of people from the land.</p><div class="rm-more" hidden><p>Marx combines economic theory with history, philosophy and detailed evidence from British government reports on factory conditions, child labour and public health. Ideas such as commodity fetishism and surplus value have shaped debates far beyond economics. Agree or not, readers gain a powerful lens on work and inequality.</p><p>The volume was first published in German in Hamburg in 1867. Marx did not live to finish the later volumes, which Friedrich Engels edited from his manuscripts and published in 1885 and 1894. An English translation appeared in 1887. Capital became the foundational text of Marxist thought and influenced political movements, governments and scholarship in sociology, history and economics around the world.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Karl Marx</h2><p>Karl Marx was born in 1818 in Trier, in the Prussian Rhineland, the son of a lawyer of Jewish descent. He studied law and philosophy at Bonn and Berlin and received his doctorate in 1841. He edited a radical newspaper that the authorities soon closed. Moving to Paris, he met Friedrich Engels, his lifelong collaborator. Expelled from several countries, he settled in London in 1849 with his wife, Jenny von Westphalen, often living in poverty. He died in London in 1883.</p><div class="rm-more" hidden><p>With Engels, Marx wrote The Communist Manifesto in 1848. His other works include The Eighteenth Brumaire of Louis Bonaparte and above all Capital, whose first volume appeared in 1867. Marx analysed capitalism as a historical system driven by the exploitation of labour, argued that history is shaped by class struggle and economic forces, and predicted the system&#x27;s collapse. His ideas inspired movements and revolutions that reshaped the twentieth century and remain essential reading in the social sciences.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>The wealth of those societies in which the capitalist mode of production prevails, presents itself as “an immense accumulation of commodities,” its unit being a single commodity. Our investigation must therefore begin with the analysis of a commodity.</p><p>A commodity is, in the first place, an object outside us, a thing that by its properties satisfies human wants of some sort or another. The nature of such wants, whether, for instance, they spring from the stomach or from fancy, makes no difference. Neither are we here concerned to know how the object satisfies these wants, whether directly as means of subsistence, or indirectly as means of production.</p><div class="rm-more" hidden><p>Every useful thing, as iron, paper, &amp;c., may be looked at from the two points of view of quality and quantity. It is an assemblage of many properties, and may therefore be of use in various ways. To discover the various uses of things is the work of history. So also is the establishment of socially-recognized standards of measure for the quantities of these useful objects. The diversity of these measures has its origin partly in the diverse nature of the objects to be measured, partly in convention.</p><p>The utility of a thing makes it a use value. But this utility is not a thing of air. Being limited by the physical properties of the commodity, it has no existence apart from that commodity. A commodity, such as iron, corn, or a diamond, is therefore, so far as it is a material thing, a use value, something useful. This property of a commodity is independent of the amount of labour required to appropriate its useful qualities. When treating of use value, we always assume to be dealing with definite quantities, such as dozens of watches, yards of linen, or tons of iron. The use values of commodities furnish the material for a special study, that of the commercial knowledge of commodities. Use values become a reality only by use or consumption: they also constitute the substance of all wealth, whatever may be the social form of that wealth. In the form of society we are about to consider, they are, in addition, the material depositories of exchange value.</p><p>Exchange value, at first sight, presents itself as a quantitative relation, as the proportion in which values in use of one sort are exchanged for those of another sort, a relation constantly changing with time and place. Hence exchange value appears to be something accidental and purely relative, and consequently an intrinsic value, i.e., an exchange value that is inseparably connected with, inherent in commodities, seems a contradiction in terms. Let us consider the matter a little more closely.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-capital-volume-i.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/the-communist-manifesto/"><img src="/covers/the-communist-manifesto.jpg" alt="" loading="lazy">The Communist Manifesto<small>Karl Marx &amp; Friedrich Engels</small></a><a href="/books/on-the-principles-of-political-economy-and-taxation/"><img src="/covers/on-the-principles-of-political-economy-and-taxation.jpg" alt="" loading="lazy">On the Principles of Political Economy and Taxation<small>David Ricardo</small></a><a href="/books/an-essay-on-the-principle-of-population/"><img src="/covers/an-essay-on-the-principle-of-population.jpg" alt="" loading="lazy">An Essay on the Principle of Population<small>Thomas Malthus</small></a><a href="/books/principles-of-political-economy/"><img src="/covers/principles-of-political-economy.jpg" alt="" loading="lazy">Principles of Political Economy<small>John Stuart Mill</small></a><a href="/books/the-theory-of-the-leisure-class/"><img src="/covers/the-theory-of-the-leisure-class.jpg" alt="" loading="lazy">The Theory of the Leisure Class<small>Thorstein Veblen</small></a><a href="/books/extraordinary-popular-delusions-and-the-madness-of-crowds/"><img src="/covers/extraordinary-popular-delusions-and-the-madness-of-crowds.jpg" alt="" loading="lazy">Extraordinary Popular Delusions and the Madness of Crowds<small>Charles Mackay</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

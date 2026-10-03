@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › Sense and Sensibility</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/sense-and-sensibility.jpg" width="400" height="600" alt="Cover of Sense and Sensibility by Jane Austen"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/sense-and-sensibility.jpg" width="400" height="600" alt="Cover of Sense and Sensibility by Jane Austen"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Sense and Sensibility</h1>
     <p class="by">by <strong>Jane Austen</strong></p>
@@ -153,8 +179,10 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Sense and Sensibility</b><span>English · EPUB, HTML, PDF, TXT · audiobook 13 h 26 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>When Mr. Dashwood dies, his estate at Norland Park passes to his son from a first marriage, and the son&#x27;s selfish wife, Fanny, persuades him to give almost nothing to his stepmother and half-sisters. Mrs. Dashwood and her daughters Elinor, Marianne and young Margaret move to a modest cottage in Devonshire, offered by a cousin, Sir John Middleton. Calm, self-controlled Elinor has grown attached to Fanny&#x27;s brother Edward Ferrars, while passionate Marianne is swept off her feet by the dashing John Willoughby, and is admired from a distance by the quiet Colonel Brandon.</p><div class="rm-more" hidden><p>The novel contrasts two ways of meeting the world, careful judgement and open feeling, without simply declaring one right. Austen&#x27;s wit is already sharp, especially in her portraits of greedy relatives and gossiping neighbours, and she shows clearly how money, inheritance law and social expectation shaped women&#x27;s choices. The bond between the two sisters gives the book its emotional heart.</p><p>Austen began an early version, called Elinor and Marianne, in the 1790s. Sense and Sensibility was her first published novel, issued by Thomas Egerton in 1811 and credited only to a lady. It sold well enough to encourage the publication of Pride and Prejudice two years later. It has since been adapted for film, television and the stage and has inspired modern retellings.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Jane Austen</h2><p>Jane Austen was born in 1775 at Steventon rectory in Hampshire, the seventh of eight children of the Reverend George Austen. Educated mostly at home in a lively, bookish family, she began writing comic pieces as a girl. The family moved to Bath in 1801 and, after her father&#x27;s death, settled in 1809 in a cottage at Chawton provided by her brother Edward. She died in Winchester in 1817, aged forty-one, and was buried in the cathedral.</p><div class="rm-more" hidden><p>Austen published Sense and Sensibility in 1811, Pride and Prejudice in 1813, Mansfield Park in 1814 and Emma in 1815; Northanger Abbey and Persuasion appeared after her death. Focusing on a few families in country villages, her novels follow young women navigating love, money, marriage and social expectation. She wrote with sharp irony, sparkling dialogue and a pioneering technique of letting the narrator slip into a character&#x27;s thoughts. Her books remain hugely popular and are adapted again and again.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>The family of Dashwood had long been settled in Sussex. Their estate was large, and their residence was at Norland Park, in the centre of their property, where, for many generations, they had lived in so respectable a manner as to engage the general good opinion of their surrounding acquaintance. The late owner of this estate was a single man, who lived to a very advanced age, and who for many years of his life, had a constant companion and housekeeper in his sister. But her death, which happened ten years before his own, produced a great alteration in his home; for to supply her loss, he invited and received into his house the family of his nephew Mr. Henry Dashwood, the legal inheritor of the Norland estate, and the person to whom he intended to bequeath it. In the society of his nephew and niece, and their children, the old Gentleman’s days were comfortably spent. His attachment to them all increased. The constant attention of Mr. and Mrs. Henry Dashwood to his wishes, which proceeded not merely from interest, but from goodness of heart, gave him every degree of solid comfort which his age could receive; and the cheerfulness of the children added a relish to his existence.</p><div class="rm-more" hidden><p>By a former marriage, Mr. Henry Dashwood had one son: by his present lady, three daughters. The son, a steady respectable young man, was amply provided for by the fortune of his mother, which had been large, and half of which devolved on him on his coming of age. By his own marriage, likewise, which happened soon afterwards, he added to his wealth. To him therefore the succession to the Norland estate was not so really important as to his sisters; for their fortune, independent of what might arise to them from their father’s inheriting that property, could be but small. Their mother had nothing, and their father only seven thousand pounds in his own disposal; for the remaining moiety of his first wife’s fortune was also secured to her child, and he had only a life-interest in it.</p><p>The old gentleman died: his will was read, and like almost every other will, gave as much disappointment as pleasure. He was neither so unjust, nor so ungrateful, as to leave his estate from his nephew;—but he left it to him on such terms as destroyed half the value of the bequest. Mr. Dashwood had wished for it more for the sake of his wife and daughters than for himself or his son;—but to his son, and his son’s son, a child of four years old, it was secured, in such a way, as to leave to himself no power of providing for those who were most dear to him, and who most needed a provision by any charge on the estate, or by any sale of its valuable woods. The whole was tied up for the benefit of this child, who, in occasional visits with his father and mother at Norland, had so far gained on the affections of his uncle, by such attractions as are by no means unusual in children of two or three years old; an imperfect articulation, an earnest desire of having his own way, many cunning tricks, and a great deal of noise, as to outweigh all the value of all the attention which, for years, he had received from his niece and her daughters. He meant not to be unkind, however, and, as a mark of his affection for the three girls, he left them a thousand pounds a-piece.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-sense-and-sensibility.en">Continue reading →</a></p></section>
+<div class="bc-ad" id="bcAd2"></div>
 <section class="card"><h2>More by Jane Austen and similar classics</h2><div class="grid"><a href="/books/pride-and-prejudice/"><img src="/covers/pride-and-prejudice.jpg" alt="" loading="lazy">Pride and Prejudice<small>Jane Austen</small></a><a href="/books/emma/"><img src="/covers/emma.jpg" alt="" loading="lazy">Emma<small>Jane Austen</small></a><a href="/books/persuasion/"><img src="/covers/persuasion.jpg" alt="" loading="lazy">Persuasion<small>Jane Austen</small></a><a href="/books/tess-of-the-d-urbervilles/"><img src="/covers/tess-of-the-d-urbervilles.jpg" alt="" loading="lazy">Tess of the d&#x27;Urbervilles<small>Thomas Hardy</small></a><a href="/books/middlemarch/"><img src="/covers/middlemarch.jpg" alt="" loading="lazy">Middlemarch<small>George Eliot</small></a><a href="/books/vanity-fair/"><img src="/covers/vanity-fair.jpg" alt="" loading="lazy">Vanity Fair<small>William Makepeace Thackeray</small></a></div></section>
 <script>const BC={"slug":"sense-and-sensibility","ed":{"en":["epub","html","pdf","txt"]},"audio":{"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/sense-and-sensibility/sense-and-sensibility.mp3","d":48365}},"lang":"en"};</script>
 <div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
@@ -228,11 +256,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

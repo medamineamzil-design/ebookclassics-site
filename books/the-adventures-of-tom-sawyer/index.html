@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#jeunesse">Children&#x27;s Classics</a> › The Adventures of Tom Sawyer</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-adventures-of-tom-sawyer.jpg" width="400" height="600" alt="Cover of The Adventures of Tom Sawyer by Mark Twain"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-adventures-of-tom-sawyer.jpg" width="400" height="600" alt="Cover of The Adventures of Tom Sawyer by Mark Twain"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Adventures of Tom Sawyer</h1>
     <p class="by">by <strong>Mark Twain</strong></p>
@@ -153,8 +179,10 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Adventures of Tom Sawyer</b><span>English · EPUB, HTML, PDF, TXT · audiobook 7 h 30 min</span></button></li><li><button type="button" class="ed" data-lang="de" aria-pressed="false"><b lang="de">Die Abenteuer Tom Sawyers</b><span>Deutsch · EPUB, HTML, PDF, TXT · audiobook 7 h 21 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Tom Sawyer lives with his Aunt Polly, his half-brother Sid and his cousin Mary in St. Petersburg, a sleepy town on the Mississippi River. Clever, restless and allergic to school and Sunday sermons, Tom spends his days in schemes and games, famously persuading other boys to pay him for the privilege of whitewashing a fence. He falls for newcomer Becky Thatcher and roams the woods with his friend Huckleberry Finn, the town&#x27;s carefree outcast. One night in the graveyard the two boys secretly witness a murder, and the knowledge of who really committed it hangs over them as the summer goes on.</p><div class="rm-more" hidden><p>Twain blends humour, nostalgia and genuine suspense. The book captures the imaginative world of childhood, full of pirates, robbers and buried treasure, while gently satirising adult hypocrisy, rigid schooling and small-town respectability. It is warm and funny, though modern readers will also notice its dated and stereotyped portrayal of some characters, which is worth discussing alongside its charms.</p><p>Twain drew on memories of his own boyhood in Hannibal, Missouri. The novel was published in 1876 and became one of his best-loved works. Huckleberry Finn, introduced here, went on to narrate his own celebrated novel. Tom&#x27;s adventures have been adapted many times for film, television, stage and animation, and the whitewashed fence remains an iconic image of American childhood.</p><p>First published in 1876, before its sequel, The Adventures of Huckleberry Finn.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Mark Twain</h2><p>Samuel Langhorne Clemens was born in 1835 in Missouri and grew up in Hannibal, on the Mississippi River. After his father&#x27;s death he was apprenticed to a printer. He became a riverboat pilot until the Civil War halted river traffic, then went west, where as a journalist he first used the pen name Mark Twain. He married Olivia Langdon and settled in Hartford, Connecticut. Bad investments led to bankruptcy, which he repaid through a world lecture tour. He died in Connecticut in 1910.</p><div class="rm-more" hidden><p>Twain became famous with comic sketches and travel books such as The Innocents Abroad. The Adventures of Tom Sawyer celebrated boyhood along the Mississippi. Adventures of Huckleberry Finn, told in Huck&#x27;s own voice as he travels down the river with Jim, a man escaping slavery, is often called one of the great American novels. He also wrote A Connecticut Yankee in King Arthur&#x27;s Court. His humour, satire and ear for American speech keep him widely read.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>The old lady pulled her spectacles down and looked over them about the room; then she put them up and looked out under them. She seldom or never looked through them for so small a thing as a boy; they were her state pair, the pride of her heart, and were built for “style,” not service—she could have seen through a pair of stove-lids just as well. She looked perplexed for a moment, and then said, not fiercely, but still loud enough for the furniture to hear:</p><p>“Well, I lay if I get hold of you I’ll—”</p><div class="rm-more" hidden><p>She did not finish, for by this time she was bending down and punching under the bed with the broom, and so she needed breath to punctuate the punches with. She resurrected nothing but the cat.</p><p>“I never did see the beat of that boy!”</p><p>She went to the open door and stood in it and looked out among the tomato vines and “jimpson” weeds that constituted the garden. No Tom. So she lifted up her voice at an angle calculated for distance and shouted:</p><p>“Y-o-u-u TOM!”</p><p>There was a slight noise behind her and she turned just in time to seize a small boy by the slack of his roundabout and arrest his flight.</p><p>“There! I might ’a’ thought of that closet. What you been doing in there?”</p><p>“Nothing.”</p><p>“Nothing! Look at your hands. And look at your mouth. What is that truck?”</p><p>“I don’t know, aunt.”</p><p>“Well, I know. It’s jam—that’s what it is. Forty times I’ve said if you didn’t let that jam alone I’d skin you. Hand me that switch.”</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-adventures-of-tom-sawyer.en">Continue reading →</a></p></section>
+<div class="bc-ad" id="bcAd2"></div>
 <section class="card"><h2>More by Mark Twain and similar classics</h2><div class="grid"><a href="/books/the-adventures-of-huckleberry-finn/"><img src="/covers/the-adventures-of-huckleberry-finn.jpg" alt="" loading="lazy">The Adventures of Huckleberry Finn<small>Mark Twain</small></a><a href="/books/the-prince-and-the-pauper/"><img src="/covers/the-prince-and-the-pauper.jpg" alt="" loading="lazy">The Prince and the Pauper<small>Mark Twain</small></a><a href="/books/the-wind-in-the-willows/"><img src="/covers/the-wind-in-the-willows.jpg" alt="" loading="lazy">The Wind in the Willows<small>Kenneth Grahame</small></a><a href="/books/peter-pan/"><img src="/covers/peter-pan.jpg" alt="" loading="lazy">Peter Pan<small>J. M. Barrie</small></a><a href="/books/the-railway-children/"><img src="/covers/the-railway-children.jpg" alt="" loading="lazy">The Railway Children<small>E. Nesbit</small></a><a href="/books/the-wonderful-adventures-of-nils/"><img src="/covers/the-wonderful-adventures-of-nils.jpg" alt="" loading="lazy">The Wonderful Adventures of Nils<small>Selma Lagerlöf</small></a></div></section>
 <script>const BC={"slug":"the-adventures-of-tom-sawyer","ed":{"en":["epub","html","pdf","txt"],"de":["epub","html","pdf","txt"]},"audio":{"de":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/the-adventures-of-tom-sawyer/the-adventures-of-tom-sawyer-de.mp3","d":26452},"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/the-adventures-of-tom-sawyer/the-adventures-of-tom-sawyer.mp3","d":27021}},"lang":"en"};</script>
 <div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
@@ -228,11 +256,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

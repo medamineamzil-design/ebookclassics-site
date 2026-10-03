@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › Germinal</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/germinal.jpg" width="400" height="600" alt="Cover of Germinal by Émile Zola"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/germinal.jpg" width="400" height="600" alt="Cover of Germinal by Émile Zola"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Germinal</h1>
     <p class="by">by <strong>Émile Zola</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Germinal</b><span>English · EPUB, HTML, PDF, TXT · audiobook 20 h 08 min</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">Germinal</b><span>Français · EPUB, HTML, PDF, TXT · audiobook 18 h 45 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Étienne Lantier, an unemployed young mechanic, arrives on a cold night at the coal-mining town of Montsou in northern France. He finds work at the Voreux pit and lodges with the Maheu family, whose members of every age labour underground for wages that barely keep them alive. Étienne grows close to the Maheus and especially to their daughter Catherine. Angered by the miners&#x27; poverty and influenced by socialist ideas, he becomes a leader among them, and when the company cuts their pay, the community is drawn into a long and desperate strike.</p><div class="rm-more" hidden><p>Zola portrays the physical reality of mining, the darkness, danger and exhaustion, with overwhelming force, and contrasts the miners&#x27; hunger with the comfort of the shareholders and managers. The novel explores class conflict, the rival paths of reform and revolution, and the power of collective action, while showing sympathy for characters on many sides. Its themes of exploitation and solidarity remain highly relevant.</p><p>Published in 1885, Germinal is the thirteenth novel in Zola&#x27;s twenty-volume Rougon-Macquart cycle. Zola researched it closely, visiting the mining region around Anzin. Its title refers to a spring month in the French Republican calendar, suggesting new growth. It is often considered his masterpiece and has been adapted for film, television and the stage.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Émile Zola</h2><p>Émile Zola was born in Paris in 1840. His Italian-born father died when Émile was a child, and he grew up poor in Aix-en-Provence, befriending Paul Cézanne. Back in Paris, he worked for the publisher Hachette while writing journalism and art criticism defending Manet. In 1898, during the Dreyfus Affair, he was convicted of libel for defending the wrongly condemned officer and fled to England. He died in Paris in 1902 of carbon monoxide poisoning from a blocked chimney.</p><div class="rm-more" hidden><p>Zola&#x27;s early novel Thérèse Raquin was followed by his great cycle, Les Rougon-Macquart, twenty novels tracing one family&#x27;s branches under the Second Empire. It includes L&#x27;Assommoir, about alcoholism among Paris workers, Nana, The Ladies&#x27; Paradise, Germinal, about a miners&#x27; strike, and La Bête humaine. As the leading voice of naturalism, he aimed to study human behaviour shaped by heredity and environment with scientific rigour. His open letter J&#x27;accuse...!, published in 1898, became a landmark of political courage.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>Over the open plain, beneath a starless sky as dark and thick as ink, a man walked alone along the highway from Marchiennes to Montsou, a straight paved road ten kilometres in length, intersecting the beetroot fields. He could not even see the black soil before him, and only felt the immense flat horizon by the gusts of March wind, squalls as strong as on the sea, and frozen from sweeping leagues of marsh and naked earth. No tree could be seen against the sky, and the road unrolled as straight as a pier in the midst of the blinding spray of darkness.</p><div class="rm-more" hidden><p>The man had set out from Marchiennes about two o&#x27;clock. He walked with long strides, shivering beneath his worn cotton jacket and corduroy breeches. A small parcel tied in a check handkerchief troubled him much, and he pressed it against his side, sometimes with one elbow, sometimes with the other, so that he could slip to the bottom of his pockets both the benumbed hands that bled beneath the lashes of the wind. A single idea occupied his head--the empty head of a workman without work and without lodging--the hope that the cold would be less keen after sunrise. For an hour he went on thus, when on the left, two kilometres from Montsou, he saw red flames, three fires burning in the open air and apparently suspended. At first he hesitated, half afraid. Then he could not resist the painful need to warm his hands for a moment.</p><p>The steep road led downwards, and everything disappeared. The man saw on his right a paling, a wall of coarse planks shutting in a line of rails, while a grassy slope rose on the left surmounted by confused gables, a vision of a village with low uniform roofs. He went on some two hundred paces. Suddenly, at a bend in the road, the fires reappeared close to him, though he could not understand how they burnt so high in the dead sky, like smoky moons. But on the level soil another sight had struck him. It was a heavy mass, a low pile of buildings from which rose the silhouette of a factory chimney; occasional gleams appeared from dirty windows, five or six melancholy lanterns were hung outside to frames of blackened wood, which vaguely outlined the profiles of gigantic stages; and from this fantastic apparition, drowned in night and smoke, a single voice arose, the thick, long breathing of a steam escapement that could not be seen.</p><p>Then the man recognized a pit. His despair returned. What was the good? There would be no work. Instead of turning towards the buildings he decided at last to ascend the pit bank, on which burnt in iron baskets the three coal fires which gave light and warmth for work. The labourers in the cutting must have been working late; they were still throwing out the useless rubbish. Now he heard the landers push the wagons on the stages. He could distinguish living shadows tipping over the trams or tubs near each fire.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-germinal.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/the-red-and-the-black/"><img src="/covers/the-red-and-the-black.jpg" alt="" loading="lazy">The Red and the Black<small>Stendhal</small></a><a href="/books/father-goriot/"><img src="/covers/father-goriot.jpg" alt="" loading="lazy">Father Goriot<small>Honoré de Balzac</small></a><a href="/books/bel-ami/"><img src="/covers/bel-ami.jpg" alt="" loading="lazy">Bel-Ami<small>Guy de Maupassant</small></a><a href="/books/the-metamorphosis/"><img src="/covers/the-metamorphosis.jpg" alt="" loading="lazy">The Metamorphosis<small>Franz Kafka</small></a><a href="/books/a-study-in-scarlet/"><img src="/covers/a-study-in-scarlet.jpg" alt="" loading="lazy">A Study in Scarlet<small>Arthur Conan Doyle</small></a><a href="/books/the-sign-of-the-four/"><img src="/covers/the-sign-of-the-four.jpg" alt="" loading="lazy">The Sign of the Four<small>Arthur Conan Doyle</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

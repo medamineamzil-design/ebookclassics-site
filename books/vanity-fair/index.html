@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › Vanity Fair</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/vanity-fair.jpg" width="400" height="600" alt="Cover of Vanity Fair by William Makepeace Thackeray"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/vanity-fair.jpg" width="400" height="600" alt="Cover of Vanity Fair by William Makepeace Thackeray"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Vanity Fair</h1>
     <p class="by">by <strong>William Makepeace Thackeray</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Vanity Fair</b><span>English · EPUB, HTML, PDF, TXT · audiobook 32 h 21 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Vanity Fair follows two young women who leave Miss Pinkerton&#x27;s academy for girls on the same day. Amelia Sedley is the gentle, sheltered daughter of a prosperous London merchant; Becky Sharp is a penniless orphan, clever, witty and determined to rise in the world by any means. As Becky sets out to secure a husband and a place in society, and Amelia devotes herself to the dashing but shallow George Osborne, their lives intertwine with soldiers, aristocrats, servants and social climbers. The story moves from London drawing rooms to Brussels on the eve of the Battle of Waterloo.</p><div class="rm-more" hidden><p>Thackeray&#x27;s subtitle, &quot;A Novel without a Hero,&quot; signals his approach: almost nobody is simply good or bad, and the narrator comments with irony on the greed, snobbery and hypocrisy of the world he describes. Becky is one of the great antiheroines of English fiction, outrageous yet hard not to admire. The novel&#x27;s satire of social ambition, money and status remains sharp and very readable.</p><p>The novel was first published in monthly parts in 1847 and 1848, illustrated by Thackeray himself, and appeared as a single volume in 1848. Its title comes from the town fair in John Bunyan&#x27;s The Pilgrim&#x27;s Progress. It established Thackeray as a leading novelist of his day and has been adapted for film, television, radio and the stage.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About William Makepeace Thackeray</h2><p>William Makepeace Thackeray was born in Calcutta in 1811, where his father worked for the East India Company. Sent to England as a child, he attended Charterhouse and Trinity College, Cambridge, which he left without a degree. Having lost much of his inheritance, he studied art in Paris and turned to journalism, writing under comic pseudonyms for Fraser&#x27;s and Punch. His wife became mentally ill a few years after their marriage. He later edited the Cornhill Magazine and died in London in 1863.</p><div class="rm-more" hidden><p>The Luck of Barry Lyndon, a picaresque tale of an Irish adventurer, was later filmed by Stanley Kubrick. His masterpiece, Vanity Fair, published in 1847 and 1848, follows the clever, unscrupulous Becky Sharp and gentle Amelia Sedley through society and the Napoleonic Wars. He also wrote Pendennis, Henry Esmond and The Newcomes, often illustrating his own work. His ironic narrator and satire of greed and social climbing made him, with Dickens, one of the leading Victorian novelists.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>While the present century was in its teens, and on one sunshiny morning in June, there drove up to the great iron gate of Miss Pinkerton&#x27;s academy for young ladies, on Chiswick Mall, a large family coach, with two fat horses in blazing harness, driven by a fat coachman in a three-cornered hat and wig, at the rate of four miles an hour. A black servant, who reposed on the box beside the fat coachman, uncurled his bandy legs as soon as the equipage drew up opposite Miss Pinkerton&#x27;s shining brass plate, and as he pulled the bell at least a score of young heads were seen peering out of the narrow windows of the stately old brick house. Nay, the acute observer might have recognized the little red nose of good-natured Miss Jemima Pinkerton herself, rising over some geranium pots in the window of that lady&#x27;s own drawing-room.</p><p>&quot;It is Mrs. Sedley&#x27;s coach, sister,&quot; said Miss Jemima. &quot;Sambo, the black servant, has just rung the bell; and the coachman has a new red waistcoat.&quot;</p><div class="rm-more" hidden><p>&quot;Have you completed all the necessary preparations incident to Miss Sedley&#x27;s departure, Miss Jemima?&quot; asked Miss Pinkerton herself, that majestic lady; the Semiramis of Hammersmith, the friend of Doctor Johnson, the correspondent of Mrs. Chapone herself.</p><p>&quot;The girls were up at four this morning, packing her trunks, sister,&quot; replied Miss Jemima; &quot;we have made her a bow-pot.&quot;</p><p>&quot;Say a bouquet, sister Jemima, &#x27;tis more genteel.&quot;</p><p>&quot;Well, a booky as big almost as a haystack; I have put up two bottles of the gillyflower water for Mrs. Sedley, and the receipt for making it, in Amelia&#x27;s box.&quot;</p><p>&quot;And I trust, Miss Jemima, you have made a copy of Miss Sedley&#x27;s account. This is it, is it? Very good--ninety-three pounds, four shillings. Be kind enough to address it to John Sedley, Esquire, and to seal this billet which I have written to his lady.&quot;</p><p>In Miss Jemima&#x27;s eyes an autograph letter of her sister, Miss Pinkerton, was an object of as deep veneration as would have been a letter from a sovereign. Only when her pupils quitted the establishment, or when they were about to be married, and once, when poor Miss Birch died of the scarlet fever, was Miss Pinkerton known to write personally to the parents of her pupils; and it was Jemima&#x27;s opinion that if anything could console Mrs. Birch for her daughter&#x27;s loss, it would be that pious and eloquent composition in which Miss Pinkerton announced the event.</p><p>In the present instance Miss Pinkerton&#x27;s &quot;billet&quot; was to the following effect:--</p><p>The Mall, Chiswick, June 15, 18</p><p>MADAM,--After her six years&#x27; residence at the Mall, I have the honour and happiness of presenting Miss Amelia Sedley to her parents, as a young lady not unworthy to occupy a fitting position in their polished and refined circle. Those virtues which characterize the young English gentlewoman, those accomplishments which become her birth and station, will not be found wanting in the amiable Miss Sedley, whose INDUSTRY and OBEDIENCE have endeared her to her instructors, and whose delightful sweetness of temper has charmed her AGED and her YOUTHFUL companions.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-vanity-fair.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/ulysses/"><img src="/covers/ulysses.jpg" alt="" loading="lazy">Ulysses<small>James Joyce</small></a><a href="/books/dubliners/"><img src="/covers/dubliners.jpg" alt="" loading="lazy">Dubliners<small>James Joyce</small></a><a href="/books/mrs-dalloway/"><img src="/covers/mrs-dalloway.jpg" alt="" loading="lazy">Mrs Dalloway<small>Virginia Woolf</small></a><a href="/books/the-age-of-innocence/"><img src="/covers/the-age-of-innocence.jpg" alt="" loading="lazy">The Age of Innocence<small>Edith Wharton</small></a><a href="/books/the-canterbury-tales/"><img src="/covers/the-canterbury-tales.jpg" alt="" loading="lazy">The Canterbury Tales<small>Geoffrey Chaucer</small></a><a href="/books/the-brothers-karamazov/"><img src="/covers/the-brothers-karamazov.jpg" alt="" loading="lazy">The Brothers Karamazov<small>Fyodor Dostoevsky</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

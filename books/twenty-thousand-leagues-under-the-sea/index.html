@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › Twenty Thousand Leagues Under the Sea</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/twenty-thousand-leagues-under-the-sea.jpg" width="400" height="600" alt="Cover of Twenty Thousand Leagues Under the Sea by Jules Verne"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/twenty-thousand-leagues-under-the-sea.jpg" width="400" height="600" alt="Cover of Twenty Thousand Leagues Under the Sea by Jules Verne"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Twenty Thousand Leagues Under the Sea</h1>
     <p class="by">by <strong>Jules Verne</strong></p>
@@ -153,8 +179,10 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Twenty Thousand Leagues Under the Sea</b><span>English · EPUB, HTML, PDF, TXT · audiobook 16 h 30 min</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">Vingt mille Lieues Sous Les Mers — Complete</b><span>Français · EPUB, HTML, PDF, TXT · audiobook 15 h 34 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>In 1866 ships around the world report sightings of a huge, fast-moving creature that rams vessels at sea. Pierre Aronnax, a French professor of natural history, joins an American frigate sent to hunt it, accompanied by his loyal servant Conseil. Also aboard is Ned Land, a Canadian harpooner of great skill and short temper. When the chase ends in a collision, the three men find themselves prisoners aboard the Nautilus, an extraordinary electric submarine commanded by the mysterious Captain Nemo. Unable to leave, they travel with him through the oceans of the globe.</p><div class="rm-more" hidden><p>Verne mixes adventure with a great deal of real natural history, and his descriptions of marine life and undersea landscapes are a large part of the book&#x27;s charm. At its heart, though, is Nemo himself: brilliant, bitter and drawn to freedom, a figure whose motives remain a puzzle. The novel also explores curiosity, captivity and the costs of turning one&#x27;s back on humanity.</p><p>The novel first appeared as a serial in Pierre-Jules Hetzel&#x27;s magazine between 1869 and 1870 and then in book form in 1870, as part of Verne&#x27;s series of Extraordinary Voyages. The name Nautilus was later given to real submarines. The story has been adapted for film, television, animation, radio and comics.</p><p>First serialized in French between 1869 and 1870.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Jules Verne</h2><p>Jules Verne was born in 1828 in the port city of Nantes, France, the son of a lawyer. He studied law in Paris but was drawn to the theatre, writing plays and reading widely in science and geography. In 1863 the publisher Pierre-Jules Hetzel published Five Weeks in a Balloon and signed him for a long series of novels. Verne settled in Amiens, served on the town council and died there in 1905.</p><div class="rm-more" hidden><p>Verne&#x27;s series of Extraordinary Voyages combined adventure with scientific and geographical detail. Journey to the Centre of the Earth, From the Earth to the Moon, Twenty Thousand Leagues Under the Sea, with the enigmatic Captain Nemo and his submarine Nautilus, and Around the World in Eighty Days, with the punctual Phileas Fogg, are among the best known. His imaginative use of technology made him a pioneer of science fiction, and he is one of the most translated authors in the world.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>The year 1866 was signalised by a remarkable incident, a mysterious and puzzling phenomenon, which doubtless no one has yet forgotten. Not to mention rumours which agitated the maritime population and excited the public mind, even in the interior of continents, seafaring men were particularly excited. Merchants, common sailors, captains of vessels, skippers, both of Europe and America, naval officers of all countries, and the Governments of several states on the two continents, were deeply interested in the matter.</p><p>For some time past, vessels had been met by “an enormous thing,” a long object, spindle-shaped, occasionally phosphorescent, and infinitely larger and more rapid in its movements than a whale.</p><div class="rm-more" hidden><p>The facts relating to this apparition (entered in various log-books) agreed in most respects as to the shape of the object or creature in question, the untiring rapidity of its movements, its surprising power of locomotion, and the peculiar life with which it seemed endowed. If it was a cetacean, it surpassed in size all those hitherto classified in science. Taking into consideration the mean of observations made at divers times,—rejecting the timid estimate of those who assigned to this object a length of two hundred feet, equally with the exaggerated opinions which set it down as a mile in width and three in length,—we might fairly conclude that this mysterious being surpassed greatly all dimensions admitted by the ichthyologists of the day, if it existed at all. And that it did exist was an undeniable fact; and, with that tendency which disposes the human mind in favour of the marvellous, we can understand the excitement produced in the entire world by this supernatural apparition. As to classing it in the list of fables, the idea was out of the question.</p><p>On the 20th of July, 1866, the steamer Governor Higginson, of the Calcutta and Burnach Steam Navigation Company, had met this moving mass five miles off the east coast of Australia. Captain Baker thought at first that he was in the presence of an unknown sandbank; he even prepared to determine its exact position, when two columns of water, projected by the inexplicable object, shot with a hissing noise a hundred and fifty feet up into the air. Now, unless the sandbank had been submitted to the intermittent eruption of a geyser, the Governor Higginson had to do neither more nor less than with an aquatic mammal, unknown till then, which threw up from its blow-holes columns of water mixed with air and vapour.</p><p>Similar facts were observed on the 23rd of July in the same year, in the Pacific Ocean, by the Columbus, of the West India and Pacific Steam Navigation Company. But this extraordinary cetaceous creature could transport itself from one place to another with surprising velocity; as, in an interval of three days, the Governor Higginson and the Columbus had observed it at two different points of the chart, separated by a distance of more than seven hundred nautical leagues.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-twenty-thousand-leagues-under-the-sea.en">Continue reading →</a></p></section>
+<div class="bc-ad" id="bcAd2"></div>
 <section class="card"><h2>More by Jules Verne and similar classics</h2><div class="grid"><a href="/books/around-the-world-in-eighty-days/"><img src="/covers/around-the-world-in-eighty-days.jpg" alt="" loading="lazy">Around the World in Eighty Days<small>Jules Verne</small></a><a href="/books/journey-to-the-centre-of-the-earth/"><img src="/covers/journey-to-the-centre-of-the-earth.jpg" alt="" loading="lazy">Journey to the Centre of the Earth<small>Jules Verne</small></a><a href="/books/heart-of-darkness/"><img src="/covers/heart-of-darkness.jpg" alt="" loading="lazy">Heart of Darkness<small>Joseph Conrad</small></a><a href="/books/the-scarlet-letter/"><img src="/covers/the-scarlet-letter.jpg" alt="" loading="lazy">The Scarlet Letter<small>Nathaniel Hawthorne</small></a><a href="/books/uncle-tom-s-cabin/"><img src="/covers/uncle-tom-s-cabin.jpg" alt="" loading="lazy">Uncle Tom&#x27;s Cabin<small>Harriet Beecher Stowe</small></a><a href="/books/the-time-machine/"><img src="/covers/the-time-machine.jpg" alt="" loading="lazy">The Time Machine<small>H. G. Wells</small></a></div></section>
 <script>const BC={"slug":"twenty-thousand-leagues-under-the-sea","ed":{"en":["epub","html","pdf","txt"],"fr":["epub","html","pdf","txt"]},"audio":{"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/twenty-thousand-leagues-under-the-sea/twenty-thousand-leagues-under-the-sea.mp3","d":59409},"fr":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/twenty-thousand-leagues-under-the-sea/twenty-thousand-leagues-under-the-sea-fr.mp3","d":56011}},"lang":"en"};</script>
 <div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
@@ -228,11 +256,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

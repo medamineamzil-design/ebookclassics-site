@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#aventure">Adventure &amp; Epics</a> › Treasure Island</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/treasure-island.jpg" width="400" height="600" alt="Cover of Treasure Island by Robert Louis Stevenson"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/treasure-island.jpg" width="400" height="600" alt="Cover of Treasure Island by Robert Louis Stevenson"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Treasure Island</h1>
     <p class="by">by <strong>Robert Louis Stevenson</strong></p>
@@ -153,8 +179,10 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Treasure Island</b><span>English · EPUB, HTML, PDF, TXT · audiobook 7 h 34 min</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">L&#x27;île au trésor</b><span>Français · EPUB, HTML, PDF, TXT</span></button></li><li><button type="button" class="ed" data-lang="es" aria-pressed="false"><b lang="es">La isla del tesoro</b><span>Español · EPUB, HTML, PDF, TXT · audiobook 11 h 14 min</span></button></li><li><button type="button" class="ed" data-lang="de" aria-pressed="false"><b lang="de">Die Schatzinsel: Roman</b><span>Deutsch · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Jim Hawkins helps his mother run the Admiral Benbow inn on the English coast, until an old sea captain named Billy Bones takes a room and brings trouble with him. After a visit from sinister former shipmates, Jim finds himself holding a map that leads to the buried treasure of the notorious pirate Captain Flint. With Squire Trelawney and Dr. Livesey, he sets sail on the Hispaniola under the stern Captain Smollett, with a crew that includes a cheerful, one-legged sea cook named Long John Silver.</p><div class="rm-more" hidden><p>Told mostly by Jim, the novel is a classic coming-of-age adventure full of suspense, danger and quick changes of fortune. Stevenson writes in clean, vigorous prose, and his portrait of Silver, charming, clever and impossible to pin down, is one of the great characters in fiction. Beneath the excitement the book raises questions about loyalty, greed and how a boy learns to judge the adults around him.</p><p>Stevenson began the story in 1881 after drawing an imaginary island map with his young stepson. It was serialised in the magazine Young Folks under the pen name Captain George North, then published as a book in 1883. Much of our popular image of pirates, from treasure maps marked with an X to parrots on shoulders, owes a great deal to it, and it has been adapted countless times for screen, stage and radio.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Robert Louis Stevenson</h2><p>Robert Louis Stevenson was born in Edinburgh in 1850 into a famous family of lighthouse engineers. A sickly child, he studied engineering and then law at Edinburgh but chose to write. Travels in France produced his first books, including Travels with a Donkey in the Cévennes. He fell in love with an American, Fanny Osbourne, followed her to California and married her in 1880. Seeking a healthier climate, he sailed the Pacific and in 1890 settled in Samoa, where he died in 1894.</p><div class="rm-more" hidden><p>Stevenson won wide fame with Treasure Island, published in 1883, the story of young Jim Hawkins and the pirate Long John Silver that defined the image of pirates for generations. Strange Case of Dr Jekyll and Mr Hyde explores the duality of good and evil, and Kidnapped follows a young Scot after the Jacobite rising. He also wrote The Master of Ballantrae and the poems of A Child&#x27;s Garden of Verses.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>Squire Trelawney, Dr. Livesey, and the rest of these gentlemen having asked me to write down the whole particulars about Treasure Island, from the beginning to the end, keeping nothing back but the bearings of the island, and that only because there is still treasure not yet lifted, I take up my pen in the year of grace 17—, and go back to the time when my father kept the Admiral Benbow inn and the brown old seaman with the sabre cut first took up his lodging under our roof.</p><p>I remember him as if it were yesterday, as he came plodding to the inn door, his sea-chest following behind him in a hand-barrow--a tall, strong, heavy, nut-brown man, his tarry pigtail falling over the shoulder of his soiled blue coat, his hands ragged and scarred, with black, broken nails, and the sabre cut across one cheek, a dirty, livid white. I remember him looking round the cove and whistling to himself as he did so, and then breaking out in that old sea-song that he sang so often afterwards:</p><div class="rm-more" hidden><p>“Fifteen men on the dead man’s chest-- Yo-ho-ho, and a bottle of rum!”</p><p>in the high, old tottering voice that seemed to have been tuned and broken at the capstan bars. Then he rapped on the door with a bit of stick like a handspike that he carried, and when my father appeared, called roughly for a glass of rum. This, when it was brought to him, he drank slowly, like a connoisseur, lingering on the taste and still looking about him at the cliffs and up at our signboard.</p><p>“This is a handy cove,” says he at length; “and a pleasant sittyated grog-shop. Much company, mate?”</p><p>My father told him no, very little company, the more was the pity.</p><p>“Well, then,” said he, “this is the berth for me. Here you, matey,” he cried to the man who trundled the barrow; “bring up alongside and help up my chest. I’ll stay here a bit,” he continued. “I’m a plain man; rum and bacon and eggs is what I want, and that head up there for to watch ships off. What you mought call me? You mought call me captain. Oh, I see what you’re at--there”; and he threw down three or four gold pieces on the threshold. “You can tell me when I’ve worked through that,” says he, looking as fierce as a commander.</p><p>And indeed bad as his clothes were and coarsely as he spoke, he had none of the appearance of a man who sailed before the mast, but seemed like a mate or skipper accustomed to be obeyed or to strike. The man who came with the barrow told us the mail had set him down the morning before at the Royal George, that he had inquired what inns there were along the coast, and hearing ours well spoken of, I suppose, and described as lonely, had chosen it from the others for his place of residence. And that was all we could learn of our guest.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-treasure-island.en">Continue reading →</a></p></section>
+<div class="bc-ad" id="bcAd2"></div>
 <section class="card"><h2>More by Robert Louis Stevenson and similar classics</h2><div class="grid"><a href="/books/the-strange-case-of-dr-jekyll-and-mr-hyde/"><img src="/covers/the-strange-case-of-dr-jekyll-and-mr-hyde.jpg" alt="" loading="lazy">The Strange Case of Dr Jekyll and Mr Hyde<small>Robert Louis Stevenson</small></a><a href="/books/kidnapped/"><img src="/covers/kidnapped.jpg" alt="" loading="lazy">Kidnapped<small>Robert Louis Stevenson</small></a><a href="/books/the-scarlet-pimpernel/"><img src="/covers/the-scarlet-pimpernel.jpg" alt="" loading="lazy">The Scarlet Pimpernel<small>Baroness Orczy</small></a><a href="/books/beowulf/"><img src="/covers/beowulf.jpg" alt="" loading="lazy">Beowulf<small>Anonymous</small></a><a href="/books/around-the-world-in-eighty-days/"><img src="/covers/around-the-world-in-eighty-days.jpg" alt="" loading="lazy">Around the World in Eighty Days<small>Jules Verne</small></a><a href="/books/journey-to-the-centre-of-the-earth/"><img src="/covers/journey-to-the-centre-of-the-earth.jpg" alt="" loading="lazy">Journey to the Centre of the Earth<small>Jules Verne</small></a></div></section>
 <script>const BC={"slug":"treasure-island","ed":{"en":["epub","html","pdf","txt"],"fr":["epub","html","pdf","txt"],"es":["epub","html","pdf","txt"],"de":["epub","html","pdf","txt"]},"audio":{"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/treasure-island/treasure-island.mp3","d":27241},"es":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/treasure-island/treasure-island-es.mp3","d":40441}},"lang":"en"};</script>
 <div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
@@ -228,11 +256,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

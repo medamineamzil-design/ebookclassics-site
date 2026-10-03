@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › The Sign of the Four</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-sign-of-the-four.jpg" width="400" height="600" alt="Cover of The Sign of the Four by Arthur Conan Doyle"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-sign-of-the-four.jpg" width="400" height="600" alt="Cover of The Sign of the Four by Arthur Conan Doyle"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Sign of the Four</h1>
     <p class="by">by <strong>Arthur Conan Doyle</strong></p>
@@ -153,8 +179,10 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Sign of the Four</b><span>English · EPUB, HTML, PDF, TXT</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">La marque des quatre</b><span>Français · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Miss Mary Morstan, a young governess, comes to Baker Street with a puzzle. Her father, an officer in India, vanished on his return to London ten years earlier, and for the last six years she has received a single fine pearl by post on the same day each year. Now a letter invites her to a mysterious meeting. Holmes and Watson go with her, and the trail leads to the Sholto brothers, a dead man in a locked room at Pondicherry Lodge, and the great Agra treasure taken during the Indian Rebellion of 1857.</p><div class="rm-more" hidden><p>The second Holmes novel is faster and more atmospheric than the first, with night journeys through foggy London, a tracking dog called Toby and a famous steam-launch pursuit on the Thames. It also shows Holmes at his most complex, opening with his use of cocaine to escape boredom, while Watson falls in love with Mary Morstan. Like many adventure stories of its time, it reflects the imperial attitudes of Victorian Britain, especially in its portrayal of the Andaman Islander Tonga.</p><p>The novel was commissioned by the American magazine Lippincott&#x27;s Monthly at a dinner in London in 1889, the same evening on which Oscar Wilde was asked for The Picture of Dorian Gray. It appeared in February 1890 and as a book later that year. Its success, followed by the short stories in The Strand Magazine from 1891, made Sherlock Holmes a household name.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Arthur Conan Doyle</h2><p>Arthur Conan Doyle was born in Edinburgh in 1859 into a family of Irish Catholic descent. Educated by Jesuits, he studied medicine at the University of Edinburgh, where his teacher Joseph Bell, famous for his powers of observation, became a model for his greatest creation. He served as a ship&#x27;s doctor on an Arctic whaler, then set up a medical practice in Southsea. Knighted in 1902, he later became a passionate advocate of spiritualism and died in Crowborough, Sussex, in 1930.</p><div class="rm-more" hidden><p>Sherlock Holmes first appeared in A Study in Scarlet in 1887, and the short stories published in The Strand Magazine made Holmes and his friend Dr Watson famous worldwide. Doyle tried to end the series by sending Holmes over the Reichenbach Falls, but public demand brought him back, notably in The Hound of the Baskervilles. Holmes&#x27;s method of careful observation and deduction shaped detective fiction for generations, and he remains one of the most adapted characters ever created.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>Sherlock Holmes took his bottle from the corner of the mantel-piece and his hypodermic syringe from its neat morocco case. With his long, white, nervous fingers he adjusted the delicate needle, and rolled back his left shirt-cuff. For some little time his eyes rested thoughtfully upon the sinewy forearm and wrist all dotted and scarred with innumerable puncture-marks. Finally he thrust the sharp point home, pressed down the tiny piston, and sank back into the velvet-lined arm-chair with a long sigh of satisfaction.</p><div class="rm-more" hidden><p>Three times a day for many months I had witnessed this performance, but custom had not reconciled my mind to it. On the contrary, from day to day I had become more irritable at the sight, and my conscience swelled nightly within me at the thought that I had lacked the courage to protest. Again and again I had registered a vow that I should deliver my soul upon the subject, but there was that in the cool, nonchalant air of my companion which made him the last man with whom one would care to take anything approaching to a liberty. His great powers, his masterly manner, and the experience which I had had of his many extraordinary qualities, all made me diffident and backward in crossing him.</p><p>“Which is it to-day?” I asked,—“morphine or cocaine?”</p><p>He raised his eyes languidly from the old black-letter volume which he had opened. “It is cocaine,” he said,—“a seven-per-cent. solution. Would you care to try it?”</p><p>“No, indeed,” I answered, brusquely. “My constitution has not got over the Afghan campaign yet. I cannot afford to throw any extra strain upon it.”</p><p>He smiled at my vehemence. “Perhaps you are right, Watson,” he said. “I suppose that its influence is physically a bad one. I find it, however, so transcendently stimulating and clarifying to the mind that its secondary action is a matter of small moment.”</p><p>“But consider!” I said, earnestly. “Count the cost! Your brain may, as you say, be roused and excited, but it is a pathological and morbid process, which involves increased tissue-change and may at last leave a permanent weakness. You know, too, what a black reaction comes upon you. Surely the game is hardly worth the candle. Why should you, for a mere passing pleasure, risk the loss of those great powers with which you have been endowed? Remember that I speak not only as one comrade to another, but as a medical man to one for whose constitution he is to some extent answerable.”</p><p>He did not seem offended. On the contrary, he put his finger-tips together and leaned his elbows on the arms of his chair, like one who has a relish for conversation.</p><p>“My mind,” he said, “rebels at stagnation. Give me problems, give me work, give me the most abstruse cryptogram or the most intricate analysis, and I am in my own proper atmosphere. I can dispense then with artificial stimulants. But I abhor the dull routine of existence. I crave for mental exaltation. That is why I have chosen my own particular profession,—or rather created it, for I am the only one in the world.”</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-sign-of-the-four.en">Continue reading →</a></p></section>
+<div class="bc-ad" id="bcAd2"></div>
 <section class="card"><h2>More by Arthur Conan Doyle and similar classics</h2><div class="grid"><a href="/books/the-adventures-of-sherlock-holmes/"><img src="/covers/the-adventures-of-sherlock-holmes.jpg" alt="" loading="lazy">The Adventures of Sherlock Holmes<small>Arthur Conan Doyle</small></a><a href="/books/the-hound-of-the-baskervilles/"><img src="/covers/the-hound-of-the-baskervilles.jpg" alt="" loading="lazy">The Hound of the Baskervilles<small>Arthur Conan Doyle</small></a><a href="/books/a-study-in-scarlet/"><img src="/covers/a-study-in-scarlet.jpg" alt="" loading="lazy">A Study in Scarlet<small>Arthur Conan Doyle</small></a><a href="/books/the-mysteries-of-udolpho/"><img src="/covers/the-mysteries-of-udolpho.jpg" alt="" loading="lazy">The Mysteries of Udolpho<small>Ann Radcliffe</small></a><a href="/books/the-moonstone/"><img src="/covers/the-moonstone.jpg" alt="" loading="lazy">The Moonstone<small>Wilkie Collins</small></a><a href="/books/pride-and-prejudice/"><img src="/covers/pride-and-prejudice.jpg" alt="" loading="lazy">Pride and Prejudice<small>Jane Austen</small></a></div></section>
 <script>const BC={"slug":"the-sign-of-the-four","ed":{"en":["epub","html","pdf","txt"],"fr":["epub","html","pdf","txt"]},"audio":{},"lang":"en"};</script>
 <div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
@@ -228,11 +256,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

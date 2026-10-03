@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › Pride and Prejudice</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/pride-and-prejudice.jpg" width="400" height="562" alt="Cover of Pride and Prejudice by Jane Austen"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/pride-and-prejudice.jpg" width="400" height="562" alt="Cover of Pride and Prejudice by Jane Austen"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Pride and Prejudice</h1>
     <p class="by">by <strong>Jane Austen</strong></p>
@@ -153,8 +179,10 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Pride and Prejudice</b><span>English · EPUB, HTML, PDF, TXT · audiobook 14 h 27 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>In Hertfordshire, the Bennet family has five unmarried daughters and an estate that will pass to a male cousin, so marriage is a pressing matter. When the wealthy, good-natured Mr. Bingley rents nearby Netherfield, he brings his proud friend Mr. Darcy, who promptly offends the sharp-witted Elizabeth Bennet at a local ball. As visits and gossip multiply, Elizabeth forms firm opinions of Darcy and of the charming officer Mr. Wickham, while her gentle elder sister Jane falls for Bingley.</p><div class="rm-more" hidden><p>Austen turns a small world of drawing rooms into a sharp study of judgement, class and self-knowledge. Her famous irony, brisk dialogue and gallery of comic figures, such as the pompous clergyman Mr. Collins, keep the pages lively, while beneath the comedy lies a serious look at how women&#x27;s futures depended on money and marriage. Readers return to it for Elizabeth herself, one of the most likeable and independent heroines in fiction, and for the pleasure of watching two clever people learn to see clearly.</p><p>Austen drafted an early version under the title First Impressions in the late 1790s. Revised, it was published anonymously by Thomas Egerton in January 1813 as the work of the author of Sense and Sensibility. It was well received at once and has never gone out of print. The novel has inspired many film and television versions, stage productions and many modern retellings.</p><p>Set among the landed gentry of early nineteenth-century rural England, Pride and Prejudice follows Elizabeth Bennet, the sharp-witted second of five daughters in a family whose modest estate is entailed away from them upon their father&#x27;s death, leaving their mother, Mrs. Bennet, single-mindedly obsessed with marrying her girls off before that day arrives. The plot is set in motion when the wealthy, amiable Mr. Bingley leases the nearby estate of Netherfield and quickly falls for Elizabeth&#x27;s gentle elder sister Jane, while Bingley&#x27;s even wealthier and far haughtier friend, Mr. Darcy, attends a local assembly and is overheard by Elizabeth dismissing her as merely &quot;tolerable&quot; — an insult that hardens into an instant, deeply held prejudice she carries through most of the novel. Their paths cross repeatedly over the following months: through Jane&#x27;s blossoming romance with Bingley, which is abruptly and mysteriously interrupted; through the arrival of the charming militia officer George Wickham, whose account of Darcy&#x27;s supposed cruelty toward him confirms every negative impression Elizabeth already holds; through the ridiculous, socially anxious clergyman Mr. Collins, who proposes to Elizabeth and, when refused, promptly marries her practical best friend Charlotte Lucas instead; and through Darcy&#x27;s own unexpected and remarkably clumsy first proposal of marriage, delivered with as much condescension as affection, which Elizabeth furiously and comprehensively rejects. Stung, Darcy writes Elizabeth a long letter explaining the true, far less flattering circumstances behind both Wickham&#x27;s grievances and his own interference in Jane and Bingley&#x27;s romance, and this letter begins to unravel Elizabeth&#x27;s certainty in her own judgment. A chance meeting at Darcy&#x27;s grand estate of Pemberley, where Elizabeth witnesses firsthand his quiet generosity toward his tenants and his sister, further complicates her feelings, and when Elizabeth&#x27;s youngest sister Lydia scandalously elopes with Wickham, it is Darcy who secretly intervenes to salvage the family&#x27;s reputation. Only once Elizabeth has fully reassessed both her own pride in her judgment and her prejudice against Darcy&#x27;s character does the novel resolve its long chain of misunderstandings, moving toward two marriages — Jane&#x27;s and Elizabeth&#x27;s — built, unlike so many others in the book, on genuine mutual respect.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Jane Austen</h2><p>Jane Austen was born in 1775 at Steventon rectory in Hampshire, the seventh of eight children of the Reverend George Austen. Educated mostly at home in a lively, bookish family, she began writing comic pieces as a girl. The family moved to Bath in 1801 and, after her father&#x27;s death, settled in 1809 in a cottage at Chawton provided by her brother Edward. She died in Winchester in 1817, aged forty-one, and was buried in the cathedral.</p><div class="rm-more" hidden><p>Austen published Sense and Sensibility in 1811, Pride and Prejudice in 1813, Mansfield Park in 1814 and Emma in 1815; Northanger Abbey and Persuasion appeared after her death. Focusing on a few families in country villages, her novels follow young women navigating love, money, marriage and social expectation. She wrote with sharp irony, sparkling dialogue and a pioneering technique of letting the narrator slip into a character&#x27;s thoughts. Her books remain hugely popular and are adapted again and again.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>“Why, my dear, you must know, Mrs. Long says that Netherfield is taken by a young man of large fortune from the north of England; that he came down on Monday in a chaise and four to see the place, and was so much delighted with it that he agreed with Mr. Morris immediately; that he is to take possession before Michaelmas, and some of his servants are to be in the house by the end of next week.”</p><p>“What is his name?”</p><div class="rm-more" hidden><p>“Bingley.”</p><p>“Is he married or single?”</p><p>“Oh, single, my dear, to be sure! A single man of large fortune; four or five thousand a year. What a fine thing for our girls!”</p><p>“How so? how can it affect them?”</p><p>“My dear Mr. Bennet,” replied his wife, “how can you be so tiresome? You must know that I am thinking of his marrying one of them.”</p><p>“Is that his design in settling here?”</p><p>“Design? Nonsense, how can you talk so! But it is very likely that he may fall in love with one of them, and therefore you must visit him as soon as he comes.”</p><p>“I see no occasion for that. You and the girls may go--or you may send them by themselves, which perhaps will be still better; for as you are as handsome as any of them, Mr. Bingley might like you the best of the party.”</p><p>“My dear, you flatter me. I certainly have had my share of beauty, but I do not pretend to be anything extraordinary now. When a woman has five grown-up daughters, she ought to give over thinking of her own beauty.”</p><p>“In such cases, a woman has not often much beauty to think of.”</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-pride-and-prejudice.en">Continue reading →</a></p></section>
+<div class="bc-ad" id="bcAd2"></div>
 <section class="card"><h2>More by Jane Austen and similar classics</h2><div class="grid"><a href="/books/emma/"><img src="/covers/emma.jpg" alt="" loading="lazy">Emma<small>Jane Austen</small></a><a href="/books/sense-and-sensibility/"><img src="/covers/sense-and-sensibility.jpg" alt="" loading="lazy">Sense and Sensibility<small>Jane Austen</small></a><a href="/books/persuasion/"><img src="/covers/persuasion.jpg" alt="" loading="lazy">Persuasion<small>Jane Austen</small></a><a href="/books/les-miserables/"><img src="/covers/les-miserables.jpg" alt="" loading="lazy">Les Misérables<small>Victor Hugo</small></a><a href="/books/war-and-peace/"><img src="/covers/war-and-peace.jpg" alt="" loading="lazy">War and Peace<small>Leo Tolstoy</small></a><a href="/books/crime-and-punishment/"><img src="/covers/crime-and-punishment.jpg" alt="" loading="lazy">Crime and Punishment<small>Fyodor Dostoevsky</small></a></div></section>
 <script>const BC={"slug":"pride-and-prejudice","ed":{"en":["epub","html","pdf","txt"]},"audio":{"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/pride-and-prejudice/pride-and-prejudice.mp3","d":52012}},"lang":"en"};</script>
 <div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
@@ -228,11 +256,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

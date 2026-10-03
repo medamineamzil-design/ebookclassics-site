@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#jeunesse">Children&#x27;s Classics</a> › The Wonderful Adventures of Nils</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-wonderful-adventures-of-nils.jpg" width="400" height="600" alt="Cover of The Wonderful Adventures of Nils by Selma Lagerlöf"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-wonderful-adventures-of-nils.jpg" width="400" height="600" alt="Cover of The Wonderful Adventures of Nils by Selma Lagerlöf"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Wonderful Adventures of Nils</h1>
     <p class="by">by <strong>Selma Lagerlöf</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Wonderful Adventures of Nils</b><span>English · EPUB, HTML, PDF, TXT · audiobook 17 h 38 min</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">Le Merveilleux voyage de Nils Holgersson à travers la Suède</b><span>Français · EPUB, HTML, PDF, TXT</span></button></li><li><button type="button" class="ed" data-lang="de" aria-pressed="false"><b lang="de">Wunderbare Reise des kleinen Nils Holgersson mit den Wildgänsen: Ein Kinderbuch</b><span>Deutsch · EPUB, HTML, PDF, TXT</span></button></li><li><button type="button" class="ed" data-lang="sv" aria-pressed="false"><b lang="sv">Nils Holgerssons underbara resa genom Sverige</b><span>Svenska · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Nils Holgersson is a fourteen-year-old boy on a farm in Skåne, in the far south of Sweden, who is lazy and cruel to animals. When he mistreats a tomte, a small household spirit, he is shrunk to the size of a thumb and finds he can understand the speech of animals. As a flock of wild geese passes overhead, the family&#x27;s white farm goose Martin tries to follow them, and Nils, clinging to his neck, is carried into the sky. Led by the wise old goose Akka from Kebnekaise, the flock flies north across the country, and Nils travels with them through a long series of adventures.</p><div class="rm-more" hidden><p>The book is both a gripping adventure and a portrait of Sweden&#x27;s landscapes, provinces, legends and ways of life. Through his journey Nils slowly learns humility, courage and compassion for creatures he once tormented. Lagerlöf blends folklore, natural history and moral growth with gentle humour, creating a story that appeals to children and adults alike.</p><p>Lagerlöf was commissioned to write a geography reader for Swedish schoolchildren, and the work appeared in two volumes in 1906 and 1907. It became one of the most famous Swedish books in the world and was translated into many languages. In 1909 Lagerlöf became the first woman to receive the Nobel Prize in Literature. The story has been adapted into films, television series and animation.</p><p>Originally commissioned as a geography textbook for Swedish schoolchildren.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Selma Lagerlöf</h2><p>Selma Lagerlöf was born in 1858 at Mårbacka, her family&#x27;s estate in the province of Värmland, Sweden. A hip problem left her with a limp, and as a child she absorbed local legends. She trained as a teacher in Stockholm and taught in Landskrona for about ten years, while the family lost Mårbacka. Success with her first novel let her write full-time and travel to Italy and the Middle East. She bought back Mårbacka in stages, completing the purchase with her Nobel Prize money, became the first woman in the Swedish Academy, and died there in 1940.</p><div class="rm-more" hidden><p>Her first novel, Gösta Berling&#x27;s Saga, published in 1891, brought the folklore of Värmland to life. She went on to write Jerusalem and many other novels and stories. The Wonderful Adventures of Nils, commissioned as a school geography reader, follows a boy shrunk to tiny size who travels across Sweden on a goose. In 1909 she became the first woman to receive the Nobel Prize in Literature.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>Once there was a boy. He was--let us say--something like fourteen years old; long and loose-jointed and towheaded. He wasn&#x27;t good for much, that boy. His chief delight was to eat and sleep; and after that--he liked best to make mischief.</p><p>It was a Sunday morning and the boy&#x27;s parents were getting ready to go to church. The boy sat on the edge of the table, in his shirt sleeves, and thought how lucky it was that both father and mother were going away, and the coast would be clear for a couple of hours. &quot;Good! Now I can take down pop&#x27;s gun and fire off a shot, without anybody&#x27;s meddling interference,&quot; he said to himself.</p><div class="rm-more" hidden><p>But it was almost as if father should have guessed the boy&#x27;s thoughts, for just as he was on the threshold--ready to start--he stopped short, and turned toward the boy. &quot;Since you won&#x27;t come to church with mother and me,&quot; he said, &quot;the least you can do, is to read the service at home. Will you promise to do so?&quot; &quot;Yes,&quot; said the boy, &quot;that I can do easy enough.&quot; And he thought, of course, that he wouldn&#x27;t read any more than he felt like reading.</p><p>The boy thought that never had he seen his mother so persistent. In a second she was over by the shelf near the fireplace, and took down Luther&#x27;s Commentary and laid it on the table, in front of the window--opened at the service for the day. She also opened the New Testament, and placed it beside the Commentary. Finally, she drew up the big arm-chair, which was bought at the parish auction the year before, and which, as a rule, no one but father was permitted to occupy.</p><p>The boy sat thinking that his mother was giving herself altogether too much trouble with this spread; for he had no intention of reading more than a page or so. But now, for the second time, it was almost as if his father were able to see right through him. He walked up to the boy, and said in a severe tone: &quot;Now, remember, that you are to read carefully! For when we come back, I shall question you thoroughly; and if you have skipped a single page, it will not go well with you.&quot;</p><p>&quot;The service is fourteen and a half pages long,&quot; said his mother, just as if she wanted to heap up the measure of his misfortune. &quot;You&#x27;ll have to sit down and begin the reading at once, if you expect to get through with it.&quot;</p><p>With that they departed. And as the boy stood in the doorway watching them, he thought that he had been caught in a trap. &quot;There they go congratulating themselves, I suppose, in the belief that they&#x27;ve hit upon something so good that I&#x27;ll be forced to sit and hang over the sermon the whole time that they are away,&quot; thought he.</p><p>But his father and mother were certainly not congratulating themselves upon anything of the sort; but, on the contrary, they were very much distressed. They were poor farmers, and their place was not much bigger than a garden-plot. When they first moved there, the place couldn&#x27;t feed more than one pig and a pair of chickens; but they were uncommonly industrious and capable folk--and now they had both cows and geese. Things had turned out very well for them; and they would have gone to church that beautiful morning--satisfied and happy--if they hadn&#x27;t had their son to think of. Father complained that he was dull and lazy; he had not cared to learn anything at school, and he was such an all-round good-for-nothing, that he could barely be made to tend geese. Mother did not deny that this was true; but she was most distressed because he was wild and bad; cruel to animals, and ill-willed toward human beings. &quot;May God soften his hard heart, and give him a better disposition!&quot; said the mother, &quot;or else he will be a misfortune, both to himself and to us.&quot;</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-wonderful-adventures-of-nils.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/anne-of-green-gables/"><img src="/covers/anne-of-green-gables.jpg" alt="" loading="lazy">Anne of Green Gables<small>L. M. Montgomery</small></a><a href="/books/grimm-s-fairy-tales/"><img src="/covers/grimm-s-fairy-tales.jpg" alt="" loading="lazy">Grimm&#x27;s Fairy Tales<small>Jacob &amp; Wilhelm Grimm</small></a><a href="/books/andersen-s-fairy-tales/"><img src="/covers/andersen-s-fairy-tales.jpg" alt="" loading="lazy">Andersen&#x27;s Fairy Tales<small>Hans Christian Andersen</small></a><a href="/books/alice-s-adventures-in-wonderland/"><img src="/covers/alice-s-adventures-in-wonderland.jpg" alt="" loading="lazy">Alice&#x27;s Adventures in Wonderland<small>Lewis Carroll</small></a><a href="/books/aesop-s-fables/"><img src="/covers/aesop-s-fables.jpg" alt="" loading="lazy">Aesop&#x27;s Fables<small>Aesop</small></a><a href="/books/the-secret-garden/"><img src="/covers/the-secret-garden.jpg" alt="" loading="lazy">The Secret Garden<small>Frances Hodgson Burnett</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

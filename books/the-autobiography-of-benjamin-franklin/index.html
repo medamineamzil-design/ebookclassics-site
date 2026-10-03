@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#philosophie">Philosophy &amp; Essays</a> › The Autobiography of Benjamin Franklin</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-autobiography-of-benjamin-franklin.jpg" width="400" height="600" alt="Cover of The Autobiography of Benjamin Franklin by Benjamin Franklin"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-autobiography-of-benjamin-franklin.jpg" width="400" height="600" alt="Cover of The Autobiography of Benjamin Franklin by Benjamin Franklin"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Autobiography of Benjamin Franklin</h1>
     <p class="by">by <strong>Benjamin Franklin</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Autobiography of Benjamin Franklin</b><span>English · EPUB, HTML, PDF, TXT · audiobook 7 h 31 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Benjamin Franklin began writing his memoirs in 1771, addressing the first part to his son William, and returned to them several times in later life. He describes his childhood in Boston as one of many children of a candle and soap maker, his apprenticeship to his older brother James, a printer, and his decision as a teenager to run away to Philadelphia. From there he traces his slow rise as a printer and publisher, his founding of a discussion club called the Junto, and his involvement in civic projects such as a lending library, and he looks ahead to his scientific and public work.</p><div class="rm-more" hidden><p>The book is famous for its practical spirit. Franklin describes his plan to achieve moral perfection through thirteen virtues, including temperance, order, frugality and industry while cheerfully admitting his failures. The tone is lively, self-deprecating and full of shrewd advice on work, reputation and getting along with others. It offers a vivid portrait of colonial American life and of the ideal of the self-made man.</p><p>Franklin never finished the work, and the account breaks off well before the American Revolution. It was first published in a French translation in 1791, the year after his death, and English versions followed soon after. A reliable complete text appeared only in the nineteenth century. It has since become a classic of American autobiography and is widely read in schools.</p><p>Written in stages between 1771 and 1790, and published posthumously in an incomplete form.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Benjamin Franklin</h2><p>Benjamin Franklin was born in Boston in 1706, one of many children of a candle and soap maker. He had little formal schooling and was apprenticed to his older brother, a printer, before running away to Philadelphia at seventeen. There he built a successful printing business, published the Pennsylvania Gazette and helped found a library and the academy that became the University of Pennsylvania. His experiments with electricity made him famous in Europe. He represented the colonies in London, helped draft the Declaration of Independence, secured the French alliance as minister to France, and died in Philadelphia in 1790.</p><div class="rm-more" hidden><p>Poor Richard&#x27;s Almanack, which he published annually from 1732, mixed calendars and weather forecasts with memorable proverbs about thrift, work and good sense. His Autobiography, published after his death, tells the story of a self-made man and became a model for the American ideal of self-improvement. He is still read for his humour, curiosity and portrait of an inventive, public-spirited life.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>Dear son: I have ever had pleasure in obtaining any little anecdotes of my ancestors. You may remember the inquiries I made among the remains of my relations when you were with me in England, and the journey I undertook for that purpose. Imagining it may be equally agreeable to you to know the circumstances of my life, many of which you are yet unacquainted with, and expecting the enjoyment of a week&#x27;s uninterrupted leisure in my present country retirement, I sit down to write them for you. To which I have besides some other inducements. Having emerged from the poverty and obscurity in which I was born and bred, to a state of affluence and some degree of reputation in the world, and having gone so far through life with a considerable share of felicity, the conducing means I made use of, which with the blessing of God so well succeeded, my posterity may like to know, as they may find some of them suitable to their own situations, and therefore fit to be imitated.</p><div class="rm-more" hidden><p>[3] A small village not far from Winchester in Hampshire, southern England. Here was the country seat of the Bishop of St. Asaph, Dr. Jonathan Shipley, the &quot;good Bishop,&quot; as Dr. Franklin used to style him. Their relations were intimate and confidential. In his pulpit, and in the House of Lords, as well as in society, the bishop always opposed the harsh measures of the Crown toward the Colonies.--Bigelow.</p><p>That felicity, when I reflected on it, has induced me sometimes to say, that were it offered to my choice, I should have no objection to a repetition of the same life from its beginning, only asking the advantages authors have in a second edition to correct some faults of the first. So I might, besides correcting the faults, change some sinister accidents and events of it for others more favourable. But though this were denied, I should still accept the offer. Since such a repetition is not to be expected, the next thing most like living one&#x27;s life over again seems to be a recollection of that life, and to make that recollection as durable as possible by putting it down in writing.</p><p>Hereby, too, I shall indulge the inclination so natural in old men, to be talking of themselves and their own past actions; and I shall indulge it without being tiresome to others, who, through respect to age, might conceive themselves obliged to give me a hearing, since this may be read or not as anyone pleases. And, lastly (I may as well confess it, since my denial of it will be believed by nobody), perhaps I shall a good deal gratify my own vanity.[4] Indeed, I scarce ever heard or saw the introductory words, &quot;Without vanity I may say,&quot; etc., but some vain thing immediately followed. Most people dislike vanity in others, whatever share they have of it themselves; but I give it fair quarter wherever I meet with it, being persuaded that it is often productive of good to the possessor, and to others that are within his sphere of action; and therefore, in many cases, it would not be altogether absurd if a man were to thank God for his vanity among the other comforts of life.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-autobiography-of-benjamin-franklin.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/second-treatise-of-government/"><img src="/covers/second-treatise-of-government.jpg" alt="" loading="lazy">Second Treatise of Government<small>John Locke</small></a><a href="/books/on-liberty/"><img src="/covers/on-liberty.jpg" alt="" loading="lazy">On Liberty<small>John Stuart Mill</small></a><a href="/books/on-the-origin-of-species/"><img src="/covers/on-the-origin-of-species.jpg" alt="" loading="lazy">On the Origin of Species<small>Charles Darwin</small></a><a href="/books/the-republic/"><img src="/covers/the-republic.jpg" alt="" loading="lazy">The Republic<small>Plato</small></a><a href="/books/nicomachean-ethics/"><img src="/covers/nicomachean-ethics.jpg" alt="" loading="lazy">Nicomachean Ethics<small>Aristotle</small></a><a href="/books/the-descent-of-man/"><img src="/covers/the-descent-of-man.jpg" alt="" loading="lazy">The Descent of Man<small>Charles Darwin</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

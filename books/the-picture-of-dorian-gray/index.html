@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › The Picture of Dorian Gray</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-picture-of-dorian-gray.jpg" width="400" height="600" alt="Cover of The Picture of Dorian Gray by Oscar Wilde"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-picture-of-dorian-gray.jpg" width="400" height="600" alt="Cover of The Picture of Dorian Gray by Oscar Wilde"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Picture of Dorian Gray</h1>
     <p class="by">by <strong>Oscar Wilde</strong></p>
@@ -153,8 +179,10 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Picture of Dorian Gray</b><span>English · EPUB, HTML, PDF, TXT · audiobook 9 h 30 min</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">Le portrait de Dorian Gray</b><span>Français · EPUB, HTML, PDF, TXT · audiobook 8 h 51 min</span></button></li><li><button type="button" class="ed" data-lang="de" aria-pressed="false"><b lang="de">Das Bildnis des Dorian Gray</b><span>Deutsch · EPUB, HTML, PDF, TXT · audiobook 10 h 32 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>In a London studio, the painter Basil Hallward completes a portrait of Dorian Gray, a young man of extraordinary beauty. Basil&#x27;s witty friend Lord Henry Wotton fills Dorian&#x27;s head with the idea that youth and pleasure are all that matter, and Dorian wishes aloud that the painting might grow old in his place. The wish seems to come true. As Dorian pursues a life of sensation and indulgence, his face stays fresh and innocent while the hidden canvas begins to record the marks of his actions.</p><div class="rm-more" hidden><p>Wilde&#x27;s only novel is a gothic moral fable wrapped in the glittering talk of a drawing-room comedy. Lord Henry&#x27;s epigrams sparkle on almost every page, yet the story asks serious questions about beauty, influence, conscience and the double lives people lead behind respectable surfaces. Its blend of wit, decadence and horror makes it a vivid introduction to the aesthetic movement and to late-Victorian anxieties about art and morality.</p><p>The story first appeared in Lippincott&#x27;s Monthly Magazine in 1890, where many reviewers condemned it as immoral. Wilde revised and expanded it for publication as a book in 1891, adding a famous preface of aphorisms defending art for art&#x27;s sake. Passages from the novel were later raised against him during his trials in 1895. It has since inspired numerous films, stage versions and television adaptations.</p><p>The Picture of Dorian Gray opens in the studio of the painter Basil Hallward, who has just completed a portrait of the extraordinarily beautiful young Dorian Gray, a work he considers his masterpiece and into which he feels he has poured too much of himself to ever exhibit. Dorian is introduced to Basil&#x27;s friend Lord Henry Wotton, a witty, corrosive aristocrat whose seductive philosophy of pure hedonism, that beauty and sensation are the only things worth pursuing, and that conscience and consequence are simply cowardice, immediately begins reshaping Dorian&#x27;s previously innocent worldview. Struck for the first time by an awareness that his beauty will inevitably fade, Dorian impulsively wishes that the portrait might age in his place while he himself remains forever young, a wish that, unknown to him at first, is granted. Dorian falls in love with a young actress, Sibyl Vane, but cruelly abandons her after a single disappointing stage performance, prioritizing artistic illusion over her real feelings; devastated, Sibyl kills herself, and Dorian notices, with a chill of recognition, that the portrait&#x27;s expression has shifted to reflect a new cruelty. Over the following years, Dorian pursues an increasingly reckless life of secret vice, hinted at rather than explicitly detailed, while his own face remains untouched by time or sin; he hides the portrait, now grown monstrous and decayed, locked away in an attic room, understanding that it now bears the full physical and moral weight of everything he does. Basil, disturbed by rumors surrounding Dorian, confronts him and demands to see the hidden portrait; horrified by what he sees, and by Dorian&#x27;s admission of the truth, he urges Dorian to repent, provoking Dorian to murder him in a sudden fit of rage, later blackmailing a former friend into disposing of the body with acid. Haunted increasingly by guilt he can no longer suppress and by the portrait&#x27;s grotesque record of his corruption, Dorian finally attempts to destroy the painting itself by stabbing it, only to be found dead moments later, aged and hideous, the knife in his own heart, while the portrait on the wall has been restored to its original youthful beauty.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Oscar Wilde</h2><p>Oscar Wilde was born in Dublin in 1854, the son of a celebrated surgeon and a nationalist poet. He studied classics at Trinity College Dublin and Magdalen College, Oxford, becoming a voice of aestheticism, the belief in art for art&#x27;s sake. He lectured across America in 1882 and married Constance Lloyd, with whom he had two sons. In 1895, after a failed libel case against the father of his lover Lord Alfred Douglas, he was sentenced to two years&#x27; hard labour for gross indecency. He died in poverty in Paris in 1900.</p><div class="rm-more" hidden><p>Wilde wrote fairy tales such as The Happy Prince. The Picture of Dorian Gray, his only novel, tells of a young man whose portrait ages while he stays beautiful. His comedies, including An Ideal Husband and The Importance of Being Earnest, sparkle with wit while mocking Victorian society. Prison produced the long letter De Profundis and The Ballad of Reading Gaol. His epigrams are still quoted everywhere.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>From the corner of the divan of Persian saddle-bags on which he was lying, smoking, as was his custom, innumerable cigarettes, Lord Henry Wotton could just catch the gleam of the honey-sweet and honey-coloured blossoms of a laburnum, whose tremulous branches seemed hardly able to bear the burden of a beauty so flamelike as theirs; and now and then the fantastic shadows of birds in flight flitted across the long tussore-silk curtains that were stretched in front of the huge window, producing a kind of momentary Japanese effect, and making him think of those pallid, jade-faced painters of Tokyo who, through the medium of an art that is necessarily immobile, seek to convey the sense of swiftness and motion. The sullen murmur of the bees shouldering their way through the long unmown grass, or circling with monotonous insistence round the dusty gilt horns of the straggling woodbine, seemed to make the stillness more oppressive. The dim roar of London was like the bourdon note of a distant organ.</p><div class="rm-more" hidden><p>In the centre of the room, clamped to an upright easel, stood the full-length portrait of a young man of extraordinary personal beauty, and in front of it, some little distance away, was sitting the artist himself, Basil Hallward, whose sudden disappearance some years ago caused, at the time, such public excitement and gave rise to so many strange conjectures.</p><p>As the painter looked at the gracious and comely form he had so skilfully mirrored in his art, a smile of pleasure passed across his face, and seemed about to linger there. But he suddenly started up, and closing his eyes, placed his fingers upon the lids, as though he sought to imprison within his brain some curious dream from which he feared he might awake.</p><p>“It is your best work, Basil, the best thing you have ever done,” said Lord Henry languidly. “You must certainly send it next year to the Grosvenor. The Academy is too large and too vulgar. Whenever I have gone there, there have been either so many people that I have not been able to see the pictures, which was dreadful, or so many pictures that I have not been able to see the people, which was worse. The Grosvenor is really the only place.”</p><p>“I don’t think I shall send it anywhere,” he answered, tossing his head back in that odd way that used to make his friends laugh at him at Oxford. “No, I won’t send it anywhere.”</p><p>Lord Henry elevated his eyebrows and looked at him in amazement through the thin blue wreaths of smoke that curled up in such fanciful whorls from his heavy, opium-tainted cigarette. “Not send it anywhere? My dear fellow, why? Have you any reason? What odd chaps you painters are! You do anything in the world to gain a reputation. As soon as you have one, you seem to want to throw it away. It is silly of you, for there is only one thing in the world worse than being talked about, and that is not being talked about. A portrait like this would set you far above all the young men in England, and make the old men quite jealous, if old men are ever capable of any emotion.”</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-picture-of-dorian-gray.en">Continue reading →</a></p></section>
+<div class="bc-ad" id="bcAd2"></div>
 <section class="card"><h2>More by Oscar Wilde and similar classics</h2><div class="grid"><a href="/books/the-importance-of-being-earnest/"><img src="/covers/the-importance-of-being-earnest.jpg" alt="" loading="lazy">The Importance of Being Earnest<small>Oscar Wilde</small></a><a href="/books/the-phantom-of-the-opera/"><img src="/covers/the-phantom-of-the-opera.jpg" alt="" loading="lazy">The Phantom of the Opera<small>Gaston Leroux</small></a><a href="/books/twenty-thousand-leagues-under-the-sea/"><img src="/covers/twenty-thousand-leagues-under-the-sea.jpg" alt="" loading="lazy">Twenty Thousand Leagues Under the Sea<small>Jules Verne</small></a><a href="/books/heart-of-darkness/"><img src="/covers/heart-of-darkness.jpg" alt="" loading="lazy">Heart of Darkness<small>Joseph Conrad</small></a><a href="/books/the-scarlet-letter/"><img src="/covers/the-scarlet-letter.jpg" alt="" loading="lazy">The Scarlet Letter<small>Nathaniel Hawthorne</small></a><a href="/books/uncle-tom-s-cabin/"><img src="/covers/uncle-tom-s-cabin.jpg" alt="" loading="lazy">Uncle Tom&#x27;s Cabin<small>Harriet Beecher Stowe</small></a></div></section>
 <script>const BC={"slug":"the-picture-of-dorian-gray","ed":{"en":["epub","html","pdf","txt"],"fr":["epub","html","pdf","txt"],"de":["epub","html","pdf","txt"]},"audio":{"de":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/the-picture-of-dorian-gray/the-picture-of-dorian-gray-de.mp3","d":37946},"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/the-picture-of-dorian-gray/the-picture-of-dorian-gray.mp3","d":34214},"fr":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/the-picture-of-dorian-gray/the-picture-of-dorian-gray-fr.mp3","d":31861}},"lang":"en"};</script>
 <div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
@@ -228,11 +256,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

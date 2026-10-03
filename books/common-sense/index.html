@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#philosophie">Philosophy &amp; Essays</a> › Common Sense</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/common-sense.jpg" width="400" height="600" alt="Cover of Common Sense by Thomas Paine"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/common-sense.jpg" width="400" height="600" alt="Cover of Common Sense by Thomas Paine"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Common Sense</h1>
     <p class="by">by <strong>Thomas Paine</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Common Sense</b><span>English · EPUB, HTML, PDF, TXT · audiobook 2 h 25 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Common Sense is a political pamphlet that argued, at a moment when many colonists still hoped for reconciliation with Britain, that the American colonies should declare full independence. Thomas Paine begins by distinguishing society, which arises from human needs, from government, which he calls at best a necessary evil. He then attacks monarchy and hereditary succession as absurd and unjust, questions the value of the British connection, argues that it is unnatural for a small island to govern a vast continent, and sets out the practical reasons why the colonies could succeed on their own.</p><div class="rm-more" hidden><p>What made the pamphlet so effective was its voice. Paine wrote in direct, vigorous language for ordinary readers rather than lawyers and scholars, drawing on everyday reasoning and familiar Biblical references. Reading it today offers a vivid sense of how political argument can move public opinion, and it remains a striking example of persuasive writing about liberty, consent and the purpose of government.</p><p>Paine, who had arrived in America from England only in late 1774, published the pamphlet anonymously in Philadelphia in January 1776. It was widely reprinted, read aloud and discussed throughout the colonies, and is generally credited with strengthening support for independence in the months before the Declaration of Independence that July. It remains one of the most influential pamphlets in American history and is still widely taught.</p><p>Published anonymously in January 1776; sold hundreds of thousands of copies within months.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Thomas Paine</h2><p>Thomas Paine was born in 1737 in Thetford, Norfolk, England, the son of a Quaker corset maker. He left school early and worked as a corset maker and excise officer. Encouraged by Benjamin Franklin, he emigrated to Philadelphia in 1774. During the Revolution he served with the army and wrote The American Crisis to sustain morale. In France he was elected to the National Convention, opposed the execution of Louis XVI, and narrowly escaped death in prison during the Terror. He returned to America in 1802 and died in New York in 1809.</p><div class="rm-more" hidden><p>Common Sense, published in January 1776, argued forcefully for American independence and helped turn opinion toward revolution. Rights of Man defended the French Revolution and called for democratic government and social welfare, leading to his prosecution in England. The Age of Reason criticised organised religion and made him many enemies. His clear, passionate prose made him one of the most influential political writers of his age.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>Perhaps the sentiments contained in the following pages, are not yet sufficiently fashionable to procure them general favor; a long habit of not thinking a thing wrong, gives it a superficial appearance of being right, and raises at first a formidable outcry in defense of custom. But the tumult soon subsides. Time makes more converts than reason.</p><p>As a long and violent abuse of power, is generally the Means of calling the right of it in question (and in Matters too which might never have been thought of, had not the Sufferers been aggravated into the inquiry) and as the King of England hath undertaken in his own Right, to support the Parliament in what he calls Theirs, and as the good people of this country are grievously oppressed by the combination, they have an undoubted privilege to inquire into the pretensions of both, and equally to reject the usurpation of either.</p><div class="rm-more" hidden><p>In the following sheets, the author hath studiously avoided every thing which is personal among ourselves. Compliments as well as censure to individuals make no part thereof. The wise, and the worthy, need not the triumph of a pamphlet; and those whose sentiments are injudicious, or unfriendly, will cease of themselves unless too much pains are bestowed upon their conversion.</p><p>The cause of America is in a great measure the cause of all mankind. Many circumstances hath, and will arise, which are not local, but universal, and through which the principles of all Lovers of Mankind are affected, and in the Event of which, their Affections are interested. The laying a Country desolate with Fire and Sword, declaring War against the natural rights of all Mankind, and extirpating the Defenders thereof from the Face of the Earth, is the Concern of every Man to whom Nature hath given the Power of feeling; of which Class, regardless of Party Censure, is the</p><p>AUTHOR</p><p>P.S. The Publication of this new Edition hath been delayed, with a View of taking notice (had it been necessary) of any Attempt to refute the Doctrine of Independance: As no Answer hath yet appeared, it is now presumed that none will, the Time needful for getting such a Performance ready for the Public being considerably past.</p><p>Who the Author of this Production is, is wholly unnecessary to the Public, as the Object for Attention is the Doctrine itself, not the Man. Yet it may not be unnecessary to say, That he is unconnected with any Party, and under no sort of Influence public or private, but the influence of reason and principle.</p><p>Philadelphia, February 14, 1776</p><p>OF THE ORIGIN AND DESIGN OF GOVERNMENT IN GENERAL, WITH CONCISE REMARKS ON THE ENGLISH CONSTITUTION.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-common-sense.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/the-autobiography-of-benjamin-franklin/"><img src="/covers/the-autobiography-of-benjamin-franklin.jpg" alt="" loading="lazy">The Autobiography of Benjamin Franklin<small>Benjamin Franklin</small></a><a href="/books/second-treatise-of-government/"><img src="/covers/second-treatise-of-government.jpg" alt="" loading="lazy">Second Treatise of Government<small>John Locke</small></a><a href="/books/on-liberty/"><img src="/covers/on-liberty.jpg" alt="" loading="lazy">On Liberty<small>John Stuart Mill</small></a><a href="/books/on-the-origin-of-species/"><img src="/covers/on-the-origin-of-species.jpg" alt="" loading="lazy">On the Origin of Species<small>Charles Darwin</small></a><a href="/books/the-republic/"><img src="/covers/the-republic.jpg" alt="" loading="lazy">The Republic<small>Plato</small></a><a href="/books/nicomachean-ethics/"><img src="/covers/nicomachean-ethics.jpg" alt="" loading="lazy">Nicomachean Ethics<small>Aristotle</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

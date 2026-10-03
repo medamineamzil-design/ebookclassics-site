@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#aventure">Adventure &amp; Epics</a> › The Count of Monte Cristo</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-count-of-monte-cristo.jpg" width="400" height="600" alt="Cover of The Count of Monte Cristo by Alexandre Dumas"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-count-of-monte-cristo.jpg" width="400" height="600" alt="Cover of The Count of Monte Cristo by Alexandre Dumas"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Count of Monte Cristo</h1>
     <p class="by">by <strong>Alexandre Dumas</strong></p>
@@ -153,8 +179,10 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Count of Monte Cristo</b><span>English · EPUB, HTML, PDF, TXT · audiobook 49 h 48 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>The Count of Monte Cristo begins in Marseille in 1815. Edmond Dantès, a young and honest sailor, is about to become a ship&#x27;s captain and marry his beloved Mercédès when jealous rivals and an ambitious public prosecutor conspire against him. Accused of supporting the exiled Napoleon, he is thrown without trial into the grim island fortress of the Château d&#x27;If. There, after years of despair, he befriends a fellow prisoner, the learned Abbé Faria, who educates him and reveals the location of a hidden treasure. Years later a wealthy and enigmatic count appears in Parisian high society with plans of his own.</p><div class="rm-more" hidden><p>Dumas built a sprawling adventure full of disguises, intrigue, poisonings, duels and dramatic reversals, but the novel is also a serious meditation on justice, revenge, forgiveness and the limits of human power. Its pace and inventiveness make it gripping, while its portrait of corruption in banking, the law and politics under the Restoration and July Monarchy still feels pointed.</p><p>The novel was serialised in the Journal des Débats between 1844 and 1846, with Dumas working alongside his collaborator Auguste Maquet. It was hugely popular in France and was quickly translated across Europe and beyond. It remains one of the most widely read adventure novels in the world and has inspired many stage, film, television and comic-book adaptations, as well as countless revenge stories.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Alexandre Dumas</h2><p>Alexandre Dumas was born in 1802 in Villers-Cotterêts, north-east of Paris. His father, Thomas-Alexandre Dumas, the son of a French nobleman and an enslaved woman in Saint-Domingue, became a Revolutionary general but died when Alexandre was a small child. Dumas moved to Paris, found work in the household of the Duke of Orléans and won fame as a playwright with Henri III and His Court in 1829. He earned and spent fortunes, building a lavish château, and died near Dieppe in 1870.</p><div class="rm-more" hidden><p>Working with collaborators such as Auguste Maquet, Dumas produced an enormous body of fiction, often serialised in newspapers. The Three Musketeers and The Count of Monte Cristo, both from the 1840s, remain his best-loved books: one a tale of friendship, swordplay and intrigue, the other a vast story of betrayal, imprisonment and revenge. His novels have been adapted countless times for stage and screen, and in 2002 his remains were transferred to the Panthéon in Paris.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>The ship drew on and had safely passed the strait, which some volcanic shock has made between the Calasareigne and Jaros islands; had doubled Pomègue, and approached the harbor under topsails, jib, and spanker, but so slowly and sedately that the idlers, with that instinct which is the forerunner of evil, asked one another what misfortune could have happened on board. However, those experienced in navigation saw plainly that if any accident had occurred, it was not to the vessel herself, for she bore down with all the evidence of being skilfully handled, the anchor a-cockbill, the jib-boom guys already eased off, and standing by the side of the pilot, who was steering the Pharaon towards the narrow entrance of the inner port, was a young man, who, with activity and vigilant eye, watched every motion of the ship, and repeated each direction of the pilot.</p><div class="rm-more" hidden><p>The vague disquietude which prevailed among the spectators had so much affected one of the crowd that he did not await the arrival of the vessel in harbor, but jumping into a small skiff, desired to be pulled alongside the Pharaon, which he reached as she rounded into La Réserve basin.</p><p>When the young man on board saw this person approach, he left his station by the pilot, and, hat in hand, leaned over the ship’s bulwarks.</p><p>He was a fine, tall, slim young fellow of eighteen or twenty, with black eyes, and hair as dark as a raven’s wing; and his whole appearance bespoke that calmness and resolution peculiar to men accustomed from their cradle to contend with danger.</p><p>“Ah, is it you, Dantès?” cried the man in the skiff. “What’s the matter? and why have you such an air of sadness aboard?”</p><p>“A great misfortune, M. Morrel,” replied the young man, “a great misfortune, for me especially! Off Civita Vecchia we lost our brave Captain Leclere.”</p><p>“And the cargo?” inquired the owner, eagerly.</p><p>“Is all safe, M. Morrel; and I think you will be satisfied on that head. But poor Captain Leclere——”</p><p>“What happened to him?” asked the owner, with an air of considerable resignation. “What happened to the worthy captain?”</p><p>“He died.”</p><p>“Fell into the sea?”</p><p>“No, sir, he died of brain-fever in dreadful agony.” Then turning to the crew, he said, “Bear a hand there, to take in sail!”</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-count-of-monte-cristo.en">Continue reading →</a></p></section>
+<div class="bc-ad" id="bcAd2"></div>
 <section class="card"><h2>More by Alexandre Dumas and similar classics</h2><div class="grid"><a href="/books/the-three-musketeers/"><img src="/covers/the-three-musketeers.jpg" alt="" loading="lazy">The Three Musketeers<small>Alexandre Dumas</small></a><a href="/books/the-odyssey/"><img src="/covers/the-odyssey.jpg" alt="" loading="lazy">The Odyssey<small>Homer</small></a><a href="/books/the-iliad/"><img src="/covers/the-iliad.jpg" alt="" loading="lazy">The Iliad<small>Homer</small></a><a href="/books/the-divine-comedy/"><img src="/covers/the-divine-comedy.jpg" alt="" loading="lazy">The Divine Comedy<small>Dante Alighieri</small></a><a href="/books/the-call-of-the-wild/"><img src="/covers/the-call-of-the-wild.jpg" alt="" loading="lazy">The Call of the Wild<small>Jack London</small></a><a href="/books/the-last-of-the-mohicans/"><img src="/covers/the-last-of-the-mohicans.jpg" alt="" loading="lazy">The Last of the Mohicans<small>James Fenimore Cooper</small></a></div></section>
 <script>const BC={"slug":"the-count-of-monte-cristo","ed":{"en":["epub","html","pdf","txt"]},"audio":{"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/the-count-of-monte-cristo/the-count-of-monte-cristo.mp3","d":179299}},"lang":"en"};</script>
 <div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
@@ -228,11 +256,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

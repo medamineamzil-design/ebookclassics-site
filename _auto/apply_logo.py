@@ -31,3 +31,10 @@ for p in glob.glob(os.path.join(root,'**/*.html'),recursive=True):
             s=head_insert(s, add)
     if s!=o: open(p,'w',encoding='utf-8').write(s); n+=1
 print('modified',n)
+
+# même passage : nouvelle apparence animée des pages livres (idempotent)
+try:
+    import subprocess as _sp
+    _sp.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "apply_motion.py"), root], check=False)
+except Exception as _e:
+    print("animations non appliquées :", _e)

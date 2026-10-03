@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#philosophie">Philosophy &amp; Essays</a> › Second Treatise of Government</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/second-treatise-of-government.jpg" width="400" height="600" alt="Cover of Second Treatise of Government by John Locke"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/second-treatise-of-government.jpg" width="400" height="600" alt="Cover of Second Treatise of Government by John Locke"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Second Treatise of Government</h1>
     <p class="by">by <strong>John Locke</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Second Treatise of Government</b><span>English · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>In the Second Treatise, John Locke asks where legitimate political power comes from and what its limits are. He begins with a state of nature in which people are free and equal, governed by a law of nature that forbids harming others in their life, health, liberty or possessions. He explains how property arises when people mix their labour with the common resources of the earth. Because the state of nature is insecure, people agree to form a political society, consenting to a government whose purpose is to protect their lives, liberties and estates. Locke then discusses the separation of legislative and executive power, the dangers of tyranny and the conditions under which a people may rightly resist and replace their rulers.</p><div class="rm-more" hidden><p>Locke builds his case step by step in a measured style. His ideas of natural rights, government by consent, limited power and the right of resistance became central to liberal political thought. Reading him today is a way to understand the origins of many assumptions modern democracies take for granted.</p><p>The Two Treatises of Government were published anonymously in 1689, after the Glorious Revolution; the First Treatise attacked Sir Robert Filmer&#x27;s defence of the divine right of kings. Locke acknowledged authorship only near the end of his life. The Second Treatise deeply influenced the American revolutionaries, including Thomas Jefferson, and remains a foundational text of political philosophy.</p><p>Published anonymously in 1689, shortly after England&#x27;s Glorious Revolution.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About John Locke</h2><p>John Locke was born in 1632 in Wrington, Somerset, England, the son of a lawyer who fought for Parliament in the Civil War. He studied at Westminster School and Christ Church, Oxford, including medicine. He became physician, adviser and friend to Anthony Ashley Cooper, later Earl of Shaftesbury, a leading opposition politician. Under suspicion, he fled to the Netherlands in 1683, returning after the Glorious Revolution. He later held government posts and died in Essex in 1704.</p><div class="rm-more" hidden><p>In An Essay Concerning Human Understanding, Locke argued that the mind begins as a blank slate and that all knowledge comes from experience, laying foundations for empiricism. His Two Treatises of Government argued that people have natural rights to life, liberty and property and that government rests on the consent of the governed. He also wrote A Letter Concerning Toleration and Some Thoughts Concerning Education. His ideas deeply influenced the Enlightenment and the American founders.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>Sect. 4. TO understand political power right, and derive it from its original, we must consider, what state all men are naturally in, and that is, a state of perfect freedom to order their actions, and dispose of their possessions and persons, as they think fit, within the bounds of the law of nature, without asking leave, or depending upon the will of any other man.</p><p>A state also of equality, wherein all the power and jurisdiction is reciprocal, no one having more than another; there being nothing more evident, than that creatures of the same species and rank, promiscuously born to all the same advantages of nature, and the use of the same faculties, should also be equal one amongst another without subordination or subjection, unless the lord and master of them all should, by any manifest declaration of his will, set one above another, and confer on him, by an evident and clear appointment, an undoubted right to dominion and sovereignty.</p><div class="rm-more" hidden><p>Sect. 5. This equality of men by nature, the judicious Hooker looks upon as so evident in itself, and beyond all question, that he makes it the foundation of that obligation to mutual love amongst men, on which he builds the duties they owe one another, and from whence he derives the great maxims of justice and charity. His words are,</p><p>/# The like natural inducement hath brought men to know that it is no less their duty, to love others than themselves; for seeing those things which are equal, must needs all have one measure; if I cannot but wish to receive good, even as much at every man’s hands, as any man can wish unto his own soul, how should I look to have any part of my desire herein satisfied, unless myself be careful to satisfy the like desire, which is undoubtedly in other men, being of one and the same nature? To have any thing offered them repugnant to this desire, must needs in all respects grieve them as much as me; so that if I do harm, I must look to suffer, there being no reason that others should shew greater measure of love to me, than they have by me shewed unto them: my desire therefore to be loved of my equals in nature as much as possible may be, imposeth upon me a natural duty of bearing to them-ward fully the like affection; from which relation of equality between ourselves and them that are as ourselves, what several rules and canons natural reason hath drawn, for direction of life, no man is ignorant, Eccl. Pol. Lib. 1.</p><p>#/</p><p>Sect. 6. But though this be a state of liberty, yet it is not a state of licence: though man in that state have an uncontroulable liberty to dispose of his person or possessions, yet he has not liberty to destroy himself, or so much as any creature in his possession, but where some nobler use than its bare preservation calls for it. The state of nature has a law of nature to govern it, which obliges every one: and reason, which is that law, teaches all mankind, who will but consult it, that being all equal and independent, no one ought to harm another in his life, health, liberty, or possessions: for men being all the workmanship of one omnipotent, and infinitely wise maker; all the servants of one sovereign master, sent into the world by his order, and about his business; they are his property, whose workmanship they are, made to last during his, not one another’s pleasure: and being furnished with like faculties, sharing all in one community of nature, there cannot be supposed any such subordination among us, that may authorize us to destroy one another, as if we were made for one another’s uses, as the inferior ranks of creatures are for our’s. Every one, as he is bound to preserve himself, and not to quit his station wilfully, so by the like reason, when his own preservation comes not in competition, ought he, as much as he can, to preserve the rest of mankind, and may not, unless it be to do justice on an offender, take away, or impair the life, or what tends to the pres…</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-second-treatise-of-government.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/on-liberty/"><img src="/covers/on-liberty.jpg" alt="" loading="lazy">On Liberty<small>John Stuart Mill</small></a><a href="/books/on-the-origin-of-species/"><img src="/covers/on-the-origin-of-species.jpg" alt="" loading="lazy">On the Origin of Species<small>Charles Darwin</small></a><a href="/books/the-republic/"><img src="/covers/the-republic.jpg" alt="" loading="lazy">The Republic<small>Plato</small></a><a href="/books/nicomachean-ethics/"><img src="/covers/nicomachean-ethics.jpg" alt="" loading="lazy">Nicomachean Ethics<small>Aristotle</small></a><a href="/books/the-descent-of-man/"><img src="/covers/the-descent-of-man.jpg" alt="" loading="lazy">The Descent of Man<small>Charles Darwin</small></a><a href="/books/walden/"><img src="/covers/walden.jpg" alt="" loading="lazy">Walden<small>Henry David Thoreau</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

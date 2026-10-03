@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › Tess of the d&#x27;Urbervilles</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/tess-of-the-d-urbervilles.jpg" width="400" height="600" alt="Cover of Tess of the d&#x27;Urbervilles by Thomas Hardy"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/tess-of-the-d-urbervilles.jpg" width="400" height="600" alt="Cover of Tess of the d&#x27;Urbervilles by Thomas Hardy"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Tess of the d&#x27;Urbervilles</h1>
     <p class="by">by <strong>Thomas Hardy</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Tess of the d&#x27;Urbervilles</b><span>English · EPUB, HTML, PDF, TXT · audiobook 16 h 22 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Tess of the d&#x27;Urbervilles takes place in Wessex, Thomas Hardy&#x27;s fictional version of rural south-west England. John Durbeyfield, a poor and idle haggler, or pedlar, learns from a parson that his family is descended from the ancient Norman line of the d&#x27;Urbervilles. Hoping to profit from the connection, the family sends their eldest daughter, Tess, to seek help from a wealthy household bearing the d&#x27;Urberville name. There she meets Alec, the family&#x27;s arrogant son, and an encounter with him shapes the rest of her life. Later, working as a dairymaid, she meets Angel Clare, a thoughtful clergyman&#x27;s son, and must decide what she owes to her own past.</p><div class="rm-more" hidden><p>Hardy&#x27;s novel is a powerful protest against the double standards of Victorian morality, which judged women harshly for what was done to them. It also mourns a changing countryside, as old rural ways give way to machinery and migration. Its descriptions of landscape, seasons and farm work are among the finest in English fiction, and Tess herself remains one of literature&#x27;s most moving heroines.</p><p>The novel was first serialised in censored form in the illustrated newspaper The Graphic in 1891, and was published in full as a book that year, subtitled A Pure Woman Faithfully Presented. That subtitle and the book&#x27;s frankness provoked controversy, though it also sold well. It has since been adapted for film, television, opera and the stage.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Thomas Hardy</h2><p>Thomas Hardy was born in 1840 at Higher Bockhampton, near Dorchester in Dorset, the son of a stonemason and builder. He trained as an architect while reading widely and writing poetry. While restoring a church in Cornwall he met Emma Gifford, whom he married in 1874. After the hostile reception of Jude the Obscure, he gave up fiction and devoted himself to poetry. Emma died in 1912; he later married Florence Dugdale and died at Max Gate, his Dorchester home, in 1928.</p><div class="rm-more" hidden><p>Hardy set his novels in Wessex, a fictional version of south-west England. Far from the Madding Crowd brought him fame in 1874, followed by The Mayor of Casterbridge, Tess of the d&#x27;Urbervilles and Jude the Obscure. His novels portray characters crushed by chance and social convention, challenging Victorian attitudes to class, marriage and religion. In later decades he wrote hundreds of poems, including moving elegies for Emma, and he is honoured as a major English poet.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>On an evening in the latter part of May a middle-aged man was walking homeward from Shaston to the village of Marlott, in the adjoining Vale of Blakemore, or Blackmoor. The pair of legs that carried him were rickety, and there was a bias in his gait which inclined him somewhat to the left of a straight line. He occasionally gave a smart nod, as if in confirmation of some opinion, though he was not thinking of anything in particular. An empty egg-basket was slung upon his arm, the nap of his hat was ruffled, a patch being quite worn away at its brim where his thumb came in taking it off. Presently he was met by an elderly parson astride on a gray mare, who, as he rode, hummed a wandering tune.</p><p>“Good night t’ee,” said the man with the basket.</p><div class="rm-more" hidden><p>“Good night, Sir John,” said the parson.</p><p>The pedestrian, after another pace or two, halted, and turned round.</p><p>“Now, sir, begging your pardon; we met last market-day on this road about this time, and I said ‘Good night,’ and you made reply ‘Good night, Sir John,’ as now.”</p><p>“I did,” said the parson.</p><p>“And once before that—near a month ago.”</p><p>“I may have.”</p><p>“Then what might your meaning be in calling me ‘Sir John’ these different times, when I be plain Jack Durbeyfield, the haggler?”</p><p>The parson rode a step or two nearer.</p><p>“It was only my whim,” he said; and, after a moment’s hesitation: “It was on account of a discovery I made some little time ago, whilst I was hunting up pedigrees for the new county history. I am Parson Tringham, the antiquary, of Stagfoot Lane. Don’t you really know, Durbeyfield, that you are the lineal representative of the ancient and knightly family of the d’Urbervilles, who derive their descent from Sir Pagan d’Urberville, that renowned knight who came from Normandy with William the Conqueror, as appears by Battle Abbey Roll?”</p><p>“Never heard it before, sir!”</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-tess-of-the-d-urbervilles.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/middlemarch/"><img src="/covers/middlemarch.jpg" alt="" loading="lazy">Middlemarch<small>George Eliot</small></a><a href="/books/vanity-fair/"><img src="/covers/vanity-fair.jpg" alt="" loading="lazy">Vanity Fair<small>William Makepeace Thackeray</small></a><a href="/books/ulysses/"><img src="/covers/ulysses.jpg" alt="" loading="lazy">Ulysses<small>James Joyce</small></a><a href="/books/dubliners/"><img src="/covers/dubliners.jpg" alt="" loading="lazy">Dubliners<small>James Joyce</small></a><a href="/books/mrs-dalloway/"><img src="/covers/mrs-dalloway.jpg" alt="" loading="lazy">Mrs Dalloway<small>Virginia Woolf</small></a><a href="/books/the-age-of-innocence/"><img src="/covers/the-age-of-innocence.jpg" alt="" loading="lazy">The Age of Innocence<small>Edith Wharton</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

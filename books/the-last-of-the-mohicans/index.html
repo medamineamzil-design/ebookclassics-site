@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#aventure">Adventure &amp; Epics</a> › The Last of the Mohicans</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-last-of-the-mohicans.jpg" width="400" height="600" alt="Cover of The Last of the Mohicans by James Fenimore Cooper"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-last-of-the-mohicans.jpg" width="400" height="600" alt="Cover of The Last of the Mohicans by James Fenimore Cooper"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Last of the Mohicans</h1>
     <p class="by">by <strong>James Fenimore Cooper</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Last of the Mohicans</b><span>English · EPUB, HTML, PDF, TXT · audiobook 15 h 24 min</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">Le dernier des mohicans: Le roman de Bas-de-cuir</b><span>Français · EPUB, HTML, PDF, TXT · audiobook 17 h 17 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>The novel is set in 1757, during the French and Indian War, in the forests of what is now upstate New York. Cora and Alice Munro, daughters of the British commander of Fort William Henry, set out to join their father, escorted by Major Duncan Heyward and a psalm-singing teacher named David Gamut. Misled by the Huron guide Magua, they are rescued by the scout Hawkeye and his companions Chingachgook and his son Uncas, the last of the Mohican line. The group&#x27;s journey through a landscape of ambush, siege and pursuit forms the core of the story.</p><div class="rm-more" hidden><p>Cooper&#x27;s book is an adventure tale of chases, captures and daring escapes, but it is also a meditation on the disappearance of Native American peoples and the cost of colonial conflict. His long descriptive passages of rivers, caves and forests helped create a romantic image of the American wilderness. Modern readers often question his portrayals of Native characters, which makes the novel a valuable text for thinking about how myths of the frontier were made.</p><p>Published in 1826, it was the second of Cooper&#x27;s five Leatherstocking Tales featuring the frontiersman Natty Bumppo, known here as Hawkeye. It was popular in America and Europe and shaped the frontier adventure story and the later Western. It has been adapted many times for film, television, radio and comics.</p><p>Second in Cooper&#x27;s five-novel &quot;Leatherstocking Tales&quot; series.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About James Fenimore Cooper</h2><p>James Fenimore Cooper was born in 1789 in Burlington, New Jersey, and grew up in Cooperstown, New York, the frontier settlement founded by his father. He was expelled from Yale, served as a merchant sailor and then as a midshipman in the United States Navy. After marrying Susan DeLancey he began writing in his thirties, and his novel The Spy brought him success in 1821. After several years in Europe he returned to Cooperstown, where he died in 1851.</p><div class="rm-more" hidden><p>Cooper&#x27;s best-known works are the five Leatherstocking Tales, centred on the frontiersman Natty Bumppo, also called Hawkeye. They include The Pioneers, The Prairie, The Pathfinder, The Deerslayer and, above all, The Last of the Mohicans, set during the French and Indian War. He also helped invent the American sea novel with The Pilot. Although critics, including Mark Twain, mocked his style, Cooper was one of the first American novelists to win international fame and shaped lasting images of the frontier.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>It was a feature peculiar to the colonial wars of North America, that the toils and dangers of the wilderness were to be encountered before the adverse hosts could meet. A wide and apparently an impervious boundary of forests severed the possessions of the hostile provinces of France and England. The hardy colonist, and the trained European who fought at his side, frequently expended months in struggling against the rapids of the streams, or in effecting the rugged passes of the mountains, in quest of an opportunity to exhibit their courage in a more martial conflict. But, emulating the patience and self-denial of the practiced native warriors, they learned to overcome every difficulty; and it would seem that, in time, there was no recess of the woods so dark, nor any secret place so lovely, that it might claim exemption from the inroads of those who had pledged their blood to satiate their vengeance, or to uphold the cold and selfish policy of the distant monarchs of Europe.</p><div class="rm-more" hidden><p>Perhaps no district throughout the wide extent of the intermediate frontiers can furnish a livelier picture of the cruelty and fierceness of the savage warfare of those periods than the country which lies between the head waters of the Hudson and the adjacent lakes.</p><p>The facilities which nature had there offered to the march of the combatants were too obvious to be neglected. The lengthened sheet of the Champlain stretched from the frontiers of Canada, deep within the borders of the neighboring province of New York, forming a natural passage across half the distance that the French were compelled to master in order to strike their enemies. Near its southern termination, it received the contributions of another lake, whose waters were so limpid as to have been exclusively selected by the Jesuit missionaries to perform the typical purification of baptism, and to obtain for it the title of lake “du Saint Sacrément.” The less zealous English thought they conferred a sufficient honor on its unsullied fountains, when they bestowed the name of their reigning prince, the second of the house of Hanover. The two united to rob the untutored possessors of its wooded scenery of their native right to perpetuate its original appellation of “Horican.”[1]</p><p>[1] As each nation of the Indians had its language or its dialect, they usually gave different names to the same places, though nearly all of their appellations were descriptive of the object. Thus a literal translation of the name of this beautiful sheet of water, used by the tribe that dwelt on its banks, would be “The Tail of the Lake.” Lake George, as it is vulgarly, and now, indeed, legally, called, forms a sort of tail to Lake Champlain, when viewed on the map. Hence, the name.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-last-of-the-mohicans.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/the-three-musketeers/"><img src="/covers/the-three-musketeers.jpg" alt="" loading="lazy">The Three Musketeers<small>Alexandre Dumas</small></a><a href="/books/metamorphoses/"><img src="/covers/metamorphoses.jpg" alt="" loading="lazy">Metamorphoses<small>Ovid</small></a><a href="/books/robinson-crusoe/"><img src="/covers/robinson-crusoe.jpg" alt="" loading="lazy">Robinson Crusoe<small>Daniel Defoe</small></a><a href="/books/gulliver-s-travels/"><img src="/covers/gulliver-s-travels.jpg" alt="" loading="lazy">Gulliver&#x27;s Travels<small>Jonathan Swift</small></a><a href="/books/treasure-island/"><img src="/covers/treasure-island.jpg" alt="" loading="lazy">Treasure Island<small>Robert Louis Stevenson</small></a><a href="/books/the-scarlet-pimpernel/"><img src="/covers/the-scarlet-pimpernel.jpg" alt="" loading="lazy">The Scarlet Pimpernel<small>Baroness Orczy</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

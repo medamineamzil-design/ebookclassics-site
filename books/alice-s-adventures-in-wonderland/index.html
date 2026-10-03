@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#jeunesse">Children&#x27;s Classics</a> › Alice&#x27;s Adventures in Wonderland</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/alice-s-adventures-in-wonderland.jpg" width="400" height="600" alt="Cover of Alice&#x27;s Adventures in Wonderland by Lewis Carroll"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/alice-s-adventures-in-wonderland.jpg" width="400" height="600" alt="Cover of Alice&#x27;s Adventures in Wonderland by Lewis Carroll"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Alice&#x27;s Adventures in Wonderland</h1>
     <p class="by">by <strong>Lewis Carroll</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Alice&#x27;s Adventures in Wonderland</b><span>English · EPUB, HTML, PDF, TXT · audiobook 2 h 59 min</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">Aventures d&#x27;Alice au pays des merveilles</b><span>Français · EPUB, HTML, PDF, TXT · audiobook 3 h 22 min</span></button></li><li><button type="button" class="ed" data-lang="de" aria-pressed="false"><b lang="de">Alice&#x27;s Abenteuer im Wunderland</b><span>Deutsch · EPUB, HTML, PDF, TXT · audiobook 2 h 51 min</span></button></li><li><button type="button" class="ed" data-lang="it" aria-pressed="false"><b lang="it">Le avventure d&#x27;Alice nel paese delle meraviglie</b><span>Italiano · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>On a drowsy summer afternoon, young Alice sees a White Rabbit hurry past, checking his pocket watch, and follows him down a rabbit hole. She lands in Wonderland, a place where drinking from a bottle or nibbling a cake makes her shrink or grow, and where nothing behaves as lessons and manners have taught her to expect. She meets the grinning Cheshire Cat, the Caterpillar on his mushroom, the Mad Hatter and March Hare at their endless tea party, and finally the furious Queen of Hearts and her chaotic court.</p><div class="rm-more" hidden><p>The book delights in nonsense, puns, parodies of Victorian school poems and games of logic that collapse into absurdity. Beneath the fun lies a sharp look at the arbitrary rules of the adult world and at a child&#x27;s struggle to keep her sense of self as everything around her keeps changing. Its playful language and dreamlike structure appeal to children, while adults enjoy its wit and its sly philosophical puzzles.</p><p>Lewis Carroll was the pen name of Charles Lutwidge Dodgson, an Oxford mathematician. The story grew out of tales he told to Alice Liddell and her sisters on a boating trip in 1862, and was published in 1865 with illustrations by John Tenniel. A sequel, Through the Looking-Glass, followed in 1871. Wonderland has been endlessly adapted in animation, live-action film, theatre and art, and its characters have entered everyday language.</p><p>Alice&#x27;s Adventures in Wonderland begins with Alice, a bored little girl sitting by a riverbank, following a White Rabbit in a waistcoat who frets that he is late and disappears down a rabbit hole. Alice follows and falls for what feels like an impossibly long time, landing in a hall of locked doors where she discovers a bottle labeled &quot;Drink Me&quot; and a cake labeled &quot;Eat Me,&quot; both of which alter her size dramatically and unpredictably, a running device Carroll uses throughout to disorient both Alice and the reader. From there the narrative proceeds as a loosely connected sequence of encounters rather than a conventional plot: Alice swims through a pool of her own tears alongside a Mouse and assorted animals; attends a chaotic Caucus Race with no clear rules or winner; meets a hookah-smoking Caterpillar who questions her identity and teaches her to control her size by nibbling different sides of a mushroom; visits the Duchess&#x27;s chaotic kitchen, where a baby turns into a pig; and joins the Mad Hatter&#x27;s perpetual tea party alongside the March Hare and the sleepy Dormouse, an event stuck eternally at six o&#x27;clock because the Hatter has quarreled with Time itself. Alice eventually reaches the garden of the Queen of Hearts, a domain of playing-card gardeners, a surreal croquet match played with flamingos as mallets and hedgehogs as balls, and a monarch whose default response to any inconvenience is &quot;Off with their head!&quot; The book culminates in the trial of the Knave of Hearts, accused of stealing tarts, a proceeding of nonsensical legal logic in which Alice, having grown to her full size and lost her patience with the entire company, finally declares them &quot;nothing but a pack of cards,&quot; at which point the whole world collapses and she wakes on the riverbank beside her sister, the fantastical kingdom revealed as a dream.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Lewis Carroll</h2><p>Charles Lutwidge Dodgson was born in 1832 in Daresbury, Cheshire, the eldest son of a large clergyman&#x27;s family. He studied at Rugby School and Christ Church, Oxford, where he lectured in mathematics for the rest of his life. He was ordained deacon and was a skilled early photographer. He befriended the dean&#x27;s children, including Alice Liddell, and on a boating trip in 1862 told them the story that became his most famous book. He died in Guildford in 1898.</p><div class="rm-more" hidden><p>Alice&#x27;s Adventures in Wonderland, published in 1865 under the pen name Lewis Carroll with illustrations by John Tenniel, follows Alice into a topsy-turvy world of the White Rabbit, the Mad Hatter and the Queen of Hearts. Through the Looking-Glass, which includes the nonsense poem Jabberwocky, followed in 1871. He also wrote The Hunting of the Snark and books on logic. His playful nonsense and wordplay delight children and intrigue adults, and Alice remains one of literature&#x27;s most adapted characters.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>Either the well was very deep, or she fell very slowly, for she had plenty of time as she went down to look about her and to wonder what was going to happen next. First, she tried to look down and make out what she was coming to, but it was too dark to see anything; then she looked at the sides of the well, and noticed that they were filled with cupboards and book-shelves; here and there she saw maps and pictures hung upon pegs. She took down a jar from one of the shelves as she passed; it was labelled “ORANGE MARMALADE”, but to her great disappointment it was empty: she did not like to drop the jar for fear of killing somebody underneath, so managed to put it into one of the cupboards as she fell past it.</p><p>“Well!” thought Alice to herself, “after such a fall as this, I shall think nothing of tumbling down stairs! How brave they’ll all think me at home! Why, I wouldn’t say anything about it, even if I fell off the top of the house!” (Which was very likely true.)</p><div class="rm-more" hidden><p>Down, down, down. Would the fall never come to an end? “I wonder how many miles I’ve fallen by this time?” she said aloud. “I must be getting somewhere near the centre of the earth. Let me see: that would be four thousand miles down, I think—” (for, you see, Alice had learnt several things of this sort in her lessons in the schoolroom, and though this was not a very good opportunity for showing off her knowledge, as there was no one to listen to her, still it was good practice to say it over) “—yes, that’s about the right distance—but then I wonder what Latitude or Longitude I’ve got to?” (Alice had no idea what Latitude was, or Longitude either, but thought they were nice grand words to say.)</p><p>Presently she began again. “I wonder if I shall fall right through the earth! How funny it’ll seem to come out among the people that walk with their heads downward! The Antipathies, I think—” (she was rather glad there was no one listening, this time, as it didn’t sound at all the right word) “—but I shall have to ask them what the name of the country is, you know. Please, Ma’am, is this New Zealand or Australia?” (and she tried to curtsey as she spoke—fancy curtseying as you’re falling through the air! Do you think you could manage it?) “And what an ignorant little girl she’ll think me for asking! No, it’ll never do to ask: perhaps I shall see it written up somewhere.”</p><p>Down, down, down. There was nothing else to do, so Alice soon began talking again. “Dinah’ll miss me very much to-night, I should think!” (Dinah was the cat.) “I hope they’ll remember her saucer of milk at tea-time. Dinah my dear! I wish you were down here with me! There are no mice in the air, I’m afraid, but you might catch a bat, and that’s very like a mouse, you know. But do cats eat bats, I wonder?” And here Alice began to get rather sleepy, and went on saying to herself, in a dreamy sort of way, “Do cats eat bats? Do cats eat bats?” and sometimes, “Do bats eat cats?” for, you see, as she couldn’t answer either question, it didn’t much matter which way she put it. She felt that she was dozing off, and had just begun to dream that she was walking hand in hand with Dinah, and saying to her very earnestly, “Now, Dinah, tell me the truth: did you ever eat a bat?” when suddenly, thump! thump! down she came upon a heap of sticks and dry leaves, and the fall was over.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-alice-s-adventures-in-wonderland.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/aesop-s-fables/"><img src="/covers/aesop-s-fables.jpg" alt="" loading="lazy">Aesop&#x27;s Fables<small>Aesop</small></a><a href="/books/the-secret-garden/"><img src="/covers/the-secret-garden.jpg" alt="" loading="lazy">The Secret Garden<small>Frances Hodgson Burnett</small></a><a href="/books/the-wonderful-wizard-of-oz/"><img src="/covers/the-wonderful-wizard-of-oz.jpg" alt="" loading="lazy">The Wonderful Wizard of Oz<small>L. Frank Baum</small></a><a href="/books/the-jungle-book/"><img src="/covers/the-jungle-book.jpg" alt="" loading="lazy">The Jungle Book<small>Rudyard Kipling</small></a><a href="/books/little-women/"><img src="/covers/little-women.jpg" alt="" loading="lazy">Little Women<small>Louisa May Alcott</small></a><a href="/books/the-adventures-of-pinocchio/"><img src="/covers/the-adventures-of-pinocchio.jpg" alt="" loading="lazy">The Adventures of Pinocchio<small>Carlo Collodi</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#aventure">Adventure &amp; Epics</a> › Kidnapped</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/kidnapped.jpg" width="400" height="600" alt="Cover of Kidnapped by Robert Louis Stevenson"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/kidnapped.jpg" width="400" height="600" alt="Cover of Kidnapped by Robert Louis Stevenson"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Kidnapped</h1>
     <p class="by">by <strong>Robert Louis Stevenson</strong></p>
@@ -153,8 +179,10 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Kidnapped</b><span>English · EPUB, HTML, PDF, TXT · audiobook 8 h 17 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Kidnapped is set in Scotland in the years after the Jacobite rising of 1745. When his father dies, seventeen-year-old David Balfour leaves his village with a letter that sends him to the House of Shaws, home of his miserly uncle Ebenezer. He soon realises that his uncle is hiding something about the family estate and wishes him harm. Tricked aboard the brig Covenant, David is carried off to be sold into service in the American colonies. At sea he meets Alan Breck Stewart, a proud and daring Jacobite, and the two are thrown together in an adventure that takes them across the Highlands, entangled in the aftermath of a real political murder.</p><div class="rm-more" hidden><p>Stevenson wrote a gripping adventure, but also a story about friendship between two very different people: the cautious Lowland Presbyterian loyal to King George and the fiery Highland supporter of the exiled Stuarts. Their arguments and loyalties reflect the divisions of Scotland itself. The vivid landscapes and the brisk first-person narration keep the novel fresh and lively.</p><p>Kidnapped was serialised in the magazine Young Folks and published as a book in 1886, the same year as Dr Jekyll and Mr Hyde. Stevenson drew on the Appin murder of 1752 and on the historical figure of Alan Breck Stewart. A sequel, Catriona, followed in 1893. The novel has been adapted for film, television, radio and comics.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Robert Louis Stevenson</h2><p>Robert Louis Stevenson was born in Edinburgh in 1850 into a famous family of lighthouse engineers. A sickly child, he studied engineering and then law at Edinburgh but chose to write. Travels in France produced his first books, including Travels with a Donkey in the Cévennes. He fell in love with an American, Fanny Osbourne, followed her to California and married her in 1880. Seeking a healthier climate, he sailed the Pacific and in 1890 settled in Samoa, where he died in 1894.</p><div class="rm-more" hidden><p>Stevenson won wide fame with Treasure Island, published in 1883, the story of young Jim Hawkins and the pirate Long John Silver that defined the image of pirates for generations. Strange Case of Dr Jekyll and Mr Hyde explores the duality of good and evil, and Kidnapped follows a young Scot after the Jacobite rising. He also wrote The Master of Ballantrae and the poems of A Child&#x27;s Garden of Verses.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>I will begin the story of my adventures with a certain morning early in the month of June, the year of grace 1751, when I took the key for the last time out of the door of my father’s house. The sun began to shine upon the summit of the hills as I went down the road; and by the time I had come as far as the manse, the blackbirds were whistling in the garden lilacs, and the mist that hung around the valley in the time of the dawn was beginning to arise and die away.</p><p>Mr. Campbell, the minister of Essendean, was waiting for me by the garden gate, good man! He asked me if I had breakfasted; and hearing that I lacked for nothing, he took my hand in both of his and clapped it kindly under his arm.</p><div class="rm-more" hidden><p>“Well, Davie, lad,” said he, “I will go with you as far as the ford, to set you on the way.” And we began to walk forward in silence.</p><p>“Are ye sorry to leave Essendean?” said he, after awhile.</p><p>“Why, sir,” said I, “if I knew where I was going, or what was likely to become of me, I would tell you candidly. Essendean is a good place indeed, and I have been very happy there; but then I have never been anywhere else. My father and mother, since they are both dead, I shall be no nearer to in Essendean than in the Kingdom of Hungary, and, to speak truth, if I thought I had a chance to better myself where I was going I would go with a good will.”</p><p>“Ay?” said Mr. Campbell. “Very well, Davie. Then it behoves me to tell your fortune; or so far as I may. When your mother was gone, and your father (the worthy, Christian man) began to sicken for his end, he gave me in charge a certain letter, which he said was your inheritance. ‘So soon,’ says he, ‘as I am gone, and the house is redd up and the gear disposed of’ (all which, Davie, hath been done), ‘give my boy this letter into his hand, and start him off to the house of Shaws, not far from Cramond. That is the place I came from,’ he said, ‘and it’s where it befits that my boy should return. He is a steady lad,’ your father said, ‘and a canny goer; and I doubt not he will come safe, and be well liked where he goes.’”</p><p>“The house of Shaws!” I cried. “What had my poor father to do with the house of Shaws?”</p><p>“Nay,” said Mr. Campbell, “who can tell that for a surety? But the name of that family, Davie, boy, is the name you bear--Balfours of Shaws: an ancient, honest, reputable house, peradventure in these latter days decayed. Your father, too, was a man of learning as befitted his position; no man more plausibly conducted school; nor had he the manner or the speech of a common dominie; but (as ye will yourself remember) I took aye a pleasure to have him to the manse to meet the gentry; and those of my own house, Campbell of Kilrennet, Campbell of Dunswire, Campbell of Minch, and others, all well-kenned gentlemen, had pleasure in his society. Lastly, to put all the elements of this affair before you, here is the testamentary letter itself, superscrived by the own hand of our departed brother.”</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-kidnapped.en">Continue reading →</a></p></section>
+<div class="bc-ad" id="bcAd2"></div>
 <section class="card"><h2>More by Robert Louis Stevenson and similar classics</h2><div class="grid"><a href="/books/the-strange-case-of-dr-jekyll-and-mr-hyde/"><img src="/covers/the-strange-case-of-dr-jekyll-and-mr-hyde.jpg" alt="" loading="lazy">The Strange Case of Dr Jekyll and Mr Hyde<small>Robert Louis Stevenson</small></a><a href="/books/treasure-island/"><img src="/covers/treasure-island.jpg" alt="" loading="lazy">Treasure Island<small>Robert Louis Stevenson</small></a><a href="/books/beowulf/"><img src="/covers/beowulf.jpg" alt="" loading="lazy">Beowulf<small>Anonymous</small></a><a href="/books/around-the-world-in-eighty-days/"><img src="/covers/around-the-world-in-eighty-days.jpg" alt="" loading="lazy">Around the World in Eighty Days<small>Jules Verne</small></a><a href="/books/journey-to-the-centre-of-the-earth/"><img src="/covers/journey-to-the-centre-of-the-earth.jpg" alt="" loading="lazy">Journey to the Centre of the Earth<small>Jules Verne</small></a><a href="/books/the-arabian-nights/"><img src="/covers/the-arabian-nights.jpg" alt="" loading="lazy">The Arabian Nights<small>Anonymous</small></a></div></section>
 <script>const BC={"slug":"kidnapped","ed":{"en":["epub","html","pdf","txt"]},"audio":{"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/kidnapped/kidnapped.mp3","d":29802}},"lang":"en"};</script>
 <div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
@@ -228,11 +256,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

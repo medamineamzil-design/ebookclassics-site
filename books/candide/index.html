@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#philosophie">Philosophy &amp; Essays</a> › Candide</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/candide.jpg" width="400" height="600" alt="Cover of Candide by Voltaire"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/candide.jpg" width="400" height="600" alt="Cover of Candide by Voltaire"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Candide</h1>
     <p class="by">by <strong>Voltaire</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Candide</b><span>English · EPUB, HTML, PDF, TXT · audiobook 3 h 59 min</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">Candide</b><span>Français · EPUB, HTML, PDF, TXT · audiobook 3 h 53 min</span></button></li><li><button type="button" class="ed" data-lang="es" aria-pressed="false"><b lang="es">Candido, o El Optimismo</b><span>Español · EPUB, HTML, PDF, TXT · audiobook 4 h 59 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Candide is a gentle, trusting young man raised in the castle of a German baron in Westphalia, where his tutor, the philosopher Pangloss, teaches that everything happens for the best in this best of all possible worlds. When he is caught kissing the baron&#x27;s daughter, Cunégonde, Candide is thrown out of the castle, and the rest of the book follows his frantic travels across Europe and South America. War, shipwreck, earthquake, the Inquisition and swindlers all cross his path, and every catastrophe tests the cheerful doctrine he has been taught.</p><div class="rm-more" hidden><p>Voltaire&#x27;s tale is short, fast and ferociously funny. Its targets include philosophical optimism of the kind associated with Leibniz, religious hypocrisy, colonial cruelty, war and the vanity of the powerful. The comedy comes from piling disasters on top of one another while the characters calmly explain why all is well. Beneath the laughter is a serious question that still matters: how should we live in a world full of suffering we cannot explain away?</p><p>Candide was published anonymously in 1759 and printed in several cities at once. It was quickly condemned and banned in places, yet it sold widely and became Voltaire&#x27;s best-known work. The great Lisbon earthquake of 1755 helped shape its outlook. It has inspired stage versions, including an operetta by Leonard Bernstein, as well as many later satires.</p><p>Published anonymously in 1759 to avoid censorship.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Voltaire</h2><p>François-Marie Arouet was born in Paris in 1694, the son of a notary, and educated by the Jesuits. His satirical verses earned him nearly a year in the Bastille, after which he adopted the name Voltaire. After a quarrel with a nobleman he went to England, admiring its freedom and tolerance. He later lived at Cirey with the scientist Émilie du Châtelet and at the court of Frederick the Great. From 1759 he lived at Ferney, near Geneva, and he died in Paris in 1778 after a triumphant return.</p><div class="rm-more" hidden><p>Voltaire wrote plays, poems, histories, essays and more than twenty thousand letters. His Philosophical Letters praised English institutions and criticised French ones. His philosophical tales include Zadig and especially Candide, published in 1759, a brisk satire of naive optimism that ends with the advice to cultivate one&#x27;s garden. He campaigned against intolerance, notably in the case of Jean Calas, and wrote the Philosophical Dictionary. He embodies the spirit of the Enlightenment.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>In a castle of Westphalia, belonging to the Baron of Thunder-ten-Tronckh, lived a youth, whom nature had endowed with the most gentle manners. His countenance was a true picture of his soul. He combined a true judgment with simplicity of spirit, which was the reason, I apprehend, of his being called Candide. The old servants of the family suspected him to have been the son of the Baron&#x27;s sister, by a good, honest gentleman of the neighborhood, whom that young lady would never marry because he had been able to prove only seventy-one quarterings, the rest of his genealogical tree having been lost through the injuries of time.</p><p>The Baron was one of the most powerful lords in Westphalia, for his castle had not only a gate, but windows. His great hall, even, was hung with tapestry. All the dogs of his farm-yards formed a pack of hounds at need; his grooms were his huntsmen; and the curate of the village was his grand almoner. They called him &quot;My Lord,&quot; and laughed at all his stories.</p><div class="rm-more" hidden><p>The Baron&#x27;s lady weighed about three hundred and fifty pounds, and was therefore a person of great consideration, and she did the honours of the house with a dignity that commanded still greater respect. Her daughter Cunegonde was seventeen years of age, fresh-coloured, comely, plump, and desirable. The Baron&#x27;s son seemed to be in every respect worthy of his father. The Preceptor Pangloss[1] was the oracle of the family, and little Candide heard his lessons with all the good faith of his age and character.</p><p>Pangloss was professor of metaphysico-theologico-cosmolo-nigology. He proved admirably that there is no effect without a cause, and that, in this best of all possible worlds, the Baron&#x27;s castle was the most magnificent of castles, and his lady the best of all possible Baronesses.</p><p>&quot;It is demonstrable,&quot; said he, &quot;that things cannot be otherwise than as they are; for all being created for an end, all is necessarily for the best end. Observe, that the nose has been formed to bear spectacles--thus we have spectacles. Legs are visibly designed for stockings--and we have stockings. Stones were made to be hewn, and to construct castles--therefore my lord has a magnificent castle; for the greatest baron in the province ought to be the best lodged. Pigs were made to be eaten--therefore we eat pork all the year round. Consequently they who assert that all is well have said a foolish thing, they should have said all is for the best.&quot;</p><p>Candide listened attentively and believed innocently; for he thought Miss Cunegonde extremely beautiful, though he never had the courage to tell her so. He concluded that after the happiness of being born of Baron of Thunder-ten-Tronckh, the second degree of happiness was to be Miss Cunegonde, the third that of seeing her every day, and the fourth that of hearing Master Pangloss, the greatest philosopher of the whole province, and consequently of the whole world.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-candide.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/the-prince/"><img src="/covers/the-prince.jpg" alt="" loading="lazy">The Prince<small>Niccolò Machiavelli</small></a><a href="/books/the-wealth-of-nations/"><img src="/covers/the-wealth-of-nations.jpg" alt="" loading="lazy">The Wealth of Nations<small>Adam Smith</small></a><a href="/books/the-theory-of-moral-sentiments/"><img src="/covers/the-theory-of-moral-sentiments.jpg" alt="" loading="lazy">The Theory of Moral Sentiments<small>Adam Smith</small></a><a href="/books/capital-volume-i/"><img src="/covers/capital-volume-i.jpg" alt="" loading="lazy">Capital, Volume I<small>Karl Marx</small></a><a href="/books/the-communist-manifesto/"><img src="/covers/the-communist-manifesto.jpg" alt="" loading="lazy">The Communist Manifesto<small>Karl Marx &amp; Friedrich Engels</small></a><a href="/books/on-the-principles-of-political-economy-and-taxation/"><img src="/covers/on-the-principles-of-political-economy-and-taxation.jpg" alt="" loading="lazy">On the Principles of Political Economy and Taxation<small>David Ricardo</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

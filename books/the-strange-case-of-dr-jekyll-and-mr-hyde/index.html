@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › The Strange Case of Dr Jekyll and Mr Hyde</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-strange-case-of-dr-jekyll-and-mr-hyde.jpg" width="400" height="600" alt="Cover of The Strange Case of Dr Jekyll and Mr Hyde by Robert Louis Stevenson"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-strange-case-of-dr-jekyll-and-mr-hyde.jpg" width="400" height="600" alt="Cover of The Strange Case of Dr Jekyll and Mr Hyde by Robert Louis Stevenson"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Strange Case of Dr Jekyll and Mr Hyde</h1>
     <p class="by">by <strong>Robert Louis Stevenson</strong></p>
@@ -153,8 +179,10 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Strange Case of Dr Jekyll and Mr Hyde</b><span>English · EPUB, HTML, PDF, TXT · audiobook 2 h 50 min</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">Le cas étrange du docteur Jekyll; Un logement pour la nuit</b><span>Français · EPUB, HTML, PDF, TXT</span></button></li><li><button type="button" class="ed" data-lang="es" aria-pressed="false"><b lang="es">El caso extraño del Doctor Jekyll</b><span>Español · EPUB, HTML, PDF, TXT · audiobook 3 h 24 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>The story unfolds mostly through the eyes of Mr Utterson, a reserved London lawyer. His distant kinsman Mr Enfield tells him of a sinister man named Edward Hyde who trampled a child in the street and then paid compensation with a cheque drawn on the account of a highly respected gentleman. Utterson is troubled, because his old friend Dr Henry Jekyll has made a will leaving everything to this same Hyde. As violence spreads through the foggy city and Jekyll grows ever more withdrawn, Utterson pieces together letters, testimonies and documents in an attempt to understand the bond between the cultivated doctor and the brutal stranger.</p><div class="rm-more" hidden><p>Stevenson&#x27;s novella is short, tense and built like a detective puzzle. Beneath the mystery lies a searching study of the divided self: the gap between public respectability and private desire, the temptation to escape responsibility for one&#x27;s own actions, and the fear that civilised manners are only a thin surface. Its compact structure and atmospheric London settings make it a rewarding read in a single sitting.</p><p>Published in January 1886, the book was a swift success in Britain and the United States and made Stevenson famous. The phrase &quot;Jekyll and Hyde&quot; entered everyday English as shorthand for a split personality. The story was adapted for the stage soon after publication and has since inspired countless films, plays, musicals, radio dramas and reworkings.</p><p>A novella first published in January 1886.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Robert Louis Stevenson</h2><p>Robert Louis Stevenson was born in Edinburgh in 1850 into a famous family of lighthouse engineers. A sickly child, he studied engineering and then law at Edinburgh but chose to write. Travels in France produced his first books, including Travels with a Donkey in the Cévennes. He fell in love with an American, Fanny Osbourne, followed her to California and married her in 1880. Seeking a healthier climate, he sailed the Pacific and in 1890 settled in Samoa, where he died in 1894.</p><div class="rm-more" hidden><p>Stevenson won wide fame with Treasure Island, published in 1883, the story of young Jim Hawkins and the pirate Long John Silver that defined the image of pirates for generations. Strange Case of Dr Jekyll and Mr Hyde explores the duality of good and evil, and Kidnapped follows a young Scot after the Jacobite rising. He also wrote The Master of Ballantrae and the poems of A Child&#x27;s Garden of Verses.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>Mr. Utterson the lawyer was a man of a rugged countenance that was never lighted by a smile; cold, scanty and embarrassed in discourse; backward in sentiment; lean, long, dusty, dreary and yet somehow lovable. At friendly meetings, and when the wine was to his taste, something eminently human beaconed from his eye; something indeed which never found its way into his talk, but which spoke not only in these silent symbols of the after-dinner face, but more often and loudly in the acts of his life. He was austere with himself; drank gin when he was alone, to mortify a taste for vintages; and though he enjoyed the theatre, had not crossed the doors of one for twenty years. But he had an approved tolerance for others; sometimes wondering, almost with envy, at the high pressure of spirits involved in their misdeeds; and in any extremity inclined to help rather than to reprove. “I incline to Cain’s heresy,” he used to say quaintly: “I let my brother go to the devil in his own way.” In this character, it was frequently his fortune to be the last reputable acquaintance and the last good influence in the lives of downgoing men. And to such as these, so long as they came about his chambers, he never marked a shade of change in his demeanour.</p><div class="rm-more" hidden><p>No doubt the feat was easy to Mr. Utterson; for he was undemonstrative at the best, and even his friendship seemed to be founded in a similar catholicity of good-nature. It is the mark of a modest man to accept his friendly circle ready-made from the hands of opportunity; and that was the lawyer’s way. His friends were those of his own blood or those whom he had known the longest; his affections, like ivy, were the growth of time, they implied no aptness in the object. Hence, no doubt the bond that united him to Mr. Richard Enfield, his distant kinsman, the well-known man about town. It was a nut to crack for many, what these two could see in each other, or what subject they could find in common. It was reported by those who encountered them in their Sunday walks, that they said nothing, looked singularly dull and would hail with obvious relief the appearance of a friend. For all that, the two men put the greatest store by these excursions, counted them the chief jewel of each week, and not only set aside occasions of pleasure, but even resisted the calls of business, that they might enjoy them uninterrupted.</p><p>It chanced on one of these rambles that their way led them down a by-street in a busy quarter of London. The street was small and what is called quiet, but it drove a thriving trade on the weekdays. The inhabitants were all doing well, it seemed, and all emulously hoping to do better still, and laying out the surplus of their gains in coquetry; so that the shop fronts stood along that thoroughfare with an air of invitation, like rows of smiling saleswomen. Even on Sunday, when it veiled its more florid charms and lay comparatively empty of passage, the street shone out in contrast to its dingy neighbourhood, like a fire in a forest; and with its freshly painted shutters, well-polished brasses, and general cleanliness and gaiety of note, instantly caught and pleased the eye of the passenger.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-strange-case-of-dr-jekyll-and-mr-hyde.en">Continue reading →</a></p></section>
+<div class="bc-ad" id="bcAd2"></div>
 <section class="card"><h2>More by Robert Louis Stevenson and similar classics</h2><div class="grid"><a href="/books/treasure-island/"><img src="/covers/treasure-island.jpg" alt="" loading="lazy">Treasure Island<small>Robert Louis Stevenson</small></a><a href="/books/kidnapped/"><img src="/covers/kidnapped.jpg" alt="" loading="lazy">Kidnapped<small>Robert Louis Stevenson</small></a><a href="/books/the-adventures-of-sherlock-holmes/"><img src="/covers/the-adventures-of-sherlock-holmes.jpg" alt="" loading="lazy">The Adventures of Sherlock Holmes<small>Arthur Conan Doyle</small></a><a href="/books/wuthering-heights/"><img src="/covers/wuthering-heights.jpg" alt="" loading="lazy">Wuthering Heights<small>Emily Brontë</small></a><a href="/books/the-picture-of-dorian-gray/"><img src="/covers/the-picture-of-dorian-gray.jpg" alt="" loading="lazy">The Picture of Dorian Gray<small>Oscar Wilde</small></a><a href="/books/the-phantom-of-the-opera/"><img src="/covers/the-phantom-of-the-opera.jpg" alt="" loading="lazy">The Phantom of the Opera<small>Gaston Leroux</small></a></div></section>
 <script>const BC={"slug":"the-strange-case-of-dr-jekyll-and-mr-hyde","ed":{"en":["epub","html","pdf","txt"],"fr":["epub","html","pdf","txt"],"es":["epub","html","pdf","txt"]},"audio":{"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/the-strange-case-of-dr-jekyll-and-mr-hyde/the-strange-case-of-dr-jekyll-and-mr-hyde.mp3","d":10192},"es":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/the-strange-case-of-dr-jekyll-and-mr-hyde/the-strange-case-of-dr-jekyll-and-mr-hyde-es.mp3","d":12210}},"lang":"en"};</script>
 <div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
@@ -228,11 +256,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

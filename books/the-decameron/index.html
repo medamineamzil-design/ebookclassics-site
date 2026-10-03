@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › The Decameron</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-decameron.jpg" width="400" height="600" alt="Cover of The Decameron by Giovanni Boccaccio"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-decameron.jpg" width="400" height="600" alt="Cover of The Decameron by Giovanni Boccaccio"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Decameron</h1>
     <p class="by">by <strong>Giovanni Boccaccio</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Decameron</b><span>English · EPUB, HTML, PDF, TXT · audiobook 32 h 41 min</span></button></li><li><button type="button" class="ed" data-lang="it" aria-pressed="false"><b lang="it">Decameron</b><span>Italiano · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>The Decameron opens with a vivid description of the plague that struck Florence in 1348. Seven young women and three young men meet in a church and decide to leave the stricken city for the countryside. To pass the time pleasantly, each of them tells one story a day for ten days, producing one hundred tales in all. Each day a member of the group is chosen to rule and usually sets a theme, such as fortune, clever replies, tricks played by wives on husbands, or acts of generosity.</p><div class="rm-more" hidden><p>The stories range from bawdy farce and practical jokes to tragic love and moral examples, and they feature merchants, monks, nuns, nobles, peasants and rogues. Boccaccio celebrates wit, intelligence and human desire, and often mocks the hypocrisy of the clergy. The frame of storytellers fleeing a pandemic gives the book a particular resonance today, as a reflection on how stories help people endure fear and loss.</p><p>Boccaccio composed the work around 1349 to 1353, writing in Florentine Italian rather than Latin, and it helped establish Italian prose as a literary language. Its frame narrative and many of its plots spread across Europe. Petrarch translated its final tale of patient Griselda into Latin, Chaucer retold it in English, and later writers including Shakespeare drew on its stories. It has also been adapted for film, theatre and illustration.</p><p>Written between 1348 and 1353, in the years following the Black Death in Florence.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Giovanni Boccaccio</h2><p>Giovanni Boccaccio was born in 1313, probably in Florence or nearby Certaldo, the illegitimate son of a merchant. As a young man he was sent to Naples to learn banking and canon law, but preferred literature and court life. He returned to Florence around 1341 and lived through the Black Death of 1348, which killed a large part of the city&#x27;s population. He became a close friend of Petrarch, carried out diplomatic missions for Florence, and in his final years gave public lectures on Dante. He died in Certaldo in 1375.</p><div class="rm-more" hidden><p>Boccaccio&#x27;s masterpiece, the Decameron, frames one hundred stories told by ten young Florentines who escape the plague to a country villa. The tales range from witty and bawdy to tragic and noble, offering a vivid picture of merchants, lovers, clergy and tricksters. His earlier poems supplied plots for Chaucer, and his Latin works, including lives of famous women and a guide to classical mythology, helped spread Renaissance humanism.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>THE FIRST STORY. Martellino feigneth himself a cripple and maketh believe to wax whole upon the body of St. Arrigo. His imposture being discovered, he is beaten and being after taken [for a thief,] goeth in peril of being hanged by the neck, but ultimately escapeth 49</p><p>THE SECOND STORY. Rinaldo d&#x27;Asti, having been robbed, maketh his way to Castel Guglielmo, where he is hospitably entertained by a widow lady and having made good his loss, returneth to his own house, safe and sound 52</p><div class="rm-more" hidden><p>THE THIRD STORY. Three young men squander their substance and become poor; but a nephew of theirs, returning home in desperation, falleth in with an abbot and findeth him to be the king&#x27;s daughter of England, who taketh him to husband and maketh good all his uncles&#x27; losses, restoring them to good estate 57</p><p>THE FOURTH STORY. Landolfo Ruffolo, grown poor, turneth corsair and being taken by the Genoese, is wrecked at sea, but saveth himself upon a coffer full of jewels of price and being entertained in Corfu by a woman, returneth home rich 63</p><p>THE FIFTH STORY. Andreuccio of Perugia, coming to Naples to buy horses, is in one night overtaken with three grievous accidents, but escapeth them all and returneth home with a ruby 66</p><p>THE SIXTH STORY. Madam Beritola, having lost her two sons, is found on a desert island with two kids and goeth thence into Lunigiana, where one of her sons, taking service with the lord of the country, lieth with his daughter and is cast into prison. Sicily after rebelling against King Charles and the youth being recognized by his mother, he espouseth his lord&#x27;s daughter, and his brother being likewise found, they are all three restored to high estate 75</p><p>THE SEVENTH STORY. The Soldan of Babylon sendeth a daughter of his to be married to the King of Algarve, and she, by divers chances, in the space of four years cometh to the hands of nine men in various places. Ultimately, being restored to her father for a maid, she goeth to the King of Algarve to wife, as first she did 85</p><p>THE EIGHTH STORY. The Count of Antwerp, being falsely accused, goeth into exile and leaveth his two children in different places in England, whither, after awhile, returning in disguise and finding them in good case, he taketh service as a horseboy in the service of the King of France and being approved innocent, is restored to his former estate 100</p><p>THE NINTH STORY. Bernabo of Genoa, duped by Ambrogiuolo, loseth his good and commandeth that his innocent wife be put to death. She escapeth and serveth the Soldan in a man&#x27;s habit. Here she lighteth upon the deceiver of her husband and bringeth the latter to Alexandria, where, her traducer being punished, she resumeth woman&#x27;s apparel and returneth to Genoa with her husband, rich 111</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-decameron.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/oliver-twist/"><img src="/covers/oliver-twist.jpg" alt="" loading="lazy">Oliver Twist<small>Charles Dickens</small></a><a href="/books/a-tale-of-two-cities/"><img src="/covers/a-tale-of-two-cities.jpg" alt="" loading="lazy">A Tale of Two Cities<small>Charles Dickens</small></a><a href="/books/a-christmas-carol/"><span class="ph">A Christmas Carol</span>A Christmas Carol<small>Charles Dickens</small></a><a href="/books/david-copperfield/"><img src="/covers/david-copperfield.jpg" alt="" loading="lazy">David Copperfield<small>Charles Dickens</small></a><a href="/books/emma/"><img src="/covers/emma.jpg" alt="" loading="lazy">Emma<small>Jane Austen</small></a><a href="/books/sense-and-sensibility/"><img src="/covers/sense-and-sensibility.jpg" alt="" loading="lazy">Sense and Sensibility<small>Jane Austen</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

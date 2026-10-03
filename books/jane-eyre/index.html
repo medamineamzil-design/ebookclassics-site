@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › Jane Eyre</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/jane-eyre.jpg" width="378" height="600" alt="Cover of Jane Eyre by Charlotte Brontë"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/jane-eyre.jpg" width="378" height="600" alt="Cover of Jane Eyre by Charlotte Brontë"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Jane Eyre</h1>
     <p class="by">by <strong>Charlotte Brontë</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Jane Eyre</b><span>English · EPUB, HTML, PDF, TXT · audiobook 20 h 37 min</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">Jane Eyre; ou Les mémoires d&#x27;une institutrice</b><span>Français · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Jane Eyre tells its story in her own voice, starting with a lonely childhood at Gateshead, where she is an orphan resented by her aunt, Mrs Reed. Sent away to Lowood, a harsh charity school, she finds hardship, illness and a precious friendship before growing into a capable young teacher. Wanting more of the world, she takes a post as governess at Thornfield Hall. There she meets the house&#x27;s moody, sharp-tongued master, Edward Rochester, and an unlikely bond grows between them. Yet Thornfield is a house of strange noises and unexplained events, and its secret will put Jane&#x27;s love and her principles to the hardest test.</p><div class="rm-more" hidden><p>The novel blends a coming-of-age story with romance and Gothic mystery. Its lasting power lies in Jane herself: plain, poor and outwardly quiet, yet insisting on her equal worth and her right to feel, think and choose for herself. Questions of conscience, independence, religion and the place of women run through the book, told in a direct first person that still feels modern.</p><p>Charlotte Brontë published Jane Eyre in 1847 under the pen name Currer Bell, and it was an immediate success, though some reviewers found its heroine improperly rebellious. It has never been out of print. Jean Rhys&#x27;s 1966 novel Wide Sargasso Sea reimagined part of its story, and it has been adapted many times for screen, stage and radio.</p><p>Jane Eyre traces its narrator&#x27;s life from a miserable, loveless childhood as an orphaned dependent in her cruel aunt&#x27;s household at Gateshead, through her harsh schooling at Lowood, an institution whose punitive regime and typhus outbreak claim the life of her closest friend, Helen Burns, and shape Jane&#x27;s lifelong resistance to hypocrisy and injustice. At eighteen, having become a capable teacher, Jane takes a position as governess at Thornfield Hall, tutoring the ward of the brooding, unconventional Edward Rochester. Despite a stark difference in social position, Jane and Rochester develop a relationship built on genuine intellectual and emotional equality, conveyed through blunt, searching conversations rather than conventional courtship. Thornfield is haunted by strange occurrences, unexplained fires, a violent attack on a house guest, that Jane cannot account for. Rochester proposes marriage, and Jane accepts, but on their wedding day the ceremony is interrupted by the revelation that Rochester is already married: his wife, Bertha Mason, a Creole woman from Jamaica who has gone violently insane, is confined in the attic, and it is she who has been responsible for Thornfield&#x27;s disturbances. Devastated but unwilling to become Rochester&#x27;s mistress despite his pleading, Jane flees penniless across the moors, nearly dying before being taken in by the Rivers siblings, who turn out to be her cousins and, through an inherited fortune from an uncle, make her financially independent for the first time in her life. St. John Rivers, a cold, zealously religious clergyman, proposes a loveless marriage as a missionary partnership in India, and Jane nearly accepts out of duty before a mysterious, telepathic call, hearing Rochester&#x27;s voice crying her name across the distance, sends her back to Thornfield. She finds the house burned to the ground by Bertha, who died in the fire, and Rochester blinded and maimed while attempting to save his household. Now Jane&#x27;s equal in dependency rather than his social inferior, she marries him, and the novel closes with their union restored on terms of genuine mutual need rather than unequal power.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Charlotte Brontë</h2><p>Charlotte Brontë was born in 1816 in Thornton, Yorkshire, the daughter of Patrick Brontë, an Irish-born clergyman, and the family soon moved to the parsonage at Haworth. Her mother died when she was five, and her two elder sisters died after attending a harsh boarding school. She worked as a teacher and governess and studied in Brussels. After the deaths of all her siblings by 1849, she married Arthur Bell Nicholls in 1854 and died in 1855, during pregnancy.</p><div class="rm-more" hidden><p>In 1846 the sisters published a volume of poems under the names Currer, Ellis and Acton Bell. Charlotte&#x27;s novel Jane Eyre followed in 1847 and was an immediate success. Its story of an orphaned governess who insists on her own dignity, told in a passionate first-person voice, broke new ground. She went on to write Shirley and Villette, which draws on her time in Brussels, while The Professor appeared after her death. It remains one of the most loved English novels.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>There was no possibility of taking a walk that day. We had been wandering, indeed, in the leafless shrubbery an hour in the morning; but since dinner (Mrs. Reed, when there was no company, dined early) the cold winter wind had brought with it clouds so sombre, and a rain so penetrating, that further outdoor exercise was now out of the question.</p><p>I was glad of it: I never liked long walks, especially on chilly afternoons: dreadful to me was the coming home in the raw twilight, with nipped fingers and toes, and a heart saddened by the chidings of Bessie, the nurse, and humbled by the consciousness of my physical inferiority to Eliza, John, and Georgiana Reed.</p><div class="rm-more" hidden><p>The said Eliza, John, and Georgiana were now clustered round their mama in the drawing-room: she lay reclined on a sofa by the fireside, and with her darlings about her (for the time neither quarrelling nor crying) looked perfectly happy. Me, she had dispensed from joining the group; saying, “She regretted to be under the necessity of keeping me at a distance; but that until she heard from Bessie, and could discover by her own observation, that I was endeavouring in good earnest to acquire a more sociable and childlike disposition, a more attractive and sprightly manner—something lighter, franker, more natural, as it were—she really must exclude me from privileges intended only for contented, happy, little children.”</p><p>“What does Bessie say I have done?” I asked.</p><p>“Jane, I don’t like cavillers or questioners; besides, there is something truly forbidding in a child taking up her elders in that manner. Be seated somewhere; and until you can speak pleasantly, remain silent.”</p><p>A breakfast-room adjoined the drawing-room, I slipped in there. It contained a bookcase: I soon possessed myself of a volume, taking care that it should be one stored with pictures. I mounted into the window-seat: gathering up my feet, I sat cross-legged, like a Turk; and, having drawn the red moreen curtain nearly close, I was shrined in double retirement.</p><p>Folds of scarlet drapery shut in my view to the right hand; to the left were the clear panes of glass, protecting, but not separating me from the drear November day. At intervals, while turning over the leaves of my book, I studied the aspect of that winter afternoon. Afar, it offered a pale blank of mist and cloud; near a scene of wet lawn and storm-beat shrub, with ceaseless rain sweeping away wildly before a long and lamentable blast.</p><p>I returned to my book—Bewick’s History of British Birds: the letterpress thereof I cared little for, generally speaking; and yet there were certain introductory pages that, child as I was, I could not pass quite as a blank. They were those which treat of the haunts of sea-fowl; of “the solitary rocks and promontories” by them only inhabited; of the coast of Norway, studded with isles from its southern extremity, the Lindeness, or Naze, to the North Cape—</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-jane-eyre.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/anna-karenina/"><img src="/covers/anna-karenina.jpg" alt="" loading="lazy">Anna Karenina<small>Leo Tolstoy</small></a><a href="/books/great-expectations/"><img src="/covers/great-expectations.jpg" alt="" loading="lazy">Great Expectations<small>Charles Dickens</small></a><a href="/books/the-great-gatsby/"><img src="/covers/the-great-gatsby.jpg" alt="" loading="lazy">The Great Gatsby<small>F. Scott Fitzgerald</small></a><a href="/books/frankenstein/"><img src="/covers/frankenstein.jpg" alt="" loading="lazy">Frankenstein<small>Mary Shelley</small></a><a href="/books/dracula/"><img src="/covers/dracula.jpg" alt="" loading="lazy">Dracula<small>Bram Stoker</small></a><a href="/books/the-strange-case-of-dr-jekyll-and-mr-hyde/"><img src="/covers/the-strange-case-of-dr-jekyll-and-mr-hyde.jpg" alt="" loading="lazy">The Strange Case of Dr Jekyll and Mr Hyde<small>Robert Louis Stevenson</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

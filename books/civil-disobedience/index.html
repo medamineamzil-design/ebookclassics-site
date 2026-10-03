@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#philosophie">Philosophy &amp; Essays</a> › Civil Disobedience</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/civil-disobedience.jpg" width="400" height="600" alt="Cover of Civil Disobedience by Henry David Thoreau"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/civil-disobedience.jpg" width="400" height="600" alt="Cover of Civil Disobedience by Henry David Thoreau"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Civil Disobedience</h1>
     <p class="by">by <strong>Henry David Thoreau</strong></p>
@@ -153,8 +179,10 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Civil Disobedience</b><span>English · EPUB, HTML, PDF, TXT · audiobook 1 h 03 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>In this short essay Henry David Thoreau asks what a person owes to a government that does wrong. He argues that individual conscience must come before the law, and that citizens should not lend their support to injustice simply because a majority has approved it. Writing at a time when the United States allowed slavery and was fighting a war with Mexico that he opposed, Thoreau says that the honest response is to withdraw cooperation, even if that means going to prison. He describes his own night in the Concord jail after refusing to pay his poll tax, and reflects on the strange freedom he felt there.</p><div class="rm-more" hidden><p>The essay is direct, personal and often sharply witty. Its core ideas, that moral responsibility cannot be handed over to the state and that peaceful refusal can be a powerful form of protest, remain at the centre of debates about conscience, law and activism. It is short enough to read in one sitting and rewards discussion.</p><p>Thoreau first delivered the material as a lecture in Concord in 1848, and it was published in 1849 under the title Resistance to Civil Government. The better-known title Civil Disobedience was used after his death. The essay went on to influence Leo Tolstoy, Mahatma Gandhi and Martin Luther King Jr., among many others, and it remains a foundational text for movements of nonviolent resistance.</p><p>First published as an essay in 1849; later influenced Gandhi and Martin Luther King Jr.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Henry David Thoreau</h2><p>Henry David Thoreau was born in 1817 in Concord, Massachusetts, where his family made pencils. He graduated from Harvard in 1837, taught school with his brother, and became a friend and protégé of Ralph Waldo Emerson, joining the Transcendentalist circle. From July 1845 to September 1847 he lived in a small cabin he built at Walden Pond, on land owned by Emerson. In 1846 he spent a night in jail for refusing to pay a poll tax in protest against slavery. He worked as a surveyor, opposed slavery, and died in Concord of tuberculosis in 1862.</p><div class="rm-more" hidden><p>Thoreau&#x27;s essay Resistance to Civil Government, later known as Civil Disobedience, argued that individuals should refuse to cooperate with unjust laws. Walden, published in 1854, reflects on his life in the woods, on simplicity, self-reliance and close observation of nature. His ideas on peaceful resistance influenced Mahatma Gandhi and Martin Luther King Jr., and his writing on nature inspired the environmental movement.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>I heartily accept the motto,—“That government is best which governs least;” and I should like to see it acted up to more rapidly and systematically. Carried out, it finally amounts to this, which also I believe—“That government is best which governs not at all;” and when men are prepared for it, that will be the kind of government which they will have. Government is at best but an expedient; but most governments are usually, and all governments are sometimes, inexpedient. The objections which have been brought against a standing army, and they are many and weighty, and deserve to prevail, may also at last be brought against a standing government. The standing army is only an arm of the standing government. The government itself, which is only the mode which the people have chosen to execute their will, is equally liable to be abused and perverted before the people can act through it. Witness the present Mexican war, the work of comparatively a few individuals using the standing government as their tool; for, in the outset, the people would not have consented to this measure.</p><div class="rm-more" hidden><p>This American government,—what is it but a tradition, though a recent one, endeavoring to transmit itself unimpaired to posterity, but each instant losing some of its integrity? It has not the vitality and force of a single living man; for a single man can bend it to his will. It is a sort of wooden gun to the people themselves; and, if ever they should use it in earnest as a real one against each other, it will surely split. But it is not the less necessary for this; for the people must have some complicated machinery or other, and hear its din, to satisfy that idea of government which they have. Governments show thus how successfully men can be imposed on, even impose on themselves, for their own advantage. It is excellent, we must all allow; yet this government never of itself furthered any enterprise, but by the alacrity with which it got out of its way. It does not keep the country free. It does not settle the West. It does not educate. The character inherent in the American people has done all that has been accomplished; and it would have done somewhat more, if the government had not sometimes got in its way. For government is an expedient, by which men would fain succeed in letting one another alone; and, as has been said, when it is most expedient, the governed are most let alone by it. Trade and commerce, if they were not made of India rubber, would never manage to bounce over obstacles which legislators are continually putting in their way; and, if one were to judge…</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-civil-disobedience.en">Continue reading →</a></p></section>
+<div class="bc-ad" id="bcAd2"></div>
 <section class="card"><h2>More by Henry David Thoreau and similar classics</h2><div class="grid"><a href="/books/walden/"><img src="/covers/walden.jpg" alt="" loading="lazy">Walden<small>Henry David Thoreau</small></a><a href="/books/the-pilgrim-s-progress/"><img src="/covers/the-pilgrim-s-progress.jpg" alt="" loading="lazy">The Pilgrim&#x27;s Progress<small>John Bunyan</small></a><a href="/books/notes-from-underground/"><img src="/covers/notes-from-underground.jpg" alt="" loading="lazy">Notes from Underground<small>Fyodor Dostoevsky</small></a><a href="/books/the-prophet/"><img src="/covers/the-prophet.jpg" alt="" loading="lazy">The Prophet<small>Kahlil Gibran</small></a><a href="/books/tao-te-ching/"><img src="/covers/tao-te-ching.jpg" alt="" loading="lazy">Tao Te Ching<small>Laozi</small></a><a href="/books/the-rubaiyat-of-omar-khayyam/"><img src="/covers/the-rubaiyat-of-omar-khayyam.jpg" alt="" loading="lazy">The Rubaiyat of Omar Khayyam<small>Omar Khayyam</small></a></div></section>
 <script>const BC={"slug":"civil-disobedience","ed":{"en":["epub","html","pdf","txt"]},"audio":{"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/civil-disobedience/civil-disobedience.mp3","d":3761}},"lang":"en"};</script>
 <div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
@@ -228,11 +256,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

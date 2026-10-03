@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › Madame Bovary</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/madame-bovary.jpg" width="400" height="600" alt="Cover of Madame Bovary by Gustave Flaubert"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/madame-bovary.jpg" width="400" height="600" alt="Cover of Madame Bovary by Gustave Flaubert"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Madame Bovary</h1>
     <p class="by">by <strong>Gustave Flaubert</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Madame Bovary</b><span>English · EPUB, HTML, PDF, TXT · audiobook 12 h 59 min</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">Madame Bovary</b><span>Français · EPUB, HTML, PDF, TXT · audiobook 13 h 12 min</span></button></li><li><button type="button" class="ed" data-lang="de" aria-pressed="false"><b lang="de">Frau Bovary</b><span>Deutsch · EPUB, HTML, PDF, TXT · audiobook 14 h 13 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Madame Bovary tells the story of Emma Rouault, a farmer&#x27;s daughter in Normandy who has filled her head with romantic novels and dreams of passion, elegance and Parisian life. She marries Charles Bovary, a kind but dull country doctor, and quickly finds married life in a small provincial town unbearably flat. A glimpse of aristocratic luxury at a ball sharpens her discontent. After the couple move to the market town of Yonville, Emma seeks escape through love affairs and through spending, encouraged by a scheming draper, and her choices draw her into ever deeper trouble.</p><div class="rm-more" hidden><p>Flaubert treats his heroine with a mixture of irony and sympathy, showing how the clichés of romance and the narrowness of bourgeois life both trap her. He famously laboured over every sentence, and his precise, controlled prose and use of free indirect style, which lets narration slip into a character&#x27;s thoughts, influenced generations of novelists. The book remains a sharp study of desire, consumerism, boredom and self-deception.</p><p>The novel was first serialised in the Revue de Paris in 1856, even though the magazine cut some passages. Early in 1857 Flaubert, the magazine&#x27;s editor and its printer were tried for offending public morals and were acquitted, and the novel appeared as a book that year, helped by the publicity. It is now considered a masterpiece of realism and has been adapted many times for film, television and the stage.</p><p>Flaubert was prosecuted for obscenity over the novel shortly after its 1857 publication, and acquitted.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Gustave Flaubert</h2><p>Gustave Flaubert was born in Rouen in 1821, the son of the chief surgeon at the city hospital. After a seizure in 1844 he abandoned law studies in Paris and settled with his family at Croisset, near Rouen, where he wrote for the rest of his life. When Madame Bovary was serialised, he was put on trial for offending public morals and was acquitted. He was a mentor to the young Guy de Maupassant and died at Croisset in 1880.</p><div class="rm-more" hidden><p>Madame Bovary, published as a book in 1857, tells of Emma Bovary, a doctor&#x27;s wife in provincial Normandy whose romantic dreams lead to adultery, debt and ruin. Flaubert worked painstakingly on every sentence in search of the exact word, and his cool, precise narration became a model for realist fiction. He also wrote Salammbô, Sentimental Education and Three Tales. His devotion to style influenced novelists from Henry James onward, and Madame Bovary is often counted among the greatest novels.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>We were in class when the head-master came in, followed by a “new fellow,” not wearing the school uniform, and a school servant carrying a large desk. Those who had been asleep woke up, and every one rose as if just surprised at his work.</p><p>The head-master made a sign to us to sit down. Then, turning to the class-master, he said to him in a low voice--</p><div class="rm-more" hidden><p>“Monsieur Roger, here is a pupil whom I recommend to your care; he’ll be in the second. If his work and conduct are satisfactory, he will go into one of the upper classes, as becomes his age.”</p><p>The “new fellow,” standing in the corner behind the door so that he could hardly be seen, was a country lad of about fifteen, and taller than any of us. His hair was cut square on his forehead like a village chorister’s; he looked reliable, but very ill at ease. Although he was not broad-shouldered, his short school jacket of green cloth with black buttons must have been tight about the arm-holes, and showed at the opening of the cuffs red wrists accustomed to being bare. His legs, in blue stockings, looked out from beneath yellow trousers, drawn tight by braces, He wore stout, ill-cleaned, hob-nailed boots.</p><p>We began repeating the lesson. He listened with all his ears, as attentive as if at a sermon, not daring even to cross his legs or lean on his elbow; and when at two o’clock the bell rang, the master was obliged to tell him to fall into line with the rest of us.</p><p>When we came back to work, we were in the habit of throwing our caps on the ground so as to have our hands more free; we used from the door to toss them under the form, so that they hit against the wall and made a lot of dust: it was “the thing.”</p><p>But, whether he had not noticed the trick, or did not dare to attempt it, the “new fellow,” was still holding his cap on his knees even after prayers were over. It was one of those head-gears of composite order, in which we can find traces of the bearskin, shako, billycock hat, sealskin cap, and cotton night-cap; one of those poor things, in fine, whose dumb ugliness has depths of expression, like an imbecile’s face. Oval, stiffened with whalebone, it began with three round knobs; then came in succession lozenges of velvet and rabbit-skin separated by a red band; after that a sort of bag that ended in a cardboard polygon covered with complicated braiding, from which hung, at the end of a long thin cord, small twisted gold threads in the manner of a tassel. The cap was new; its peak shone.</p><p>“Rise,” said the master.</p><p>He stood up; his cap fell. The whole class began to laugh. He stooped to pick it up. A neighbor knocked it down again with his elbow; he picked it up once more.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-madame-bovary.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/the-betrothed/"><img src="/covers/the-betrothed.jpg" alt="" loading="lazy">The Betrothed<small>Alessandro Manzoni</small></a><a href="/books/the-house-by-the-medlar-tree/"><img src="/covers/the-house-by-the-medlar-tree.jpg" alt="" loading="lazy">The House by the Medlar Tree<small>Giovanni Verga</small></a><a href="/books/the-decameron/"><img src="/covers/the-decameron.jpg" alt="" loading="lazy">The Decameron<small>Giovanni Boccaccio</small></a><a href="/books/oliver-twist/"><img src="/covers/oliver-twist.jpg" alt="" loading="lazy">Oliver Twist<small>Charles Dickens</small></a><a href="/books/a-tale-of-two-cities/"><img src="/covers/a-tale-of-two-cities.jpg" alt="" loading="lazy">A Tale of Two Cities<small>Charles Dickens</small></a><a href="/books/a-christmas-carol/"><span class="ph">A Christmas Carol</span>A Christmas Carol<small>Charles Dickens</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

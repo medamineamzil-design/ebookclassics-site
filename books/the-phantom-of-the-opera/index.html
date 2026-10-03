@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › The Phantom of the Opera</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-phantom-of-the-opera.jpg" width="400" height="600" alt="Cover of The Phantom of the Opera by Gaston Leroux"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-phantom-of-the-opera.jpg" width="400" height="600" alt="Cover of The Phantom of the Opera by Gaston Leroux"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Phantom of the Opera</h1>
     <p class="by">by <strong>Gaston Leroux</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Phantom of the Opera</b><span>English · EPUB, HTML, PDF, TXT · audiobook 9 h 10 min</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">Le Fantôme de l&#x27;Opéra</b><span>Français · EPUB, HTML, PDF, TXT · audiobook 9 h 48 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>The Phantom of the Opera is set in the Paris Opera House in the late nineteenth century, whose cellars descend to an underground lake. The new managers inherit strange rumours of an Opera Ghost who demands a private box and a monthly salary, and accidents seem to follow whenever his wishes are ignored. Meanwhile Christine Daaé, a modest Swedish singer, suddenly blossoms into a sensational talent, crediting a mysterious Angel of Music who teaches her through the walls. Her childhood friend, the young Viscount Raoul de Chagny, becomes determined to uncover who this invisible tutor really is.</p><div class="rm-more" hidden><p>Leroux, a former journalist, presents the story as an investigation, mixing documents, testimonies and the narrator&#x27;s own inquiries. The result blends Gothic horror, romance, mystery and backstage comedy. At its centre is a figure both terrifying and pitiable, a genius shut out from ordinary life by his appearance, which gives the novel its lasting emotional pull. Its atmosphere and suspense remain irresistible.</p><p>The novel was first serialised in the French newspaper Le Gaulois in 1909 and 1910 and published as a book in 1910. Its fame grew enormously through adaptation. A celebrated silent film version appeared in the 1920s, and the story was later turned into one of the most successful stage musicals ever produced, along with many other films, television versions and stage works.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Gaston Leroux</h2><p>Gaston Leroux was born in Paris in 1868 and grew up in Normandy. He studied law and worked as a court reporter before becoming an international correspondent for the newspaper Le Matin, covering events such as the 1905 revolution in Russia. Around 1907 he left journalism to devote himself to fiction, writing novels, serials and plays at a rapid pace. He died in Nice in 1927.</p><div class="rm-more" hidden><p>Leroux first made his name with The Mystery of the Yellow Room, a celebrated locked-room puzzle featuring the young reporter-detective Joseph Rouletabille. The Phantom of the Opera, serialised in 1909 and 1910, is set in the Paris Opera House and tells of a masked, disfigured genius who haunts its cellars and falls in love with the singer Christine Daaé. The novel blends mystery, romance and Gothic horror. It was only moderately successful at first, but the 1925 silent film and later Andrew Lloyd Webber&#x27;s long-running musical made the Phantom known around the world.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>The Opera ghost really existed. He was not, as was long believed, a creature of the imagination of the artists, the superstition of the managers, or a product of the absurd and impressionable brains of the young ladies of the ballet, their mothers, the box-keepers, the cloak-room attendants or the concierge. Yes, he existed in flesh and blood, although he assumed the complete appearance of a real phantom; that is to say, of a spectral shade.</p><div class="rm-more" hidden><p>When I began to ransack the archives of the National Academy of Music I was at once struck by the surprising coincidences between the phenomena ascribed to the &quot;ghost&quot; and the most extraordinary and fantastic tragedy that ever excited the Paris upper classes; and I soon conceived the idea that this tragedy might reasonably be explained by the phenomena in question. The events do not date more than thirty years back; and it would not be difficult to find at the present day, in the foyer of the ballet, old men of the highest respectability, men upon whose word one could absolutely rely, who would remember as though they happened yesterday the mysterious and dramatic conditions that attended the kidnapping of Christine Daae, the disappearance of the Vicomte de Chagny and the death of his elder brother, Count Philippe, whose body was found on the bank of the lake that exists in the lower cellars of the Opera on the Rue-Scribe side. But none of those witnesses had until that day thought that there was any reason for connecting the more or less legendary figure of the Opera ghost with that terrible story.</p><p>The truth was slow to enter my mind, puzzled by an inquiry that at every moment was complicated by events which, at first sight, might be looked upon as superhuman; and more than once I was within an ace of abandoning a task in which I was exhausting myself in the hopeless pursuit of a vain image. At last, I received the proof that my presentiments had not deceived me, and I was rewarded for all my efforts on the day when I acquired the certainty that the Opera ghost was more than a mere shade.</p><p>On that day, I had spent long hours over THE MEMOIRS OF A MANAGER, the light and frivolous work of the too-skeptical Moncharmin, who, during his term at the Opera, understood nothing of the mysterious behavior of the ghost and who was making all the fun of it that he could at the very moment when he became the first victim of the curious financial operation that went on inside the &quot;magic envelope.&quot;</p><p>I had just left the library in despair, when I met the delightful acting-manager of our National Academy, who stood chatting on a landing with a lively and well-groomed little old man, to whom he introduced me gaily. The acting-manager knew all about my investigations and how eagerly and unsuccessfully I had been trying to discover the whereabouts of the examining magistrate in the famous Chagny case, M. Faure. Nobody knew what had become of him, alive or dead; and here he was back from Canada, where he had spent fifteen years, and the first thing he had done, on his return to Paris, was to come to the secretarial offices at the Opera and ask for a free seat. The little old man was M. Faure himself.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-phantom-of-the-opera.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/twenty-thousand-leagues-under-the-sea/"><img src="/covers/twenty-thousand-leagues-under-the-sea.jpg" alt="" loading="lazy">Twenty Thousand Leagues Under the Sea<small>Jules Verne</small></a><a href="/books/heart-of-darkness/"><img src="/covers/heart-of-darkness.jpg" alt="" loading="lazy">Heart of Darkness<small>Joseph Conrad</small></a><a href="/books/the-scarlet-letter/"><img src="/covers/the-scarlet-letter.jpg" alt="" loading="lazy">The Scarlet Letter<small>Nathaniel Hawthorne</small></a><a href="/books/uncle-tom-s-cabin/"><img src="/covers/uncle-tom-s-cabin.jpg" alt="" loading="lazy">Uncle Tom&#x27;s Cabin<small>Harriet Beecher Stowe</small></a><a href="/books/the-time-machine/"><img src="/covers/the-time-machine.jpg" alt="" loading="lazy">The Time Machine<small>H. G. Wells</small></a><a href="/books/the-war-of-the-worlds/"><img src="/covers/the-war-of-the-worlds.jpg" alt="" loading="lazy">The War of the Worlds<small>H. G. Wells</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

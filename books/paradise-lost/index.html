@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#theatre">Drama &amp; Poetry</a> › Paradise Lost</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/paradise-lost.jpg" width="400" height="600" alt="Cover of Paradise Lost by John Milton"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/paradise-lost.jpg" width="400" height="600" alt="Cover of Paradise Lost by John Milton"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Paradise Lost</h1>
     <p class="by">by <strong>John Milton</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Paradise Lost</b><span>English · EPUB, HTML, PDF, TXT · audiobook 9 h 41 min</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">Le Paradis Perdu</b><span>Français · EPUB, HTML, PDF, TXT · audiobook 14 h 38 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Paradise Lost is an epic poem retelling the biblical story of the Fall. It begins after Satan and his rebel angels have been cast out of Heaven into a burning lake in Hell. Rousing his followers, Satan resolves to strike back at God by corrupting his newest creation, mankind. He journeys through Chaos towards the newly made world, where Adam and Eve live in innocence in the Garden of Eden. The poem moves between Hell, Heaven and Eden, and includes the angel Raphael&#x27;s account of the war in Heaven and of the Creation.</p><div class="rm-more" hidden><p>Milton&#x27;s stated aim was to justify God&#x27;s ways to humankind, yet the poem&#x27;s most memorable figure is arguably Satan, whose proud and eloquent speeches have fascinated readers for centuries. The poem explores free will, obedience, temptation, love between man and woman, and the meaning of loss. Written in grand, rolling blank verse full of classical and biblical learning, it can be challenging, but read aloud it has extraordinary music and power.</p><p>Milton, blind by then, composed the poem by dictation. It was first published in 1667 in ten books, and a second edition of 1674 rearranged it into twelve. He later wrote a shorter sequel, Paradise Regained. The poem profoundly influenced later writers, including the Romantic poets, and has inspired painters and illustrators, notably William Blake.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About John Milton</h2><p>John Milton was born in London in 1608, the son of a scrivener who was also a composer. He studied at St Paul&#x27;s School and Christ&#x27;s College, Cambridge, and travelled in Italy, where he met Galileo. During the conflicts of the 1640s he wrote pamphlets against bishops, in favour of divorce and in defence of a free press. Under the Commonwealth he served as Latin secretary to the Council of State, and by the early 1650s he was blind. He died in London in 1674.</p><div class="rm-more" hidden><p>Milton&#x27;s early poems include L&#x27;Allegro, Il Penseroso, the masque Comus and the elegy Lycidas. His prose tract Areopagitica remains a classic defence of freedom of the press. Paradise Lost, first published in 1667 and dictated after he lost his sight, is an epic in blank verse telling the story of Satan&#x27;s rebellion and the fall of Adam and Eve. He also wrote Paradise Regained and Samson Agonistes, and he ranks among the greatest English poets.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>Of Man’s first disobedience, and the fruit Of that forbidden tree whose mortal taste Brought death into the World, and all our woe, With loss of Eden, till one greater Man Restore us, and regain the blissful seat, Sing, Heavenly Muse, that, on the secret top Of Oreb, or of Sinai, didst inspire That shepherd who first taught the chosen seed In the beginning how the heavens and earth Rose out of Chaos: or, if Sion hill Delight thee more, and Siloa’s brook that flowed Fast by the oracle of God, I thence Invoke thy aid to my adventurous song, That with no middle flight intends to soar Above th’ Aonian mount, while it pursues Things unattempted yet in prose or rhyme. And chiefly thou, O Spirit, that dost prefer Before all temples th’ upright heart and pure, Instruct me, for thou know’st; thou from the first Wast present, and, with mighty wings outspread, Dove-like sat’st brooding on the vast Abyss, And mad’st it pregnant: what in me is dark Illumine, what is low raise and support; That, to the height of this great argument, I may assert Eternal Providence, And justify the ways of God to men. Say first—for Heaven hides nothing from thy view, Nor the deep tract of Hell—say first what cause Moved our grand parents, in that happy state, Favoured of Heaven so highly, to fall off From their Creator, and transgress his will For one restraint, lords of the World besides. Who first seduced them to that foul revolt? Th’ infernal Serpent; he it was whose guile, Stirred up with envy and reven…</p></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-paradise-lost.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/macbeth/"><img src="/covers/macbeth.jpg" alt="" loading="lazy">Macbeth<small>William Shakespeare</small></a><a href="/books/othello/"><img src="/covers/othello.jpg" alt="" loading="lazy">Othello<small>William Shakespeare</small></a><a href="/books/king-lear/"><img src="/covers/king-lear.jpg" alt="" loading="lazy">King Lear<small>William Shakespeare</small></a><a href="/books/a-midsummer-night-s-dream/"><img src="/covers/a-midsummer-night-s-dream.jpg" alt="" loading="lazy">A Midsummer Night&#x27;s Dream<small>William Shakespeare</small></a><a href="/books/the-tempest/"><img src="/covers/the-tempest.jpg" alt="" loading="lazy">The Tempest<small>William Shakespeare</small></a><a href="/books/hamlet/"><img src="/covers/hamlet.jpg" alt="" loading="lazy">Hamlet<small>William Shakespeare</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

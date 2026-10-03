@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#philosophie">Philosophy &amp; Essays</a> › An Essay on the Principle of Population</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/an-essay-on-the-principle-of-population.jpg" width="400" height="600" alt="Cover of An Essay on the Principle of Population by Thomas Malthus"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/an-essay-on-the-principle-of-population.jpg" width="400" height="600" alt="Cover of An Essay on the Principle of Population by Thomas Malthus"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>An Essay on the Principle of Population</h1>
     <p class="by">by <strong>Thomas Malthus</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">An Essay on the Principle of Population</b><span>English · EPUB, HTML, PDF, TXT · audiobook 5 h 32 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>In this essay the English clergyman and scholar Thomas Malthus sets out a simple but unsettling argument. Human population, if unchecked, tends to grow in a geometrical ratio, doubling again and again, while the means of subsistence can at best increase in an arithmetical ratio. Because people cannot live without food, population must constantly be held down to what the land can support. Malthus describes the checks that do this: misery and vice in the form of famine, disease, war and poverty, as well as preventive checks such as delayed marriage.</p><div class="rm-more" hidden><p>The book was written partly as a reply to optimistic thinkers such as William Godwin and the Marquis de Condorcet, who believed that society could be steadily perfected. Malthus doubted that reform alone could abolish poverty, and he questioned the effects of the English Poor Laws. His tone is calm and logical, which makes his conclusions all the more striking. Reading it today helps make sense of continuing debates about resources, food security, the environment and the limits of growth.</p><p>The first edition appeared anonymously in 1798. Malthus expanded and revised it substantially in later editions, beginning in 1803, adding much evidence and giving more weight to moral restraint. The work provoked fierce criticism from many quarters, yet it deeply influenced economics, and both Charles Darwin and Alfred Russel Wallace credited it with helping them reach the idea of natural selection.</p><p>Published anonymously in 1798; substantially expanded for the 1803 second edition.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Thomas Malthus</h2><p>Thomas Robert Malthus was born in 1766 near Dorking, Surrey, England. He studied mathematics at Jesus College, Cambridge, and was ordained in the Church of England. In 1805 he became professor of political economy at the East India Company&#x27;s college, one of the first such posts in Britain. He was a close friend and frequent intellectual opponent of David Ricardo. He died in 1834.</p><div class="rm-more" hidden><p>An Essay on the Principle of Population, first published anonymously in 1798 and greatly expanded in later editions, responded to optimists who believed society could be perfected. Malthus argued that population tends to grow faster than the food supply, so that it is held back by hunger, disease and misery unless people delay marriage and have fewer children. His Principles of Political Economy followed in 1820. His ideas fuelled debates about poverty and the poor laws, and they helped inspire Charles Darwin and Alfred Russel Wallace.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>Yet, anxiously as every friend of mankind must look forwards to the termination of this painful suspense, and eagerly as the inquiring mind would hail every ray of light that might assist its view into futurity, it is much to be lamented that the writers on each side of this momentous question still keep far aloof from each other. Their mutual arguments do not meet with a candid examination. The question is not brought to rest on fewer points, and even in theory scarcely seems to be approaching to a decision.</p><p>The advocate for the present order of things is apt to treat the sect of speculative philosophers either as a set of artful and designing knaves who preach up ardent benevolence and draw captivating pictures of a happier state of society only the better to enable them to destroy the present establishments and to forward their own deep-laid schemes of ambition, or as wild and mad-headed enthusiasts whose silly speculations and absurd paradoxes are not worthy the attention of any reasonable man.</p><div class="rm-more" hidden><p>The advocate for the perfectibility of man, and of society, retorts on the defender of establishments a more than equal contempt. He brands him as the slave of the most miserable and narrow prejudices; or as the defender of the abuses of civil society only because he profits by them. He paints him either as a character who prostitutes his understanding to his interest, or as one whose powers of mind are not of a size to grasp any thing great and noble, who cannot see above five yards before him, and who must therefore be utterly unable to take in the views of the enlightened benefactor of mankind.</p><p>In this unamicable contest the cause of truth cannot but suffer. The really good arguments on each side of the question are not allowed to have their proper weight. Each pursues his own theory, little solicitous to correct or improve it by an attention to what is advanced by his opponents.</p><p>The friend of the present order of things condemns all political speculations in the gross. He will not even condescend to examine the grounds from which the perfectibility of society is inferred. Much less will he give himself the trouble in a fair and candid manner to attempt an exposition of their fallacy.</p><p>The speculative philosopher equally offends against the cause of truth. With eyes fixed on a happier state of society, the blessings of which he paints in the most captivating colours, he allows himself to indulge in the most bitter invectives against every present establishment, without applying his talents to consider the best and safest means of removing abuses and without seeming to be aware of the tremendous obstacles that threaten, even in theory, to oppose the progress of man towards perfection.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-an-essay-on-the-principle-of-population.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/principles-of-political-economy/"><img src="/covers/principles-of-political-economy.jpg" alt="" loading="lazy">Principles of Political Economy<small>John Stuart Mill</small></a><a href="/books/the-theory-of-the-leisure-class/"><img src="/covers/the-theory-of-the-leisure-class.jpg" alt="" loading="lazy">The Theory of the Leisure Class<small>Thorstein Veblen</small></a><a href="/books/extraordinary-popular-delusions-and-the-madness-of-crowds/"><img src="/covers/extraordinary-popular-delusions-and-the-madness-of-crowds.jpg" alt="" loading="lazy">Extraordinary Popular Delusions and the Madness of Crowds<small>Charles Mackay</small></a><a href="/books/the-federalist-papers/"><img src="/covers/the-federalist-papers.jpg" alt="" loading="lazy">The Federalist Papers<small>Alexander Hamilton, James Madison &amp; John Jay</small></a><a href="/books/common-sense/"><img src="/covers/common-sense.jpg" alt="" loading="lazy">Common Sense<small>Thomas Paine</small></a><a href="/books/the-autobiography-of-benjamin-franklin/"><img src="/covers/the-autobiography-of-benjamin-franklin.jpg" alt="" loading="lazy">The Autobiography of Benjamin Franklin<small>Benjamin Franklin</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

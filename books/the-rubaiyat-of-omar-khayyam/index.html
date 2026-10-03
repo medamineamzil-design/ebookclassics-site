@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#philosophie">Philosophy &amp; Essays</a> › The Rubaiyat of Omar Khayyam</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-rubaiyat-of-omar-khayyam.jpg" width="400" height="600" alt="Cover of The Rubaiyat of Omar Khayyam by Omar Khayyam"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-rubaiyat-of-omar-khayyam.jpg" width="400" height="600" alt="Cover of The Rubaiyat of Omar Khayyam by Omar Khayyam"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Rubaiyat of Omar Khayyam</h1>
     <p class="by">by <strong>Omar Khayyam</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Rubaiyat of Omar Khayyam</b><span>English · EPUB, HTML, PDF, TXT · audiobook 1 h 14 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>The Rubaiyat is a sequence of quatrains, four-line poems in the Persian form called the rubai, attributed to Omar Khayyam, a scholar of Nishapur in Persia who was famous in his own time as a mathematician and astronomer. In Edward FitzGerald&#x27;s English version, the poems are arranged into a loosely connected sequence that moves from dawn to nightfall. The speaker reflects on the brevity of life, the uncertainty of what lies beyond death, the limits of human knowledge, and the consolations of wine, friendship and love.</p><div class="rm-more" hidden><p>The poems combine sensual delight with philosophical doubt. They question the confident answers of both religion and learning, and urge the reader to seize the present moment before it passes. FitzGerald&#x27;s rendering is free rather than literal, and is valued as an English poem in its own right, with memorable rhythms and imagery. Its blend of melancholy and pleasure continues to speak to readers who wonder about time, mortality and meaning.</p><p>FitzGerald published the first edition anonymously in London in 1859, working from Persian manuscripts introduced to him by his friend Edward Byles Cowell. It attracted little notice at first, but after being discovered by Dante Gabriel Rossetti and his circle it became enormously popular, and FitzGerald revised it through several later editions. Scholars still debate how many of the quatrains Omar actually wrote. The poem has inspired many illustrated editions, musical settings and other translations.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Omar Khayyam</h2><p>Omar Khayyam was born in 1048 in Nishapur, in the region of Khorasan in present-day Iran, during the rule of the Seljuk Turks. A leading mathematician and astronomer, he worked at an observatory in Isfahan under Sultan Malik-Shah and helped create a remarkably accurate solar calendar. His treatise on algebra solved cubic equations using geometry. He later returned to Nishapur, where he died around 1131 and where his tomb still stands.</p><div class="rm-more" hidden><p>Many short four-line poems, or rubaiyat, have been attributed to Khayyam, though scholars agree that a large number were written by others. They reflect on the brevity of life, the limits of human knowledge and the pleasures of wine, love and the present moment. In 1859 the English poet Edward FitzGerald published a free and inventive version, The Rubaiyat of Omar Khayyam, which became hugely popular in the English-speaking world. Today Khayyam is admired both as a scientist and as a poetic voice of doubt and delight.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>Awake! for Morning in the Bowl of Night Has flung the Stone that puts the Stars to Flight: And Lo! the Hunter of the East has caught The Sultan&#x27;s Turret in a Noose of Light.</p><p>Dreaming when Dawn&#x27;s Left Hand was in the Sky I heard a Voice within the Tavern cry, &quot;Awake, my Little ones, and fill the Cup Before Life&#x27;s Liquor in its Cup be dry.&quot;</p><div class="rm-more" hidden><p>Iram indeed is gone with all its Rose, And Jamshyd&#x27;s Sev&#x27;n-ring&#x27;d Cup where no one knows; But still the Vine her ancient Ruby yields, And still a Garden by the Water blows.</p><p>And David&#x27;s Lips are lock&#x27;t; but in divine High piping Pelevi, with &quot;Wine! Wine! Wine! Red Wine!&quot;--the Nightingale cries to the Rose That yellow Cheek of hers to&#x27;incarnadine.</p><p>Come, fill the Cup, and in the Fire of Spring The Winter Garment of Repentance fling: The Bird of Time has but a little way To fly--and Lo! the Bird is on the Wing.</p><p>And look--a thousand Blossoms with the Day Woke--and a thousand scatter&#x27;d into Clay: And this first Summer Month that brings the Rose Shall take Jamshyd and Kaikobad away.</p><p>But come with old Khayyam, and leave the Lot Of Kaikobad and Kaikhosru forgot: Let Rustum lay about him as he will, Or Hatim Tai cry Supper--heed them not.</p><p>With me along some Strip of Herbage strown That just divides the desert from the sown, Where name of Slave and Sultan scarce is known, And pity Sultan Mahmud on his Throne.</p><p>Here with a Loaf of Bread beneath the Bough, A Flask of Wine, a Book of Verse--and Thou Beside me singing in the Wilderness-- And Wilderness is Paradise enow.</p><p>&quot;How sweet is mortal Sovranty!&quot;--think some: Others--&quot;How blest the Paradise to come!&quot; Ah, take the Cash in hand and waive the Rest; Oh, the brave Music of a distant Drum!</p><p>Look to the Rose that blows about us--&quot;Lo, Laughing,&quot; she says, &quot;into the World I blow: At once the silken Tassel of my Purse Tear, and its Treasure on the Garden throw.&quot;</p><p>Think, in this batter&#x27;d Caravanserai Whose Doorways are alternate Night and Day, How Sultan after Sultan with his Pomp Abode his Hour or two, and went his way.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-rubaiyat-of-omar-khayyam.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/meditations/"><img src="/covers/meditations.jpg" alt="" loading="lazy">Meditations<small>Marcus Aurelius</small></a><a href="/books/candide/"><img src="/covers/candide.jpg" alt="" loading="lazy">Candide<small>Voltaire</small></a><a href="/books/the-prince/"><img src="/covers/the-prince.jpg" alt="" loading="lazy">The Prince<small>Niccolò Machiavelli</small></a><a href="/books/the-wealth-of-nations/"><img src="/covers/the-wealth-of-nations.jpg" alt="" loading="lazy">The Wealth of Nations<small>Adam Smith</small></a><a href="/books/the-theory-of-moral-sentiments/"><img src="/covers/the-theory-of-moral-sentiments.jpg" alt="" loading="lazy">The Theory of Moral Sentiments<small>Adam Smith</small></a><a href="/books/capital-volume-i/"><img src="/covers/capital-volume-i.jpg" alt="" loading="lazy">Capital, Volume I<small>Karl Marx</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

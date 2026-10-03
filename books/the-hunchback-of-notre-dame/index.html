@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#fiction">Novels &amp; Fiction</a> › The Hunchback of Notre-Dame</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-hunchback-of-notre-dame.jpg" width="400" height="600" alt="Cover of The Hunchback of Notre-Dame by Victor Hugo"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-hunchback-of-notre-dame.jpg" width="400" height="600" alt="Cover of The Hunchback of Notre-Dame by Victor Hugo"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Hunchback of Notre-Dame</h1>
     <p class="by">by <strong>Victor Hugo</strong></p>
@@ -153,8 +179,10 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Hunchback of Notre-Dame</b><span>English · EPUB, HTML, PDF, TXT · audiobook 21 h 51 min</span></button></li><li><button type="button" class="ed" data-lang="fr" aria-pressed="false"><b lang="fr">Notre-Dame de Paris</b><span>Français · EPUB, HTML, PDF, TXT · audiobook 20 h 33 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>The novel opens in Paris on 6 January 1482, during the riotous Festival of Fools, when the crowd crowns the deformed, deaf bell-ringer of Notre-Dame, Quasimodo, as Pope of Fools. That same day the struggling poet Pierre Gringoire is swept into the city&#x27;s underworld, and all eyes turn to Esmeralda, a young street dancer who performs with her clever goat. She attracts the attention of three very different men: Quasimodo, his guardian the stern archdeacon Claude Frollo, and the handsome captain Phoebus. Their desires set in motion a tragedy that plays out around the great cathedral.</p><div class="rm-more" hidden><p>Hugo&#x27;s novel is about love, obsession, cruelty and the outsider, but it is also a passionate portrait of medieval Paris and of the cathedral itself, which is almost a character in its own right. He adds long digressions on architecture, printing and history, arguing that buildings were once the books of humanity. His mix of grotesque and sublime, comedy and horror, remains powerful and very cinematic.</p><p>Published in 1831 under the French title Notre-Dame de Paris, the novel was a great success and helped spark public concern for the cathedral, which was in poor repair; a major restoration followed in the 1840s. Its English title shifted the focus to Quasimodo. It has been adapted many times, in silent and sound films, animation, ballet, opera and stage musicals.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Victor Hugo</h2><p>Victor Hugo was born in Besançon in 1802, the son of an officer in Napoleon&#x27;s army. He won early fame as a poet, and his play Hernani in 1830 marked the triumph of Romanticism in French theatre. The drowning of his daughter Léopoldine in 1843 devastated him. He opposed Napoleon III&#x27;s seizure of power in 1851 and spent nearly twenty years in exile, mostly on Guernsey. He returned in 1870 and, when he died in Paris in 1885, was buried in the Panthéon.</p><div class="rm-more" hidden><p>Hugo&#x27;s novel The Hunchback of Notre-Dame, published in 1831, tells of Quasimodo and Esmeralda in medieval Paris and helped inspire the restoration of the cathedral. Les Misérables, completed in exile and published in 1862, follows the former convict Jean Valjean through decades of French history, pleading for justice, mercy and the poor. He also wrote poetry, plays and further novels, and campaigned against the death penalty. He is regarded as one of France&#x27;s greatest writers.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>“Begin instantly! The mystery! the mystery immediately!” shrieked the people. And above all the voices, that of Johannes de Molendino was audible, piercing the uproar like the fife’s derisive serenade: “Commence instantly!” yelped the scholar.</p><p>“Down with Jupiter and the Cardinal de Bourbon!” vociferated Robin Poussepain and the other clerks perched in the window.</p><div class="rm-more" hidden><p>“The morality this very instant!” repeated the crowd; “this very instant! the sack and the rope for the comedians, and the cardinal!”</p><p>Poor Jupiter, haggard, frightened, pale beneath his rouge, dropped his thunderbolt, took his cap in his hand; then he bowed and trembled and stammered: “His eminence—the ambassadors—Madame Marguerite of Flanders—.” He did not know what to say. In truth, he was afraid of being hung.</p><p>Hung by the populace for waiting, hung by the cardinal for not having waited, he saw between the two dilemmas only an abyss; that is to say, a gallows.</p><p>Luckily, some one came to rescue him from his embarrassment, and assume the responsibility.</p><p>An individual who was standing beyond the railing, in the free space around the marble table, and whom no one had yet caught sight of, since his long, thin body was completely sheltered from every visual ray by the diameter of the pillar against which he was leaning; this individual, we say, tall, gaunt, pallid, blond, still young, although already wrinkled about the brow and cheeks, with brilliant eyes and a smiling mouth, clad in garments of black serge, worn and shining with age, approached the marble table, and made a sign to the poor sufferer. But the other was so confused that he did not see him. The new comer advanced another step.</p><p>“Jupiter,” said he, “my dear Jupiter!”</p><p>The other did not hear.</p><p>At last, the tall blond, driven out of patience, shrieked almost in his face,—</p><p>“Michel Giborne!”</p><p>“Who calls me?” said Jupiter, as though awakened with a start.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-hunchback-of-notre-dame.en">Continue reading →</a></p></section>
+<div class="bc-ad" id="bcAd2"></div>
 <section class="card"><h2>More by Victor Hugo and similar classics</h2><div class="grid"><a href="/books/les-miserables/"><img src="/covers/les-miserables.jpg" alt="" loading="lazy">Les Misérables<small>Victor Hugo</small></a><a href="/books/germinal/"><img src="/covers/germinal.jpg" alt="" loading="lazy">Germinal<small>Émile Zola</small></a><a href="/books/the-red-and-the-black/"><img src="/covers/the-red-and-the-black.jpg" alt="" loading="lazy">The Red and the Black<small>Stendhal</small></a><a href="/books/father-goriot/"><img src="/covers/father-goriot.jpg" alt="" loading="lazy">Father Goriot<small>Honoré de Balzac</small></a><a href="/books/bel-ami/"><img src="/covers/bel-ami.jpg" alt="" loading="lazy">Bel-Ami<small>Guy de Maupassant</small></a><a href="/books/the-metamorphosis/"><img src="/covers/the-metamorphosis.jpg" alt="" loading="lazy">The Metamorphosis<small>Franz Kafka</small></a></div></section>
 <script>const BC={"slug":"the-hunchback-of-notre-dame","ed":{"en":["epub","html","pdf","txt"],"fr":["epub","html","pdf","txt"]},"audio":{"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/the-hunchback-of-notre-dame/the-hunchback-of-notre-dame.mp3","d":78633},"fr":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/the-hunchback-of-notre-dame/the-hunchback-of-notre-dame-fr.mp3","d":73985}},"lang":"en"};</script>
 <div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
@@ -228,11 +256,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

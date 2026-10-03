@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#jeunesse">Children&#x27;s Classics</a> › Anne of Green Gables</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/anne-of-green-gables.jpg" width="400" height="600" alt="Cover of Anne of Green Gables by L. M. Montgomery"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/anne-of-green-gables.jpg" width="400" height="600" alt="Cover of Anne of Green Gables by L. M. Montgomery"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>Anne of Green Gables</h1>
     <p class="by">by <strong>L. M. Montgomery</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Anne of Green Gables</b><span>English · EPUB, HTML, PDF, TXT · audiobook 11 h 07 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Anne of Green Gables is set in the small farming community of Avonlea on Prince Edward Island. Matthew Cuthbert and his sister Marilla, an unmarried pair getting on in years, decide to adopt an orphan boy to help on their farm, Green Gables. Instead, a mix-up brings them Anne Shirley, a red-haired, freckled eleven-year-old girl who talks almost without stopping, gives romantic names to everything she sees and longs above all for a real home. Marilla&#x27;s first instinct is to send her back, but Anne&#x27;s charm begins to work on both of them, and the novel follows her schooldays, friendships and many comic scrapes.</p><div class="rm-more" hidden><p>Montgomery&#x27;s novel celebrates imagination, kindness and the joy of belonging. Anne&#x27;s mistakes are funny and her feelings are vivid, and readers watch her grow through friendship with her bosom friend Diana Barry and rivalry with her classmate Gilbert Blythe. The island&#x27;s landscapes are described with real love, and the book&#x27;s gentle humour and warmth appeal to adults as much as children.</p><p>The novel was published in 1908 and was an immediate success, leading Montgomery to write several sequels following Anne into adulthood. It is one of the best-known works of Canadian literature, has been translated into many languages, and has drawn visitors to Prince Edward Island for generations. It has been adapted for film, television, animation and the stage, including a long-running musical in Canada.</p><p>On Prince Edward Island in Canada, the aging, quietly devoted siblings Matthew and Marilla Cuthbert decide to adopt an orphan boy to help with the farm work at their home, Green Gables, only to have the local train station deliver, by clerical error, an eleven-year-old girl instead: Anne Shirley, red-haired, thin, imaginative to an almost alarming degree, and possessed of an unstoppable stream of talk about everything from the romance of tragic names to the injustice of her own freckles. Though Marilla initially insists the mistake be corrected and the girl returned, Anne&#x27;s earnestness, vulnerability, and evident hunger for a home win first Matthew&#x27;s quiet affection and then Marilla&#x27;s more reluctant, deeply buried one, and she is allowed to stay. The novel follows Anne through several years of scrapes largely of her own dramatic making — she accidentally dyes her hair green attempting to turn it raven black, she breaks a slate over the head of classmate Gilbert Blythe after he teases her about her hair, she nearly drowns while theatrically reenacting a poem in a leaking boat, and she serves her best friend Diana Barry currant wine by mistake, getting the girl memorably drunk and nearly ending their friendship at her disapproving mother&#x27;s insistence. Alongside these comic misadventures runs a quieter story of belonging: Anne&#x27;s slow transformation of the reserved, tradition-bound Cuthbert household and the surrounding village of Avonlea, her deepening friendships, her fierce, years-long rivalry with Gilbert Blythe that eventually softens into mutual respect and unspoken affection, and her growing academic ambition, which carries her to the top of her class and toward a scholarship for further study. The novel&#x27;s tone shifts in its final chapters, when Matthew dies suddenly and Marilla&#x27;s eyesight begins to fail; rather than leaving for college as planned, Anne chooses to stay at Green Gables and teach locally so she can care for Marilla, closing the book with Anne&#x27;s transformation complete — from an unwanted, friendless orphan into an indispensable, deeply loved member of her community.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About L. M. Montgomery</h2><p>Lucy Maud Montgomery was born in 1874 in Clifton, Prince Edward Island, Canada. Her mother died before she was two, and she was raised by her grandparents in Cavendish, whose landscape fills her books. She trained as a teacher and worked briefly for a Halifax newspaper while writing for magazines. In 1911 she married the Reverend Ewan Macdonald and moved to Ontario, where she raised two sons. She died in Toronto in 1942 and was buried in Cavendish.</p><div class="rm-more" hidden><p>Anne of Green Gables, published in 1908, tells of Anne Shirley, a talkative, imaginative orphan sent by mistake to an elderly brother and sister who had wanted a boy. Its humour and warmth made it an instant success, and Montgomery wrote several sequels following Anne into adulthood. She also wrote the Emily of New Moon books and The Blue Castle. Her heroines&#x27; intelligence and love of nature still appeal to readers worldwide, and Green Gables in Cavendish attracts visitors from many countries.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>MRS. Rachel Lynde lived just where the Avonlea main road dipped down into a little hollow, fringed with alders and ladies’ eardrops and traversed by a brook that had its source away back in the woods of the old Cuthbert place; it was reputed to be an intricate, headlong brook in its earlier course through those woods, with dark secrets of pool and cascade; but by the time it reached Lynde’s Hollow it was a quiet, well-conducted little stream, for not even a brook could run past Mrs. Rachel Lynde’s door without due regard for decency and decorum; it probably was conscious that Mrs. Rachel was sitting at her window, keeping a sharp eye on everything that passed, from brooks and children up, and that if she noticed anything odd or out of place she would never rest until she had ferreted out the whys and wherefores thereof.</p><div class="rm-more" hidden><p>There are plenty of people, in Avonlea and out of it, who can attend closely to their neighbors’ business by dint of neglecting their own; but Mrs. Rachel Lynde was one of those capable creatures who can manage their own concerns and those of other folks into the bargain. She was a notable housewife; her work was always done and well done; she “ran” the Sewing Circle, helped run the Sunday-school, and was the strongest prop of the Church Aid Society and Foreign Missions Auxiliary. Yet with all this Mrs. Rachel found abundant time to sit for hours at her kitchen window, knitting “cotton warp” quilts--she had knitted sixteen of them, as Avonlea housekeepers were wont to tell in awed voices--and keeping a sharp eye on the main road that crossed the hollow and wound up the steep red hill beyond. Since Avonlea occupied a little triangular peninsula jutting out into the Gulf of St. Lawrence, with water on two sides of it, anybody who went out of it or into it had to pass over that hill road and so run the unseen gauntlet of Mrs. Rachel’s all-seeing eye.</p><p>She was sitting there one afternoon in early June. The sun was coming in at the window warm and bright; the orchard on the slope below the house was in a bridal flush of pinky-white bloom, hummed over by a myriad of bees. Thomas Lynde--a meek little man whom Avonlea people called “Rachel Lynde’s husband”--was sowing his late turnip seed on the hill field beyond the barn; and Matthew Cuthbert ought to have been sowing his on the big red brook field away over by Green Gables. Mrs. Rachel knew that he ought because she had heard him tell Peter Morrison the evening before in William J. Blair’s store over at Carmody that he meant to sow his turnip seed the next afternoon. Peter had asked him, of course, for Matthew Cuthbert had never been known to volunteer information about anything in his whole life.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-anne-of-green-gables.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/grimm-s-fairy-tales/"><img src="/covers/grimm-s-fairy-tales.jpg" alt="" loading="lazy">Grimm&#x27;s Fairy Tales<small>Jacob &amp; Wilhelm Grimm</small></a><a href="/books/andersen-s-fairy-tales/"><img src="/covers/andersen-s-fairy-tales.jpg" alt="" loading="lazy">Andersen&#x27;s Fairy Tales<small>Hans Christian Andersen</small></a><a href="/books/alice-s-adventures-in-wonderland/"><img src="/covers/alice-s-adventures-in-wonderland.jpg" alt="" loading="lazy">Alice&#x27;s Adventures in Wonderland<small>Lewis Carroll</small></a><a href="/books/aesop-s-fables/"><img src="/covers/aesop-s-fables.jpg" alt="" loading="lazy">Aesop&#x27;s Fables<small>Aesop</small></a><a href="/books/the-secret-garden/"><img src="/covers/the-secret-garden.jpg" alt="" loading="lazy">The Secret Garden<small>Frances Hodgson Burnett</small></a><a href="/books/the-wonderful-wizard-of-oz/"><img src="/covers/the-wonderful-wizard-of-oz.jpg" alt="" loading="lazy">The Wonderful Wizard of Oz<small>L. Frank Baum</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

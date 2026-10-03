@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#philosophie">Philosophy &amp; Essays</a> › The Theory of the Leisure Class</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-theory-of-the-leisure-class.jpg" width="400" height="600" alt="Cover of The Theory of the Leisure Class by Thorstein Veblen"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-theory-of-the-leisure-class.jpg" width="400" height="600" alt="Cover of The Theory of the Leisure Class by Thorstein Veblen"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Theory of the Leisure Class</h1>
     <p class="by">by <strong>Thorstein Veblen</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Theory of the Leisure Class</b><span>English · EPUB, HTML, PDF, TXT · audiobook 11 h 51 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Thorstein Veblen&#x27;s study looks at the wealthy not as admirable achievers but as a class whose position depends on displaying that it does not have to work. Drawing on examples from early societies to the American rich of his own day, he argues that status is won by showing off the ability to waste. He calls this conspicuous leisure, the visible avoidance of productive labour, and conspicuous consumption, the purchase of goods chiefly to impress others. These habits, he suggests, spread downward as each social group tries to imitate the one above it.</p><div class="rm-more" hidden><p>Veblen examines fashion, manners, sport, religious ritual, the household, the treatment of women and the higher learning in universities, all through this lens. His tone is dry and ironic, often describing familiar customs as if they belonged to a strange tribe, which makes the book both funny and unsettling. In an age of luxury brands and social media display, his analysis of status, envy and waste feels strikingly current.</p><p>Published in 1899, the book brought Veblen wide attention and became one of the founding texts of American institutional economics and economic sociology. Its key phrases passed into everyday language, and economists later used the term Veblen goods for products whose appeal rises with their price. It remains widely read in courses on economics, sociology and cultural history.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Thorstein Veblen</h2><p>Thorstein Veblen was born in 1857 in Wisconsin to Norwegian immigrant farmers and grew up in Minnesota. He earned a doctorate in philosophy at Yale but struggled to find academic work. He then taught economics at Chicago, where he edited the Journal of Political Economy, and later at Stanford, Missouri and the New School. He died in California in 1929, shortly before the stock market crash.</p><div class="rm-more" hidden><p>The Theory of the Leisure Class, published in 1899, examined how the wealthy display their status through conspicuous consumption and conspicuous leisure, and how others try to imitate them. In The Theory of Business Enterprise and later books, Veblen contrasted the productive work of engineers and craftsmen with the profit-seeking of business and finance. He brought ideas from anthropology and evolution into economics and is regarded as a founder of institutional economics. His analysis of status and spending still feels relevant, and luxury goods whose demand rises with price are called Veblen goods.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>The institution of a leisure class is found in its best development at the higher stages of the barbarian culture; as, for instance, in feudal Europe or feudal Japan. In such communities the distinction between classes is very rigorously observed; and the feature of most striking economic significance in these class differences is the distinction maintained between the employments proper to the several classes. The upper classes are by custom exempt or excluded from industrial occupations, and are reserved for certain employments to which a degree of honour attaches. Chief among the honourable employments in any feudal community is warfare; and priestly service is commonly second to warfare. If the barbarian community is not notably warlike, the priestly office may take the precedence, with that of the warrior second. But the rule holds with but slight exceptions that, whether warriors or priests, the upper classes are exempt from industrial employments, and this exemption is the economic expression of their superior rank. Brahmin India affords a fair illustration of the industrial exemption of both these classes. In the communities belonging to the higher barbarian culture there is a considerable differentiation of sub-classes within what may be comprehensively called the leisure class; and there is a corresponding differentiation of employments between these sub-classes. The leisure class as a whole comprises the noble and the priestly classes, together with much of their r…</p><div class="rm-more" hidden><p>At an earlier, but not the earliest, stage of barbarism, the leisure class is found in a less differentiated form. Neither the class distinctions nor the distinctions between leisure-class occupations are so minute and intricate. The Polynesian islanders generally show this stage of the development in good form, with the exception that, owing to the absence of large game, hunting does not hold the usual place of honour in their scheme of life. The Icelandic community in the time of the Sagas also affords a fair instance. In such a community there is a rigorous distinction between classes and between the occupations peculiar to each class. Manual labour, industry, whatever has to do directly with the everyday work of getting a livelihood, is the exclusive occupation of the inferior class. This inferior class includes slaves and other dependents, and ordinarily also all the women. If there are several grades of aristocracy, the women of high rank are commonly exempt from industrial employment, or at least from the more vulgar kinds of manual labour. The men of the upper classes are not only exempt, but by prescriptive custom they are debarred, from all industrial occupations. The range of employments open to them is rigidly defined. As on the higher plane already spoken of, these employments are government, warfare, religious observances, and sports. These four lines of activity govern the scheme of life of the upper classes, and for the highest rank--the kings or chieftains--t…</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-theory-of-the-leisure-class.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/extraordinary-popular-delusions-and-the-madness-of-crowds/"><img src="/covers/extraordinary-popular-delusions-and-the-madness-of-crowds.jpg" alt="" loading="lazy">Extraordinary Popular Delusions and the Madness of Crowds<small>Charles Mackay</small></a><a href="/books/the-federalist-papers/"><img src="/covers/the-federalist-papers.jpg" alt="" loading="lazy">The Federalist Papers<small>Alexander Hamilton, James Madison &amp; John Jay</small></a><a href="/books/common-sense/"><img src="/covers/common-sense.jpg" alt="" loading="lazy">Common Sense<small>Thomas Paine</small></a><a href="/books/the-autobiography-of-benjamin-franklin/"><img src="/covers/the-autobiography-of-benjamin-franklin.jpg" alt="" loading="lazy">The Autobiography of Benjamin Franklin<small>Benjamin Franklin</small></a><a href="/books/second-treatise-of-government/"><img src="/covers/second-treatise-of-government.jpg" alt="" loading="lazy">Second Treatise of Government<small>John Locke</small></a><a href="/books/on-liberty/"><img src="/covers/on-liberty.jpg" alt="" loading="lazy">On Liberty<small>John Stuart Mill</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

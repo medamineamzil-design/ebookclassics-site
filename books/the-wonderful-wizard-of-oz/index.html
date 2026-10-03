@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#jeunesse">Children&#x27;s Classics</a> › The Wonderful Wizard of Oz</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-wonderful-wizard-of-oz.jpg" width="400" height="532" alt="Cover of The Wonderful Wizard of Oz by L. Frank Baum"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-wonderful-wizard-of-oz.jpg" width="400" height="532" alt="Cover of The Wonderful Wizard of Oz by L. Frank Baum"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Wonderful Wizard of Oz</h1>
     <p class="by">by <strong>L. Frank Baum</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Wonderful Wizard of Oz</b><span>English · EPUB, HTML, PDF, TXT · audiobook 4 h 06 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>Dorothy lives with her Aunt Em and Uncle Henry on a grey Kansas prairie until a cyclone lifts their house, with Dorothy and her little dog Toto inside, and sets it down in the colourful land of Oz. Told that only the great Wizard in the Emerald City can send her home, she sets off along the road of yellow brick. On the way she is joined by a Scarecrow who wants brains, a Tin Woodman who longs for a heart, and a Cowardly Lion in search of courage, and together they face wild creatures, a field of poppies and the hostility of the Wicked Witch of the West.</p><div class="rm-more" hidden><p>Baum set out to write a modern fairy tale for American children, with wonder and adventure but without heavy moralising. The story is simple, funny and quietly wise, especially in the way the companions show the very qualities they believe they lack. Its themes of friendship, self-belief and the meaning of home make it a pleasure to read aloud and to revisit as an adult.</p><p>The book was published in Chicago in 1900 with colour illustrations by W. W. Denslow and quickly became popular. Baum went on to write many more Oz books. The 1939 MGM film made it world-famous, and Oz has since inspired many other films, musicals and retellings.</p><p>The Wonderful Wizard of Oz follows Dorothy Gale, a young girl on a Kansas farm, whose house is lifted by a cyclone and deposited in the magical land of Oz, landing directly on and killing the Wicked Witch of the East. Freed of the witch&#x27;s tyranny, the local Munchkins and the Good Witch of the North give Dorothy the dead witch&#x27;s enchanted silver shoes and direct her to follow the yellow brick road to the Emerald City, where the powerful Wizard of Oz might be able to help her return home to Kansas. Along the way she gathers companions, each seeking something they believe they lack: a Scarecrow who wants a brain, believing himself foolish despite frequently proving clever; a Tin Woodman who wants a heart, despite acting with consistent compassion and grief throughout the journey; and a Cowardly Lion who wants courage, despite repeatedly acting bravely to protect his friends. The group faces a series of dangers, deadly poppy fields that induce magical sleep, hostile trees, fighting Kalidahs, before reaching the Emerald City, where the Wizard, appearing to each visitor in a different terrifying or awe-inspiring form, agrees to grant their wishes only if they first destroy the Wicked Witch of the West, ruler of the western quadrant of Oz. The witch, alerted to their approach, attacks them with wolves, crows, bees, and finally her Winged Monkeys, who capture Dorothy and destroy the Tin Woodman and Scarecrow, though Dorothy survives and, in a moment of desperate anger, throws a bucket of water on the witch, who melts away entirely, a weakness no one had previously discovered. Returning triumphant to the Emerald City, the companions discover the Wizard is not a powerful sorcerer at all but an ordinary man from Omaha who arrived in Oz by hot air balloon and has ruled through elaborate illusion and humbug. Unable to literally grant magical gifts, he instead gives the Scarecrow, Tin Woodman, and Lion symbolic tokens, a diploma, a heart-shaped clock, a medal, that let them recognize qualities they possessed all along, then attempts to fly Dorothy home in his balloon, though she is accidentally left behind when it departs without her. Ultimately Glinda the Good Witch of the South reveals that Dorothy&#x27;s silver shoes could have taken her home at any time, and Dorothy clicks her heels together and returns to Kansas.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About L. Frank Baum</h2><p>Lyman Frank Baum was born in 1856 in Chittenango, New York, the son of a prosperous businessman. As a young man he bred poultry, acted and wrote plays. In 1882 he married Maud Gage, daughter of the suffragist Matilda Joslyn Gage. He ran a store and a newspaper in Dakota Territory, then moved to Chicago, where he worked as a reporter and salesman. He later moved to Hollywood, where he died in 1919.</p><div class="rm-more" hidden><p>Baum&#x27;s first children&#x27;s books were Mother Goose in Prose and Father Goose. The Wonderful Wizard of Oz, published in 1900 with illustrations by W. W. Denslow, tells of Dorothy, swept from Kansas to the magical land of Oz, where she meets the Scarecrow, the Tin Woodman and the Cowardly Lion. It was so popular that Baum wrote thirteen more Oz books. The 1939 film made Oz world famous. Baum is often credited with creating one of the first great American fairy tales.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>Dorothy lived in the midst of the great Kansas prairies, with Uncle Henry, who was a farmer, and Aunt Em, who was the farmer’s wife. Their house was small, for the lumber to build it had to be carried by wagon many miles. There were four walls, a floor and a roof, which made one room; and this room contained a rusty looking cookstove, a cupboard for the dishes, a table, three or four chairs, and the beds. Uncle Henry and Aunt Em had a big bed in one corner, and Dorothy a little bed in another corner. There was no garret at all, and no cellar—except a small hole dug in the ground, called a cyclone cellar, where the family could go in case one of those great whirlwinds arose, mighty enough to crush any building in its path. It was reached by a trap door in the middle of the floor, from which a ladder led down into the small, dark hole.</p><div class="rm-more" hidden><p>When Dorothy stood in the doorway and looked around, she could see nothing but the great gray prairie on every side. Not a tree nor a house broke the broad sweep of flat country that reached to the edge of the sky in all directions. The sun had baked the plowed land into a gray mass, with little cracks running through it. Even the grass was not green, for the sun had burned the tops of the long blades until they were the same gray color to be seen everywhere. Once the house had been painted, but the sun blistered the paint and the rains washed it away, and now the house was as dull and gray as everything else.</p><p>When Aunt Em came there to live she was a young, pretty wife. The sun and wind had changed her, too. They had taken the sparkle from her eyes and left them a sober gray; they had taken the red from her cheeks and lips, and they were gray also. She was thin and gaunt, and never smiled now. When Dorothy, who was an orphan, first came to her, Aunt Em had been so startled by the child’s laughter that she would scream and press her hand upon her heart whenever Dorothy’s merry voice reached her ears; and she still looked at the little girl with wonder that she could find anything to laugh at.</p><p>Uncle Henry never laughed. He worked hard from morning till night and did not know what joy was. He was gray also, from his long beard to his rough boots, and he looked stern and solemn, and rarely spoke.</p><p>It was Toto that made Dorothy laugh, and saved her from growing as gray as her other surroundings. Toto was not gray; he was a little black dog, with long silky hair and small black eyes that twinkled merrily on either side of his funny, wee nose. Toto played all day long, and Dorothy played with him, and loved him dearly.</p><p>Today, however, they were not playing. Uncle Henry sat upon the doorstep and looked anxiously at the sky, which was even grayer than usual. Dorothy stood in the door with Toto in her arms, and looked at the sky too. Aunt Em was washing the dishes.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-wonderful-wizard-of-oz.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/the-jungle-book/"><img src="/covers/the-jungle-book.jpg" alt="" loading="lazy">The Jungle Book<small>Rudyard Kipling</small></a><a href="/books/little-women/"><img src="/covers/little-women.jpg" alt="" loading="lazy">Little Women<small>Louisa May Alcott</small></a><a href="/books/the-adventures-of-pinocchio/"><img src="/covers/the-adventures-of-pinocchio.jpg" alt="" loading="lazy">The Adventures of Pinocchio<small>Carlo Collodi</small></a><a href="/books/heart/"><img src="/covers/heart.jpg" alt="" loading="lazy">Heart<small>Edmondo De Amicis</small></a><a href="/books/the-prince-and-the-pauper/"><img src="/covers/the-prince-and-the-pauper.jpg" alt="" loading="lazy">The Prince and the Pauper<small>Mark Twain</small></a><a href="/books/the-adventures-of-tom-sawyer/"><img src="/covers/the-adventures-of-tom-sawyer.jpg" alt="" loading="lazy">The Adventures of Tom Sawyer<small>Mark Twain</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

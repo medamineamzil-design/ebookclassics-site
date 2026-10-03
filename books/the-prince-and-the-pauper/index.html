@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#jeunesse">Children&#x27;s Classics</a> › The Prince and the Pauper</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-prince-and-the-pauper.jpg" width="400" height="600" alt="Cover of The Prince and the Pauper by Mark Twain"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-prince-and-the-pauper.jpg" width="400" height="600" alt="Cover of The Prince and the Pauper by Mark Twain"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Prince and the Pauper</h1>
     <p class="by">by <strong>Mark Twain</strong></p>
@@ -153,8 +179,10 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Prince and the Pauper</b><span>English · EPUB, HTML, PDF, TXT · audiobook 7 h 41 min</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>The Prince and the Pauper is set in London in 1547, at the end of the reign of Henry VIII. Tom Canty is a beggar boy from the slums of Offal Court, who dreams of royal life. Edward, Prince of Wales, the king&#x27;s young son, lives amid every luxury. When chance brings the two boys face to face inside the palace grounds, they discover they look almost exactly alike and, on a whim, exchange clothes. Before they can switch back, the prince is thrown out of the gates as a ragged pauper, while Tom is left to play the heir to the throne, with no one believing either of them.</p><div class="rm-more" hidden><p>Twain uses this simple premise to explore injustice, cruelty in the law, and the gap between rulers and the ruled. Edward, wandering among thieves and vagrants with the help of a loyal soldier, Miles Hendon, learns how harshly ordinary people are treated, while Tom struggles with the strange burdens of court life. The book blends comedy, adventure and sharp social criticism.</p><p>Published in 1881, it was Twain&#x27;s first historical novel and was aimed at younger readers as well as adults. It marked a change from the American settings of his earlier work and was well received. The story of identical strangers swapping places has been adapted many times for stage, film, television and animation.</p><p>First published in 1881, Twain&#x27;s first attempt at a historical novel.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Mark Twain</h2><p>Samuel Langhorne Clemens was born in 1835 in Missouri and grew up in Hannibal, on the Mississippi River. After his father&#x27;s death he was apprenticed to a printer. He became a riverboat pilot until the Civil War halted river traffic, then went west, where as a journalist he first used the pen name Mark Twain. He married Olivia Langdon and settled in Hartford, Connecticut. Bad investments led to bankruptcy, which he repaid through a world lecture tour. He died in Connecticut in 1910.</p><div class="rm-more" hidden><p>Twain became famous with comic sketches and travel books such as The Innocents Abroad. The Adventures of Tom Sawyer celebrated boyhood along the Mississippi. Adventures of Huckleberry Finn, told in Huck&#x27;s own voice as he travels down the river with Jim, a man escaping slavery, is often called one of the great American novels. He also wrote A Connecticut Yankee in King Arthur&#x27;s Court. His humour, satire and ear for American speech keep him widely read.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>London was fifteen hundred years old, and was a great town--for that day. It had a hundred thousand inhabitants--some think double as many. The streets were very narrow, and crooked, and dirty, especially in the part where Tom Canty lived, which was not far from London Bridge. The houses were of wood, with the second story projecting over the first, and the third sticking its elbows out beyond the second. The higher the houses grew, the broader they grew. They were skeletons of strong criss-cross beams, with solid material between, coated with plaster. The beams were painted red or blue or black, according to the owner’s taste, and this gave the houses a very picturesque look. The windows were small, glazed with little diamond-shaped panes, and they opened outward, on hinges, like doors.</p><div class="rm-more" hidden><p>The house which Tom’s father lived in was up a foul little pocket called Offal Court, out of Pudding Lane. It was small, decayed, and rickety, but it was packed full of wretchedly poor families. Canty’s tribe occupied a room on the third floor. The mother and father had a sort of bedstead in the corner; but Tom, his grandmother, and his two sisters, Bet and Nan, were not restricted--they had all the floor to themselves, and might sleep where they chose. There were the remains of a blanket or two, and some bundles of ancient and dirty straw, but these could not rightly be called beds, for they were not organised; they were kicked into a general pile, mornings, and selections made from the mass at night, for service.</p><p>Bet and Nan were fifteen years old--twins. They were good-hearted girls, unclean, clothed in rags, and profoundly ignorant. Their mother was like them. But the father and the grandmother were a couple of fiends. They got drunk whenever they could; then they fought each other or anybody else who came in the way; they cursed and swore always, drunk or sober; John Canty was a thief, and his mother a beggar. They made beggars of the children, but failed to make thieves of them. Among, but not of, the dreadful rabble that inhabited the house, was a good old priest whom the King had turned out of house and home with a pension of a few farthings, and he used to get the children aside and teach them right ways secretly. Father Andrew also taught Tom a little Latin, and how to read and write; and would have done the same with the girls, but they were afraid of the jeers of their friends, who could not have endured such a queer accomplishment in them.</p><p>All Offal Court was just such another hive as Canty’s house. Drunkenness, riot and brawling were the order, there, every night and nearly all night long. Broken heads were as common as hunger in that place. Yet little Tom was not unhappy. He had a hard time of it, but did not know it. It was the sort of time that all the Offal Court boys had, therefore he supposed it was the correct and comfortable thing. When he came home empty-handed at night, he knew his father would curse him and thrash him first, and that when he was done the awful grandmother would do it all over again and improve on it; and that away in the night his starving mother would slip to him stealthily with any miserable scrap or crust she had been able to save for him by going hungry herself, notwithstanding she was often caught in that sort of treason and soundly beaten for it by her husband.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-prince-and-the-pauper.en">Continue reading →</a></p></section>
+<div class="bc-ad" id="bcAd2"></div>
 <section class="card"><h2>More by Mark Twain and similar classics</h2><div class="grid"><a href="/books/the-adventures-of-huckleberry-finn/"><img src="/covers/the-adventures-of-huckleberry-finn.jpg" alt="" loading="lazy">The Adventures of Huckleberry Finn<small>Mark Twain</small></a><a href="/books/the-adventures-of-tom-sawyer/"><img src="/covers/the-adventures-of-tom-sawyer.jpg" alt="" loading="lazy">The Adventures of Tom Sawyer<small>Mark Twain</small></a><a href="/books/the-wind-in-the-willows/"><img src="/covers/the-wind-in-the-willows.jpg" alt="" loading="lazy">The Wind in the Willows<small>Kenneth Grahame</small></a><a href="/books/peter-pan/"><img src="/covers/peter-pan.jpg" alt="" loading="lazy">Peter Pan<small>J. M. Barrie</small></a><a href="/books/the-railway-children/"><img src="/covers/the-railway-children.jpg" alt="" loading="lazy">The Railway Children<small>E. Nesbit</small></a><a href="/books/the-wonderful-adventures-of-nils/"><img src="/covers/the-wonderful-adventures-of-nils.jpg" alt="" loading="lazy">The Wonderful Adventures of Nils<small>Selma Lagerlöf</small></a></div></section>
 <script>const BC={"slug":"the-prince-and-the-pauper","ed":{"en":["epub","html","pdf","txt"]},"audio":{"en":{"u":"https://pub-54951c9209e446e89ad267c0f85a981d.r2.dev/audio/the-prince-and-the-pauper/the-prince-and-the-pauper.mp3","d":27665}},"lang":"en"};</script>
 <div class="gate" id="bcGate" hidden role="dialog" aria-modal="true" aria-labelledby="bcGateTitle">
@@ -228,11 +256,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>

@@ -126,6 +126,32 @@ footer.bottom{background:#fff;}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#2D49EC">
 <style id="bc-logo">a.brand::before{content:"";width:32px;height:32px;border-radius:9px;background:url(/icon-192.png) center/cover no-repeat !important;display:inline-block;flex:none;}</style>
+<style id="bc-motion">
+body{overflow-x:clip}
+.bk3d{position:relative;width:240px;aspect-ratio:2/3;transform-style:preserve-3d;perspective:1400px;margin-inline:auto}
+.bk3d-in{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(16deg);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bk3d:hover .bk3d-in{transform:rotateY(4deg) translateY(-6px)}
+.bk3d .cover{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(12px);border-radius:3px 10px 10px 3px!important;box-shadow:0 2px 3px rgba(0,0,0,.3),18px 26px 40px rgba(22,19,15,.32)!important}
+.bk3d-spine{position:absolute;top:0;bottom:0;left:0;width:24px;transform:rotateY(-90deg);transform-origin:left;background:#0d2a20}
+.bk3d-pages{position:absolute;top:2%;bottom:2%;right:0;width:24px;transform:rotateY(90deg) translateZ(calc(100% - 12px));transform-origin:right;background:repeating-linear-gradient(90deg,#f4efe3 0 2px,#e2dccd 2px 3px);border-radius:2px}
+.bk3d-shine{position:absolute;inset:0;transform:translateZ(13px);border-radius:3px 10px 10px 3px;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.18) 3%,rgba(0,0,0,0) 7%)}
+@media (max-width:680px){.bk3d{width:180px}}
+.hero h1 .bw{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.hero h1 .bw>span{display:inline-block}
+.grid{perspective:1200px}
+.grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.bc-ad:empty{display:none}
+.bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bc-bar{display:none}
+@media (max-width:680px){
+  .bc-bar{display:flex;gap:8px;position:sticky;bottom:0;z-index:30;margin:18px 0 0;border-radius:16px 16px 0 0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb,var(--bg,#F6F3EC) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,.08)}
+  .bc-bar .btn{flex:1;justify-content:center;text-align:center;padding:12px 10px}
+}
+</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -135,7 +161,7 @@ footer.bottom{background:#fff;}
 <main class="wrap">
 <p class="crumbs"><a href="/">Library</a> › <a href="/books/">Books</a> › <a href="/books/#jeunesse">Children&#x27;s Classics</a> › The Adventures of Pinocchio</p>
 <div class="hero">
-  <div><img class="cover" src="/covers/the-adventures-of-pinocchio.jpg" width="200" height="300" alt="Cover of The Adventures of Pinocchio by Carlo Collodi"></div>
+  <div><div class="bk3d"><div class="bk3d-in"><div class="bk3d-spine"></div><img class="cover" src="/covers/the-adventures-of-pinocchio.jpg" width="200" height="300" alt="Cover of The Adventures of Pinocchio by Carlo Collodi"><div class="bk3d-shine"></div><div class="bk3d-pages"></div></div></div></div>
   <div>
     <h1>The Adventures of Pinocchio</h1>
     <p class="by">by <strong>Carlo Collodi</strong></p>
@@ -153,6 +179,7 @@ footer.bottom{background:#fff;}
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Adventures of Pinocchio</b><span>English · EPUB, HTML, PDF, TXT · audiobook 4 h 36 min</span></button></li><li><button type="button" class="ed" data-lang="it" aria-pressed="false"><b lang="it">Le avventure di Pinocchio: Storia di un burattino</b><span>Italiano · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
 <section class="card"><h2>About the book</h2><p>In a small Tuscan village, a poor old woodcarver named Geppetto carves a puppet from a piece of talking wood and names him Pinocchio. The puppet is barely finished before he runs off and starts getting into trouble. Impulsive, lazy and easily tempted, Pinocchio repeatedly promises to be good and go to school, only to be led astray by a cunning Fox and Cat, a fearsome puppet master, and the lure of a land where children never have to study. Along the way he meets the Talking Cricket and a kind Fairy with turquoise hair, and his nose grows whenever he tells a lie.</p><div class="rm-more" hidden><p>Collodi&#x27;s story is much stranger and darker than many readers expect. It is a lively mix of comedy, fairy tale and moral lesson, full of sudden dangers, transformations and absurd humour. Beneath the adventures lie themes of responsibility, honesty, poverty and the love between a parent and child, and the book offers a vivid picture of nineteenth-century Italian life seen through a child&#x27;s misadventures.</p><p>The story first appeared in instalments in a Roman children&#x27;s magazine from 1881 and was published as a book in 1883. It became one of the most translated works of Italian literature and a classic of children&#x27;s fiction worldwide. It has inspired many adaptations for film, animation, theatre and television, most famously Walt Disney&#x27;s 1940 animated feature.</p><p>First published in Italian as Le avventure di Pinocchio in 1883.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
+<div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Carlo Collodi</h2><p>Carlo Lorenzini was born in Florence in 1826 and took his pen name from Collodi, his mother&#x27;s native village in Tuscany. He studied at a seminary before turning to journalism. A committed patriot, he volunteered in the Italian wars of independence of 1848 and 1859 and founded a satirical newspaper. In the 1870s he translated Perrault&#x27;s fairy tales into Italian and began writing educational books for children. He died in Florence in 1890.</p><div class="rm-more" hidden><p>The Adventures of Pinocchio was serialised in a children&#x27;s magazine from 1881 and published as a book in 1883. It tells of a wooden puppet carved by the poor Geppetto, who disobeys, tells lies that make his nose grow, and endures many misadventures before becoming a real boy. Funnier, darker and stranger than many later versions, the story mixes social satire with fairy-tale magic. It became one of the most translated Italian books, and Disney&#x27;s 1940 film made the puppet a global icon.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <section class="card"><h2>How it begins</h2><blockquote><p>At the words, the door opened and a dapper little old man came in. His name was Geppetto, but to the boys of the neighborhood he was Polendina,* on account of the wig he always wore which was just the color of yellow corn.</p><p>* Cornmeal mush</p><div class="rm-more" hidden><p>Geppetto had a very bad temper. Woe to the one who called him Polendina! He became as wild as a beast and no one could soothe him.</p><p>“Good day, Mastro Antonio,” said Geppetto. “What are you doing on the floor?”</p><p>“I am teaching the ants their A B C’s.”</p><p>“Good luck to you!”</p><p>“What brought you here, friend Geppetto?”</p><p>“My legs. And it may flatter you to know, Mastro Antonio, that I have come to you to beg for a favor.”</p><p>“Here I am, at your service,” answered the carpenter, raising himself on to his knees.</p><p>“This morning a fine idea came to me.”</p><p>“Let’s hear it.”</p><p>“I thought of making myself a beautiful wooden Marionette. It must be wonderful, one that will be able to dance, fence, and turn somersaults. With it I intend to go around the world, to earn my crust of bread and cup of wine. What do you think of it?”</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="/#lire-the-adventures-of-pinocchio.en">Continue reading →</a></p></section>
 <section class="card"><h2>You may also like</h2><div class="grid"><a href="/books/heart/"><img src="/covers/heart.jpg" alt="" loading="lazy">Heart<small>Edmondo De Amicis</small></a><a href="/books/the-prince-and-the-pauper/"><img src="/covers/the-prince-and-the-pauper.jpg" alt="" loading="lazy">The Prince and the Pauper<small>Mark Twain</small></a><a href="/books/the-adventures-of-tom-sawyer/"><img src="/covers/the-adventures-of-tom-sawyer.jpg" alt="" loading="lazy">The Adventures of Tom Sawyer<small>Mark Twain</small></a><a href="/books/the-wind-in-the-willows/"><img src="/covers/the-wind-in-the-willows.jpg" alt="" loading="lazy">The Wind in the Willows<small>Kenneth Grahame</small></a><a href="/books/peter-pan/"><img src="/covers/peter-pan.jpg" alt="" loading="lazy">Peter Pan<small>J. M. Barrie</small></a><a href="/books/the-railway-children/"><img src="/covers/the-railway-children.jpg" alt="" loading="lazy">The Railway Children<small>E. Nesbit</small></a></div></section>
@@ -228,11 +255,48 @@ function setLang(l){
 [].forEach.call(document.querySelectorAll('.ed'),function(e){ e.onclick=function(){ setLang(e.dataset.lang); }; });
 })();
 </script>
+<div class="bc-bar" aria-label="Quick actions"></div>
 </main>
 <footer class="bottom"><div class="wrap">
   <a href="/">BookClassics</a><a href="/books/">All books</a><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/contact.html">Contact</a>
   <p>Free public-domain classics to read online, download or listen to.</p>
 </div></footer>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "10da7071de6740f782569ee9862d025c"}'></script>
+<script>
+(function(){
+  // barre d'actions collée en bas (téléphone) : mêmes boutons que la page
+  var read=document.getElementById('bcRead'), listen=document.getElementById('bcListen'), dl=document.getElementById('bcDl');
+  var bar=document.querySelector('.bc-bar');
+  if(bar && read){
+    var a=document.createElement('a'); a.className='btn primary'; a.href=read.getAttribute('href'); a.textContent=(document.documentElement.lang||'en').indexOf('fr')===0?'Lire':'Read free';
+    a.addEventListener('click',function(e){ e.preventDefault(); read.click(); });
+    bar.appendChild(a);
+    var other=listen||dl;
+    if(other){ var b=document.createElement('button'); b.type='button'; b.className='btn ghost'; b.textContent=listen?'▶ Listen':'Download'; b.addEventListener('click',function(){ other.scrollIntoView({block:'center'}); other.click(); }); bar.appendChild(b); }
+  }
+  function boot(){
+    if(!window.gsap||!window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    gsap.registerPlugin(ScrollTrigger);
+    var h=document.querySelector('.hero h1');
+    if(h){ h.innerHTML=h.textContent.trim().split(/\s+/).map(function(w){return '<span class="bw"><span>'+w.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</span></span>';}).join(' ');
+      gsap.from(h.querySelectorAll('.bw>span'),{yPercent:110,duration:.9,ease:'power4.out',stagger:.06}); }
+    var bk=document.querySelector('.bk3d-in');
+    if(bk){
+      gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
+      if(matchMedia('(min-width: 681px)').matches)
+        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+    }
+    gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
+    gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
+    gsap.utils.toArray('main > section.card').forEach(function(c){
+      gsap.from(c,{y:40,opacity:.25,duration:.8,ease:'power3.out',scrollTrigger:{trigger:c,start:'top 88%'}});
+    });
+    gsap.from('.grid a',{y:40,opacity:.2,duration:.7,stagger:.06,ease:'power3.out',scrollTrigger:{trigger:'.grid',start:'top 88%'}});
+    addEventListener('load',function(){ ScrollTrigger.refresh(); });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot,{once:true}); else boot();
+})();
+</script>
 </body>
 </html>
