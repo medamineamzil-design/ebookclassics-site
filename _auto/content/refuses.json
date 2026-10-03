@@ -1,1 +1,14 @@
-[]
+[
+ {
+  "title": "Twelfth Night (de, Gutenberg #7186, trad. Wieland)",
+  "reason": "édition incomplète : les dernières scènes sont résumées entre parenthèses au lieu d'être traduites"
+ },
+ {
+  "title": "Ivanhoe (fr, Gutenberg #33315-34608, trad. Montémont)",
+  "reason": "œuvre publiée en 4 volumes séparés sur Gutenberg (volumes isolés)"
+ },
+ {
+  "title": "Thus Spake Zarathustra / Ivanhoe / autres",
+  "reason": "aucune autre édition LIBRE-UE complète trouvée en es, pt, sv"
+ }
+]
