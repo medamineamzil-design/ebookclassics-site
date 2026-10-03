@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /_auto/
 Allow: /
 
 Sitemap: https://bookclassics.org/sitemap.xml

@@ -1,0 +1,15 @@
+MARKERS = {
+ "candide": "In a castle of Westphalia",
+ "grimm-s-fairy-tales": "A certain king had a beautiful garden",
+ "the-odyssey": "Tell me, O ",
+ "don-quixote": "In a village of La Mancha",
+ "meditations": "grandfather Verus",
+ "the-republic": "I went down yesterday",
+ "the-descent-of-man": "The sole object of this work",
+ "the-rubaiyat-of-omar-khayyam": "Awake! for Morning",
+ "extraordinary-popular-delusions-and-the-madness-of-crowds": "In reading the history of nations",
+ "on-the-origin-of-species": "When we ",
+ "persuasion": "Sir Walter Elliot, of Kellynch",
+ "the-prophet": "Almustafa",
+ "the-metamorphosis": "Als Gregor Samsa",
+}

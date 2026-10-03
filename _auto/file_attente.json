@@ -1,0 +1,3739 @@
+[
+ {
+  "title": "Northanger Abbey",
+  "author": "Austen",
+  "gid": 121,
+  "titre_gutenberg": "Northanger Abbey",
+  "statut": "ok",
+  "personnes": [
+   "Austen, Jane (1775-1817)"
+  ]
+ },
+ {
+  "title": "Mansfield Park",
+  "author": "Austen",
+  "gid": 141,
+  "titre_gutenberg": "Mansfield Park",
+  "statut": "ok",
+  "personnes": [
+   "Austen, Jane (1775-1817)"
+  ]
+ },
+ {
+  "title": "The Woman in White",
+  "author": "Collins",
+  "gid": 583,
+  "titre_gutenberg": "The Woman in White",
+  "statut": "ok",
+  "personnes": [
+   "Collins, Wilkie (1824-1889)"
+  ]
+ },
+ {
+  "title": "North and South",
+  "author": "Gaskell",
+  "gid": 4276,
+  "titre_gutenberg": "North and South",
+  "statut": "ok",
+  "personnes": [
+   "Gaskell, Elizabeth Cleghorn (1810-1865)"
+  ]
+ },
+ {
+  "title": "Cranford",
+  "author": "Gaskell",
+  "gid": 394,
+  "titre_gutenberg": "Cranford",
+  "statut": "ok",
+  "personnes": [
+   "Gaskell, Elizabeth Cleghorn (1810-1865)",
+   "Brock, C. E. (Charles Edmund) (1870-1938) Illustrator"
+  ]
+ },
+ {
+  "title": "Silas Marner",
+  "author": "Eliot",
+  "gid": 550,
+  "titre_gutenberg": "Silas Marner",
+  "statut": "ok",
+  "personnes": [
+   "Eliot, George (1819-1880)"
+  ]
+ },
+ {
+  "title": "The Mill on the Floss",
+  "author": "Eliot",
+  "gid": 6688,
+  "titre_gutenberg": "The Mill on the Floss",
+  "statut": "ok",
+  "personnes": [
+   "Eliot, George (1819-1880)"
+  ]
+ },
+ {
+  "title": "Adam Bede",
+  "author": "Eliot",
+  "gid": 507,
+  "titre_gutenberg": "Adam Bede",
+  "statut": "ok",
+  "personnes": [
+   "Eliot, George (1819-1880)"
+  ]
+ },
+ {
+  "title": "Far from the Madding Crowd",
+  "author": "Hardy",
+  "gid": 27,
+  "titre_gutenberg": "Far from the Madding Crowd",
+  "statut": "ok",
+  "personnes": [
+   "Hardy, Thomas (1840-1928)"
+  ]
+ },
+ {
+  "title": "The Mayor of Casterbridge",
+  "author": "Hardy",
+  "gid": 143,
+  "titre_gutenberg": "The Mayor of Casterbridge",
+  "statut": "ok",
+  "personnes": [
+   "Hardy, Thomas (1840-1928)"
+  ]
+ },
+ {
+  "title": "Jude the Obscure",
+  "author": "Hardy",
+  "gid": 153,
+  "titre_gutenberg": "Jude the Obscure",
+  "statut": "ok",
+  "personnes": [
+   "Hardy, Thomas (1840-1928)"
+  ]
+ },
+ {
+  "title": "The Return of the Native",
+  "author": "Hardy",
+  "gid": 122,
+  "titre_gutenberg": "The Return of the Native",
+  "statut": "ok",
+  "personnes": [
+   "Hardy, Thomas (1840-1928)"
+  ]
+ },
+ {
+  "title": "Bleak House",
+  "author": "Dickens",
+  "gid": 1023,
+  "titre_gutenberg": "Bleak House",
+  "statut": "ok",
+  "personnes": [
+   "Dickens, Charles (1812-1870)"
+  ]
+ },
+ {
+  "title": "Hard Times",
+  "author": "Dickens",
+  "gid": 786,
+  "titre_gutenberg": "Hard Times",
+  "statut": "ok",
+  "personnes": [
+   "Dickens, Charles (1812-1870)"
+  ]
+ },
+ {
+  "title": "Little Dorrit",
+  "author": "Dickens",
+  "gid": 963,
+  "titre_gutenberg": "Little Dorrit",
+  "statut": "ok",
+  "personnes": [
+   "Dickens, Charles (1812-1870)"
+  ]
+ },
+ {
+  "title": "The Pickwick Papers",
+  "author": "Dickens",
+  "gid": 580,
+  "titre_gutenberg": "The Pickwick Papers",
+  "statut": "ok",
+  "personnes": [
+   "Dickens, Charles (1812-1870)"
+  ]
+ },
+ {
+  "title": "Nicholas Nickleby",
+  "author": "Dickens",
+  "gid": 967,
+  "titre_gutenberg": "Nicholas Nickleby",
+  "statut": "ok",
+  "personnes": [
+   "Dickens, Charles (1812-1870)"
+  ]
+ },
+ {
+  "title": "Our Mutual Friend",
+  "author": "Dickens",
+  "gid": 883,
+  "titre_gutenberg": "Our Mutual Friend",
+  "statut": "ok",
+  "personnes": [
+   "Dickens, Charles (1812-1870)"
+  ]
+ },
+ {
+  "title": "The Old Curiosity Shop",
+  "author": "Dickens",
+  "gid": 700,
+  "titre_gutenberg": "The Old Curiosity Shop",
+  "statut": "ok",
+  "personnes": [
+   "Dickens, Charles (1812-1870)"
+  ]
+ },
+ {
+  "title": "Barnaby Rudge",
+  "author": "Dickens",
+  "gid": 917,
+  "titre_gutenberg": "Barnaby Rudge: A Tale of the Riots of 'Eighty",
+  "statut": "ok",
+  "personnes": [
+   "Dickens, Charles (1812-1870)"
+  ]
+ },
+ {
+  "title": "Agnes Grey",
+  "author": "Brontë",
+  "gid": 767,
+  "titre_gutenberg": "Agnes Grey",
+  "statut": "ok",
+  "personnes": [
+   "Brontë, Anne (1820-1849)"
+  ]
+ },
+ {
+  "title": "The Tenant of Wildfell Hall",
+  "author": "Brontë",
+  "gid": 969,
+  "titre_gutenberg": "The Tenant of Wildfell Hall",
+  "statut": "ok",
+  "personnes": [
+   "Brontë, Anne (1820-1849)",
+   "Ward, Humphry, Mrs. (1851-1920) Author of introduction, etc."
+  ]
+ },
+ {
+  "title": "Villette",
+  "author": "Brontë",
+  "gid": 9182,
+  "titre_gutenberg": "Villette",
+  "statut": "ok",
+  "personnes": [
+   "Brontë, Charlotte (1816-1855)"
+  ]
+ },
+ {
+  "title": "Shirley",
+  "author": "Brontë",
+  "gid": 30486,
+  "titre_gutenberg": "Shirley",
+  "statut": "ok",
+  "personnes": [
+   "Brontë, Charlotte (1816-1855)"
+  ]
+ },
+ {
+  "title": "Ivanhoe",
+  "author": "Scott",
+  "gid": 82,
+  "titre_gutenberg": "Ivanhoe: A Romance",
+  "statut": "ok",
+  "personnes": [
+   "Scott, Walter (1771-1832)"
+  ]
+ },
+ {
+  "title": "Rob Roy",
+  "author": "Scott",
+  "gid": 7025,
+  "titre_gutenberg": "Rob Roy — Complete",
+  "statut": "ok",
+  "personnes": [
+   "Scott, Walter (1771-1832)"
+  ]
+ },
+ {
+  "title": "Waverley",
+  "author": "Scott",
+  "gid": 2034,
+  "titre_gutenberg": "Waverley; or, 'Tis sixty years since",
+  "statut": "ok",
+  "personnes": [
+   "Scott, Walter (1771-1832)"
+  ]
+ },
+ {
+  "title": "The Castle of Otranto",
+  "author": "Walpole",
+  "gid": 696,
+  "titre_gutenberg": "The Castle of Otranto",
+  "statut": "ok",
+  "personnes": [
+   "Walpole, Horace (1717-1797)",
+   "Morley, Henry (1822-1894) Editor"
+  ]
+ },
+ {
+  "title": "Tristram Shandy",
+  "author": "Sterne",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Tom Jones",
+  "author": "Fielding",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Joseph Andrews",
+  "author": "Fielding",
+  "gid": 9609,
+  "titre_gutenberg": "Joseph Andrews, Vol. 2",
+  "statut": "ok",
+  "personnes": [
+   "Fielding, Henry (1707-1754)"
+  ]
+ },
+ {
+  "title": "Moll Flanders",
+  "author": "Defoe",
+  "statut": "introuvable"
+ },
+ {
+  "title": "A Journal of the Plague Year",
+  "author": "Defoe",
+  "gid": 376,
+  "titre_gutenberg": "A Journal of the Plague Year Being Observations or Memorials of the Most Remarkable Occurrences, as ",
+  "statut": "ok",
+  "personnes": [
+   "Defoe, Daniel (1661-1731)"
+  ]
+ },
+ {
+  "title": "Clarissa",
+  "author": "Richardson",
+  "gid": 29964,
+  "titre_gutenberg": "Clarissa",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Richardson, Samuel (1689-1761)",
+   "Brissenden, R. F. (Robert Francis) (1928-1991) Author of introduction, etc."
+  ]
+ },
+ {
+  "title": "Pamela",
+  "author": "Richardson",
+  "gid": 6124,
+  "titre_gutenberg": "Pamela, or Virtue Rewarded",
+  "statut": "ok",
+  "personnes": [
+   "Richardson, Samuel (1689-1761)"
+  ]
+ },
+ {
+  "title": "The Vicar of Wakefield",
+  "author": "Goldsmith",
+  "gid": 2667,
+  "titre_gutenberg": "The Vicar of Wakefield",
+  "statut": "ok",
+  "personnes": [
+   "Goldsmith, Oliver (1730-1774)"
+  ]
+ },
+ {
+  "title": "Evelina",
+  "author": "Burney",
+  "gid": 6053,
+  "titre_gutenberg": "Evelina, Or, the History of a Young Lady's Entrance into the World",
+  "statut": "ok",
+  "personnes": [
+   "Burney, Fanny (1752-1840)"
+  ]
+ },
+ {
+  "title": "The Last Days of Pompeii",
+  "author": "Bulwer-Lytton",
+  "gid": 1565,
+  "titre_gutenberg": "The Last Days of Pompeii",
+  "statut": "ok",
+  "personnes": [
+   "Lytton, Edward Bulwer Lytton, Baron (1803-1873)"
+  ]
+ },
+ {
+  "title": "Lorna Doone",
+  "author": "Blackmore",
+  "gid": 840,
+  "titre_gutenberg": "Lorna Doone: A Romance of Exmoor",
+  "statut": "ok",
+  "personnes": [
+   "Blackmore, R. D. (Richard Doddridge) (1825-1900)"
+  ]
+ },
+ {
+  "title": "Barchester Towers",
+  "author": "Trollope",
+  "gid": 2432,
+  "titre_gutenberg": "Barchester Towers",
+  "statut": "ok",
+  "personnes": [
+   "Trollope, Anthony (1815-1882)"
+  ]
+ },
+ {
+  "title": "The Warden",
+  "author": "Trollope",
+  "gid": 619,
+  "titre_gutenberg": "The Warden",
+  "statut": "ok",
+  "personnes": [
+   "Trollope, Anthony (1815-1882)"
+  ]
+ },
+ {
+  "title": "The Way We Live Now",
+  "author": "Trollope",
+  "gid": 5231,
+  "titre_gutenberg": "The Way We Live Now",
+  "statut": "ok",
+  "personnes": [
+   "Trollope, Anthony (1815-1882)"
+  ]
+ },
+ {
+  "title": "Daniel Deronda",
+  "author": "Eliot",
+  "gid": 7469,
+  "titre_gutenberg": "Daniel Deronda",
+  "statut": "ok",
+  "personnes": [
+   "Eliot, George (1819-1880)"
+  ]
+ },
+ {
+  "title": "The Portrait of a Lady",
+  "author": "James",
+  "gid": 2833,
+  "titre_gutenberg": "The Portrait of a Lady — Volume 1",
+  "statut": "a_verifier_volumes",
+  "personnes": [
+   "James, Henry (1843-1916)"
+  ]
+ },
+ {
+  "title": "The Turn of the Screw",
+  "author": "James",
+  "gid": 209,
+  "titre_gutenberg": "The Turn of the Screw",
+  "statut": "ok",
+  "personnes": [
+   "James, Henry (1843-1916)"
+  ]
+ },
+ {
+  "title": "Washington Square",
+  "author": "James",
+  "gid": 2870,
+  "titre_gutenberg": "Washington Square",
+  "statut": "ok",
+  "personnes": [
+   "James, Henry (1843-1916)"
+  ]
+ },
+ {
+  "title": "Daisy Miller",
+  "author": "James",
+  "gid": 208,
+  "titre_gutenberg": "Daisy Miller: A Study",
+  "statut": "ok",
+  "personnes": [
+   "James, Henry (1843-1916)"
+  ]
+ },
+ {
+  "title": "The Ambassadors",
+  "author": "James",
+  "gid": 432,
+  "titre_gutenberg": "The Ambassadors",
+  "statut": "ok",
+  "personnes": [
+   "James, Henry (1843-1916)"
+  ]
+ },
+ {
+  "title": "The House of Mirth",
+  "author": "Wharton",
+  "gid": 284,
+  "titre_gutenberg": "The House of Mirth",
+  "statut": "ok",
+  "personnes": [
+   "Wharton, Edith (1862-1937)"
+  ]
+ },
+ {
+  "title": "Ethan Frome",
+  "author": "Wharton",
+  "gid": 4517,
+  "titre_gutenberg": "Ethan Frome",
+  "statut": "ok",
+  "personnes": [
+   "Wharton, Edith (1862-1937)"
+  ]
+ },
+ {
+  "title": "The Awakening",
+  "author": "Chopin",
+  "gid": 160,
+  "titre_gutenberg": "The Awakening, and Selected Short Stories",
+  "statut": "ok",
+  "personnes": [
+   "Chopin, Kate (1850-1904)"
+  ]
+ },
+ {
+  "title": "The Yellow Wallpaper",
+  "author": "Gilman",
+  "gid": 1952,
+  "titre_gutenberg": "The Yellow Wallpaper",
+  "statut": "ok",
+  "personnes": [
+   "Gilman, Charlotte Perkins (1860-1935)"
+  ]
+ },
+ {
+  "title": "Herland",
+  "author": "Gilman",
+  "gid": 32,
+  "titre_gutenberg": "Herland",
+  "statut": "ok",
+  "personnes": [
+   "Gilman, Charlotte Perkins (1860-1935)"
+  ]
+ },
+ {
+  "title": "The Red Badge of Courage",
+  "author": "Crane",
+  "gid": 73,
+  "titre_gutenberg": "The Red Badge of Courage: An Episode of the American Civil War",
+  "statut": "ok",
+  "personnes": [
+   "Crane, Stephen (1871-1900)"
+  ]
+ },
+ {
+  "title": "Maggie: A Girl of the Streets",
+  "author": "Crane",
+  "gid": 447,
+  "titre_gutenberg": "Maggie: A Girl of the Streets",
+  "statut": "ok",
+  "personnes": [
+   "Crane, Stephen (1871-1900)"
+  ]
+ },
+ {
+  "title": "The Jungle",
+  "author": "Sinclair",
+  "gid": 140,
+  "titre_gutenberg": "The Jungle",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Sinclair, Upton (1878-1968)"
+  ]
+ },
+ {
+  "title": "Main Street",
+  "author": "Lewis",
+  "gid": 543,
+  "titre_gutenberg": "Main Street",
+  "statut": "ok",
+  "personnes": [
+   "Lewis, Sinclair (1885-1951)"
+  ]
+ },
+ {
+  "title": "Babbitt",
+  "author": "Lewis",
+  "gid": 1156,
+  "titre_gutenberg": "Babbitt",
+  "statut": "ok",
+  "personnes": [
+   "Lewis, Sinclair (1885-1951)"
+  ]
+ },
+ {
+  "title": "My Ántonia",
+  "author": "Cather",
+  "gid": 242,
+  "titre_gutenberg": "My Ántonia",
+  "statut": "ok",
+  "personnes": [
+   "Cather, Willa (1873-1947)"
+  ]
+ },
+ {
+  "title": "O Pioneers!",
+  "author": "Cather",
+  "gid": 24,
+  "titre_gutenberg": "O Pioneers!",
+  "statut": "ok",
+  "personnes": [
+   "Cather, Willa (1873-1947)"
+  ]
+ },
+ {
+  "title": "The Song of the Lark",
+  "author": "Cather",
+  "gid": 44,
+  "titre_gutenberg": "The Song of the Lark",
+  "statut": "ok",
+  "personnes": [
+   "Cather, Willa (1873-1947)"
+  ]
+ },
+ {
+  "title": "Sister Carrie",
+  "author": "Dreiser",
+  "gid": 5267,
+  "titre_gutenberg": "Sister Carrie",
+  "statut": "ok",
+  "personnes": [
+   "Dreiser, Theodore (1871-1945)"
+  ]
+ },
+ {
+  "title": "McTeague",
+  "author": "Norris",
+  "gid": 165,
+  "titre_gutenberg": "McTeague: A Story of San Francisco",
+  "statut": "ok",
+  "personnes": [
+   "Norris, Frank (1870-1902)"
+  ]
+ },
+ {
+  "title": "The House of the Seven Gables",
+  "author": "Hawthorne",
+  "gid": 77,
+  "titre_gutenberg": "The House of the Seven Gables",
+  "statut": "ok",
+  "personnes": [
+   "Hawthorne, Nathaniel (1804-1864)"
+  ]
+ },
+ {
+  "title": "The Blithedale Romance",
+  "author": "Hawthorne",
+  "gid": 2081,
+  "titre_gutenberg": "The Blithedale Romance",
+  "statut": "ok",
+  "personnes": [
+   "Hawthorne, Nathaniel (1804-1864)"
+  ]
+ },
+ {
+  "title": "Twice-Told Tales",
+  "author": "Hawthorne",
+  "gid": 508,
+  "titre_gutenberg": "Twice-Told Tales",
+  "statut": "ok",
+  "personnes": [
+   "Hawthorne, Nathaniel (1804-1864)"
+  ]
+ },
+ {
+  "title": "The Legend of Sleepy Hollow",
+  "author": "Irving",
+  "gid": 41,
+  "titre_gutenberg": "The Legend of Sleepy Hollow",
+  "statut": "ok",
+  "personnes": [
+   "Irving, Washington (1783-1859)"
+  ]
+ },
+ {
+  "title": "Rip Van Winkle",
+  "author": "Irving",
+  "gid": 60976,
+  "titre_gutenberg": "Rip Van Winkle",
+  "statut": "ok",
+  "personnes": [
+   "Irving, Washington (1783-1859)",
+   "Rackham, Arthur (1867-1939) Illustrator"
+  ]
+ },
+ {
+  "title": "The Deerslayer",
+  "author": "Cooper",
+  "gid": 3285,
+  "titre_gutenberg": "The Deerslayer",
+  "statut": "ok",
+  "personnes": [
+   "Cooper, James Fenimore (1789-1851)"
+  ]
+ },
+ {
+  "title": "The Pathfinder",
+  "author": "Cooper",
+  "gid": 1880,
+  "titre_gutenberg": "The Pathfinder; Or, The Inland Sea",
+  "statut": "ok",
+  "personnes": [
+   "Cooper, James Fenimore (1789-1851)"
+  ]
+ },
+ {
+  "title": "Typee",
+  "author": "Melville",
+  "gid": 28656,
+  "titre_gutenberg": "Typee",
+  "statut": "ok",
+  "personnes": [
+   "Melville, Herman (1819-1891)"
+  ]
+ },
+ {
+  "title": "Bartleby, the Scrivener",
+  "author": "Melville",
+  "gid": 11231,
+  "titre_gutenberg": "Bartleby, the Scrivener: A Story of Wall-Street",
+  "statut": "ok",
+  "personnes": [
+   "Melville, Herman (1819-1891)"
+  ]
+ },
+ {
+  "title": "Billy Budd",
+  "author": "Melville",
+  "gid": 76513,
+  "titre_gutenberg": "Billy Budd",
+  "statut": "ok",
+  "personnes": [
+   "Melville, Herman (1819-1891)",
+   "Weaver, Raymond M. (Raymond Melbourne) (1888-1948) Editor"
+  ]
+ },
+ {
+  "title": "Leaves of Grass",
+  "author": "Whitman",
+  "gid": 1322,
+  "titre_gutenberg": "Leaves of Grass",
+  "statut": "ok",
+  "personnes": [
+   "Whitman, Walt (1819-1892)"
+  ]
+ },
+ {
+  "title": "A Connecticut Yankee in King Arthur's Court",
+  "author": "Twain",
+  "gid": 86,
+  "titre_gutenberg": "A Connecticut Yankee in King Arthur's Court",
+  "statut": "ok",
+  "personnes": [
+   "Twain, Mark (1835-1910)"
+  ]
+ },
+ {
+  "title": "Life on the Mississippi",
+  "author": "Twain",
+  "gid": 245,
+  "titre_gutenberg": "Life on the Mississippi",
+  "statut": "ok",
+  "personnes": [
+   "Twain, Mark (1835-1910)"
+  ]
+ },
+ {
+  "title": "The Innocents Abroad",
+  "author": "Twain",
+  "gid": 3176,
+  "titre_gutenberg": "The Innocents Abroad",
+  "statut": "ok",
+  "personnes": [
+   "Twain, Mark (1835-1910)"
+  ]
+ },
+ {
+  "title": "Roughing It",
+  "author": "Twain",
+  "gid": 3177,
+  "titre_gutenberg": "Roughing It",
+  "statut": "ok",
+  "personnes": [
+   "Twain, Mark (1835-1910)"
+  ]
+ },
+ {
+  "title": "Pudd'nhead Wilson",
+  "author": "Twain",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Ben-Hur",
+  "author": "Wallace",
+  "gid": 2145,
+  "titre_gutenberg": "Ben-Hur: A tale of the Christ",
+  "statut": "ok",
+  "personnes": [
+   "Wallace, Lew (1827-1905)"
+  ]
+ },
+ {
+  "title": "Looking Backward",
+  "author": "Bellamy",
+  "gid": 25439,
+  "titre_gutenberg": "Looking Backward: 2000-1887",
+  "statut": "ok",
+  "personnes": [
+   "Bellamy, Edward (1850-1898)"
+  ]
+ },
+ {
+  "title": "The Gilded Age",
+  "author": "Twain",
+  "gid": 3178,
+  "titre_gutenberg": "The Gilded Age: A Tale of Today",
+  "statut": "ok",
+  "personnes": [
+   "Twain, Mark (1835-1910)",
+   "Warner, Charles Dudley (1829-1900)"
+  ]
+ },
+ {
+  "title": "Little Men",
+  "author": "Alcott",
+  "gid": 2788,
+  "titre_gutenberg": "Little Men: Life at Plumfield With Jo's Boys",
+  "statut": "ok",
+  "personnes": [
+   "Alcott, Louisa May (1832-1888)"
+  ]
+ },
+ {
+  "title": "Jo's Boys",
+  "author": "Alcott",
+  "gid": 3499,
+  "titre_gutenberg": "Jo's Boys",
+  "statut": "ok",
+  "personnes": [
+   "Alcott, Louisa May (1832-1888)"
+  ]
+ },
+ {
+  "title": "Rebecca of Sunnybrook Farm",
+  "author": "Wiggin",
+  "gid": 498,
+  "titre_gutenberg": "Rebecca of Sunnybrook Farm",
+  "statut": "ok",
+  "personnes": [
+   "Wiggin, Kate Douglas Smith (1856-1923)"
+  ]
+ },
+ {
+  "title": "Pollyanna",
+  "author": "Porter",
+  "gid": 1450,
+  "titre_gutenberg": "Pollyanna",
+  "statut": "ok",
+  "personnes": [
+   "Porter, Eleanor H. (Eleanor Hodgman) (1868-1920)"
+  ]
+ },
+ {
+  "title": "Heidi",
+  "author": "Spyri",
+  "gid": 1448,
+  "titre_gutenberg": "Heidi",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Spyri, Johanna (1827-1901)",
+   "Edwards, Marion (None-None) Translator"
+  ]
+ },
+ {
+  "title": "Black Beauty",
+  "author": "Sewell",
+  "gid": 271,
+  "titre_gutenberg": "Black Beauty",
+  "statut": "ok",
+  "personnes": [
+   "Sewell, Anna (1820-1878)"
+  ]
+ },
+ {
+  "title": "Little Lord Fauntleroy",
+  "author": "Burnett",
+  "gid": 479,
+  "titre_gutenberg": "Little Lord Fauntleroy",
+  "statut": "ok",
+  "personnes": [
+   "Burnett, Frances Hodgson (1849-1924)"
+  ]
+ },
+ {
+  "title": "A Little Princess",
+  "author": "Burnett",
+  "gid": 146,
+  "titre_gutenberg": "A Little Princess Being the whole story of Sara Crewe now told for the first time",
+  "statut": "ok",
+  "personnes": [
+   "Burnett, Frances Hodgson (1849-1924)"
+  ]
+ },
+ {
+  "title": "The Princess and the Goblin",
+  "author": "MacDonald",
+  "gid": 708,
+  "titre_gutenberg": "The Princess and the Goblin",
+  "statut": "ok",
+  "personnes": [
+   "MacDonald, George (1824-1905)"
+  ]
+ },
+ {
+  "title": "At the Back of the North Wind",
+  "author": "MacDonald",
+  "gid": 225,
+  "titre_gutenberg": "At the Back of the North Wind",
+  "statut": "ok",
+  "personnes": [
+   "MacDonald, George (1824-1905)"
+  ]
+ },
+ {
+  "title": "Through the Looking-Glass",
+  "author": "Carroll",
+  "gid": 12,
+  "titre_gutenberg": "Through the Looking-Glass",
+  "statut": "ok",
+  "personnes": [
+   "Carroll, Lewis (1832-1898)"
+  ]
+ },
+ {
+  "title": "The Water-Babies",
+  "author": "Kingsley",
+  "gid": 1018,
+  "titre_gutenberg": "The Water-Babies",
+  "statut": "ok",
+  "personnes": [
+   "Kingsley, Charles (1819-1875)"
+  ]
+ },
+ {
+  "title": "Five Children and It",
+  "author": "Nesbit",
+  "gid": 778,
+  "titre_gutenberg": "Five Children and It",
+  "statut": "ok",
+  "personnes": [
+   "Nesbit, E. (Edith) (1858-1924)"
+  ]
+ },
+ {
+  "title": "The Story of the Treasure Seekers",
+  "author": "Nesbit",
+  "gid": 770,
+  "titre_gutenberg": "The Story of the Treasure Seekers Being the Adventures of the Bastable Children in Search of a Fortu",
+  "statut": "ok",
+  "personnes": [
+   "Nesbit, E. (Edith) (1858-1924)"
+  ]
+ },
+ {
+  "title": "Just So Stories",
+  "author": "Kipling",
+  "gid": 2781,
+  "titre_gutenberg": "Just so stories",
+  "statut": "ok",
+  "personnes": [
+   "Kipling, Rudyard (1865-1936)"
+  ]
+ },
+ {
+  "title": "Kim",
+  "author": "Kipling",
+  "gid": 2226,
+  "titre_gutenberg": "Kim",
+  "statut": "ok",
+  "personnes": [
+   "Kipling, Rudyard (1865-1936)"
+  ]
+ },
+ {
+  "title": "Captains Courageous",
+  "author": "Kipling",
+  "gid": 2186,
+  "titre_gutenberg": "\"Captains Courageous\": A Story of the Grand Banks",
+  "statut": "ok",
+  "personnes": [
+   "Kipling, Rudyard (1865-1936)"
+  ]
+ },
+ {
+  "title": "The Man Who Would Be King",
+  "author": "Kipling",
+  "gid": 8147,
+  "titre_gutenberg": "The Man Who Would Be King",
+  "statut": "ok",
+  "personnes": [
+   "Kipling, Rudyard (1865-1936)"
+  ]
+ },
+ {
+  "title": "The Sea-Wolf",
+  "author": "London",
+  "gid": 1074,
+  "titre_gutenberg": "The Sea-Wolf",
+  "statut": "ok",
+  "personnes": [
+   "London, Jack (1876-1916)"
+  ]
+ },
+ {
+  "title": "Martin Eden",
+  "author": "London",
+  "gid": 1056,
+  "titre_gutenberg": "Martin Eden",
+  "statut": "ok",
+  "personnes": [
+   "London, Jack (1876-1916)"
+  ]
+ },
+ {
+  "title": "The Iron Heel",
+  "author": "London",
+  "gid": 1164,
+  "titre_gutenberg": "The iron heel",
+  "statut": "ok",
+  "personnes": [
+   "London, Jack (1876-1916)"
+  ]
+ },
+ {
+  "title": "The Lost World",
+  "author": "Doyle",
+  "gid": 139,
+  "titre_gutenberg": "The Lost World",
+  "statut": "ok",
+  "personnes": [
+   "Doyle, Arthur Conan (1859-1930)"
+  ]
+ },
+ {
+  "title": "The Sign of the Four",
+  "author": "Doyle",
+  "gid": 2097,
+  "titre_gutenberg": "The Sign of the Four",
+  "statut": "ok",
+  "personnes": [
+   "Doyle, Arthur Conan (1859-1930)"
+  ]
+ },
+ {
+  "title": "The Memoirs of Sherlock Holmes",
+  "author": "Doyle",
+  "gid": 834,
+  "titre_gutenberg": "The Memoirs of Sherlock Holmes",
+  "statut": "ok",
+  "personnes": [
+   "Doyle, Arthur Conan (1859-1930)"
+  ]
+ },
+ {
+  "title": "The Return of Sherlock Holmes",
+  "author": "Doyle",
+  "gid": 108,
+  "titre_gutenberg": "The Return of Sherlock Holmes",
+  "statut": "ok",
+  "personnes": [
+   "Doyle, Arthur Conan (1859-1930)"
+  ]
+ },
+ {
+  "title": "The Valley of Fear",
+  "author": "Doyle",
+  "gid": 3289,
+  "titre_gutenberg": "The Valley of Fear",
+  "statut": "ok",
+  "personnes": [
+   "Doyle, Arthur Conan (1859-1930)"
+  ]
+ },
+ {
+  "title": "His Last Bow",
+  "author": "Doyle",
+  "gid": 2350,
+  "titre_gutenberg": "His last bow",
+  "statut": "ok",
+  "personnes": [
+   "Doyle, Arthur Conan (1859-1930)"
+  ]
+ },
+ {
+  "title": "The First Men in the Moon",
+  "author": "Wells",
+  "gid": 1013,
+  "titre_gutenberg": "The First Men in the Moon",
+  "statut": "ok",
+  "personnes": [
+   "Wells, H. G. (Herbert George) (1866-1946)"
+  ]
+ },
+ {
+  "title": "The Food of the Gods",
+  "author": "Wells",
+  "gid": 11696,
+  "titre_gutenberg": "The Food of the Gods and How It Came to Earth",
+  "statut": "ok",
+  "personnes": [
+   "Wells, H. G. (Herbert George) (1866-1946)"
+  ]
+ },
+ {
+  "title": "The Sleeper Awakes",
+  "author": "Wells",
+  "gid": 12163,
+  "titre_gutenberg": "The Sleeper Awakes A Revised Edition of When the Sleeper Wakes",
+  "statut": "ok",
+  "personnes": [
+   "Wells, H. G. (Herbert George) (1866-1946)"
+  ]
+ },
+ {
+  "title": "Kipps",
+  "author": "Wells",
+  "gid": 39162,
+  "titre_gutenberg": "Kipps: The Story of a Simple Soul",
+  "statut": "ok",
+  "personnes": [
+   "Wells, H. G. (Herbert George) (1866-1946)"
+  ]
+ },
+ {
+  "title": "The Thirty-Nine Steps",
+  "author": "Buchan",
+  "gid": 558,
+  "titre_gutenberg": "The Thirty-Nine Steps",
+  "statut": "ok",
+  "personnes": [
+   "Buchan, John (1875-1940)"
+  ]
+ },
+ {
+  "title": "Greenmantle",
+  "author": "Buchan",
+  "gid": 559,
+  "titre_gutenberg": "Greenmantle",
+  "statut": "ok",
+  "personnes": [
+   "Buchan, John (1875-1940)"
+  ]
+ },
+ {
+  "title": "The Prisoner of Zenda",
+  "author": "Hope",
+  "gid": 95,
+  "titre_gutenberg": "The prisoner of Zenda",
+  "statut": "ok",
+  "personnes": [
+   "Hope, Anthony (1863-1933)"
+  ]
+ },
+ {
+  "title": "King Solomon's Mines",
+  "author": "Haggard",
+  "gid": 2166,
+  "titre_gutenberg": "King Solomon's Mines",
+  "statut": "ok",
+  "personnes": [
+   "Haggard, H. Rider (Henry Rider) (1856-1925)"
+  ]
+ },
+ {
+  "title": "She",
+  "author": "Haggard",
+  "gid": 3155,
+  "titre_gutenberg": "She",
+  "statut": "ok",
+  "personnes": [
+   "Haggard, H. Rider (Henry Rider) (1856-1925)"
+  ]
+ },
+ {
+  "title": "Allan Quatermain",
+  "author": "Haggard",
+  "gid": 711,
+  "titre_gutenberg": "Allan Quatermain",
+  "statut": "ok",
+  "personnes": [
+   "Haggard, H. Rider (Henry Rider) (1856-1925)"
+  ]
+ },
+ {
+  "title": "The Master of Ballantrae",
+  "author": "Stevenson",
+  "gid": 864,
+  "titre_gutenberg": "The Master of Ballantrae: A Winter's Tale",
+  "statut": "ok",
+  "personnes": [
+   "Stevenson, Robert Louis (1850-1894)"
+  ]
+ },
+ {
+  "title": "The Black Arrow",
+  "author": "Stevenson",
+  "gid": 848,
+  "titre_gutenberg": "The Black Arrow: A Tale of the Two Roses",
+  "statut": "ok",
+  "personnes": [
+   "Stevenson, Robert Louis (1850-1894)"
+  ]
+ },
+ {
+  "title": "New Arabian Nights",
+  "author": "Stevenson",
+  "gid": 839,
+  "titre_gutenberg": "New Arabian Nights",
+  "statut": "ok",
+  "personnes": [
+   "Stevenson, Robert Louis (1850-1894)"
+  ]
+ },
+ {
+  "title": "Lord Jim",
+  "author": "Conrad",
+  "gid": 5658,
+  "titre_gutenberg": "Lord Jim",
+  "statut": "ok",
+  "personnes": [
+   "Conrad, Joseph (1857-1924)"
+  ]
+ },
+ {
+  "title": "Nostromo",
+  "author": "Conrad",
+  "gid": 2021,
+  "titre_gutenberg": "Nostromo: A Tale of the Seaboard",
+  "statut": "ok",
+  "personnes": [
+   "Conrad, Joseph (1857-1924)"
+  ]
+ },
+ {
+  "title": "The Secret Agent",
+  "author": "Conrad",
+  "gid": 974,
+  "titre_gutenberg": "The Secret Agent: A Simple Tale",
+  "statut": "ok",
+  "personnes": [
+   "Conrad, Joseph (1857-1924)"
+  ]
+ },
+ {
+  "title": "Typhoon",
+  "author": "Conrad",
+  "gid": 1142,
+  "titre_gutenberg": "Typhoon",
+  "statut": "ok",
+  "personnes": [
+   "Conrad, Joseph (1857-1924)"
+  ]
+ },
+ {
+  "title": "Carmilla",
+  "author": "Le Fanu",
+  "gid": 10007,
+  "titre_gutenberg": "Carmilla",
+  "statut": "ok",
+  "personnes": [
+   "Le Fanu, Joseph Sheridan (1814-1873)"
+  ]
+ },
+ {
+  "title": "Uncle Silas",
+  "author": "Le Fanu",
+  "gid": 14851,
+  "titre_gutenberg": "Uncle Silas: A Tale of Bartram-Haugh",
+  "statut": "ok",
+  "personnes": [
+   "Le Fanu, Joseph Sheridan (1814-1873)"
+  ]
+ },
+ {
+  "title": "The Beetle",
+  "author": "Marsh",
+  "gid": 5164,
+  "titre_gutenberg": "The Beetle: A Mystery",
+  "statut": "ok",
+  "personnes": [
+   "Marsh, Richard (1857-1915)"
+  ]
+ },
+ {
+  "title": "The King in Yellow",
+  "author": "Chambers",
+  "gid": 8492,
+  "titre_gutenberg": "The King in Yellow",
+  "statut": "ok",
+  "personnes": [
+   "Chambers, Robert W. (Robert William) (1865-1933)"
+  ]
+ },
+ {
+  "title": "The Canterville Ghost",
+  "author": "Wilde",
+  "gid": 14522,
+  "titre_gutenberg": "The Canterville Ghost",
+  "statut": "ok",
+  "personnes": [
+   "Wilde, Oscar (1854-1900)",
+   "Goldsmith, Wallace (1873-1945) Illustrator"
+  ]
+ },
+ {
+  "title": "The Happy Prince and Other Tales",
+  "author": "Wilde",
+  "gid": 902,
+  "titre_gutenberg": "The Happy Prince, and Other Tales",
+  "statut": "ok",
+  "personnes": [
+   "Wilde, Oscar (1854-1900)"
+  ]
+ },
+ {
+  "title": "An Ideal Husband",
+  "author": "Wilde",
+  "gid": 885,
+  "titre_gutenberg": "An ideal husband",
+  "statut": "ok",
+  "personnes": [
+   "Wilde, Oscar (1854-1900)"
+  ]
+ },
+ {
+  "title": "Lady Windermere's Fan",
+  "author": "Wilde",
+  "gid": 790,
+  "titre_gutenberg": "Lady Windermere's Fan",
+  "statut": "ok",
+  "personnes": [
+   "Wilde, Oscar (1854-1900)"
+  ]
+ },
+ {
+  "title": "Salomé",
+  "author": "Wilde",
+  "gid": 42704,
+  "titre_gutenberg": "Salomé: A Tragedy in One Act",
+  "statut": "ok",
+  "personnes": [
+   "Wilde, Oscar (1854-1900)",
+   "Ross, Robert Baldwin (1869-1918) Author of introduction, etc.",
+   "Beardsley, Aubrey (1872-1898) Illustrator",
+   "Douglas, Alfred Bruce (1870-1945) Translator"
+  ]
+ },
+ {
+  "title": "De Profundis",
+  "author": "Wilde",
+  "gid": 921,
+  "titre_gutenberg": "De Profundis",
+  "statut": "ok",
+  "personnes": [
+   "Wilde, Oscar (1854-1900)"
+  ]
+ },
+ {
+  "title": "Pygmalion",
+  "author": "Shaw",
+  "gid": 3825,
+  "titre_gutenberg": "Pygmalion",
+  "statut": "ok",
+  "personnes": [
+   "Shaw, Bernard (1856-1950)"
+  ]
+ },
+ {
+  "title": "Arms and the Man",
+  "author": "Shaw",
+  "gid": 3618,
+  "titre_gutenberg": "Arms and the Man",
+  "statut": "ok",
+  "personnes": [
+   "Shaw, Bernard (1856-1950)"
+  ]
+ },
+ {
+  "title": "Major Barbara",
+  "author": "Shaw",
+  "gid": 3790,
+  "titre_gutenberg": "Major Barbara",
+  "statut": "ok",
+  "personnes": [
+   "Shaw, Bernard (1856-1950)"
+  ]
+ },
+ {
+  "title": "Mrs. Warren's Profession",
+  "author": "Shaw",
+  "gid": 1097,
+  "titre_gutenberg": "Mrs. Warren's Profession",
+  "statut": "ok",
+  "personnes": [
+   "Shaw, Bernard (1856-1950)"
+  ]
+ },
+ {
+  "title": "She Stoops to Conquer",
+  "author": "Goldsmith",
+  "gid": 383,
+  "titre_gutenberg": "She Stoops to Conquer; Or, The Mistakes of a Night: A Comedy",
+  "statut": "ok",
+  "personnes": [
+   "Goldsmith, Oliver (1730-1774)"
+  ]
+ },
+ {
+  "title": "The School for Scandal",
+  "author": "Sheridan",
+  "gid": 1929,
+  "titre_gutenberg": "The School for Scandal",
+  "statut": "ok",
+  "personnes": [
+   "Sheridan, Richard Brinsley (1751-1816)"
+  ]
+ },
+ {
+  "title": "The Rivals",
+  "author": "Sheridan",
+  "gid": 24761,
+  "titre_gutenberg": "The Rivals: A Comedy",
+  "statut": "ok",
+  "personnes": [
+   "Sheridan, Richard Brinsley (1751-1816)"
+  ]
+ },
+ {
+  "title": "Doctor Faustus",
+  "author": "Marlowe",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Duchess of Malfi",
+  "author": "Webster",
+  "gid": 2232,
+  "titre_gutenberg": "The Duchess of Malfi",
+  "statut": "ok",
+  "personnes": [
+   "Webster, John (1580-1625)"
+  ]
+ },
+ {
+  "title": "Volpone",
+  "author": "Jonson",
+  "gid": 4039,
+  "titre_gutenberg": "Volpone; Or, The Fox",
+  "statut": "ok",
+  "personnes": [
+   "Jonson, Ben (1573-1637)"
+  ]
+ },
+ {
+  "title": "Twelfth Night",
+  "author": "Shakespeare",
+  "gid": 1123,
+  "titre_gutenberg": "Twelfth Night",
+  "statut": "ok",
+  "personnes": [
+   "Shakespeare, William (1564-1616)"
+  ]
+ },
+ {
+  "title": "Much Ado About Nothing",
+  "author": "Shakespeare",
+  "gid": 1118,
+  "titre_gutenberg": "Much Ado about Nothing",
+  "statut": "ok",
+  "personnes": [
+   "Shakespeare, William (1564-1616)"
+  ]
+ },
+ {
+  "title": "The Merchant of Venice",
+  "author": "Shakespeare",
+  "gid": 1114,
+  "titre_gutenberg": "The Merchant of Venice",
+  "statut": "ok",
+  "personnes": [
+   "Shakespeare, William (1564-1616)"
+  ]
+ },
+ {
+  "title": "Julius Caesar",
+  "author": "Shakespeare",
+  "gid": 1120,
+  "titre_gutenberg": "Julius Caesar",
+  "statut": "ok",
+  "personnes": [
+   "Shakespeare, William (1564-1616)"
+  ]
+ },
+ {
+  "title": "As You Like It",
+  "author": "Shakespeare",
+  "gid": 1121,
+  "titre_gutenberg": "As You Like It",
+  "statut": "ok",
+  "personnes": [
+   "Shakespeare, William (1564-1616)"
+  ]
+ },
+ {
+  "title": "Richard III",
+  "author": "Shakespeare",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Antony and Cleopatra",
+  "author": "Shakespeare",
+  "gid": 1130,
+  "titre_gutenberg": "Antony and Cleopatra",
+  "statut": "ok",
+  "personnes": [
+   "Shakespeare, William (1564-1616)"
+  ]
+ },
+ {
+  "title": "The Taming of the Shrew",
+  "author": "Shakespeare",
+  "gid": 1107,
+  "titre_gutenberg": "The Taming of the Shrew",
+  "statut": "ok",
+  "personnes": [
+   "Shakespeare, William (1564-1616)"
+  ]
+ },
+ {
+  "title": "Henry V",
+  "author": "Shakespeare",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Winter's Tale",
+  "author": "Shakespeare",
+  "gid": 1134,
+  "titre_gutenberg": "The Winter's Tale",
+  "statut": "ok",
+  "personnes": [
+   "Shakespeare, William (1564-1616)"
+  ]
+ },
+ {
+  "title": "Shakespeare's Sonnets",
+  "author": "Shakespeare",
+  "gid": 1041,
+  "titre_gutenberg": "Shakespeare's Sonnets",
+  "statut": "ok",
+  "personnes": [
+   "Shakespeare, William (1564-1616)"
+  ]
+ },
+ {
+  "title": "A Doll's House",
+  "author": "Ibsen",
+  "gid": 15492,
+  "titre_gutenberg": "A Doll's House",
+  "statut": "ok",
+  "personnes": [
+   "Ibsen, Henrik (1828-1906)",
+   "Haldeman-Julius, E. (Emanuel) (1888-1951) Editor",
+   "Sharp, R. Farquharson (Robert Farquharson) (1864-1945) Translator"
+  ]
+ },
+ {
+  "title": "Hedda Gabler",
+  "author": "Ibsen",
+  "gid": 4093,
+  "titre_gutenberg": "Hedda Gabler",
+  "statut": "ok",
+  "personnes": [
+   "Ibsen, Henrik (1828-1906)",
+   "Archer, William (1856-1924) Translator",
+   "Gosse, Edmund (1849-1928) Translator"
+  ]
+ },
+ {
+  "title": "An Enemy of the People",
+  "author": "Ibsen",
+  "gid": 2446,
+  "titre_gutenberg": "An Enemy of the People",
+  "statut": "ok",
+  "personnes": [
+   "Ibsen, Henrik (1828-1906)",
+   "Sharp, R. Farquharson (Robert Farquharson) (1864-1945) Translator"
+  ]
+ },
+ {
+  "title": "Ghosts",
+  "author": "Ibsen",
+  "gid": 8121,
+  "titre_gutenberg": "Ghosts",
+  "statut": "ok",
+  "personnes": [
+   "Ibsen, Henrik (1828-1906)",
+   "Archer, William (1856-1924) Translator"
+  ]
+ },
+ {
+  "title": "Peer Gynt",
+  "author": "Ibsen",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Wild Duck",
+  "author": "Ibsen",
+  "gid": 73631,
+  "titre_gutenberg": "The wild duck",
+  "statut": "ok",
+  "personnes": [
+   "Ibsen, Henrik (1828-1906)",
+   "Aveling, Eleanor Marx (1855-1898) Translator"
+  ]
+ },
+ {
+  "title": "The Cherry Orchard",
+  "author": "Chekhov",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Seagull",
+  "author": "Chekhov",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Uncle Vanya",
+  "author": "Chekhov",
+  "gid": 1756,
+  "titre_gutenberg": "Uncle Vanya: Scenes from Country Life in Four Acts",
+  "statut": "ok",
+  "personnes": [
+   "Chekhov, Anton Pavlovich (1860-1904)"
+  ]
+ },
+ {
+  "title": "Miss Julie",
+  "author": "Strindberg",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Cyrano de Bergerac",
+  "author": "Rostand",
+  "gid": 1254,
+  "titre_gutenberg": "Cyrano de Bergerac",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Rostand, Edmond (1868-1918)",
+   "Guillemard, Mary F. (None-None) Translator",
+   "Thomas, Gladys (None-None) Translator"
+  ]
+ },
+ {
+  "title": "Tartuffe",
+  "author": "Molière",
+  "gid": 2027,
+  "titre_gutenberg": "Tartuffe; Or, The Hypocrite",
+  "statut": "ok",
+  "personnes": [
+   "Molière (1622-1673)",
+   "Page, Curtis Hidden (1870-1946) Translator"
+  ]
+ },
+ {
+  "title": "The Misanthrope",
+  "author": "Molière",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Imaginary Invalid",
+  "author": "Molière",
+  "gid": 9070,
+  "titre_gutenberg": "The Imaginary Invalid",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Molière (1622-1673)",
+   "Wall, Charles Heron (None-None) Translator"
+  ]
+ },
+ {
+  "title": "The Miser",
+  "author": "Molière",
+  "gid": 6923,
+  "titre_gutenberg": "The Miser",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Molière (1622-1673)",
+   "Wall, Charles Heron (None-None) Translator"
+  ]
+ },
+ {
+  "title": "Phaedra",
+  "author": "Racine",
+  "gid": 1977,
+  "titre_gutenberg": "Phaedra",
+  "statut": "ok",
+  "personnes": [
+   "Racine, Jean (1639-1699)",
+   "Boswell, Robert Bruce (1846-1933) Translator"
+  ]
+ },
+ {
+  "title": "The Cid",
+  "author": "Corneille",
+  "gid": 14954,
+  "titre_gutenberg": "The Cid",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Corneille, Pierre (1606-1684)",
+   "Mongan, Roscoe (None-None) Translator"
+  ]
+ },
+ {
+  "title": "The Barber of Seville",
+  "author": "Beaumarchais",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Marriage of Figaro",
+  "author": "Beaumarchais",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Dangerous Liaisons",
+  "author": "Laclos",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Manon Lescaut",
+  "author": "Prévost",
+  "gid": 468,
+  "titre_gutenberg": "Manon Lescaut",
+  "statut": "ok",
+  "personnes": [
+   "Prévost, abbé (1697-1763)"
+  ]
+ },
+ {
+  "title": "The Princess of Clèves",
+  "author": "La Fayette",
+  "gid": 467,
+  "titre_gutenberg": "The Princess of Cleves",
+  "statut": "ok",
+  "personnes": [
+   "La Fayette, Madame de (Marie-Madeleine Pioche de La Vergne) (1634-1693)"
+  ]
+ },
+ {
+  "title": "Gargantua and Pantagruel",
+  "author": "Rabelais",
+  "gid": 1200,
+  "titre_gutenberg": "Gargantua and Pantagruel",
+  "statut": "ok",
+  "personnes": [
+   "Rabelais, François (1490-1553)",
+   "Doré, Gustave (1832-1883) Illustrator",
+   "Motteux, Peter Anthony (1660-1718) Translator",
+   "Urquhart, Thomas, Sir (1611-1660) Translator"
+  ]
+ },
+ {
+  "title": "Essays",
+  "author": "Montaigne",
+  "gid": 3600,
+  "titre_gutenberg": "Essays of Michel de Montaigne — Complete",
+  "statut": "ok",
+  "personnes": [
+   "Montaigne, Michel de (1533-1592)",
+   "Hazlitt, William Carew (1834-1913) Editor",
+   "Cotton, Charles (1630-1687) Translator"
+  ]
+ },
+ {
+  "title": "Pensées",
+  "author": "Pascal",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Maxims",
+  "author": "La Rochefoucauld",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Fables",
+  "author": "La Fontaine",
+  "gid": 7241,
+  "titre_gutenberg": "Fables of La Fontaine — a New Edition, with Notes",
+  "statut": "ok",
+  "personnes": [
+   "La Fontaine, Jean de (1621-1695)",
+   "Gibbs, J. W. M. (None-None) Annotator",
+   "Wright, Elizur (1804-1885) Translator"
+  ]
+ },
+ {
+  "title": "Persian Letters",
+  "author": "Montesquieu",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Social Contract",
+  "author": "Rousseau",
+  "gid": 46333,
+  "titre_gutenberg": "The social contract & discourses",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Rousseau, Jean-Jacques (1712-1778)",
+   "Cole, G. D. H. (George Douglas Howard) (1889-1959) Translator"
+  ]
+ },
+ {
+  "title": "Confessions",
+  "author": "Rousseau",
+  "gid": 3913,
+  "titre_gutenberg": "The Confessions of Jean Jacques Rousseau — Complete",
+  "statut": "ok",
+  "personnes": [
+   "Rousseau, Jean-Jacques (1712-1778)"
+  ]
+ },
+ {
+  "title": "Emile",
+  "author": "Rousseau",
+  "gid": 5427,
+  "titre_gutenberg": "Emile",
+  "statut": "ok",
+  "personnes": [
+   "Rousseau, Jean-Jacques (1712-1778)"
+  ]
+ },
+ {
+  "title": "Eugénie Grandet",
+  "author": "Balzac",
+  "gid": 1715,
+  "titre_gutenberg": "Eugenie Grandet",
+  "statut": "ok",
+  "personnes": [
+   "Balzac, Honoré de (1799-1850)",
+   "Wormeley, Katharine Prescott (1830-1908) Translator"
+  ]
+ },
+ {
+  "title": "Cousin Bette",
+  "author": "Balzac",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Lost Illusions",
+  "author": "Balzac",
+  "gid": 13159,
+  "titre_gutenberg": "Lost Illusions",
+  "statut": "ok",
+  "personnes": [
+   "Balzac, Honoré de (1799-1850)",
+   "Marriage, Ellen (1865-1946) Translator"
+  ]
+ },
+ {
+  "title": "The Wild Ass's Skin",
+  "author": "Balzac",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Charterhouse of Parma",
+  "author": "Stendhal",
+  "gid": 66374,
+  "titre_gutenberg": "The Charterhouse of Parma, Volume 1",
+  "statut": "a_verifier_volumes",
+  "personnes": [
+   "Stendhal (1783-1842)",
+   "Balzac, Honoré de (1799-1850) Contributor",
+   "Scott-Moncrieff, C. K. (Charles Kenneth) (1889-1930) Translator"
+  ]
+ },
+ {
+  "title": "Nana",
+  "author": "Zola",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Ladies' Paradise",
+  "author": "Zola",
+  "gid": 54726,
+  "titre_gutenberg": "The Ladies' Paradise",
+  "statut": "ok",
+  "personnes": [
+   "Zola, Émile (1840-1902)",
+   "Vizetelly, Ernest Alfred (1853-1922) Translator"
+  ]
+ },
+ {
+  "title": "Thérèse Raquin",
+  "author": "Zola",
+  "statut": "introuvable"
+ },
+ {
+  "title": "L'Assommoir",
+  "author": "Zola",
+  "gid": 8558,
+  "titre_gutenberg": "L'Assommoir",
+  "statut": "ok",
+  "personnes": [
+   "Zola, Émile (1840-1902)"
+  ]
+ },
+ {
+  "title": "The Belly of Paris",
+  "author": "Zola",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Sentimental Education",
+  "author": "Flaubert",
+  "gid": 27537,
+  "titre_gutenberg": "Sentimental Education; Or, The History of a Young Man. Volume 2",
+  "statut": "a_verifier_volumes",
+  "personnes": [
+   "Flaubert, Gustave (1821-1880)"
+  ]
+ },
+ {
+  "title": "Salammbô",
+  "author": "Flaubert",
+  "gid": 1290,
+  "titre_gutenberg": "Salammbo",
+  "statut": "ok",
+  "personnes": [
+   "Flaubert, Gustave (1821-1880)"
+  ]
+ },
+ {
+  "title": "Three Tales",
+  "author": "Flaubert",
+  "statut": "introuvable"
+ },
+ {
+  "title": "A Woman's Life",
+  "author": "Maupassant",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Pierre and Jean",
+  "author": "Maupassant",
+  "gid": 3804,
+  "titre_gutenberg": "Pierre and Jean",
+  "statut": "ok",
+  "personnes": [
+   "Maupassant, Guy de (1850-1893)",
+   "Bell, Clara (1834-1927) Translator"
+  ]
+ },
+ {
+  "title": "Boule de Suif",
+  "author": "Maupassant",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Notre-Dame de Paris",
+  "author": "Hugo",
+  "gid": 2610,
+  "titre_gutenberg": "Notre-Dame de Paris",
+  "statut": "ok",
+  "personnes": [
+   "Hugo, Victor (1802-1885)",
+   "Hapgood, Isabel Florence (1850-1928) Translator"
+  ]
+ },
+ {
+  "title": "Ninety-Three",
+  "author": "Hugo",
+  "gid": 49372,
+  "titre_gutenberg": "Ninety-Three",
+  "statut": "ok",
+  "personnes": [
+   "Hugo, Victor (1802-1885)",
+   "Delano, Aline (1845-1928) Translator"
+  ]
+ },
+ {
+  "title": "The Toilers of the Sea",
+  "author": "Hugo",
+  "gid": 32338,
+  "titre_gutenberg": "Toilers of the sea",
+  "statut": "ok",
+  "personnes": [
+   "Hugo, Victor (1802-1885)",
+   "Rhys, Ernest (1859-1946) Editor",
+   "Thomas, W. Moy (William Moy) (1828-1910) Translator"
+  ]
+ },
+ {
+  "title": "The Man Who Laughs",
+  "author": "Hugo",
+  "gid": 12587,
+  "titre_gutenberg": "The Man Who Laughs: A Romance of English History",
+  "statut": "ok",
+  "personnes": [
+   "Hugo, Victor (1802-1885)"
+  ]
+ },
+ {
+  "title": "The Vicomte de Bragelonne",
+  "author": "Dumas",
+  "gid": 2609,
+  "titre_gutenberg": "The Vicomte de Bragelonne",
+  "statut": "ok",
+  "personnes": [
+   "Dumas, Alexandre (1802-1870)",
+   "Maquet, Auguste (1813-1888)"
+  ]
+ },
+ {
+  "title": "Twenty Years After",
+  "author": "Dumas",
+  "gid": 1259,
+  "titre_gutenberg": "Twenty years after",
+  "statut": "ok",
+  "personnes": [
+   "Dumas, Alexandre (1802-1870)",
+   "Maquet, Auguste (1813-1888)"
+  ]
+ },
+ {
+  "title": "The Black Tulip",
+  "author": "Dumas",
+  "gid": 965,
+  "titre_gutenberg": "The black tulip",
+  "statut": "ok",
+  "personnes": [
+   "Dumas, Alexandre (1802-1870)",
+   "Maquet, Auguste (1813-1888)"
+  ]
+ },
+ {
+  "title": "Queen Margot",
+  "author": "Dumas",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Man in the Iron Mask",
+  "author": "Dumas",
+  "gid": 2759,
+  "titre_gutenberg": "The Man in the Iron Mask",
+  "statut": "ok",
+  "personnes": [
+   "Dumas, Alexandre (1802-1870)"
+  ]
+ },
+ {
+  "title": "The Mysterious Island",
+  "author": "Verne",
+  "gid": 1268,
+  "titre_gutenberg": "The Mysterious Island",
+  "statut": "ok",
+  "personnes": [
+   "Verne, Jules (1828-1905)",
+   "Kingston, Agnes Kinloch (1823-1913) Translator"
+  ]
+ },
+ {
+  "title": "From the Earth to the Moon",
+  "author": "Verne",
+  "gid": 83,
+  "titre_gutenberg": "From the Earth to the moon; and, round the moon",
+  "statut": "ok",
+  "personnes": [
+   "Verne, Jules (1828-1905)"
+  ]
+ },
+ {
+  "title": "Michael Strogoff",
+  "author": "Verne",
+  "gid": 1842,
+  "titre_gutenberg": "Michael Strogoff; Or, The Courier of the Czar",
+  "statut": "ok",
+  "personnes": [
+   "Verne, Jules (1828-1905)"
+  ]
+ },
+ {
+  "title": "Five Weeks in a Balloon",
+  "author": "Verne",
+  "gid": 3526,
+  "titre_gutenberg": "Five Weeks in a Balloon Or, Journeys and Discoveries in Africa by Three Englishmen",
+  "statut": "ok",
+  "personnes": [
+   "Verne, Jules (1828-1905)"
+  ]
+ },
+ {
+  "title": "In Search of the Castaways",
+  "author": "Verne",
+  "gid": 2083,
+  "titre_gutenberg": "In Search of the Castaways; Or, The Children of Captain Grant",
+  "statut": "ok",
+  "personnes": [
+   "Verne, Jules (1828-1905)"
+  ]
+ },
+ {
+  "title": "The Lady of the Camellias",
+  "author": "Dumas",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Indiana",
+  "author": "Sand",
+  "gid": 63445,
+  "titre_gutenberg": "Indiana",
+  "statut": "ok",
+  "personnes": [
+   "Sand, George (1804-1876)",
+   "Cortazzo, Oreste (1836-1912) Illustrator",
+   "Ives, George Burnham (1856-1930) Translator"
+  ]
+ },
+ {
+  "title": "The Devil's Pool",
+  "author": "Sand",
+  "gid": 12816,
+  "titre_gutenberg": "The Devil's Pool",
+  "statut": "ok",
+  "personnes": [
+   "Sand, George (1804-1876)",
+   "Rudaux, Edmond Adolphe (1840-1908) Illustrator",
+   "Ives, George Burnham (1856-1930) Translator"
+  ]
+ },
+ {
+  "title": "Colomba",
+  "author": "Mérimée",
+  "gid": 2708,
+  "titre_gutenberg": "Colomba",
+  "statut": "ok",
+  "personnes": [
+   "Mérimée, Prosper (1803-1870)",
+   "Loyd, Mary, Lady (1853-1936) Translator"
+  ]
+ },
+ {
+  "title": "Carmen",
+  "author": "Mérimée",
+  "gid": 2465,
+  "titre_gutenberg": "Carmen",
+  "statut": "ok",
+  "personnes": [
+   "Mérimée, Prosper (1803-1870)",
+   "Loyd, Mary, Lady (1853-1936) Translator"
+  ]
+ },
+ {
+  "title": "Atala",
+  "author": "Chateaubriand",
+  "gid": 44427,
+  "titre_gutenberg": "Atala",
+  "statut": "ok",
+  "personnes": [
+   "Chateaubriand, François-René, vicomte de (1768-1848)",
+   "Doré, Gustave (1832-1883) Illustrator"
+  ]
+ },
+ {
+  "title": "Adolphe",
+  "author": "Constant",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Mysteries of Paris",
+  "author": "Sue",
+  "gid": 33800,
+  "titre_gutenberg": "The Mysteries of Paris, illustrated with etchings, Vol. 1",
+  "statut": "ok",
+  "personnes": [
+   "Sue, Eugène (1804-1857)"
+  ]
+ },
+ {
+  "title": "The Wandering Jew",
+  "author": "Sue",
+  "gid": 3350,
+  "titre_gutenberg": "The Wandering Jew — Complete",
+  "statut": "ok",
+  "personnes": [
+   "Sue, Eugène (1804-1857)"
+  ]
+ },
+ {
+  "title": "Arsène Lupin, Gentleman-Burglar",
+  "author": "Leblanc",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Mystery of the Yellow Room",
+  "author": "Leroux",
+  "gid": 1685,
+  "titre_gutenberg": "The Mystery of the Yellow Room",
+  "statut": "ok",
+  "personnes": [
+   "Leroux, Gaston (1868-1927)",
+   "Simont (None-None) Illustrator"
+  ]
+ },
+ {
+  "title": "Fantômas",
+  "author": "Allain",
+  "gid": 27794,
+  "titre_gutenberg": "Fantômas",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Souvestre, Pierre (1874-1914)",
+   "Allain, Marcel (1885-1969)",
+   "Metcalfe, Cranstoun (1866-1939) Translator"
+  ]
+ },
+ {
+  "title": "Swann's Way",
+  "author": "Proust",
+  "gid": 7178,
+  "titre_gutenberg": "Swann's Way",
+  "statut": "ok",
+  "personnes": [
+   "Proust, Marcel (1871-1922)",
+   "Scott-Moncrieff, C. K. (Charles Kenneth) (1889-1930) Translator"
+  ]
+ },
+ {
+  "title": "The Immoralist",
+  "author": "Gide",
+  "gid": 78975,
+  "titre_gutenberg": "The immoralist",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Gide, André (1869-1951)",
+   "Bussy, Dorothy (1865-1960) Translator"
+  ]
+ },
+ {
+  "title": "Fathers and Sons",
+  "author": "Turgenev",
+  "gid": 47935,
+  "titre_gutenberg": "Fathers and Sons",
+  "statut": "ok",
+  "personnes": [
+   "Turgenev, Ivan Sergeevich (1818-1883)",
+   "Hogarth, C. J. (Charles James) (1869-1942) Translator"
+  ]
+ },
+ {
+  "title": "A Sportsman's Sketches",
+  "author": "Turgenev",
+  "gid": 8597,
+  "titre_gutenberg": "A Sportsman's Sketches Works of Ivan Turgenev, Volume I",
+  "statut": "a_verifier_volumes",
+  "personnes": [
+   "Turgenev, Ivan Sergeevich (1818-1883)",
+   "Garnett, Constance (1861-1946) Translator"
+  ]
+ },
+ {
+  "title": "First Love",
+  "author": "Turgenev",
+  "gid": 56878,
+  "titre_gutenberg": "First love, and other stories",
+  "statut": "ok",
+  "personnes": [
+   "Turgenev, Ivan Sergeevich (1818-1883)",
+   "Hapgood, Isabel Florence (1850-1928) Translator"
+  ]
+ },
+ {
+  "title": "Dead Souls",
+  "author": "Gogol",
+  "gid": 1081,
+  "titre_gutenberg": "Dead Souls",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Gogol, Nikolai Vasilevich (1809-1852)",
+   "Hogarth, D. J. (None-None) Translator"
+  ]
+ },
+ {
+  "title": "The Inspector General",
+  "author": "Gogol",
+  "gid": 3735,
+  "titre_gutenberg": "The Inspector-General",
+  "statut": "ok",
+  "personnes": [
+   "Gogol, Nikolai Vasilevich (1809-1852)",
+   "Seltzer, Thomas (1875-1943) Translator"
+  ]
+ },
+ {
+  "title": "Taras Bulba",
+  "author": "Gogol",
+  "gid": 1197,
+  "titre_gutenberg": "Taras Bulba, and Other Tales",
+  "statut": "ok",
+  "personnes": [
+   "Gogol, Nikolai Vasilevich (1809-1852)"
+  ]
+ },
+ {
+  "title": "The Overcoat",
+  "author": "Gogol",
+  "statut": "introuvable"
+ },
+ {
+  "title": "A Hero of Our Time",
+  "author": "Lermontov",
+  "gid": 913,
+  "titre_gutenberg": "A Hero of Our Time",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Lermontov, Mikhail Iurevich (1814-1841)",
+   "Murray, Marr (None-None) Translator",
+   "Wisdom, J. H. (None-None) Translator"
+  ]
+ },
+ {
+  "title": "Eugene Onegin",
+  "author": "Pushkin",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Captain's Daughter",
+  "author": "Pushkin",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Oblomov",
+  "author": "Goncharov",
+  "gid": 54700,
+  "titre_gutenberg": "Oblomov",
+  "statut": "ok",
+  "personnes": [
+   "Goncharov, Ivan Aleksandrovich (1812-1891)",
+   "Hogarth, C. J. (Charles James) (1869-1942) Translator"
+  ]
+ },
+ {
+  "title": "The Gambler",
+  "author": "Dostoyevsky",
+  "gid": 2197,
+  "titre_gutenberg": "The Gambler",
+  "statut": "ok",
+  "personnes": [
+   "Dostoyevsky, Fyodor (1821-1881)",
+   "Hogarth, C. J. (Charles James) (1869-1942) Translator"
+  ]
+ },
+ {
+  "title": "The Possessed",
+  "author": "Dostoyevsky",
+  "gid": 8117,
+  "titre_gutenberg": "The possessed",
+  "statut": "ok",
+  "personnes": [
+   "Dostoyevsky, Fyodor (1821-1881)",
+   "Garnett, Constance (1861-1946) Translator"
+  ]
+ },
+ {
+  "title": "Poor Folk",
+  "author": "Dostoyevsky",
+  "gid": 2302,
+  "titre_gutenberg": "Poor Folk",
+  "statut": "ok",
+  "personnes": [
+   "Dostoyevsky, Fyodor (1821-1881)",
+   "Hogarth, C. J. (Charles James) (1869-1942) Translator"
+  ]
+ },
+ {
+  "title": "The House of the Dead",
+  "author": "Dostoyevsky",
+  "gid": 37536,
+  "titre_gutenberg": "The house of the dead",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Dostoyevsky, Fyodor (1821-1881)",
+   "Bramont, Julius (None-None) Author of introduction, etc."
+  ]
+ },
+ {
+  "title": "White Nights",
+  "author": "Dostoyevsky",
+  "gid": 36034,
+  "titre_gutenberg": "White nights, and other stories",
+  "statut": "ok",
+  "personnes": [
+   "Dostoyevsky, Fyodor (1821-1881)",
+   "Garnett, Constance (1861-1946) Translator"
+  ]
+ },
+ {
+  "title": "The Death of Ivan Ilyich",
+  "author": "Tolstoy",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Resurrection",
+  "author": "Tolstoy",
+  "gid": 1938,
+  "titre_gutenberg": "Resurrection",
+  "statut": "ok",
+  "personnes": [
+   "Tolstoy, Leo, graf (1828-1910)",
+   "Maude, Louise (1855-1939) Translator"
+  ]
+ },
+ {
+  "title": "The Kreutzer Sonata",
+  "author": "Tolstoy",
+  "gid": 689,
+  "titre_gutenberg": "The Kreutzer Sonata and Other Stories",
+  "statut": "ok",
+  "personnes": [
+   "Tolstoy, Leo, graf (1828-1910)",
+   "Tucker, Benjamin Ricketson (1854-1939) Translator"
+  ]
+ },
+ {
+  "title": "Hadji Murad",
+  "author": "Tolstoy",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Cossacks",
+  "author": "Tolstoy",
+  "gid": 4761,
+  "titre_gutenberg": "The Cossacks: A Tale of 1852",
+  "statut": "ok",
+  "personnes": [
+   "Tolstoy, Leo, graf (1828-1910)",
+   "Maude, Aylmer (1858-1938) Translator",
+   "Maude, Louise (1855-1939) Translator"
+  ]
+ },
+ {
+  "title": "Childhood",
+  "author": "Tolstoy",
+  "gid": 2142,
+  "titre_gutenberg": "Childhood",
+  "statut": "ok",
+  "personnes": [
+   "Tolstoy, Leo, graf (1828-1910)",
+   "Hogarth, C. J. (Charles James) (1869-1942) Translator"
+  ]
+ },
+ {
+  "title": "Mother",
+  "author": "Gorky",
+  "gid": 3783,
+  "titre_gutenberg": "Mother",
+  "statut": "ok",
+  "personnes": [
+   "Gorky, Maksim (1868-1936)",
+   "Ivanowski, Sigismond de (1875-1944) Illustrator"
+  ]
+ },
+ {
+  "title": "The Lady with the Dog",
+  "author": "Chekhov",
+  "gid": 13415,
+  "titre_gutenberg": "The Lady with the Dog and Other Stories",
+  "statut": "ok",
+  "personnes": [
+   "Chekhov, Anton Pavlovich (1860-1904)",
+   "Garnett, Constance (1861-1946) Translator"
+  ]
+ },
+ {
+  "title": "The Sorrows of Young Werther",
+  "author": "Goethe",
+  "gid": 2527,
+  "titre_gutenberg": "The Sorrows of Young Werther",
+  "statut": "ok",
+  "personnes": [
+   "Goethe, Johann Wolfgang von (1749-1832)",
+   "Boylan, R. Dillon (Richard Dillon) (1805-1888) Translator"
+  ]
+ },
+ {
+  "title": "Wilhelm Meister's Apprenticeship",
+  "author": "Goethe",
+  "gid": 36483,
+  "titre_gutenberg": "Wilhelm Meister's apprenticeship and travels, vol. 1 (of 2)",
+  "statut": "ok",
+  "personnes": [
+   "Goethe, Johann Wolfgang von (1749-1832)",
+   "Carlyle, Thomas (1795-1881) Translator"
+  ]
+ },
+ {
+  "title": "Elective Affinities",
+  "author": "Goethe",
+  "statut": "introuvable"
+ },
+ {
+  "title": "William Tell",
+  "author": "Schiller",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Robbers",
+  "author": "Schiller",
+  "gid": 6782,
+  "titre_gutenberg": "The Robbers",
+  "statut": "ok",
+  "personnes": [
+   "Schiller, Friedrich (1759-1805)"
+  ]
+ },
+ {
+  "title": "Effi Briest",
+  "author": "Fontane",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Buddenbrooks",
+  "author": "Mann",
+  "gid": 72961,
+  "titre_gutenberg": "Buddenbrooks, volume 1 of 2",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Mann, Thomas (1875-1955)",
+   "Lowe-Porter, H. T. (Helen Tracy) (1876-1963) Translator"
+  ]
+ },
+ {
+  "title": "Death in Venice",
+  "author": "Mann",
+  "gid": 66073,
+  "titre_gutenberg": "Death in Venice",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Mann, Thomas (1875-1955)",
+   "Burke, Kenneth (1897-1993) Translator"
+  ]
+ },
+ {
+  "title": "The Trial",
+  "author": "Kafka",
+  "gid": 7849,
+  "titre_gutenberg": "The Trial",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Kafka, Franz (1883-1924)",
+   "Wyllie, David (Translator) (None-None) Translator"
+  ]
+ },
+ {
+  "title": "The Castle",
+  "author": "Kafka",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Thus Spake Zarathustra",
+  "author": "Nietzsche",
+  "gid": 1998,
+  "titre_gutenberg": "Thus Spake Zarathustra: A Book for All and None",
+  "statut": "ok",
+  "personnes": [
+   "Nietzsche, Friedrich Wilhelm (1844-1900)",
+   "Common, Thomas (1850-1919) Translator"
+  ]
+ },
+ {
+  "title": "Beyond Good and Evil",
+  "author": "Nietzsche",
+  "gid": 4363,
+  "titre_gutenberg": "Beyond Good and Evil",
+  "statut": "ok",
+  "personnes": [
+   "Nietzsche, Friedrich Wilhelm (1844-1900)",
+   "Zimmern, Helen (1846-1934) Translator"
+  ]
+ },
+ {
+  "title": "The Birth of Tragedy",
+  "author": "Nietzsche",
+  "gid": 51356,
+  "titre_gutenberg": "The Birth of Tragedy; or, Hellenism and Pessimism",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Nietzsche, Friedrich Wilhelm (1844-1900)",
+   "Levy, Oscar (1867-1946) Editor",
+   "Haussmann, William A. (None-None) Translator"
+  ]
+ },
+ {
+  "title": "Critique of Pure Reason",
+  "author": "Kant",
+  "gid": 4280,
+  "titre_gutenberg": "The Critique of Pure Reason",
+  "statut": "ok",
+  "personnes": [
+   "Kant, Immanuel (1724-1804)",
+   "Meiklejohn, J. M. D. (John Miller Dow) (1830-1902) Translator"
+  ]
+ },
+ {
+  "title": "The World as Will and Idea",
+  "author": "Schopenhauer",
+  "gid": 38427,
+  "titre_gutenberg": "The World as Will and Idea (Vol. 1 of 3)",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Schopenhauer, Arthur (1788-1860)",
+   "Haldane, R. B. Haldane (Richard Burdon Haldane), Viscount (1856-1928) Translator",
+   "Kemp, J. (John) (None-None) Translator"
+  ]
+ },
+ {
+  "title": "Peter Schlemihl",
+  "author": "Chamisso",
+  "gid": 5339,
+  "titre_gutenberg": "Peter Schlemihl",
+  "statut": "ok",
+  "personnes": [
+   "Chamisso, Adelbert von (1781-1838)",
+   "Morley, Henry (1822-1894) Editor"
+  ]
+ },
+ {
+  "title": "The Golem",
+  "author": "Meyrink",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Hunger",
+  "author": "Hamsun",
+  "gid": 8387,
+  "titre_gutenberg": "Hunger",
+  "statut": "ok",
+  "personnes": [
+   "Hamsun, Knut (1859-1952)",
+   "Egerton, George (1859-1945) Translator"
+  ]
+ },
+ {
+  "title": "Growth of the Soil",
+  "author": "Hamsun",
+  "gid": 10984,
+  "titre_gutenberg": "Growth of the Soil",
+  "statut": "ok",
+  "personnes": [
+   "Hamsun, Knut (1859-1952)",
+   "Worster, W. J. Alexander (William John Alexander) (1882-1929) Translator"
+  ]
+ },
+ {
+  "title": "Pan",
+  "author": "Hamsun",
+  "gid": 7214,
+  "titre_gutenberg": "Pan",
+  "statut": "ok",
+  "personnes": [
+   "Hamsun, Knut (1859-1952)",
+   "Björkman, Edwin (1866-1951) Author of introduction, etc.",
+   "Worster, W. J. Alexander (William John Alexander) (1882-1929) Translator"
+  ]
+ },
+ {
+  "title": "The Saga of Gosta Berling",
+  "author": "Lagerlöf",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Red Room",
+  "author": "Strindberg",
+  "gid": 37039,
+  "titre_gutenberg": "The Red Room",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Strindberg, August (1849-1912)",
+   "Schleussner, Ellie (None-None) Translator"
+  ]
+ },
+ {
+  "title": "Niels Lyhne",
+  "author": "Jacobsen",
+  "gid": 55389,
+  "titre_gutenberg": "Niels Lyhne",
+  "statut": "ok",
+  "personnes": [
+   "Jacobsen, J. P. (Jens Peter) (1847-1885)",
+   "Larsen, Hanna Astrup (1873-1945) Translator"
+  ]
+ },
+ {
+  "title": "Kristin Lavransdatter",
+  "author": "Undset",
+  "statut": "introuvable"
+ },
+ {
+  "title": "I Promessi Sposi",
+  "author": "Manzoni",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Leopard",
+  "author": "Lampedusa",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Late Mattia Pascal",
+  "author": "Pirandello",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Six Characters in Search of an Author",
+  "author": "Pirandello",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Life of Benvenuto Cellini",
+  "author": "Cellini",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Orlando Furioso",
+  "author": "Ariosto",
+  "gid": 615,
+  "titre_gutenberg": "Orlando Furioso",
+  "statut": "ok",
+  "personnes": [
+   "Ariosto, Lodovico (1474-1533)",
+   "Rose, William Stewart (1775-1843) Translator"
+  ]
+ },
+ {
+  "title": "Jerusalem Delivered",
+  "author": "Tasso",
+  "gid": 392,
+  "titre_gutenberg": "Jerusalem Delivered",
+  "statut": "ok",
+  "personnes": [
+   "Tasso, Torquato (1544-1595)",
+   "Fairfax, Edward (None-1635) Translator"
+  ]
+ },
+ {
+  "title": "The Nose",
+  "author": "Gogol",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Lazarillo de Tormes",
+  "author": "Anonymous",
+  "statut": "introuvable"
+ },
+ {
+  "title": "La Celestina",
+  "author": "Rojas",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Fortunata and Jacinta",
+  "author": "Pérez Galdós",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Doña Perfecta",
+  "author": "Pérez Galdós",
+  "gid": 2462,
+  "titre_gutenberg": "Doña Perfecta",
+  "statut": "ok",
+  "personnes": [
+   "Pérez Galdós, Benito (1843-1920)",
+   "Howells, William Dean (1837-1920) Author of introduction, etc.",
+   "Serrano, Mary J. (Mary Jane) (None-1923) Translator"
+  ]
+ },
+ {
+  "title": "The Four Horsemen of the Apocalypse",
+  "author": "Blasco Ibáñez",
+  "gid": 1484,
+  "titre_gutenberg": "The Four Horsemen of the Apocalypse",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Blasco Ibáñez, Vicente (1867-1928)",
+   "Jordan, Charlotte Brewster (None-None) Translator"
+  ]
+ },
+ {
+  "title": "Blood and Sand",
+  "author": "Blasco Ibáñez",
+  "gid": 54222,
+  "titre_gutenberg": "Blood and Sand",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Blasco Ibáñez, Vicente (1867-1928)",
+   "Gillespie, W. A., Mrs. (None-None) Translator"
+  ]
+ },
+ {
+  "title": "The Cabin",
+  "author": "Blasco Ibáñez",
+  "gid": 38165,
+  "titre_gutenberg": "The Cabin [La barraca]",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Blasco Ibáñez, Vicente (1867-1928)",
+   "Underhill, John Garrett (1876-1946) Author of introduction, etc.",
+   "Mekota, Beatrice M. (None-None) Translator",
+   "Snow, Francis Haffkine (None-None) Translator"
+  ]
+ },
+ {
+  "title": "Niebla",
+  "author": "Unamuno",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Life Is a Dream",
+  "author": "Calderón",
+  "gid": 2587,
+  "titre_gutenberg": "Life Is a Dream",
+  "statut": "ok",
+  "personnes": [
+   "Calderón de la Barca, Pedro (1600-1681)",
+   "FitzGerald, Edward (1809-1883) Translator"
+  ]
+ },
+ {
+  "title": "Exemplary Novels",
+  "author": "Cervantes",
+  "gid": 14420,
+  "titre_gutenberg": "The Exemplary Novels of Cervantes",
+  "statut": "ok",
+  "personnes": [
+   "Cervantes Saavedra, Miguel de (1547-1616)",
+   "Kelly, Walter K. (Walter Keating) (None-1867) Translator"
+  ]
+ },
+ {
+  "title": "The Lusiads",
+  "author": "Camões",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Dom Casmurro",
+  "author": "Machado de Assis",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Posthumous Memoirs of Brás Cubas",
+  "author": "Machado de Assis",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Crime of Father Amaro",
+  "author": "Eça de Queirós",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Maias",
+  "author": "Eça de Queirós",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Aeneid",
+  "author": "Virgil",
+  "gid": 228,
+  "titre_gutenberg": "The Aeneid",
+  "statut": "ok",
+  "personnes": [
+   "Virgil (-71--20)",
+   "Dryden, John (1631-1700) Translator"
+  ]
+ },
+ {
+  "title": "The Georgics",
+  "author": "Virgil",
+  "gid": 232,
+  "titre_gutenberg": "The Georgics",
+  "statut": "ok",
+  "personnes": [
+   "Virgil (-71--20)",
+   "Rhoades, James (1841-1923) Translator"
+  ]
+ },
+ {
+  "title": "Oedipus Rex",
+  "author": "Sophocles",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Antigone",
+  "author": "Sophocles",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Medea",
+  "author": "Euripides",
+  "gid": 35451,
+  "titre_gutenberg": "Medea of Euripides",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Euripides (-481--407)",
+   "Murray, Gilbert (1866-1957) Translator"
+  ]
+ },
+ {
+  "title": "The Oresteia",
+  "author": "Aeschylus",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Lysistrata",
+  "author": "Aristophanes",
+  "gid": 7700,
+  "titre_gutenberg": "Lysistrata",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Aristophanes (-447--386)",
+   "Lindsay, Norman (1879-1969) Illustrator",
+   "Lindsay, Jack (1900-1990) Translator"
+  ]
+ },
+ {
+  "title": "The Clouds",
+  "author": "Aristophanes",
+  "gid": 2562,
+  "titre_gutenberg": "The Clouds",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Aristophanes (-447--386)",
+   "Hickie, W. J. (None-None) Translator"
+  ]
+ },
+ {
+  "title": "Histories",
+  "author": "Herodotus",
+  "statut": "introuvable"
+ },
+ {
+  "title": "History of the Peloponnesian War",
+  "author": "Thucydides",
+  "gid": 7142,
+  "titre_gutenberg": "The History of the Peloponnesian War",
+  "statut": "ok",
+  "personnes": [
+   "Thucydides (-456--396)",
+   "Crawley, Richard (1840-1893) Translator"
+  ]
+ },
+ {
+  "title": "Parallel Lives",
+  "author": "Plutarch",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Golden Ass",
+  "author": "Apuleius",
+  "gid": 1666,
+  "titre_gutenberg": "The Golden Asse",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Apuleius (None-None)",
+   "Adlington, William, active 1566 (None-None) Translator"
+  ]
+ },
+ {
+  "title": "The Satyricon",
+  "author": "Petronius",
+  "gid": 5225,
+  "titre_gutenberg": "The Satyricon — Complete",
+  "statut": "ok",
+  "personnes": [
+   "Petronius Arbiter (20-66)",
+   "Firebaugh, W. C. (1882-1945) Translator"
+  ]
+ },
+ {
+  "title": "On the Nature of Things",
+  "author": "Lucretius",
+  "gid": 785,
+  "titre_gutenberg": "On the Nature of Things",
+  "statut": "ok",
+  "personnes": [
+   "Lucretius Carus, Titus (-95--50)",
+   "Leonard, William Ellery (1876-1944) Translator"
+  ]
+ },
+ {
+  "title": "Letters from a Stoic",
+  "author": "Seneca",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Enchiridion",
+  "author": "Epictetus",
+  "gid": 45109,
+  "titre_gutenberg": "The Enchiridion",
+  "statut": "ok",
+  "personnes": [
+   "Epictetus (55-135)",
+   "Higginson, Thomas Wentworth (1823-1911) Translator"
+  ]
+ },
+ {
+  "title": "The Twelve Caesars",
+  "author": "Suetonius",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Germania",
+  "author": "Tacitus",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Apology",
+  "author": "Plato",
+  "gid": 1656,
+  "titre_gutenberg": "Apology",
+  "statut": "ok",
+  "personnes": [
+   "Plato (-428--348)",
+   "Jowett, Benjamin (1817-1893) Translator"
+  ]
+ },
+ {
+  "title": "Symposium",
+  "author": "Plato",
+  "gid": 1600,
+  "titre_gutenberg": "Symposium",
+  "statut": "ok",
+  "personnes": [
+   "Plato (-428--348)",
+   "Jowett, Benjamin (1817-1893) Translator"
+  ]
+ },
+ {
+  "title": "Phaedo",
+  "author": "Plato",
+  "gid": 1658,
+  "titre_gutenberg": "Phaedo",
+  "statut": "ok",
+  "personnes": [
+   "Plato (-428--348)",
+   "Jowett, Benjamin (1817-1893) Translator"
+  ]
+ },
+ {
+  "title": "Politics",
+  "author": "Aristotle",
+  "gid": 6762,
+  "titre_gutenberg": "Politics: A Treatise on Government",
+  "statut": "ok",
+  "personnes": [
+   "Aristotle (-385--323)",
+   "Ellis, William (1730-1801) Translator"
+  ]
+ },
+ {
+  "title": "Poetics",
+  "author": "Aristotle",
+  "gid": 1974,
+  "titre_gutenberg": "The Poetics of Aristotle",
+  "statut": "ok",
+  "personnes": [
+   "Aristotle (-385--323)",
+   "Butcher, S. H. (Samuel Henry) (1850-1910) Translator"
+  ]
+ },
+ {
+  "title": "The Confessions of St. Augustine",
+  "author": "Augustine",
+  "gid": 3296,
+  "titre_gutenberg": "The Confessions of St. Augustine",
+  "statut": "ok",
+  "personnes": [
+   "Augustine, of Hippo, Saint (354-430)",
+   "Pusey, E. B. (Edward Bouverie) (1800-1882) Translator"
+  ]
+ },
+ {
+  "title": "The City of God",
+  "author": "Augustine",
+  "gid": 45304,
+  "titre_gutenberg": "The City of God, Volume I",
+  "statut": "a_verifier_volumes",
+  "personnes": [
+   "Augustine, of Hippo, Saint (354-430)",
+   "Dods, Marcus (1834-1909) Editor"
+  ]
+ },
+ {
+  "title": "The Consolation of Philosophy",
+  "author": "Boethius",
+  "gid": 14328,
+  "titre_gutenberg": "The Consolation of Philosophy",
+  "statut": "ok",
+  "personnes": [
+   "Boethius (480-525)",
+   "James, H. R. (Henry Rosher) (1862-1931) Translator"
+  ]
+ },
+ {
+  "title": "Utopia",
+  "author": "More",
+  "gid": 2130,
+  "titre_gutenberg": "Utopia",
+  "statut": "ok",
+  "personnes": [
+   "More, Thomas, Saint (1478-1535)",
+   "Morley, Henry (1822-1894) Editor"
+  ]
+ },
+ {
+  "title": "Leviathan",
+  "author": "Hobbes",
+  "gid": 3207,
+  "titre_gutenberg": "Leviathan",
+  "statut": "ok",
+  "personnes": [
+   "Hobbes, Thomas (1588-1679)"
+  ]
+ },
+ {
+  "title": "An Essay Concerning Human Understanding",
+  "author": "Locke",
+  "statut": "introuvable"
+ },
+ {
+  "title": "A Treatise of Human Nature",
+  "author": "Hume",
+  "gid": 4705,
+  "titre_gutenberg": "A Treatise of Human Nature",
+  "statut": "ok",
+  "personnes": [
+   "Hume, David (1711-1776)"
+  ]
+ },
+ {
+  "title": "Discourse on Method",
+  "author": "Descartes",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Ethics",
+  "author": "Spinoza",
+  "gid": 3800,
+  "titre_gutenberg": "Ethics",
+  "statut": "ok",
+  "personnes": [
+   "Spinoza, Benedictus de (1632-1677)",
+   "Elwes, R. H. M. (Robert Harvey Monro) (1853-1892) Translator"
+  ]
+ },
+ {
+  "title": "In Praise of Folly",
+  "author": "Erasmus",
+  "gid": 30201,
+  "titre_gutenberg": "In Praise of Folly Illustrated with Many Curious Cuts",
+  "statut": "ok",
+  "personnes": [
+   "Erasmus, Desiderius (1469-1536)",
+   "Holbein, Hans (1497-1543) Illustrator"
+  ]
+ },
+ {
+  "title": "The Imitation of Christ",
+  "author": "Kempis",
+  "gid": 1653,
+  "titre_gutenberg": "The Imitation of Christ",
+  "statut": "ok",
+  "personnes": [
+   "Thomas, à Kempis (1380-1471)",
+   "Benham, William (1831-1910) Translator"
+  ]
+ },
+ {
+  "title": "Le Morte d'Arthur",
+  "author": "Malory",
+  "gid": 1251,
+  "titre_gutenberg": "Le Morte d'Arthur: Volume 1",
+  "statut": "a_verifier_volumes",
+  "personnes": [
+   "Malory, Thomas, Sir (None-1471)"
+  ]
+ },
+ {
+  "title": "Sir Gawain and the Green Knight",
+  "author": "Anonymous",
+  "gid": 66084,
+  "titre_gutenberg": "Sir Gawain and the Green Knight: A Middle-English Arthurian Romance Retold in Modern Prose",
+  "statut": "ok",
+  "personnes": [
+   "Weston, Jessie L. (Jessie Laidlay) (1850-1928)",
+   "Crawford, M. M. (None-None) Illustrator"
+  ]
+ },
+ {
+  "title": "The Song of Roland",
+  "author": "Anonymous",
+  "gid": 391,
+  "titre_gutenberg": "The Song of Roland",
+  "statut": "ok",
+  "personnes": [
+   "Scott-Moncrieff, C. K. (Charles Kenneth) (1889-1930) Translator"
+  ]
+ },
+ {
+  "title": "The Nibelungenlied",
+  "author": "Anonymous",
+  "gid": 1151,
+  "titre_gutenberg": "The Nibelungenlied",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Shumway, Daniel Bussier (1868-None) Translator"
+  ]
+ },
+ {
+  "title": "The Kalevala",
+  "author": "Lönnrot",
+  "gid": 5186,
+  "titre_gutenberg": "Kalevala : the Epic Poem of Finland — Complete",
+  "statut": "ok",
+  "personnes": [
+   "Lönnrot, Elias (1802-1884) Compiler",
+   "Crawford, John Martin (1845-1916) Translator"
+  ]
+ },
+ {
+  "title": "The Mahabharata",
+  "author": "Vyasa",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Ramayana",
+  "author": "Valmiki",
+  "gid": 60188,
+  "titre_gutenberg": "The Rāmāyana, Volume 3. Yuddhakāndam",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Valmiki (None-None)",
+   "Dutt, Manmatha Nath (1855-1912) Translator"
+  ]
+ },
+ {
+  "title": "The Bhagavad Gita",
+  "author": "Anonymous",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Analects",
+  "author": "Confucius",
+  "gid": 3330,
+  "titre_gutenberg": "The Analects of Confucius (from the Chinese Classics)",
+  "statut": "ok",
+  "personnes": [
+   "Confucius (-552--480)",
+   "Legge, James (1815-1897) Translator"
+  ]
+ },
+ {
+  "title": "The Book of Tea",
+  "author": "Okakura",
+  "gid": 769,
+  "titre_gutenberg": "The Book of Tea",
+  "statut": "ok",
+  "personnes": [
+   "Okakura, Kakuzo (1862-1913)"
+  ]
+ },
+ {
+  "title": "Siddhartha",
+  "author": "Hesse",
+  "gid": 2500,
+  "titre_gutenberg": "Siddhartha",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Hesse, Hermann (1877-1962)"
+  ]
+ },
+ {
+  "title": "Gitanjali",
+  "author": "Tagore",
+  "gid": 7164,
+  "titre_gutenberg": "Gitanjali",
+  "statut": "ok",
+  "personnes": [
+   "Tagore, Rabindranath (1861-1941)",
+   "Yeats, W. B. (William Butler) (1865-1939) Author of introduction, etc."
+  ]
+ },
+ {
+  "title": "The Home and the World",
+  "author": "Tagore",
+  "gid": 7166,
+  "titre_gutenberg": "The Home and the World",
+  "statut": "ok",
+  "personnes": [
+   "Tagore, Rabindranath (1861-1941)",
+   "Tagore, Surendranath (1872-1940) Translator"
+  ]
+ },
+ {
+  "title": "A Modest Proposal",
+  "author": "Swift",
+  "gid": 1080,
+  "titre_gutenberg": "A Modest Proposal For preventing the children of poor people in Ireland, from being a burden on thei",
+  "statut": "ok",
+  "personnes": [
+   "Swift, Jonathan (1667-1745)"
+  ]
+ },
+ {
+  "title": "The Rape of the Lock",
+  "author": "Pope",
+  "gid": 9800,
+  "titre_gutenberg": "The Rape of the Lock, and Other Poems",
+  "statut": "ok",
+  "personnes": [
+   "Pope, Alexander (1688-1744)"
+  ]
+ },
+ {
+  "title": "Lyrical Ballads",
+  "author": "Wordsworth",
+  "gid": 9622,
+  "titre_gutenberg": "Lyrical Ballads, With a Few Other Poems (1798)",
+  "statut": "ok",
+  "personnes": [
+   "Wordsworth, William (1770-1850)",
+   "Coleridge, Samuel Taylor (1772-1834)"
+  ]
+ },
+ {
+  "title": "The Rime of the Ancient Mariner",
+  "author": "Coleridge",
+  "gid": 151,
+  "titre_gutenberg": "The Rime of the Ancient Mariner",
+  "statut": "ok",
+  "personnes": [
+   "Coleridge, Samuel Taylor (1772-1834)"
+  ]
+ },
+ {
+  "title": "Songs of Innocence and of Experience",
+  "author": "Blake",
+  "gid": 1934,
+  "titre_gutenberg": "Songs of Innocence and of Experience",
+  "statut": "ok",
+  "personnes": [
+   "Blake, William (1757-1827)"
+  ]
+ },
+ {
+  "title": "Poems",
+  "author": "Dickinson",
+  "gid": 2678,
+  "titre_gutenberg": "Poems by Emily Dickinson, Series One",
+  "statut": "ok",
+  "personnes": [
+   "Dickinson, Emily (1830-1886)",
+   "Higginson, Thomas Wentworth (1823-1911) Editor",
+   "Todd, Mabel Loomis (1856-1932) Editor"
+  ]
+ },
+ {
+  "title": "The Raven",
+  "author": "Poe",
+  "gid": 1065,
+  "titre_gutenberg": "The Raven",
+  "statut": "ok",
+  "personnes": [
+   "Poe, Edgar Allan (1809-1849)"
+  ]
+ },
+ {
+  "title": "The Fall of the House of Usher",
+  "author": "Poe",
+  "gid": 932,
+  "titre_gutenberg": "The Fall of the House of Usher",
+  "statut": "ok",
+  "personnes": [
+   "Poe, Edgar Allan (1809-1849)"
+  ]
+ },
+ {
+  "title": "Tales of Mystery and Imagination",
+  "author": "Poe",
+  "statut": "introuvable"
+ },
+ {
+  "title": "The Narrative of Arthur Gordon Pym",
+  "author": "Poe",
+  "gid": 51060,
+  "titre_gutenberg": "The Narrative of Arthur Gordon Pym of Nantucket Comprising the details of a mutiny and atrocious but",
+  "statut": "ok",
+  "personnes": [
+   "Poe, Edgar Allan (1809-1849)"
+  ]
+ },
+ {
+  "title": "Self-Reliance",
+  "author": "Emerson",
+  "statut": "introuvable"
+ },
+ {
+  "title": "Nature",
+  "author": "Emerson",
+  "gid": 29433,
+  "titre_gutenberg": "Nature",
+  "statut": "ok",
+  "personnes": [
+   "Emerson, Ralph Waldo (1803-1882)"
+  ]
+ },
+ {
+  "title": "Narrative of the Life of Frederick Douglass",
+  "author": "Douglass",
+  "gid": 23,
+  "titre_gutenberg": "Narrative of the Life of Frederick Douglass, an American Slave",
+  "statut": "ok",
+  "personnes": [
+   "Douglass, Frederick (1818-1895)"
+  ]
+ },
+ {
+  "title": "Up from Slavery",
+  "author": "Washington",
+  "gid": 2376,
+  "titre_gutenberg": "Up from Slavery: An Autobiography",
+  "statut": "ok",
+  "personnes": [
+   "Washington, Booker T. (1856-1915)"
+  ]
+ },
+ {
+  "title": "Incidents in the Life of a Slave Girl",
+  "author": "Jacobs",
+  "gid": 11030,
+  "titre_gutenberg": "Incidents in the Life of a Slave Girl, Written by Herself",
+  "statut": "ok",
+  "personnes": [
+   "Jacobs, Harriet A. (Harriet Ann) (1813-1897)",
+   "Child, Lydia Maria (1802-1880) Editor"
+  ]
+ },
+ {
+  "title": "The Federalist",
+  "author": "Hamilton",
+  "gid": 18,
+  "titre_gutenberg": "The Federalist Papers",
+  "statut": "ok",
+  "personnes": [
+   "Hamilton, Alexander (1757-1804)",
+   "Jay, John (1745-1829)",
+   "Madison, James (1751-1836)"
+  ]
+ },
+ {
+  "title": "Democracy in America",
+  "author": "Tocqueville",
+  "gid": 815,
+  "titre_gutenberg": "Democracy in America — Volume 1",
+  "statut": "a_verifier_volumes",
+  "personnes": [
+   "Tocqueville, Alexis de (1805-1859)",
+   "Reeve, Henry (1813-1895) Translator"
+  ]
+ },
+ {
+  "title": "Three Men in a Boat",
+  "author": "Jerome",
+  "gid": 308,
+  "titre_gutenberg": "Three men in a boat (to say nothing of the dog)",
+  "statut": "ok",
+  "personnes": [
+   "Jerome, Jerome K. (Jerome Klapka) (1859-1927)"
+  ]
+ },
+ {
+  "title": "The Diary of a Nobody",
+  "author": "Grossmith",
+  "gid": 1026,
+  "titre_gutenberg": "The Diary of a Nobody",
+  "statut": "ok",
+  "personnes": [
+   "Grossmith, George (1847-1912)",
+   "Grossmith, Weedon (1852-1919)"
+  ]
+ },
+ {
+  "title": "Cold Comfort Farm",
+  "author": "Gibbons",
+  "statut": "introuvable"
+ },
+ {
+  "title": "A Room with a View",
+  "author": "Forster",
+  "gid": 2641,
+  "titre_gutenberg": "A Room with a View",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Forster, E. M. (Edward Morgan) (1879-1970)"
+  ]
+ },
+ {
+  "title": "Howards End",
+  "author": "Forster",
+  "gid": 2891,
+  "titre_gutenberg": "Howards End",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Forster, E. M. (Edward Morgan) (1879-1970)"
+  ]
+ },
+ {
+  "title": "Where Angels Fear to Tread",
+  "author": "Forster",
+  "gid": 2948,
+  "titre_gutenberg": "Where Angels Fear to Tread",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Forster, E. M. (Edward Morgan) (1879-1970)"
+  ]
+ },
+ {
+  "title": "Sons and Lovers",
+  "author": "Lawrence",
+  "gid": 217,
+  "titre_gutenberg": "Sons and Lovers",
+  "statut": "ok",
+  "personnes": [
+   "Lawrence, D. H. (David Herbert) (1885-1930)"
+  ]
+ },
+ {
+  "title": "The Rainbow",
+  "author": "Lawrence",
+  "gid": 28948,
+  "titre_gutenberg": "The Rainbow",
+  "statut": "ok",
+  "personnes": [
+   "Lawrence, D. H. (David Herbert) (1885-1930)"
+  ]
+ },
+ {
+  "title": "Women in Love",
+  "author": "Lawrence",
+  "gid": 4240,
+  "titre_gutenberg": "Women in Love",
+  "statut": "ok",
+  "personnes": [
+   "Lawrence, D. H. (David Herbert) (1885-1930)"
+  ]
+ },
+ {
+  "title": "Of Human Bondage",
+  "author": "Maugham",
+  "gid": 351,
+  "titre_gutenberg": "Of Human Bondage",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Maugham, W. Somerset (William Somerset) (1874-1965)"
+  ]
+ },
+ {
+  "title": "The Moon and Sixpence",
+  "author": "Maugham",
+  "gid": 222,
+  "titre_gutenberg": "The Moon and Sixpence",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Maugham, W. Somerset (William Somerset) (1874-1965)"
+  ]
+ },
+ {
+  "title": "Jacob's Room",
+  "author": "Woolf",
+  "gid": 5670,
+  "titre_gutenberg": "Jacob's Room",
+  "statut": "ok",
+  "personnes": [
+   "Woolf, Virginia (1882-1941)"
+  ]
+ },
+ {
+  "title": "Night and Day",
+  "author": "Woolf",
+  "gid": 1245,
+  "titre_gutenberg": "Night and Day",
+  "statut": "ok",
+  "personnes": [
+   "Woolf, Virginia (1882-1941)"
+  ]
+ },
+ {
+  "title": "The Voyage Out",
+  "author": "Woolf",
+  "gid": 144,
+  "titre_gutenberg": "The Voyage Out",
+  "statut": "ok",
+  "personnes": [
+   "Woolf, Virginia (1882-1941)"
+  ]
+ },
+ {
+  "title": "A Portrait of the Artist as a Young Man",
+  "author": "Joyce",
+  "gid": 4217,
+  "titre_gutenberg": "A Portrait of the Artist as a Young Man",
+  "statut": "ok",
+  "personnes": [
+   "Joyce, James (1882-1941)"
+  ]
+ },
+ {
+  "title": "The Man Who Was Thursday",
+  "author": "Chesterton",
+  "gid": 1695,
+  "titre_gutenberg": "The Man Who Was Thursday: A Nightmare",
+  "statut": "ok",
+  "personnes": [
+   "Chesterton, G. K. (Gilbert Keith) (1874-1936)"
+  ]
+ },
+ {
+  "title": "The Innocence of Father Brown",
+  "author": "Chesterton",
+  "gid": 204,
+  "titre_gutenberg": "The innocence of Father Brown",
+  "statut": "ok",
+  "personnes": [
+   "Chesterton, G. K. (Gilbert Keith) (1874-1936)"
+  ]
+ },
+ {
+  "title": "The Velveteen Rabbit",
+  "author": "Williams",
+  "gid": 11757,
+  "titre_gutenberg": "The Velveteen Rabbit",
+  "statut": "ok",
+  "personnes": [
+   "Bianco, Margery Williams (1881-1944)"
+  ]
+ },
+ {
+  "title": "The Secret Adversary",
+  "author": "Christie",
+  "gid": 1155,
+  "titre_gutenberg": "The Secret Adversary",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Christie, Agatha (1890-1976)"
+  ]
+ },
+ {
+  "title": "The Mysterious Affair at Styles",
+  "author": "Christie",
+  "gid": 863,
+  "titre_gutenberg": "The Mysterious Affair at Styles",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Christie, Agatha (1890-1976)"
+  ]
+ },
+ {
+  "title": "Whose Body?",
+  "author": "Sayers",
+  "gid": 58820,
+  "titre_gutenberg": "Whose Body? A Lord Peter Wimsey Novel",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "Sayers, Dorothy L. (Dorothy Leigh) (1893-1957)"
+  ]
+ },
+ {
+  "title": "The Beautiful and Damned",
+  "author": "Fitzgerald",
+  "gid": 9830,
+  "titre_gutenberg": "The Beautiful and Damned",
+  "statut": "ok",
+  "personnes": [
+   "Fitzgerald, F. Scott (Francis Scott) (1896-1940)"
+  ]
+ },
+ {
+  "title": "This Side of Paradise",
+  "author": "Fitzgerald",
+  "gid": 805,
+  "titre_gutenberg": "This Side of Paradise",
+  "statut": "ok",
+  "personnes": [
+   "Fitzgerald, F. Scott (Francis Scott) (1896-1940)"
+  ]
+ },
+ {
+  "title": "The Garden Party",
+  "author": "Mansfield",
+  "gid": 1429,
+  "titre_gutenberg": "The Garden Party, and Other Stories",
+  "statut": "ok",
+  "personnes": [
+   "Mansfield, Katherine (1888-1923)"
+  ]
+ },
+ {
+  "title": "Winesburg, Ohio",
+  "author": "Anderson",
+  "gid": 416,
+  "titre_gutenberg": "Winesburg, Ohio: A Group of Tales of Ohio Small Town Life",
+  "statut": "ok",
+  "personnes": [
+   "Anderson, Sherwood (1876-1941)"
+  ]
+ },
+ {
+  "title": "Captain Blood",
+  "author": "Sabatini",
+  "gid": 1965,
+  "titre_gutenberg": "Captain Blood",
+  "statut": "ok",
+  "personnes": [
+   "Sabatini, Rafael (1875-1950)"
+  ]
+ },
+ {
+  "title": "Scaramouche",
+  "author": "Sabatini",
+  "gid": 1947,
+  "titre_gutenberg": "Scaramouche: A Romance of the French Revolution",
+  "statut": "ok",
+  "personnes": [
+   "Sabatini, Rafael (1875-1950)"
+  ]
+ },
+ {
+  "title": "The Return of the Soldier",
+  "author": "West",
+  "gid": 37189,
+  "titre_gutenberg": "The Return of the Soldier",
+  "statut": "pas_libre_UE",
+  "personnes": [
+   "West, Rebecca (1892-1983)"
+  ]
+ }
+]
