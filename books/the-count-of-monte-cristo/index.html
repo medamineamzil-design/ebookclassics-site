@@ -293,8 +293,6 @@ function setLang(l){
     var bk=document.querySelector('.bk3d-in');
     if(bk){
       gsap.from(bk,{rotationY:80,x:-40,duration:1.4,ease:'expo.out'});
-      if(matchMedia('(min-width: 681px)').matches)
-        gsap.to(bk,{rotationY:30,rotationX:4,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
     }
     gsap.from('.hero .by, .hero .facts, .hero .lead, .hero .actions, .hero .free',{y:16,opacity:.2,duration:.7,stagger:.07,delay:.25,ease:'power2.out'});
     gsap.from('.eds li',{y:16,scale:.97,opacity:.2,duration:.5,stagger:.06,ease:'back.out(2)',scrollTrigger:{trigger:'.eds',start:'top 90%'}});
