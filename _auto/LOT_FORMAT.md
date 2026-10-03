@@ -24,6 +24,8 @@ La tâche Windows quotidienne le transmet au PC (WSL), puis `publier_lot.py` fab
    "author_long": ["§1 vie", "§2 œuvre"],         // seulement si l'auteur est nouveau
    "librivox": [],                               // [] = recherche automatique ; false = pas d'audio ;
                                                  // ou [{"lang": "en", "id": 1234}] pour imposer un enregistrement
+   "trailer": {"yt": "nACyMvM9AR4", "src": "White Fang (1991)"},  // facultatif : bande-annonce OFFICIELLE
+                                                 // d'une adaptation (film/série) sur YouTube, vérifiée
    "marker": "Début exact du 1er paragraphe",    // facultatif : début de « How it begins »
    "no_opening": false                           // facultatif : true = pas d'extrait « How it begins »
   }
@@ -39,3 +41,6 @@ Règles :
 - Domaine public : auteur ET traducteur morts au plus tard en 1955 (UE, valable en 2026) ; traduction anonyme publiée avant 1956.
 - Jamais de traduction faite par une IA, jamais d'édition abrégée (écartée automatiquement si < 55 % des mots de la plus longue).
 - Un livre déjà présent dans le dépôt n'est jamais modifié.
+- `trailer` : seulement la bande-annonce officielle d'une adaptation filmée, encore en ligne et intégrable
+  (vérifier avec https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=ID&format=json → titre « trailer »).
+  Jamais un extrait du film entier, une vidéo de fan ou une autre œuvre. En cas de doute, ne rien mettre.

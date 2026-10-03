@@ -141,6 +141,13 @@ body{overflow-x:clip}
 .grid{perspective:1200px}
 .grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
 .grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.trailer .yt{position:relative;display:block;width:100%;max-width:760px;aspect-ratio:16/9;border:0;padding:0;border-radius:14px;overflow:hidden;cursor:pointer;background:#000}
+.trailer .yt img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.trailer .yt:hover img{transform:scale(1.04)}
+.yt-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:#C8F27A;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .3s}
+.trailer .yt:hover .yt-play{transform:scale(1.08)}
+.yt-play::after{content:"";position:absolute;left:31px;top:24px;border-left:22px solid #16130F;border-top:14px solid transparent;border-bottom:14px solid transparent}
+.yt-frame{width:100%;max-width:760px;aspect-ratio:16/9;border:0;border-radius:14px;display:block}
 .bc-ad:empty{display:none}
 .bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .bc-bar{display:none}
@@ -178,6 +185,7 @@ body{overflow-x:clip}
   </div>
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Wealth of Nations</b><span>English · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
+
 <section class="card"><h2>About the book</h2><p>Adam Smith&#x27;s full title, An Inquiry into the Nature and Causes of the Wealth of Nations, states his question plainly: what makes some countries rich? His answer begins with the division of labour, famously illustrated by a pin factory in which workers who specialise produce far more than any one person could alone. From there he examines money, prices, wages, profit and rent, how capital is accumulated, the history of European economic development, and the role and revenue of government.</p><div class="rm-more" hidden><p>A central theme is that people pursuing their own interests within fair rules and competitive markets can, without intending it, benefit society as a whole, an idea Smith links to his image of an invisible hand. He attacks mercantilism, the policy of hoarding gold and protecting trade with monopolies and tariffs, yet he also warns of merchants conspiring against the public and treats defence, justice and public works as duties of the state. Its clear prose remains surprisingly readable.</p><p>Smith, a Scottish moral philosopher already known for The Theory of Moral Sentiments (1759), spent around a decade on the book, which was published in London in March 1776. It was revised through several editions in his lifetime and shaped the work of later economists such as David Ricardo and Thomas Malthus. It is still cited across the political spectrum and is widely regarded as a founding text of modern economics.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Adam Smith</h2><p>Adam Smith was born in 1723 in Kirkcaldy, a small port town in Fife, Scotland. He studied at the University of Glasgow and at Balliol College, Oxford. After giving public lectures in Edinburgh, he became professor of logic and later of moral philosophy at Glasgow. In the 1760s he toured France as tutor to the young Duke of Buccleuch, meeting leading French thinkers. He spent his last years as a commissioner of customs in Edinburgh, where he died in 1790.</p><div class="rm-more" hidden><p>Smith published The Theory of Moral Sentiments in 1759, exploring how sympathy and the judgment of an imagined impartial spectator shape our moral lives. An Inquiry into the Nature and Causes of the Wealth of Nations followed in 1776, analysing the division of labour, markets, free trade and the proper role of government. Read together, his two great books reveal a thinker as concerned with ethics as with wealth, which is why economists, philosophers and historians still return to him.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>

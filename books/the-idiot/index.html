@@ -141,6 +141,13 @@ body{overflow-x:clip}
 .grid{perspective:1200px}
 .grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
 .grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.trailer .yt{position:relative;display:block;width:100%;max-width:760px;aspect-ratio:16/9;border:0;padding:0;border-radius:14px;overflow:hidden;cursor:pointer;background:#000}
+.trailer .yt img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.trailer .yt:hover img{transform:scale(1.04)}
+.yt-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:#C8F27A;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .3s}
+.trailer .yt:hover .yt-play{transform:scale(1.08)}
+.yt-play::after{content:"";position:absolute;left:31px;top:24px;border-left:22px solid #16130F;border-top:14px solid transparent;border-bottom:14px solid transparent}
+.yt-frame{width:100%;max-width:760px;aspect-ratio:16/9;border:0;border-radius:14px;display:block}
 .bc-ad:empty{display:none}
 .bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .bc-bar{display:none}
@@ -178,6 +185,7 @@ body{overflow-x:clip}
   </div>
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Idiot</b><span>English · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
+
 <section class="card"><h2>About the book</h2><p>The Idiot follows Prince Lev Nikolayevich Myshkin, a young man of noble family who returns to Russia after years of treatment for epilepsy at a sanatorium in Switzerland. Penniless, trusting and utterly sincere, he arrives in St Petersburg and quickly becomes entangled with the household of General Yepanchin and his three daughters, and with a group of ambitious, scheming and passionate people. Two women in particular claim his attention: Nastasya Filippovna, a beautiful and wounded woman whose past has made her the subject of gossip, and Aglaya Yepanchina, proud and spirited. A dark rival, the merchant&#x27;s son Rogozhin, adds a dangerous intensity to everything that follows.</p><div class="rm-more" hidden><p>Dostoevsky set himself the task of portraying a truly good man and asked what would happen to such a person in a society driven by money, vanity and desire. Myshkin&#x27;s kindness and honesty unsettle everyone around him, and some call him an idiot for it. The novel is full of feverish scenes, long confessional conversations and debates on faith, death and compassion.</p><p>Dostoevsky wrote the book while living abroad, and it was serialised in The Russian Messenger in 1868 and 1869. Reception was mixed at first, but it is now considered one of his major novels, alongside Crime and Punishment and The Brothers Karamazov. It has been adapted for stage, film and television in Russia and elsewhere.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Fyodor Dostoevsky</h2><p>Fyodor Dostoevsky was born in Moscow in 1821, the son of a doctor at a hospital for the poor. He trained as a military engineer in St Petersburg but left the service to write, and his first novel, Poor Folk, was warmly received in 1846. In 1849 he was arrested for joining a radical discussion circle, subjected to a mock execution, and sentenced to four years of hard labour in Siberia. He struggled with epilepsy, gambling and debt. He died in St Petersburg in 1881.</p><div class="rm-more" hidden><p>Dostoevsky drew on his prison years in The House of the Dead, and Notes from Underground introduced a bitter, self-contradicting narrator. His great novels followed: Crime and Punishment, about a poor student who commits murder to test a theory; The Idiot; Demons; and The Brothers Karamazov, which wrestles with faith, doubt and responsibility. His psychological depth influenced existentialist philosophers and countless novelists, and his books remain among the most powerful explorations of the human conscience.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>

@@ -25,6 +25,13 @@ body{overflow-x:clip}
 .grid{perspective:1200px}
 .grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
 .grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.trailer .yt{position:relative;display:block;width:100%;max-width:760px;aspect-ratio:16/9;border:0;padding:0;border-radius:14px;overflow:hidden;cursor:pointer;background:#000}
+.trailer .yt img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.trailer .yt:hover img{transform:scale(1.04)}
+.yt-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:#C8F27A;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .3s}
+.trailer .yt:hover .yt-play{transform:scale(1.08)}
+.yt-play::after{content:"";position:absolute;left:31px;top:24px;border-left:22px solid #16130F;border-top:14px solid transparent;border-bottom:14px solid transparent}
+.yt-frame{width:100%;max-width:760px;aspect-ratio:16/9;border:0;border-radius:14px;display:block}
 .bc-ad:empty{display:none}
 .bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .bc-bar{display:none}

@@ -141,6 +141,13 @@ body{overflow-x:clip}
 .grid{perspective:1200px}
 .grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
 .grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.trailer .yt{position:relative;display:block;width:100%;max-width:760px;aspect-ratio:16/9;border:0;padding:0;border-radius:14px;overflow:hidden;cursor:pointer;background:#000}
+.trailer .yt img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.trailer .yt:hover img{transform:scale(1.04)}
+.yt-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:#C8F27A;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .3s}
+.trailer .yt:hover .yt-play{transform:scale(1.08)}
+.yt-play::after{content:"";position:absolute;left:31px;top:24px;border-left:22px solid #16130F;border-top:14px solid transparent;border-bottom:14px solid transparent}
+.yt-frame{width:100%;max-width:760px;aspect-ratio:16/9;border:0;border-radius:14px;display:block}
 .bc-ad:empty{display:none}
 .bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .bc-bar{display:none}
@@ -178,6 +185,7 @@ body{overflow-x:clip}
   </div>
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Beowulf</b><span>English · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
+<section class="card trailer"><h2>On screen: Beowulf (2007)</h2><button type="button" class="yt" data-yt="DLukQJO5SH8" aria-label="Play the trailer of Beowulf (2007)"><img src="https://i.ytimg.com/vi/DLukQJO5SH8/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="yt-play" aria-hidden="true"></span></button><p class="free" style="margin-top:10px">Trailer of a film or TV adaptation, played from YouTube.</p></section><script>document.querySelectorAll(".yt").forEach(function(b){b.addEventListener("click",function(){var f=document.createElement("iframe");f.src="https://www.youtube-nocookie.com/embed/"+b.dataset.yt+"?autoplay=1&rel=0";f.title=b.getAttribute("aria-label");f.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";f.allowFullscreen=true;f.className="yt-frame";b.replaceWith(f);});});</script>
 <section class="card"><h2>About the book</h2><p>Beowulf is a long poem in Old English, set not in England but in the Scandinavian world of the Danes and the Geats. For years the great hall of Heorot, built by the Danish king Hrothgar, has been terrorised by the monster Grendel, who attacks by night. A young Geatish warrior, Beowulf, sails across the sea with his companions to offer help. The poem follows his struggles against Grendel and then Grendel&#x27;s mother in her underwater lair, and later, many years on, against a fire-breathing dragon threatening his own people.</p><div class="rm-more" hidden><p>Beyond the monster fights, the poem reflects on loyalty, generosity, fame, kingship and the shortness of human life. It is written in alliterative verse rich in kennings, compound phrases such as whale-road for the sea, and it weaves in older stories and feuds that deepen its sense of history. Its mix of pagan heroic values and Christian outlook makes it a fascinating window into early medieval thought.</p><p>The poem survives in a single manuscript copied around the year 1000 and damaged in a fire in 1731. Its date of composition is still debated. It was first printed in 1815, and J. R. R. Tolkien&#x27;s 1936 lecture helped establish it as a work of literary art. It has been translated many times, notably by Seamus Heaney in 1999, and retold in novels, films, comics and opera.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>Origins of the work</h2><p>Old English epic poem by an unknown poet, composed some time between the 8th and early 11th centuries and preserved in a single manuscript, the Nowell Codex, now in the British Library.</p></section>

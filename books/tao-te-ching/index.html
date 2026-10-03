@@ -141,6 +141,13 @@ body{overflow-x:clip}
 .grid{perspective:1200px}
 .grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
 .grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.trailer .yt{position:relative;display:block;width:100%;max-width:760px;aspect-ratio:16/9;border:0;padding:0;border-radius:14px;overflow:hidden;cursor:pointer;background:#000}
+.trailer .yt img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.trailer .yt:hover img{transform:scale(1.04)}
+.yt-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:#C8F27A;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .3s}
+.trailer .yt:hover .yt-play{transform:scale(1.08)}
+.yt-play::after{content:"";position:absolute;left:31px;top:24px;border-left:22px solid #16130F;border-top:14px solid transparent;border-bottom:14px solid transparent}
+.yt-frame{width:100%;max-width:760px;aspect-ratio:16/9;border:0;border-radius:14px;display:block}
 .bc-ad:empty{display:none}
 .bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .bc-bar{display:none}
@@ -178,6 +185,7 @@ body{overflow-x:clip}
   </div>
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Tao Te Ching</b><span>English · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
+
 <section class="card"><h2>About the book</h2><p>The Tao Te Ching is a short book of about five thousand Chinese characters, divided into eighty-one brief chapters. Its subject is the Tao, or Way, the nameless source and pattern of all things, and Te, the virtue or power that comes from living in harmony with it. The text teaches the value of simplicity, humility and stillness, and the strength of what seems weak: water, which yields yet wears away stone. It advises rulers to govern lightly, avoid force and display, and practise wu wei, often translated as non-action or effortless action, so that people can flourish naturally.</p><div class="rm-more" hidden><p>Its paradoxes and images invite slow reading and reflection rather than quick conclusions. It offers a counterweight to ambition, aggression and constant striving, and its ideas speak to those interested in philosophy, leadership, spirituality and the relationship between people and nature. Because the original is so terse, every translation is also an interpretation, and comparing versions is part of the pleasure.</p><p>Tradition credits the work to Laozi, said to have been an older contemporary of Confucius, though many scholars think the text took shape gradually and reached its familiar form around the fourth century BC. Early manuscripts discovered at Mawangdui and Guodian have shed new light on its history. It became the founding text of Taoism and is among the most translated works in the world.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Laozi</h2><p>Very little is known about Laozi, whose name means Old Master. The historian Sima Qian, writing around 100 BC, said he was Li Er, keeper of the archives at the Zhou court, whom Confucius consulted. According to legend, as he left China heading west, a frontier guard asked him to record his wisdom, and he wrote a short book before disappearing. Many modern scholars think the text was compiled over time by several hands, and some doubt Laozi existed as an individual.</p><div class="rm-more" hidden><p>The Tao Te Ching is a short book of about eighty poetic chapters. It speaks of the Tao, or Way, the nameless source and pattern of all things. It praises simplicity, humility, flexibility and wu wei, effortless action in harmony with nature, often using images of water and the uncarved block. It became a foundation of Taoist philosophy and religion and is among the most translated books in the world.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>

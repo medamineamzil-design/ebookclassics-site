@@ -141,6 +141,13 @@ body{overflow-x:clip}
 .grid{perspective:1200px}
 .grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
 .grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.trailer .yt{position:relative;display:block;width:100%;max-width:760px;aspect-ratio:16/9;border:0;padding:0;border-radius:14px;overflow:hidden;cursor:pointer;background:#000}
+.trailer .yt img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.trailer .yt:hover img{transform:scale(1.04)}
+.yt-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:#C8F27A;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .3s}
+.trailer .yt:hover .yt-play{transform:scale(1.08)}
+.yt-play::after{content:"";position:absolute;left:31px;top:24px;border-left:22px solid #16130F;border-top:14px solid transparent;border-bottom:14px solid transparent}
+.yt-frame{width:100%;max-width:760px;aspect-ratio:16/9;border:0;border-radius:14px;display:block}
 .bc-ad:empty{display:none}
 .bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .bc-bar{display:none}
@@ -178,6 +185,7 @@ body{overflow-x:clip}
   </div>
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="de" aria-pressed="true"><b lang="de">Die Verwandlung</b><span>Deutsch · EPUB, HTML, PDF, TXT · audiobook 2 h 08 min</span></button></li></ul></section>
+
 <section class="card"><h2>About the book</h2><p>Gregor Samsa, a travelling salesman who has long supported his parents and younger sister Grete, wakes one morning to find himself transformed into a huge insect-like creature. His first worries are strangely ordinary: he has missed his train and fears losing his job. But as his family and his employer&#x27;s chief clerk discover what has happened, Gregor finds himself shut away in his room, unable to communicate, while the household around him begins to change in response to his condition.</p><div class="rm-more" hidden><p>Kafka tells this impossible event in calm, precise, almost matter-of-fact prose, and that contrast is the source of the story&#x27;s eerie power. The novella has been read as a parable of alienation, of the way people are valued for their usefulness, of illness and dependence, and of family tensions and guilt. It is also, at moments, darkly comic. Short enough to read in a sitting, it raises questions that linger far longer, and it is often the first work through which readers meet Kafka.</p><p>Kafka wrote the story in 1912. It was first published in 1915, in the literary magazine Die weißen Blätter and then as a book by Kurt Wolff, one of the few works he saw in print during his lifetime. Kafka asked that the insect itself not be drawn on the cover. The novella is now one of the most influential works of twentieth-century fiction and has been adapted for stage, film and comics.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Franz Kafka</h2><p>Franz Kafka was born in Prague in 1883, then part of Austria-Hungary, into a German-speaking Jewish family. His relationship with his domineering father, a successful merchant, troubled him all his life. He earned a law doctorate and worked for most of his career at an accident insurance institute, writing at night. In 1917 he was diagnosed with tuberculosis, and he died in a sanatorium near Vienna in 1924. He asked his friend Max Brod to burn his unpublished manuscripts, but Brod published them instead.</p><div class="rm-more" hidden><p>In his lifetime Kafka published only a few stories, including The Metamorphosis, in which a salesman wakes up transformed into a giant insect. His novels The Trial, The Castle and Amerika appeared after his death. In clear, precise prose, he describes bewildered individuals facing incomprehensible authority, guilt and isolation. He is now regarded as one of the most important writers of the twentieth century, and the word Kafkaesque entered many languages.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>

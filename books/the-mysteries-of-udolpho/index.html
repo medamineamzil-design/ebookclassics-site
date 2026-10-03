@@ -141,6 +141,13 @@ body{overflow-x:clip}
 .grid{perspective:1200px}
 .grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
 .grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.trailer .yt{position:relative;display:block;width:100%;max-width:760px;aspect-ratio:16/9;border:0;padding:0;border-radius:14px;overflow:hidden;cursor:pointer;background:#000}
+.trailer .yt img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.trailer .yt:hover img{transform:scale(1.04)}
+.yt-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:#C8F27A;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .3s}
+.trailer .yt:hover .yt-play{transform:scale(1.08)}
+.yt-play::after{content:"";position:absolute;left:31px;top:24px;border-left:22px solid #16130F;border-top:14px solid transparent;border-bottom:14px solid transparent}
+.yt-frame{width:100%;max-width:760px;aspect-ratio:16/9;border:0;border-radius:14px;display:block}
 .bc-ad:empty{display:none}
 .bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .bc-bar{display:none}
@@ -178,6 +185,7 @@ body{overflow-x:clip}
   </div>
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">The Mysteries of Udolpho</b><span>English · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
+
 <section class="card"><h2>About the book</h2><p>In 1584, Emily St. Aubert lives happily with her parents in their château on the banks of the Garonne in Gascony. After her mother&#x27;s death she travels with her father through the Pyrenees, where she meets the young and sensitive Valancourt. When her father dies too, Emily is left in the care of her vain aunt, Madame Cheron, who marries the dark and scheming Italian nobleman Montoni. He takes them to Venice and then to Udolpho, his remote and crumbling castle in the Apennines.</p><div class="rm-more" hidden><p>At Udolpho, Emily is surrounded by armed men, locked doors, mysterious music, a portrait hidden behind a black veil and rumours of a vanished lady of the castle. Montoni wants her property and will stop at little to get it. Ann Radcliffe builds suspense through landscape and atmosphere, with long descriptions of mountains, storms and moonlit ruins, and she is famous for her &#x27;explained supernatural&#x27;: the terrors that seem ghostly are finally given rational explanations.</p><p>Published in four volumes in 1794, the novel was a huge success and earned Radcliffe the large sum of 500 pounds. It became the model of the Gothic romance and influenced writers from Walter Scott and Lord Byron to Edgar Allan Poe. Jane Austen affectionately mocked its fans in Northanger Abbey, whose heroine Catherine Morland cannot stop talking about Udolpho.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Ann Radcliffe</h2><p>Ann Radcliffe was born Ann Ward in London in 1764, the only child of a haberdasher. Little is known about her early life. In 1787 she married William Radcliffe, a graduate of Oxford who became the owner and editor of the English Chronicle newspaper, and she began writing novels soon afterwards. Shy and private, she avoided literary society, which led to many false rumours about her during her lifetime. She died in London in 1823.</p><div class="rm-more" hidden><p>Her first novels, The Castles of Athlin and Dunbayne (1789), A Sicilian Romance (1790) and The Romance of the Forest (1791), established her style. The Mysteries of Udolpho (1794) made her the best-known and best-paid novelist of the 1790s, and The Italian (1797) confirmed her reputation. She then stopped publishing novels. Her blend of sublime landscapes, suspense and rationally explained terrors shaped the Gothic novel and influenced Scott, Byron, Mary Shelley and Poe.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>

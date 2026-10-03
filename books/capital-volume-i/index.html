@@ -141,6 +141,13 @@ body{overflow-x:clip}
 .grid{perspective:1200px}
 .grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
 .grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.trailer .yt{position:relative;display:block;width:100%;max-width:760px;aspect-ratio:16/9;border:0;padding:0;border-radius:14px;overflow:hidden;cursor:pointer;background:#000}
+.trailer .yt img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.trailer .yt:hover img{transform:scale(1.04)}
+.yt-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:#C8F27A;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .3s}
+.trailer .yt:hover .yt-play{transform:scale(1.08)}
+.yt-play::after{content:"";position:absolute;left:31px;top:24px;border-left:22px solid #16130F;border-top:14px solid transparent;border-bottom:14px solid transparent}
+.yt-frame{width:100%;max-width:760px;aspect-ratio:16/9;border:0;border-radius:14px;display:block}
 .bc-ad:empty{display:none}
 .bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .bc-bar{display:none}
@@ -178,6 +185,7 @@ body{overflow-x:clip}
   </div>
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Capital, Volume I</b><span>English · EPUB, HTML, PDF, TXT</span></button></li></ul></section>
+
 <section class="card"><h2>About the book</h2><p>Capital, Volume I is Karl Marx&#x27;s major analysis of how capitalist economies work. It begins with the commodity, the basic unit of wealth in a market society, and distinguishes between its usefulness and its exchange value. From there Marx examines money, then asks how capital grows. His answer centres on labour-power: workers sell their capacity to work for a wage, but produce more value than they are paid, and this surplus value is the source of profit. The book goes on to study the length of the working day, the rise of factories and machinery, wages, the accumulation of capital, and the often violent separation of people from the land.</p><div class="rm-more" hidden><p>Marx combines economic theory with history, philosophy and detailed evidence from British government reports on factory conditions, child labour and public health. Ideas such as commodity fetishism and surplus value have shaped debates far beyond economics. Agree or not, readers gain a powerful lens on work and inequality.</p><p>The volume was first published in German in Hamburg in 1867. Marx did not live to finish the later volumes, which Friedrich Engels edited from his manuscripts and published in 1885 and 1894. An English translation appeared in 1887. Capital became the foundational text of Marxist thought and influenced political movements, governments and scholarship in sociology, history and economics around the world.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Karl Marx</h2><p>Karl Marx was born in 1818 in Trier, in the Prussian Rhineland, the son of a lawyer of Jewish descent. He studied law and philosophy at Bonn and Berlin and received his doctorate in 1841. He edited a radical newspaper that the authorities soon closed. Moving to Paris, he met Friedrich Engels, his lifelong collaborator. Expelled from several countries, he settled in London in 1849 with his wife, Jenny von Westphalen, often living in poverty. He died in London in 1883.</p><div class="rm-more" hidden><p>With Engels, Marx wrote The Communist Manifesto in 1848. His other works include The Eighteenth Brumaire of Louis Bonaparte and above all Capital, whose first volume appeared in 1867. Marx analysed capitalism as a historical system driven by the exploitation of labour, argued that history is shaped by class struggle and economic forces, and predicted the system&#x27;s collapse. His ideas inspired movements and revolutions that reshaped the twentieth century and remain essential reading in the social sciences.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>

@@ -26,6 +26,33 @@ for bid, b64, title in re.findall(r"\{id:'(b\d+)', coverImg:\"data:image/\w+;bas
     emb[title] = b64
 sg_i = site.index("STUDY_GUIDES = ")
 GUIDES = json.loads(site[sg_i + 15: site.index("\n", sg_i)].rstrip().rstrip(";"))
+sys.path.insert(0, HERE)
+import jslit
+try:
+    PROMO = jslit.const(site, "PROMO_VIDEOS")          # bandes-annonces officielles (par id de livre)
+except Exception:
+    PROMO = {}
+try:
+    TRAILERS = json.load(open(os.path.join(HERE, "content", "trailers.json"), encoding="utf-8"))  # ajouts (par slug)
+except FileNotFoundError:
+    TRAILERS = {}
+YT_ID = re.compile(r"^[A-Za-z0-9_-]{11}$")
+
+def trailer_html(b):
+    v = TRAILERS.get(b["slug"]) or PROMO.get(b["id"])
+    if not v or not YT_ID.match(v.get("yt", "")):
+        return ""
+    yid, src = v["yt"], v.get("src", "")
+    return (f'<section class="card trailer"><h2>On screen{": " + esc(src) if src else ""}</h2>'
+            f'<button type="button" class="yt" data-yt="{yid}" aria-label="Play the trailer{(" of " + esc(src)) if src else ""}">'
+            f'<img src="https://i.ytimg.com/vi/{yid}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">'
+            f'<span class="yt-play" aria-hidden="true"></span></button>'
+            f'<p class="free" style="margin-top:10px">Trailer of a film or TV adaptation, played from YouTube.</p></section>'
+            '<script>document.querySelectorAll(".yt").forEach(function(b){b.addEventListener("click",function(){'
+            'var f=document.createElement("iframe");f.src="https://www.youtube-nocookie.com/embed/"+b.dataset.yt+"?autoplay=1&rel=0";'
+            'f.title=b.getAttribute("aria-label");f.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";f.allowFullscreen=true;'
+            'f.className="yt-frame";b.replaceWith(f);});});</script>')
+
 
 books = [b for b in BOOKS if b["slug"] in MAN]
 esc = html.escape
@@ -439,6 +466,7 @@ for b in books:
   </div>
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds">{''.join(eds)}</ul></section>
+{trailer_html(b)}
 {('<section class="card"><h2>About the book</h2>' + readmore(about, 1) + '</section>') if about else ''}
 {('<section class="card"><h2>About ' + esc(b["author"]) + '</h2>' + readmore([f'<p>{esc(x)}</p>' for x in auth_paras], 1) + '</section>') if auth_paras and b["author"] != "Anonymous" else ''}{f'<section class="card"><h2>Origins of the work</h2><p>{esc(ORIGINS[s])}</p></section>' if s in ORIGINS else ''}
 {('<section class="card"><h2>How it begins</h2><blockquote>' + readmore([f'<p>{esc(p)}</p>' for p in op], 2 if sum(len(x) for x in op[:2]) < 1100 else 1) + f'</blockquote><p class="free" style="margin-top:12px"><a class="bcReadLink" href="{read}">Continue reading →</a></p></section>') if op else ''}

@@ -141,6 +141,13 @@ body{overflow-x:clip}
 .grid{perspective:1200px}
 .grid a img{transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
 .grid a:hover img{transform:rotateY(-10deg) translateY(-6px);box-shadow:0 18px 30px rgba(22,19,15,.25)}
+.trailer .yt{position:relative;display:block;width:100%;max-width:760px;aspect-ratio:16/9;border:0;padding:0;border-radius:14px;overflow:hidden;cursor:pointer;background:#000}
+.trailer .yt img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.trailer .yt:hover img{transform:scale(1.04)}
+.yt-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:#C8F27A;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .3s}
+.trailer .yt:hover .yt-play{transform:scale(1.08)}
+.yt-play::after{content:"";position:absolute;left:31px;top:24px;border-left:22px solid #16130F;border-top:14px solid transparent;border-bottom:14px solid transparent}
+.yt-frame{width:100%;max-width:760px;aspect-ratio:16/9;border:0;border-radius:14px;display:block}
 .bc-ad:empty{display:none}
 .bc-ad:not(:empty){min-height:290px;margin:18px 0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .bc-bar{display:none}
@@ -178,6 +185,7 @@ body{overflow-x:clip}
   </div>
 </div>
 <section class="card"><h2>Editions</h2><ul class="eds"><li><button type="button" class="ed active" data-lang="en" aria-pressed="true"><b lang="en">Metamorphoses</b><span>English · EPUB, HTML, PDF, TXT · audiobook 14 h 50 min</span></button></li></ul></section>
+
 <section class="card"><h2>About the book</h2><p>Metamorphoses is a long narrative poem in fifteen books, written in Latin hexameter by the Roman poet Ovid. Its subject is change of shape. Beginning with the creation of the world out of chaos, it moves through the ages of humankind, the flood and hundreds of myths in which gods and mortals are transformed: Daphne into a laurel tree, Narcissus into a flower, Arachne into a spider. Stories of Phaethon, Pyramus and Thisbe, Orpheus and Eurydice, and Pygmalion flow into one another, before the poem passes through the Trojan War and the legends of Rome to reach Julius Caesar and Ovid&#x27;s own time.</p><div class="rm-more" hidden><p>Ovid&#x27;s tone is playful, witty and often unsettling, shifting between humour, eroticism, cruelty and pathos. He is fascinated by desire, power, the arbitrary behaviour of the gods and the fragile boundary between human and natural worlds. His skill in linking tales together keeps the poem moving, and it remains one of the best ways to discover the stories of classical mythology.</p><p>Ovid completed the poem around 8 AD, the year he was exiled by the emperor Augustus to Tomis on the Black Sea. Widely read through the Middle Ages and Renaissance, it became one of the most influential works in Western culture, shaping writers such as Chaucer and Shakespeare, as well as painters such as Titian. Modern poets continue to translate and retell it.</p><p>Completed around 8 AD, the year of Ovid&#x27;s exile from Rome.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>
 <div class="bc-ad" id="bcAd1"></div>
 <section class="card"><h2>About Ovid</h2><p>Publius Ovidius Naso was born in 43 BC in Sulmo, east of Rome, into a family of the equestrian class. Educated in rhetoric at Rome, he gave up a public career for poetry and became the most fashionable poet of Augustus&#x27;s Rome. In AD 8 the emperor banished him to Tomis on the Black Sea, in present-day Romania; the exact reason remains a mystery, though Ovid himself blamed a poem and an error. Never allowed to return, he died in exile around AD 17 or 18.</p><div class="rm-more" hidden><p>Ovid&#x27;s early works include the Amores, love elegies, the Heroides, letters from mythical heroines to absent lovers, and the playful Art of Love. His masterpiece, the Metamorphoses, weaves together some two hundred and fifty myths of transformation, including Daphne and Apollo, Echo and Narcissus, and Pygmalion. In exile he wrote the sorrowful Tristia. His storytelling inspired Chaucer, Shakespeare and painters such as Titian, and the Metamorphoses remains a treasury of classical myth.</p></div><button type="button" class="rm-btn" aria-expanded="false">Read more</button></section>

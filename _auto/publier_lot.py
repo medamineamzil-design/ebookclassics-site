@@ -213,6 +213,8 @@ def update_content(made):
     about = json.load(open(os.path.join(cdir, "about_all.json"), encoding="utf-8"))
     auth = json.load(open(os.path.join(cdir, "authors_all.json"), encoding="utf-8"))
     noop = json.load(open(os.path.join(cdir, "no_opening.json"), encoding="utf-8"))
+    tr_path = os.path.join(cdir, "trailers.json")
+    trailers = json.load(open(tr_path, encoding="utf-8")) if os.path.exists(tr_path) else {}
     mk_path = os.path.join(cdir, "markers_auto.json")
     markers = json.load(open(mk_path, encoding="utf-8")) if os.path.exists(mk_path) else {}
     for slug, (b, _, _) in made.items():
@@ -223,8 +225,11 @@ def update_content(made):
             noop.append(slug)
         if b.get("marker"):
             markers[slug] = b["marker"]
+        tr = b.get("trailer") or {}
+        if re.match(r"^[A-Za-z0-9_-]{11}$", str(tr.get("yt", ""))):
+            trailers[slug] = {"yt": tr["yt"], "src": str(tr.get("src", ""))[:120]}
     for name, obj in (("about_all.json", about), ("authors_all.json", auth), ("no_opening.json", noop),
-                      ("markers_auto.json", markers)):
+                      ("markers_auto.json", markers), ("trailers.json", trailers)):
         json.dump(obj, open(os.path.join(cdir, name), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
 
