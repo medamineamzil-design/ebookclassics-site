@@ -1117,6 +1117,15 @@
   @media (max-width:560px){ .hx-player-title{ font-size:26px; } .hx-player img{ width:84px; } }
 </style>
 <style id="theme-motion">
+  /* genres : illustrations */
+  .mx-genre{position:relative;overflow:hidden;isolation:isolate;color:#fff!important}
+  .mx-gimg{position:absolute;inset:-8% 0;z-index:-1;background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+  .mx-gimg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,8,6,.85) 0%,rgba(10,8,6,.4) 42%,rgba(10,8,6,.05) 72%)}
+  .mx-genre:hover .mx-gimg,.mx-genre:focus-visible .mx-gimg{transform:scale(1.07)}
+  .mx-gtxt{position:relative;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+  .hx-genre .mx-gcount{align-self:flex-start;font-size:13px!important;background:rgba(0,0,0,.45);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:6px 11px;border-radius:999px;text-shadow:none}
+  @media (max-width:700px){.hx-genres .hx-genre:nth-child(4){grid-column:span 2!important}}
+
   /* ---------- Nouvelle apparence animée (accueil) ---------- */
   body{overflow-x:clip}
   .mx-bk{position:relative;aspect-ratio:2/3;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
@@ -2593,7 +2602,7 @@ function renderHome(){
     g.innerHTML = CATEGORIES.map(c=>{
       const n = avail.filter(b=>b.cat===c.slug).length;
       const col = HX_COLORS[c.slug] || ['#16130F','#fff'];
-      return `<a href="/books/#${c.slug}" class="hx-genre" style="background:${col[0]};color:${col[1]}" onclick="selectGenre('${c.slug}');return false;"><span>${t('hx.booksN',{n})}</span><b>${catLabel(c.slug)}</b></a>`;
+      return `<a href="/books/#${c.slug}" class="hx-genre mx-genre" style="background:${col[0]};color:#fff" onclick="selectGenre('${c.slug}');return false;"><span class="mx-gimg" style="background-image:url(/genres/${c.slug}.jpg)" aria-hidden="true"></span><span class="mx-gtxt mx-gcount">${t('hx.booksN',{n})}</span><b class="mx-gtxt">${catLabel(c.slug)}</b></a>`;
     }).join('');
   }
   const start = homeSortedBooks('start').filter(b => BOOK_EXTRA[hostedSlug(b)]).slice(0, 14);
@@ -4415,7 +4424,8 @@ window.bcMotion = (function(){
     // livres qui tombent sur la planche, titres qui apparaissent
     gsap.from('#hxStart .mx-item:not(.mx-clone)', {y: -160, rotationZ: () => gsap.utils.random(-14, 14), duration: 1.1, ease: 'bounce.out', stagger: .06, scrollTrigger: {trigger: '#mxShelf', start: 'top 75%'}});
     gsap.from('#mxLabels .mx-lab:not(.mx-clone)', {y: 14, opacity: .2, duration: .6, stagger: .06, delay: .4, ease: 'power2.out', scrollTrigger: {trigger: '#mxShelf', start: 'top 75%'}});
-    // genres en mosaïque
+    // genres en mosaïque (+ léger effet de profondeur sur les illustrations)
+    gsap.utils.toArray('.mx-gimg').forEach(im => gsap.fromTo(im, {yPercent: -6}, {yPercent: 6, ease: 'none', scrollTrigger: {trigger: im.parentElement, start: 'top bottom', end: 'bottom top', scrub: true}}));
     gsap.from('.hx-genres .hx-genre', {y: 50, rotationX: -12, transformPerspective: 900, opacity: .25, duration: .8, ease: 'power3.out', stagger: .08, scrollTrigger: {trigger: '.hx-genres', start: 'top 82%'}});
     // salle d'écoute : la vague du lecteur danse quand on la voit
     const bars = gsap.utils.toArray('#hxWave span');
