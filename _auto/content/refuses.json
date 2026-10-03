@@ -10,5 +10,13 @@
  {
   "title": "Thus Spake Zarathustra / Ivanhoe / autres",
   "reason": "aucune autre édition LIBRE-UE complète trouvée en es, pt, sv"
+ },
+ {
+  "title": "Joseph Andrews (Gutenberg #9611 et #9609)",
+  "reason": "œuvre publiée sur Gutenberg en 2 volumes séparés : à reprendre si une édition complète en un seul fichier est disponible"
+ },
+ {
+  "title": "A Journal of the Plague Year (de, Gutenberg #65277, trad. Steinitzer)",
+  "reason": "édition abrégée : environ 50 % des mots de l'original anglais"
  }
 ]
