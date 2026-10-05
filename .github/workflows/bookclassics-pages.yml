@@ -14,47 +14,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      - name: Assemble the current catalogue with the library design
+      - name: Assemble current catalogue with library design
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import shutil, zipfile
-          source = Path('.')
-          output = Path('_site')
-          output.mkdir(exist_ok=True)
+          import shutil, zipfile, hashlib, re
+          source=Path('.')
+          output=Path('_site'); output.mkdir(exist_ok=True)
           for p in source.iterdir():
-              if p.name.startswith('.') or p.name in {'_site', 'bookclassics-design-assets.zip'}:
-                  continue
-              if p.is_dir():
-                  shutil.copytree(p, output / p.name, dirs_exist_ok=True)
-              else:
-                  shutil.copy2(p, output / p.name)
+            if p.name.startswith('.') or p.name in {'_site','bookclassics-design-assets.zip'}: continue
+            if p.is_dir(): shutil.copytree(p,output/p.name,dirs_exist_ok=True)
+            else: shutil.copy2(p,output/p.name)
           with zipfile.ZipFile('bookclassics-design-assets.zip') as archive:
-              for item in archive.infolist():
-                  path = Path(item.filename)
-                  if path.is_absolute() or '..' in path.parts or not item.filename.startswith('assets/library/'):
-                      raise ValueError('Unexpected design asset path')
-              archive.extractall(output)
-          css = '<link rel="stylesheet" href="/assets/library/library.css">'
-          root = output / 'index.html'
-          html = root.read_text()
-          if css not in html:
-              html += '\n' + css + '\n'
-          for script in ['library.js', 'reader-pages.js']:
-              tag = '<script src="/assets/library/' + script + '"></script>'
-              if tag not in html:
-                  html += tag + '\n'
-          html = html.replace('content="#2D49EC"', 'content="#14283B"')
-          root.write_text(html)
-          pages = list((output / 'books').glob('*/index.html')) + [output / 'books/index.html']
+            for item in archive.infolist():
+              path=Path(item.filename)
+              if path.is_absolute() or '..' in path.parts or not item.filename.startswith('assets/library/'): raise ValueError('Unexpected asset path')
+            archive.extractall(output)
+          version=hashlib.sha256(Path('bookclassics-design-assets.zip').read_bytes()).hexdigest()[:12]
+          css='<link rel="stylesheet" href="/assets/library/library.css?v='+version+'">\n<link rel="stylesheet" href="/assets/library/cohesion.css?v='+version+'">'
+          root=output/'index.html'; html=root.read_text()
+          html=re.sub(r'<link[^>]+href="/assets/library/library.css[^" ]*"[^>]*>','',html)
+          html=re.sub(r'<script src="/assets/library/[^" ]+"></script>','',html)
+          html=html.replace('<header class="site">',css+'\n<header class="site">',1)
+          for script in ['library.js','reader-pages.js','cohesion.js']:
+            html += '\n<script src="/assets/library/'+script+'?v='+version+'"></script>\n'
+          html=html.replace('content="#2D49EC"','content="#14283B"'); root.write_text(html)
+          pages=list((output/'books').glob('*/index.html'))+[output/'books/index.html']
           for page in pages:
-              if not page.exists():
-                  continue
-              html = page.read_text()
-              if css not in html:
-                  html = html.replace('</head>', css + '\n</head>')
-              html = html.replace('<body>', '<body class="standalone-library">')
-              page.write_text(html)
+            if not page.exists(): continue
+            html=page.read_text(); html=re.sub(r'<link[^>]+href="/assets/library/library.css[^" ]*"[^>]*>','',html); html=html.replace('</head>',css+'\n</head>',1); html=html.replace('<body>','<body class="standalone-library">'); page.write_text(html)
           PY
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -65,9 +53,6 @@ jobs:
     permissions:
       pages: write
       id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy BookClassics
         id: deployment
