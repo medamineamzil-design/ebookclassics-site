@@ -41,17 +41,19 @@ jobs:
           function refresh(){var room=document.querySelector('.library-original-home');if(!room)return;var style=document.getElementById('home-overlay-style');if(!style){style=document.createElement('style');style.id='home-overlay-style';style.textContent=css;document.head.appendChild(style)}var layer=room.querySelector('.library-image-copy');if(!layer){layer=document.createElement('div');layer.className='library-image-copy';layer.setAttribute('aria-hidden','true');room.appendChild(layer)}var select=document.getElementById('uiLangSelect');var code=((select&&select.value)||document.documentElement.lang||'en').toLowerCase().split('-')[0];var t=labels[code]||labels.en;layer.innerHTML='<span class="image-free">'+t[0]+'</span><span class="image-hero-title">'+t[1]+'</span><span class="image-hero-lead">'+t[2]+'</span><span class="image-explore">'+t[3]+'</span><span class="image-all">'+t[4]+'</span><span class="image-shelf">'+t[5]+'</span>';room.querySelectorAll('.library-daily-book').forEach(function(a){var cap=a.querySelector('.library-original-caption');var title=(a.getAttribute('aria-label')||'').split(' — ')[0];if(!cap){cap=document.createElement('span');cap.className='library-original-caption';a.appendChild(cap)}cap.textContent=title});if(select&&!select.dataset.homeOverlayBound){select.dataset.homeOverlayBound='1';select.addEventListener('change',function(){setTimeout(refresh,80)})}}
           refresh();document.addEventListener('change',function(e){if(e.target&&e.target.id==='uiLangSelect')refresh()});setInterval(refresh,1200);
           })();'''
-          shutil.copy2(output / 'assets/library/library.js', output / 'assets/library/library-runtime.js')
           (output / 'assets/library/home-enhancements.js').write_text(enhancement)
-          version = hashlib.sha256(Path('bookclassics-design-assets.zip').read_bytes() + enhancement.encode() + b'library-runtime').hexdigest()[:12]
+          version = hashlib.sha256(Path('bookclassics-design-assets.zip').read_bytes() + enhancement.encode() + b'body-close-correction').hexdigest()[:12]
           css = '<link rel="stylesheet" href="/assets/library/library.css?v=' + version + '">\n<link rel="stylesheet" href="/assets/library/cohesion.css?v=' + version + '">' 
           root = output / 'index.html'
           html = root.read_text()
           html = re.sub(r'<link[^>]+href="/assets/library/library.css[^" ]*"[^>]*>', '', html)
           html = re.sub(r'<script src="/assets/library/[^" ]+"></script>', '', html)
           html = html.replace('</head>', css + '\n</head>', 1)
-          scripts = ''.join('<script src="/assets/library/' + name + '?v=' + version + '"></script>\n' for name in ['library-runtime.js', 'reader-pages.js', 'cohesion.js', 'home-enhancements.js'])
-          html = html.replace('</body>', scripts + '</body>', 1)
+          scripts = ''.join('<script src="/assets/library/' + name + '?v=' + version + '"></script>\n' for name in ['library.js', 'reader-pages.js', 'cohesion.js', 'home-enhancements.js'])
+          body_close = html.rfind('</body>')
+          if body_close < 0:
+              raise ValueError('Missing closing body tag')
+          html = html[:body_close] + scripts + html[body_close:]
           html = html.replace('content="#2D49EC"', 'content="#14283B"')
           root.write_text(html)
           pages = list((output / 'books').glob('*/index.html')) + [output / 'books/index.html']
