@@ -61,6 +61,9 @@ jobs:
               html = re.sub(r'<link[^>]+href="/assets/library/library.css[^" ]*"[^>]*>', '', html)
               html = html.replace('</head>', csslinks + chr(10) + '</head>', 1)
               html = html.replace('<body>', '<body class="standalone-library">')
+              account = "<div class='library-account-tools'><select aria-label='Site language'><option>English</option><option>Français</option><option>Español</option><option>Português</option><option>Deutsch</option><option>العربية</option></select><a class='standalone-auth' href='/#signin'>Sign In</a><a class='standalone-auth primary' href='/#signup'>Sign Up</a></div>"
+              html = html.replace('</header>', account + '</header>', 1)
+              html = html.replace('</head>', '<style>header.top .wrap{align-items:center}header.top .library-account-tools{display:flex;align-items:center;gap:8px;margin-left:auto}header.top .library-account-tools select,header.top .standalone-auth{font:600 .84rem Arial,sans-serif;padding:7px 10px;border-radius:999px;border:1px solid #d9d4c4;background:#fff;color:#2a2015;text-decoration:none}header.top .standalone-auth.primary{background:#2d4be0;border-color:#2d4be0;color:#fff}</style></head>', 1)
               page.write_text(html)
           PY
       - uses: actions/upload-pages-artifact@v3
