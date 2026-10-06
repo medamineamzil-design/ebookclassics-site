@@ -113,3 +113,14 @@ jobs:
           path: _site
   deploy:
     needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
+
