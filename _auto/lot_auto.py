@@ -202,10 +202,12 @@ def main():
             refused.add(slug_of(x if isinstance(x, str) else x.get("title", "")))
     except Exception:
         pass
-    taken = set()
+    taken, taken_gids = set(), set()
     for f in deja:
         try:
-            taken |= {slug_of(b["title"]) for b in json.load(open(f)).get("books", [])}
+            for b in json.load(open(f)).get("books", []):
+                taken.add(slug_of(b["title"]))
+                taken_gids |= {e.get("gid") for e in b.get("editions", [])}
         except Exception:
             pass
     known_authors = set()
@@ -220,7 +222,7 @@ def main():
         if len(books) >= nb:
             break
         r = cat.get(gid)
-        if not r or r.get("Type") != "Text" or r.get("Language") != "en":
+        if gid in taken_gids or not r or r.get("Type") != "Text" or r.get("Language") != "en":
             continue
         title = short_title(r["Title"])
         slug = slug_of(title)
