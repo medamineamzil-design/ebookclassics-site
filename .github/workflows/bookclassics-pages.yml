@@ -34,277 +34,47 @@ jobs:
                   path = Path(item.filename)
                   if path.is_absolute() or '..' in path.parts or not item.filename.startswith('assets/library/'):
                       raise ValueError('Unexpected design asset path')
-						86 container
-							87 text name :  BookClassics library design
-						88 container
-							89 text on :
-						90 container
-							91 text   push :
-						92 container
-							93 text     branches :  [ main ]
-						94 container
-							95 text   workflow_dispatch :
-						96 container
-							97 text permissions :
-						98 container
-							99 text   contents :  read
-						100 container
-							101 text concurrency :
-						102 container
-							103 text   group :  pages
-						104 container
-							105 text   cancel-in-progress :  false
-						106 container
-							107 text jobs :
-						108 container
-							109 text   build :
-						110 container
-							111 text     runs-on :  ubuntu-latest
-						112 container
-							113 text     steps :
-						114 container
-							115 text       -  uses :  actions/checkout@v4
-						116 container
-							117 text       -  uses :  actions/configure-pages@v5
-						118 container
-							119 text       -  name :  Assemble catalogue and library design
-						120 container
-							121 text         run :  |
-						122 text           python3 - <<'PY'
-						123 text           from pathlib import Path
-						124 text           import shutil, zipfile, hashlib, re
-						125 text           source = Path('.')
-						126 text           output = Path('_site')
-						127 text           output.mkdir(exist_ok=True)
-						128 text           for p in source.iterdir():
-						129 text               if p.name in {'.git', '.github', '_site', 'bookclassics-design-assets.zip'}:
-						130 text                   continue
-						131 text               if p.is_dir():
-						132 text                   shutil.copytree(p, output / p.name, dirs_exist_ok=True)
-						133 text               else:
-						134 text                   shutil.copy2(p, output / p.name)
-						135 text           with zipfile.ZipFile('bookclassics-design-assets.zip') as archive:
-						136 text               for item in archive.infolist():
-						137 text                   path = Path(item.filename)
-						138 text                   if path.is_absolute() or '..' in path.parts or not item.filename.startswith('assets/library/'):
-						139 text                       raise ValueError('Unexpected design asset path')
-				140 container focus-trap-help-panel
-					141 text Use 
-					142 text Control + Shift + m
-					143 text  to toggle the 
-					144 text tab
-					145 text  key moving focus. Alternatively, use 
-					146 text esc
-					147 text  then 
-					148 text tab
-					149 text  to move to the next interactive element on the page.
-				150 container yaml-editor-help-default
-					151 text Use 
-					152 text Control + Space
-					153 text or 
-					154 text Option + Space
-					155 text  to trigger autocomplete in most situations.
-			156 container blob-edit-side-panel-id
-				157 heading Help panel navigation, Value: 2
-					158 text Help panel navigation
-				159 container Help panel
-					160 content list
-						161 link Description: Marketplace, Value: github.com/medamineamzil-design/ebookclassics-site/edit/main/.github/workflows/bookclassics-pages.yml#
-						162 link Description: Documentation, Value: github.com/medamineamzil-design/ebookclassics-site/edit/main/.github/workflows/bookclassics-pages.yml#
-				163 text field (settable) Search Marketplace for Actions
-				164 heading Featured actions, Value: 2
-					165 text Featured actions
-				166 text Loading featured actions
-
-The focused UI element is 85 text entry area (settable) Editing bookclassics-pages.yml file contents Use Control + Shift + m to toggle the tab key moving focus. Alternatively, use esc then tab to move to the next interactive element on the page., Value: name: BookClassics library design
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-permissions:
-  contents: read
-concurrency:
-  group: pages
-  cancel-in-progress: false
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - name: Assemble catalogue and library design
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import shutil, zipfile, hashlib, re
-          source = Path('.')
-          output = Path('_site')
-          output.mkdir(exist_ok=True)
-          for p in source.iterdir():
-              if p.name in {'.git', '.github', '_site', 'bookclassics-design-assets.zip'}:
+              archive.extractall(output)
+          enhancement = r'''(function(){
+          var css=':focus,:focus-visible{outline:none!important;box-shadow:none!important}body:not([data-library-view=home]) header.site .catbar{display:none!important}body[data-library-view=home] header.site{display:contents!important}body[data-library-view=home] .library-account-tools{position:absolute!important;top:1.2%;right:2%;z-index:30;background:transparent!important}body:not([data-library-view=home]) .library-account-tools{position:absolute!important;top:7px;right:18px;z-index:30;padding:0!important;background:transparent!important}.library-original-home .image-free{display:none!important}.library-original-home .library-daily-book img{height:100%!important;object-fit:cover!important}.library-original-home .library-daily-book{height:29%!important}.library-summary{padding-top:22px!important;padding-bottom:32px!important}.library-summary p{margin-top:8px!important;font-weight:600}';
+          var labels={fr:['La bibliothèque en quelques chiffres','GRATUIT · Des classiques à lire, à écouter et à retrouver chaque jour.'],en:['Your library at a glance','FREE · Classic stories to read, listen to and rediscover every day.'],es:['Tu biblioteca de un vistazo','GRATIS · Clásicos para leer, escuchar y redescubrir cada día.'],de:['Ihre Bibliothek auf einen Blick','KOSTENLOS · Klassiker zum Lesen, Hören und täglichen Wiederentdecken.'],it:['La tua biblioteca in sintesi','GRATIS · Classici da leggere, ascoltare e riscoprire ogni giorno.'],pt:['A sua biblioteca em números','GRÁTIS · Clássicos para ler, ouvir e redescobrir todos os dias.'],ar:['لمحة عن مكتبتك','مجانًا · كلاسيكيات للقراءة والاستماع وإعادة الاكتشاف كل يوم.']};
+          function apply(){var select=document.getElementById('uiLangSelect');var code=((select&&select.value)||document.documentElement.lang||'en').toLowerCase().split('-')[0];var t=labels[code]||labels.en;var s=document.querySelector('.library-summary');if(s){var h=s.querySelector('h2');if(h)h.textContent=t[0];var p=s.querySelector('p');if(p)p.textContent=t[1]}document.querySelectorAll('.library-original-caption,.library-open-label,.image-free').forEach(function(n){n.remove()});var body=document.body;if(body&&!body.getAttribute('data-library-view'))body.setAttribute('data-library-view',location.pathname==='/index.html'||location.pathname==='/'?'home':'inner')}
+          var style=document.createElement('style');style.textContent=css;document.head.appendChild(style);apply();document.addEventListener('change',function(e){if(e.target&&e.target.id==='uiLangSelect')setTimeout(apply,80)});setInterval(apply,1200);
+          })();'''
+          (output / 'assets/library/home-enhancements.js').write_text(enhancement)
+          version = hashlib.sha256(Path('bookclassics-design-assets.zip').read_bytes() + enhancement.encode() + b'final-ui-v1').hexdigest()[:12]
+          csslinks = '<link rel="stylesheet" href="/assets/library/library.css?v=' + version + '">' + chr(10) + '<link rel="stylesheet" href="/assets/library/cohesion.css?v=' + version + '">'
+          root = output / 'index.html'
+          html = root.read_text()
+          html = re.sub(r'<link[^>]+href="/assets/library/library.css[^" ]*"[^>]*>', '', html)
+          html = re.sub(r'<script src="/assets/library/[^" ]+"></script>', '', html)
+          html = html.replace('<header', csslinks + chr(10) + '<header', 1)
+          scripts = ''.join('<script src="/assets/library/' + name + '?v=' + version + '"></script>' + chr(10) for name in ['library.js','reader-pages.js','cohesion.js','home-enhancements.js'])
+          html += chr(10) + scripts
+          html = html.replace('content="#2D49EC"', 'content="#14283B"')
+          root.write_text(html)
+          pages = list((output / 'books').glob('*/index.html')) + [output / 'books/index.html']
+          for page in pages:
+              if not page.exists():
                   continue
-              if p.is_dir():
-                  shutil.copytree(p, output / p.name, dirs_exist_ok=True)
-              else:
-                  shutil.copy2(p, output / p.name)
-          with zipfile.ZipFile('bookclassics-design-assets.zip') as archive:
-              for item in archive.infolist():
-                  path = Path(item.filename)
-                  if path.is_absolute() or '..' in path.parts or not item.filename.startswith('assets/library/'):
-                      raise ValueError('Unexpected design asset path          var css=" library design
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-permissions:
-  contents: read
-concurrency:
-  group: pages
-  cancel-in-progress: false
-jobs:
-  build:
+              html = page.read_text()
+              html = re.sub(r'<link[^>]+href="/assets/library/library.css[^" ]*"[^>]*>', '', html)
+              html = html.replace('</head>', csslinks + chr(10) + '</head>', 1)
+              html = html.replace('<body>', '<body class="standalone-library">')
+              page.write_text(html)
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - name: Assemble catalogue and library design
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import shutil, zipfile, hashlib, re
-          source = Path('.')
-          output = Path('_site')
-          output.mkdir(exist_ok=True)
-          for p in source.iterdir():
-              if p.name in {'.git', '.github', '_site', 'bookclassics-design-assets.zip'}:
-                  continue
-              if p.is_dir():
-                  shutil.copytree(p, output / p.name, dirs_exist_ok=True)
-              else:
-                  shutil.copy2(p, output / p.name)
-          with zipfile.ZipFile('bookclassics-design-assets.zip') as archive:
-              for item in archive.infolist():
-                  path = Path(item.filename)
-                  if path.is_absolute() or '..' in path.parts or not item.filename.startswith('assets/library/'):
-                      raise ValueError('Unexpected design asset path')
-						86 container
-							87 text name :  BookClassics library design
-						88 container
-							89 text on :
-						90 container
-							91 text   push :
-						92 container
-							93 text     branches :  [ main ]
-						94 container
-							95 text   workflow_dispatch :
-						96 container
-							97 text permissions :
-						98 container
-							99 text   contents :  read
-						100 container
-							101 text concurrency :
-						102 container
-							103 text   group :  pages
-						104 container
-							105 text   cancel-in-progress :  false
-						106 container
-							107 text jobs :
-						108 container
-							109 text   build :
-						110 container
-							111 text     runs-on :  ubuntu-latest
-						112 container
-							113 text     steps :
-						114 container
-							115 text       -  uses :  actions/checkout@v4
-						116 container
-							117 text       -  uses :  actions/configure-pages@v5
-						118 container
-							119 text       -  name :  Assemble catalogue and library design
-						120 container
-							121 text         run :  |
-						122 text           python3 - <<'PY'
-						123 text           from pathlib import Path
-						124 text           import shutil, zipfile, hashlib, re
-						125 text           source = Path('.')
-						126 text           output = Path('_site')
-						127 text           output.mkdir(exist_ok=True)
-						128 text           for p in source.iterdir():
-						129 text               if p.name in {'.git', '.github', '_site', 'bookclassics-design-assets.zip'}:
-						130 text                   continue
-						131 text               if p.is_dir():
-						132 text                   shutil.copytree(p, output / p.name, dirs_exist_ok=True)
-						133 text               else:
-						134 text                   shutil.copy2(p, output / p.name)
-						135 text           with zipfile.ZipFile('bookclassics-design-assets.zip') as archive:
-						136 text               for item in archive.infolist():
-						137 text                   path = Path(item.filename)
-						138 text                   if path.is_absolute() or '..' in path.parts or not item.filename.startswith('assets/library/'):
-						139 text                       raise ValueError('Unexpected design asset path')
-				140 container focus-trap-help-panel
-					141 text Use 
-					142 text Control + Shift + m
-					143 text  to toggle the 
-					144 text tab
-					145 text  key moving focus. Alternatively, use 
-					146 text esc
-					147 text  then 
-					148 text tab
-					149 text  to move to the next interactive element on the page.
-				150 container yaml-editor-help-default
-					151 text Use 
-					152 text Control + Space
-					153 text or 
-					154 text Option + Space
-					155 text  to trigger autocomplete in most situations.
-			156 container blob-edit-side-panel-id
-				157 heading Help panel navigation, Value: 2
-					158 text Help panel navigation
-				159 container Help panel
-					160 content list
-						161 link Description: Marketplace, Value: github.com/medamineamzil-design/ebookclassics-site/edit/main/.github/workflows/bookclassics-pages.yml#
-						162 link Description: Documentation, Value: github.com/medamineamzil-design/ebookclassics-site/edit/main/.github/workflows/bookclassics-pages.yml#
-				163 text field (settable) Search Marketplace for Actions
-				164 heading Featured actions, Value: 2
-					165 text Featured actions
-				166 text Loading featured actions
-
-The focused UI element is 85 text entry area (settable) Editing bookclassics-pages.yml file contents Use Control + Shift + m to toggle the tab key moving focus. Alternatively, use esc then tab to move to the next interactive element on the page., Value: name: BookClassics library design
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-permissions:
-  contents: read
-concurrency:
-  group: pages
-  cancel-in-progress: false
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - name: Assemble catalogue and library design
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import shutil, zipfile, hashlib, re
-          source = Path('.')
-          output = Path('_site')
-          output.mkdir(exist_ok=True)
-          for p in source.iterdir():
-              if p.name in {'.git', '.github', '_site', 'bookclassics-design-assets.zip'}:
-                  continue
-              if p.is_dir():
-                  shutil.copytree(p, output / p.name, dirs_exist_ok=True)
-              else:
-                  shutil.copy2(p, output / p.name)
-          with zipfile.ZipFile('bookclassics-design-assets.zip') as archive:
-              for item in archive.infolist():
-                  path = Path(item.filename)
-                  if path.is_absolute() or '..' in path.parts or not item.filename.startswith('assets/library/'):
-                      raise ValueError('Unexpected design asset pa:focus,:focus-visible{outline:none!important;box-shadow:none!important}body[data-library-view=home] header.site{display:contents!important}body[data-library-view=home] .library-account-tools{position:absolute!important;top:1.2%;right:2%;z-index:30;background:transparent!important;color:#fff5df!important}body:not([data-library-view=home]) header.site .catbar{display:none!important}body:not([data-library-view=home]) .library-account-tools{position:absolute!important;top:7px;right:18px;z-index:30;padding:0!important;background:transparent!important}.library-original-home .image-free{display:none!important}.library-original-home .library-daily-book img{height:100%!important;object-fit:cover!important}.library-original-home .library-daily-book{height:29%!important}.library-summary{padding-top:22px!important;padding-bottom:32px!important}.library-summary h2{margin-bottom:12px!important}.library-summary p{margin-top:8px!important;font-weight:600}";          function refresh(){var room=document.querySelector('.library-original-home');if(!room)return;var style=document.getElementById('home-overlay-style');if(!style){style=document.createElement('style');style.id='home-overlay-style';style.textContent=css;document.head.appendChild(style)}var layer=room.querySelector('.library-image-copy');if(!layer){layer=document.createElement('div');layer.className='library-image-copy';layer.setAttribute('aria-live','polite');room.appendChild(layer)}var select=document.getElementById('uiLangSelect');var code=((select&&select.value)||document.documentElement.lang||'en').toLowerCase().split('-')[0];var t=labels[code]||labels.en;layer.innerHTML='<span class="image-free">'+t[0]+'</span><span class="image-hero-title">'+t[1]+'</span><span class="image-hero-lead">'+t[2]+'</span><span class="image-explore">'+t[3]+'</span><span class="image-all">'+t[4]+'</span><span class="image-shelf">'+t[5]+'</span>';room.querySelectorAll('.library-daily-book').forEach(function(a){var cap=a.querySelector('.library-original-caption');var title=(a.getAttribute('aria-label')||'').split(' — ')[0];if(!cap){cap=document.createElement('span');cap.className='library-original-caption';a.appendChild(cap)}cap.textContent=title;cap.setAttribute('translate','no');a.setAttribute('translate','no');var open=a.querySelector('.library-open-label');if(!open){open=document.createElement('span');open.className='library-open-label';a.appendChild(open)}open.textContent=code==='fr'?'Ouvrir':code==='es'?'Abrir':code==='de'?'Öffnen':code==='it'?'Apri':code==='pt'?'Abrir':code==='ar'?'افتح':'Open'});var home=room.querySelector('.original-home');if(home)home.textContent=code==='fr'?'Accueil':code==='es'?'Inicio':code==='de'?'Start':code==='ar'?'الرئيسية':'Home';var genres=room.querySelector('.original-genres');if(genres)genres.textContent=code==='fr'?'Tous les genres':t[3];var library=room.querySelector('.original-library');if(library)library.textContent=code==='fr'?'Mes livres':code==='es'?'Mis libros':code==='de'?'Meine Bücher':code==='it'?'I miei libri':code==='pt'?'Meus livros':code==='ar'?'كتبي':'My books';if(select&&!select.dataset.homeOverlayBound){select.dataset.homeOverlayBound='1';select.addEventListener('change',function(){setTimeout(refresh,80)})}}
-          function polish(){var root=document.documentElement,code=((document.getElementById('uiLangSelect')||{}).value||root.lang||'en').toLowerCase().split('-')[0];var fr=code==='fr',es=code==='es',de=code==='de',it=code==='it',pt=code==='pt',ar=code==='ar';var summary=document.querySelector('.library-summary');if(summary){var h=summary.querySelector('h2');if(h)h.textContent=fr?'La bibliothèque en quelques chiffres':es?'Tu biblioteca de un vistazo':de?'Ihre Bibliothek auf einen Blick':it?'La tua biblioteca in sintesi':pt?'A sua biblioteca em números':ar?'لمحة عن مكتبتك':'Your library at a glance';var p=summary.querySelector('p');if(p)p.textContent=fr?'GRATUIT · Des classiques à lire, à écouter et à retrouver chaque jour.':es?'GRATIS · Clásicos para leer, escuchar y redescubrir cada día.':de?'KOSTENLOS · Klassiker zum Lesen, Hören und täglichen Wiederentdecken.':it?'GRATIS · Classici da leggere, ascoltare e riscoprire ogni giorno.':pt?'GRÁTIS · Clássicos para ler, ouvir e redescobrir todos os dias.':ar?'مجانًا · كلاسيكيات للقراءة والاستماع وإعادة الاكتشاف كل يوم.':'FREE · Classic stories to read, listen to and rediscover every day.';}document.querySelectorAll('.library-original-caption,.library-open-label').forEach(function(n){n.remove()});var free=document.querySelector('.image-free');if(free)free.remove()}
-          refresh();polish();document.addEventListener('change',function(e){if(e.target&&e.target.id==='uiLangSelect'){setTimeout(function(){refresh();polish()},80)}});setInterval(function(){refresh();polish()},1200);          })();'''
-'
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
