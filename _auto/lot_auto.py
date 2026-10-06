@@ -156,7 +156,7 @@ def find_book_article(title, author_last):
     for q in (f"{title} {author_last}", f"{title} novel", title):
         for cand in wiki_search(q):
             cn = set(norm(re.sub(r"\(.*?\)", "", cand)).split()) - {"the", "a", "an", "of", "and"}
-            if not tn or len(tn & cn) < max(1, int(len(tn) * 0.6)):
+            if not tn or len(tn & cn) < max(1, int(len(tn) * 0.6)) or len(tn & cn) < len(cn) * 0.6:
                 continue
             p = wiki_page(cand)
             if not p or not p["extract"]:
@@ -262,6 +262,10 @@ def main():
         if re.search(r"mathematic|calculus|science|textbook|cookery|medicine|law\b|grammar|arithmetic", r.get("Subjects", ""), re.I) and "fiction" not in r.get("Subjects", "").lower():
             continue
         year = year_of(ent)
+        dmax = max([p["death"] for p in auth if p.get("death")] or [9999])
+        if year and year > dmax + 5:
+            skipped.append(f"{title} (#{gid}) : article Wikipédia douteux (publié après la mort de l'auteur)")
+            continue
         countries = [wd_label(v["id"]) for v in claims(ent, "P495") if isinstance(v, dict) and v.get("id")][:1]
         genres = " ".join(wd_label(v["id"]) for v in claims(ent, "P136")[:3] if isinstance(v, dict) and v.get("id"))
         if not year:
