@@ -48,6 +48,12 @@ jobs:
           }
           refresh();polish();document.addEventListener('change',function(e){if(e.target&&e.target.id==='uiLangSelect'){setTimeout(function(){refresh();polish()},80)}});setInterval(function(){refresh();polish()},1200);
           })();'''
+          # Keep the injected stylesheet valid JavaScript even when CSS declarations
+          # contain double quotes (for example pseudo-element content values).
+          parts = enhancement.split('\n', 2)
+          if len(parts) == 3 and parts[1].startswith('var css="') and parts[1].endswith('";'):
+              parts[1] = 'var css=String.raw`' + parts[1][len('var css="'):-2] + '`;'
+              enhancement = '\n'.join(parts)
           (output / 'assets/library/home-enhancements.js').write_text(enhancement)
           version = hashlib.sha256(Path('bookclassics-design-assets.zip').read_bytes() + enhancement.encode() + b'fragment-safe-v2').hexdigest()[:12]
           css = '<link rel="stylesheet" href="/assets/library/library.css?v=' + version + '">\n<link rel="stylesheet" href="/assets/library/cohesion.css?v=' + version + '">' 
