@@ -50,12 +50,9 @@ jobs:
           refresh();polish();document.addEventListener('change',function(e){if(e.target&&e.target.id==='uiLangSelect'){setTimeout(function(){refresh();polish()},80)}});setInterval(function(){refresh();polish()},1200);
           })();'''
           # Parse the stylesheet and serialize its text safely into JavaScript.
-          parts = enhancement.split('
-', 2)
+          parts = enhancement.split('\n', 2)
           if len(parts) == 3 and parts[1].startswith('var css="') and parts[1].endswith('";'):
-              css_text = parts[1][len('var css="'):-2].replace(r'
-', '
-')
+              css_text = parts[1][len('var css="'):-2].replace(r'\n', '\n')
               css_text += r'''
 .library-original-home .library-account-tools{position:absolute!important;top:5.1%!important;left:32%!important;right:auto!important;width:26%!important;height:5.7%!important;min-height:0!important;padding:0!important;gap:6px!important;align-items:center!important;justify-content:flex-start!important;z-index:40!important;background:transparent!important;box-sizing:border-box!important}
 .library-original-home .library-account-tools select{flex:1 1 108px!important;width:38%!important;max-width:130px!important;min-width:78px!important;height:30px!important;min-height:30px!important;padding:4px 6px!important;margin:0!important;font-size:12px!important;box-sizing:border-box!important}
@@ -66,8 +63,7 @@ jobs:
 @media(max-width:900px){.library-home-mobile-mask{display:block}.library-original-home .library-original-links .original-home,.library-original-home .library-original-links .original-genres,.library-original-home .library-original-links .original-library,.library-original-home .library-original-links .original-search{display:none!important}.library-original-home .library-account-tools{left:31.5%!important;top:5.1%!important;width:56%!important;max-width:none!important;gap:5px!important}.library-original-home .library-account-tools select{flex:0 1 124px!important;width:124px!important;min-width:74px!important;max-width:132px!important}}
 @media(max-width:420px){.library-original-home .library-account-tools{left:30.5%!important;width:62%!important;gap:3px!important}.library-original-home .library-account-tools select{flex:0 1 78px!important;width:78px!important;min-width:64px!important;max-width:82px!important}.library-original-home .library-account-tools button{padding:3px 4px!important;font-size:11px!important}}'''
               parts[1] = 'var css=' + json.dumps(css_text, ensure_ascii=False) + ';'
-              enhancement = '
-'.join(parts)
+              enhancement = '\n'.join(parts)
           enhancement = enhancement.replace('setInterval(function(){refresh();polish()},1200);', '')
           locale_script = r'''(function(){
           var copy=__LOCALIZED_COPY__;
@@ -88,8 +84,7 @@ jobs:
           applyLocale();document.addEventListener('change',function(e){if(e.target&&e.target.id==='uiLangSelect')setTimeout(applyLocale,120)});
           var room=document.querySelector('.library-original-home');if(room)new MutationObserver(applyLocale).observe(room,{childList:true,subtree:true});new MutationObserver(applyLocale).observe(document.body,{attributes:true,attributeFilter:['data-library-view']});
           })();'''.replace('__LOCALIZED_COPY__', json.dumps(localized_copy, ensure_ascii=False))
-          enhancement += '
-' + locale_script
+          enhancement += '\n' + locale_script
           (output / 'assets/library/home-enhancements.js').write_text(enhancement)
           version = hashlib.sha256(Path('bookclassics-design-assets.zip').read_bytes() + enhancement.encode() + b'fragment-safe-v2').hexdigest()[:12]
           css = '<link rel="stylesheet" href="/assets/library/library.css?v=' + version + '">\n<link rel="stylesheet" href="/assets/library/cohesion.css?v=' + version + '">' 
@@ -118,13 +113,3 @@ jobs:
           path: _site
   deploy:
     needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-    steps:
-      - name: Deploy BookClassics
-        id: deployment
-        uses: actions/deploy-pages@v4
