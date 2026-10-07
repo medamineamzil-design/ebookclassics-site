@@ -231,6 +231,45 @@ jobs:
               n += 1
           print('goatcounter pages', n)
           PY
+      - name: RSS feed of new books
+        run: |
+          python3 - <<'PY'
+          import re, html, urllib.request, email.utils, datetime
+          from pathlib import Path
+          site = Path('_site')
+          old = {}
+          try:
+              x = urllib.request.urlopen('https://bookclassics.org/feed.xml', timeout=20).read().decode('utf-8')
+              for link, d in re.findall(r'<link>([^<]+)</link>\s*<guid[^>]*>[^<]*</guid>\s*<pubDate>([^<]+)</pubDate>', x):
+                  old[link] = d
+          except Exception as e:
+              print('no previous feed', e)
+          first = not old
+          now = email.utils.format_datetime(datetime.datetime.now(datetime.timezone.utc))
+          base = email.utils.format_datetime(datetime.datetime(2026, 10, 1, tzinfo=datetime.timezone.utc))
+          items = []
+          for f in site.glob('books/*/index.html'):
+              t = f.read_text(encoding='utf-8', errors='ignore')
+              def meta(p):
+                  m = re.search(r'<meta property="og:%s" content="([^"]*)"' % p, t)
+                  return html.unescape(m.group(1)) if m else ''
+              title = meta('title') or html.unescape((re.search(r'<title>([^<]*)', t) or [None, f.parent.name])[1])
+              title = re.split(r' — | \| ', title)[0]
+              link = 'https://bookclassics.org/books/%s/' % f.parent.name
+              d = old.get(link) or (base if first else now)
+              items.append((email.utils.parsedate_to_datetime(d), d, title, link, meta('description'), meta('image')))
+          items.sort(key=lambda i: i[0], reverse=True)
+          esc = lambda s: html.escape(s, quote=True)
+          out = ['<?xml version="1.0" encoding="UTF-8"?>', '<rss version="2.0"><channel>',
+                 '<title>BookClassics - new free classics</title><link>https://bookclassics.org/</link>',
+                 '<description>New public-domain books to read, download and listen to for free.</description><language>en</language>']
+          for _, d, title, link, desc, img in items[:200]:
+              body = ('<img src="%s" alt="" width="200"><br>' % img if img else '') + esc(desc)
+              out.append('<item><title>%s</title><link>%s</link><guid isPermaLink="true">%s</guid><pubDate>%s</pubDate><description>%s</description></item>' % (esc(title), link, link, d, esc(body)))
+          out.append('</channel></rss>')
+          (site / 'feed.xml').write_text('\n'.join(out), encoding='utf-8')
+          print('feed items', len(items), 'first run' if first else '')
+          PY
       - name: Optimise homepage artwork
         run: |
           python3 -m pip install --quiet pillow
