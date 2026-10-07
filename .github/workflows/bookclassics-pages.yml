@@ -270,6 +270,21 @@ jobs:
           (site / 'feed.xml').write_text('\n'.join(out), encoding='utf-8')
           print('feed items', len(items), 'first run' if first else '')
           PY
+      - name: Count newsletter signups
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          js = "<script>document.addEventListener('submit',function(e){var f=e.target;if(f&&/gate|news/i.test(f.id||'')){var i=f.querySelector('input[type=email]');if(i&&i.checkValidity()&&window.goatcounter&&goatcounter.count){goatcounter.count({path:'newsletter-signup',title:'Newsletter signup',event:true});}}},true);</script>"
+          n = 0
+          for f in Path('_site').rglob('*.html'):
+              t = f.read_text(encoding='utf-8', errors='surrogateescape')
+              if 'newsletter-signup' in t or '</body>' not in t:
+                  continue
+              i = t.rfind('</body>')
+              f.write_text(t[:i] + js + t[i:], encoding='utf-8', errors='surrogateescape')
+              n += 1
+          print('signup counter pages', n)
+          PY
       - name: Optimise homepage artwork
         run: |
           python3 -m pip install --quiet pillow
