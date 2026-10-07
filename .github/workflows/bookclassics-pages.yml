@@ -305,6 +305,20 @@ jobs:
               f.write_text(t, encoding='utf-8')
               print('book header subscribe', n)
           PY
+      - name: Hide old homepage until new design is ready
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          f = Path('_site/index.html')
+          t = f.read_text(encoding='utf-8')
+          snip = ('<style id="bc-noflash">html:not(.library-ready) body>main,html:not(.library-ready) body>footer{visibility:hidden}'
+                  'html:not(.library-ready),html:not(.library-ready) body{background:#13233a}</style>'
+                  '<script>setTimeout(function(){document.documentElement.classList.add("library-ready")},4000)</script>')
+          if 'bc-noflash' not in t and '</title>' in t[:300000]:
+              t = t.replace('</title>', '</title>' + snip, 1)
+              f.write_text(t, encoding='utf-8')
+              print('noflash added')
+          PY
       - name: Optimise homepage artwork
         run: |
           python3 -m pip install --quiet pillow
