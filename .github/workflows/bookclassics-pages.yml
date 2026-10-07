@@ -225,9 +225,9 @@ jobs:
           n = 0
           for f in Path('_site').rglob('*.html'):
               t = f.read_text(encoding='utf-8', errors='surrogateescape')
-              if 'goatcounter.com/count' in t or '</head>' not in t:
+              if 'goatcounter.com/count' in t or '</title>' not in t[:300000]:
                   continue
-              f.write_text(t.replace('</head>', tag + '</head>', 1), encoding='utf-8', errors='surrogateescape')
+              f.write_text(t.replace('</title>', '</title>' + tag, 1), encoding='utf-8', errors='surrogateescape')
               n += 1
           print('goatcounter pages', n)
           PY
@@ -278,9 +278,9 @@ jobs:
           n = 0
           for f in Path('_site').rglob('*.html'):
               t = f.read_text(encoding='utf-8', errors='surrogateescape')
-              if 'newsletter-signup' in t or '</body>' not in t:
+              if 'newsletter-signup' in t or '</title>' not in t[:300000]:
                   continue
-              i = t.rfind('</body>')
+              i = t.find('</title>') + 8
               f.write_text(t[:i] + js + t[i:], encoding='utf-8', errors='surrogateescape')
               n += 1
           print('signup counter pages', n)
