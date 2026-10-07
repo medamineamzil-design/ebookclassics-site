@@ -319,6 +319,33 @@ jobs:
               f.write_text(t, encoding='utf-8')
               print('noflash added')
           PY
+      - name: Move inline cover images out of homepage
+        run: |
+          python3 - <<'PY'
+          import re, base64, hashlib
+          from pathlib import Path
+          site = Path('_site')
+          f = site / 'index.html'
+          t = f.read_text(encoding='utf-8')
+          out = site / 'assets' / 'inline'
+          out.mkdir(parents=True, exist_ok=True)
+          EXT = {'image/png': 'png', 'image/jpeg': 'jpg', 'image/jpg': 'jpg', 'image/webp': 'webp', 'image/gif': 'gif'}
+          n = 0; saved = 0
+          def rep(m):
+              global n, saved
+              mime, data = m.group(1), m.group(2)
+              try:
+                  raw = base64.b64decode(data, validate=True)
+              except Exception:
+                  return m.group(0)
+              name = hashlib.md5(raw).hexdigest()[:16] + '.' + EXT[mime]
+              (out / name).write_bytes(raw)
+              n += 1; saved += len(m.group(0))
+              return '/assets/inline/' + name
+          t2 = re.sub(r'data:(image/(?:png|jpeg|jpg|webp|gif));base64,([A-Za-z0-9+/=]{2000,})', rep, t)
+          f.write_text(t2, encoding='utf-8')
+          print('inline images extracted', n, 'chars removed', saved, 'new size', len(t2))
+          PY
       - name: Optimise homepage artwork
         run: |
           python3 -m pip install --quiet pillow
