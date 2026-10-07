@@ -102,6 +102,13 @@ jobs:
           css = '<link rel="stylesheet" href="/assets/library/library.css?v=' + version + '">\n<link rel="stylesheet" href="/assets/library/cohesion.css?v=' + version + '">' 
           root = output / 'index.html'
           html = root.read_text()
+          # Connect the previously generated covers to entries still using text-only faces.
+          missing_covers = {'b88': 'the-book-of-common-prayer', 'b94': 'a-christmas-carol', 'b111': 'macbeth', 'b112': 'othello', 'b113': 'king-lear', 'b115': 'the-tempest', 'b123': 'the-red-and-the-black', 'b124': 'father-goriot', 'b125': 'bel-ami', 'b127': 'grimm-s-fairy-tales', 'b128': 'andersen-s-fairy-tales', 'b129': 'the-arabian-nights', 'b130': 'the-prophet', 'b131': 'tao-te-ching', 'b132': 'the-rubaiyat-of-omar-khayyam'}
+          for book_id, slug in missing_covers.items():
+              assert (output / 'covers' / (slug + '.jpg')).is_file(), 'Missing cover: ' + slug
+              marker = "{id:'" + book_id + "',"
+              assert html.count(marker) == 1, 'Ambiguous catalogue entry: ' + book_id
+              html = html.replace(marker, marker + ' coverImg:"/covers/' + slug + '.jpg",', 1)
           html = re.sub(r'<link[^>]+href="/assets/library/library.css[^" ]*"[^>]*>', '', html)
           html = re.sub(r'<script src="/assets/library/[^" ]+"></script>', '', html)
           html = html.replace('<header', css + '\n<header', 1)
@@ -115,6 +122,8 @@ jobs:
               if not page.exists():
                   continue
               html = page.read_text()
+              if page.parent.name == 'a-christmas-carol':
+                  html = re.sub(r'<div class="cover text">.*?</div>', '<img class="cover" src="/covers/a-christmas-carol.jpg" width="1024" height="1536" alt="A Christmas Carol — Charles Dickens" loading="eager">', html, count=1, flags=re.S)
               html = re.sub(r'<link[^>]+href="/assets/library/library.css[^" ]*"[^>]*>', '', html)
               html = html.replace('</head>', css + '\n</head>', 1)
               html = html.replace('<body>', '<body class="standalone-library">')
