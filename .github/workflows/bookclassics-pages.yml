@@ -285,6 +285,26 @@ jobs:
               n += 1
           print('signup counter pages', n)
           PY
+      - name: Subscribe button on book pages
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          f = Path('_site/assets/library/navigation-fixes.js')
+          if f.exists():
+              t = f.read_text(encoding='utf-8')
+              old = '<div class="topbar-auth"><a class="btn btn-secondary btn-auth" id="btnAuthSignIn" href="/#signin"></a><a class="btn btn-primary btn-auth" id="btnAuthSignUp" href="/#signup"></a></div>'
+              new = '<div class="topbar-auth"><a id="btnAuthSignIn" hidden style="display:none"></a><a id="btnAuthSignUp" hidden style="display:none"></a><a class="btn btn-primary btn-auth" id="btnSubscribe" href="/" onclick="return bcSub(event)">Subscribe for new books</a></div>'
+              n = t.count(old)
+              t = t.replace(old, new)
+              t += r'''
+          ;(function(){var L={EN:"Subscribe for new books",FR:"S'abonner aux nouveautés",ES:"Suscribirse a las novedades",PT:"Assinar as novidades",AR:"اشترك في الكتب الجديدة",ZH:"订阅新书",JA:"新着をメールで受け取る",RU:"Подписаться на новинки",DE:"Neuheiten abonnieren",SQ:"Abonohu për librat e rinj"};
+          window.bcSub=function(e){var g=document.getElementById("bcGate");if(g){try{localStorage.removeItem("ebc_gate_seen")}catch(x){}g.hidden=false;if(e)e.preventDefault();return false}return true};
+          function up(){var b=document.getElementById("btnSubscribe");if(!b)return;var v="EN";document.querySelectorAll("select").forEach(function(s){if(L[s.value])v=s.value});b.textContent=L[v]}
+          document.addEventListener("change",function(){setTimeout(up,50)});document.addEventListener("DOMContentLoaded",up);setTimeout(up,600);setTimeout(up,2000);})();
+          '''
+              f.write_text(t, encoding='utf-8')
+              print('book header subscribe', n)
+          PY
       - name: Optimise homepage artwork
         run: |
           python3 -m pip install --quiet pillow
