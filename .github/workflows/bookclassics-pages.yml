@@ -152,6 +152,51 @@ jobs:
               html = html.replace('</body>', '<script src="/assets/library/navigation-fixes.js?v=' + version + '"></script>\n</body>')
               page.write_text(html)
           PY
+      - name: Soft email prompt and terms page
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          site = Path('_site')
+          COOL = "try{var t=+localStorage.getItem('ebc_gate_seen')||0;if(Date.now()-t<6048e5)return;localStorage.setItem('ebc_gate_seen',Date.now());}catch(e){return;}"
+          idx = site / 'index.html'
+          if idx.exists():
+              t = idx.read_text(encoding='utf-8')
+              t, n1 = re.subn(r'function requireEmail\(action\)\{\s*if\(isRegistered\(\)\)\{\s*action\(\);\s*return;\s*\}', 'function requireEmail(action){ action(); if(isRegistered()) return; ' + COOL + ' action=function(){};', t)
+              t, n2 = re.subn(r'if\(readerReturnUrl && !isRegistered\(\)\)', 'if(false && readerReturnUrl)', t)
+              t = t.replace('Enter your email once to read and download all our books for free.', 'Optional: get new free classics by email. You can close this and keep reading.')
+              idx.write_text(t, encoding='utf-8')
+              print('spa gate', n1, n2)
+          nb = 0
+          for f in site.glob('books/*/index.html'):
+              t = f.read_text(encoding='utf-8')
+              t2, n = re.subn(r'function gate\(fn\)\{\s*if\(reg\(\)\)\{\s*fn\(\);\s*return;\s*\}\s*pending=fn;', 'function gate(fn){ fn(); if(reg())return; ' + COOL + ' pending=function(){};', t)
+              if n:
+                  f.write_text(t2, encoding='utf-8'); nb += 1
+          print('book gates', nb)
+          (site / 'terms.html').write_text('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Terms of Use - BookClassics</title><style>body{font-family:Georgia,serif;max-width:760px;margin:0 auto;padding:24px 16px;line-height:1.6;color:#222;background:#fdfbf6}a{color:#8b2c1c}</style></head><body>
+          <p><a href="/">&larr; BookClassics</a></p><h1>Terms of Use</h1><p>Last updated: October 2026</p>
+          <h2>1. The service</h2><p>BookClassics offers free access to public-domain books and audiobooks. The site is funded by advertising.</p>
+          <h2>2. Public-domain content</h2><p>The books are in the public domain in the United States and/or the European Union. Copyright law differs between countries: you are responsible for checking that a work is in the public domain where you live before downloading it.</p>
+          <h2>3. Audiobooks</h2><p>Audiobooks come from LibriVox volunteer recordings, which are in the public domain.</p>
+          <h2>4. Book descriptions</h2><p>Some descriptions come from Wikipedia and are available under the Creative Commons Attribution-ShareAlike licence (CC BY-SA). Credit is given on each page.</p>
+          <h2>5. Acceptable use</h2><p>Do not use automated tools to download the site in bulk, overload it, or interfere with its operation.</p>
+          <h2>6. Newsletter</h2><p>Signing up for emails is optional. You can unsubscribe at any time with the link in every email.</p>
+          <h2>7. Advertising and privacy</h2><p>We show ads through Google AdSense. See our <a href="/privacy.html">Privacy Policy</a> for cookies and your choices.</p>
+          <h2>8. No warranty</h2><p>The site is provided "as is", without warranty. We are not liable for errors in texts or for interruptions of service.</p>
+          <h2>9. Changes</h2><p>We may update these terms. The date above shows the latest version.</p>
+          <h2>10. Contact</h2><p><a href="mailto:contact@bookclassics.org">contact@bookclassics.org</a> &middot; <a href="/contact.html">Contact page</a></p>
+          </body></html>''', encoding='utf-8')
+          nl = 0
+          for f in site.rglob('*.html'):
+              if f.name == 'terms.html': continue
+              t = f.read_text(encoding='utf-8', errors='surrogateescape')
+              if 'terms.html' in t: continue
+              t2, n = re.subn(r'(<a[^>]*href="[^"]*privacy\.html"[^>]*>[^<]*</a>)', r'\1 &middot; <a href="/terms.html">Terms of Use</a>', t, count=1)
+              if n:
+                  f.write_text(t2, encoding='utf-8', errors='surrogateescape'); nl += 1
+          print('terms links', nl)
+          PY
       - name: Optimise homepage artwork
         run: |
           python3 -m pip install --quiet pillow
