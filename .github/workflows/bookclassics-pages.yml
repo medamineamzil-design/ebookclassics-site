@@ -197,6 +197,26 @@ jobs:
                   f.write_text(t2, encoding='utf-8', errors='surrogateescape'); nl += 1
           print('terms links', nl)
           PY
+      - name: Subscribe button instead of sign in
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          idx = Path('_site/index.html')
+          if idx.exists():
+              t = idx.read_text(encoding='utf-8')
+              btn = '''<div class="topbar-auth" style="display:flex !important"><button class="btn btn-primary btn-auth" id="btnSubscribe" type="button" onclick="bcSubscribe()">Subscribe for new books</button></div>
+          <script>
+          function bcSubscribe(){try{localStorage.removeItem('ebc_gate_seen')}catch(e){} if(typeof isRegistered==='function'&&isRegistered()){var b=document.getElementById('btnSubscribe');b.textContent='\\u2713';return;} requireEmail(function(){});}
+          (function(){var L={EN:'Subscribe for new books',FR:"S'abonner aux nouveaut\\u00e9s",ES:'Suscribirse a las novedades',PT:'Assinar as novidades',AR:'\\u0627\\u0634\\u062a\\u0631\\u0643 \\u0641\\u064a \\u0627\\u0644\\u0643\\u062a\\u0628 \\u0627\\u0644\\u062c\\u062f\\u064a\\u062f\\u0629',ZH:'\\u8ba2\\u9605\\u65b0\\u4e66',JA:'\\u65b0\\u7740\\u3092\\u30e1\\u30fc\\u30eb\\u3067\\u53d7\\u3051\\u53d6\\u308b',RU:'\\u041f\\u043e\\u0434\\u043f\\u0438\\u0441\\u0430\\u0442\\u044c\\u0441\\u044f \\u043d\\u0430 \\u043d\\u043e\\u0432\\u0438\\u043d\\u043a\\u0438',DE:'Neuheiten abonnieren',SQ:'Abonohu p\\u00ebr librat e rinj'};
+          function up(){var b=document.getElementById('btnSubscribe');if(!b)return;var v='EN';document.querySelectorAll('select').forEach(function(s){if(L[s.value])v=s.value;});b.textContent=L[v];}
+          document.addEventListener('change',function(){setTimeout(up,50)});document.addEventListener('DOMContentLoaded',up);setTimeout(up,800);})();
+          </script>'''
+              t, n = re.subn(r'<div class="topbar-auth">.*?</div>', lambda m: btn, t, count=1, flags=re.S)
+              t = t.replace('<div class="account-chip" id="accountChip"', '<div class="account-chip" id="accountChip" style="display:none !important"', 1)
+              idx.write_text(t, encoding='utf-8')
+              print('subscribe button', n)
+          PY
       - name: Optimise homepage artwork
         run: |
           python3 -m pip install --quiet pillow
