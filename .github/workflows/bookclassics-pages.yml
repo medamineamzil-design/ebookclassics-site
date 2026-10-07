@@ -217,6 +217,20 @@ jobs:
               idx.write_text(t, encoding='utf-8')
               print('subscribe button', n)
           PY
+      - name: GoatCounter statistics
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          tag = '<script data-goatcounter="https://amzil.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
+          n = 0
+          for f in Path('_site').rglob('*.html'):
+              t = f.read_text(encoding='utf-8', errors='surrogateescape')
+              if 'goatcounter.com/count' in t or '</head>' not in t:
+                  continue
+              f.write_text(t.replace('</head>', tag + '</head>', 1), encoding='utf-8', errors='surrogateescape')
+              n += 1
+          print('goatcounter pages', n)
+          PY
       - name: Optimise homepage artwork
         run: |
           python3 -m pip install --quiet pillow
