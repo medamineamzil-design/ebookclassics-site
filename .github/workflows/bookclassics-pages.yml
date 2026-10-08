@@ -346,6 +346,18 @@ jobs:
           f.write_text(t2, encoding='utf-8')
           print('inline images extracted', n, 'chars removed', saved, 'new size', len(t2))
           PY
+      - name: Back button history for homepage views
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          f = Path('_site/index.html')
+          t = f.read_text(encoding='utf-8')
+          js = '(function(){window.addEventListener(\'load\',function(){  if(typeof window.showView!==\'function\')return;  var orig=window.showView, fromPop=false;  window.showView=function(n){    var r=orig.apply(this,arguments);    if(!fromPop){      var cur=(history.state||{}).bcv||\'home\';      if(cur!==n){ history.pushState({bcv:n},\'\',n===\'home\'?location.pathname+location.search:\'#v-\'+n); }    }    return r;  };  if(!(history.state||{}).bcv){ history.replaceState({bcv:\'home\'},\'\',location.href); }  var m=(location.hash||\'\').match(/^#v-([a-z]+)$/);  if(m&&m[1]!==\'book\'&&m[1]!==\'author\'){ fromPop=true; try{orig(m[1]);}finally{fromPop=false;} history.replaceState({bcv:m[1]},\'\',location.href); }  window.addEventListener(\'popstate\',function(e){    var v=(e.state&&e.state.bcv)||((location.hash||\'\').match(/^#v-([a-z]+)$/)||[])[1]||\'home\';    if(/^#livre-|^#lire-/.test(location.hash||\'\'))return;    fromPop=true; try{orig(v);}finally{fromPop=false;}  });  document.addEventListener(\'click\',function(e){    var a=e.target.closest&&e.target.closest(\'a[href="#genres"]\');    if(a){ e.preventDefault(); window.showView(\'catalog\'); }  },true);});})();'
+          if 'bc-nav-history' not in t and '</title>' in t[:300000]:
+              t = t.replace('</title>', '</title><script id="bc-nav-history">' + js + '</script>', 1)
+              f.write_text(t, encoding='utf-8')
+              print('nav history added')
+          PY
       - name: Optimise homepage artwork
         run: |
           python3 -m pip install --quiet pillow
