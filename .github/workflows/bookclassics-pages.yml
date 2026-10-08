@@ -358,6 +358,18 @@ jobs:
               f.write_text(t, encoding='utf-8')
               print('nav history added')
           PY
+      - name: Real covers in My Library
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          f = Path('_site/index.html')
+          t = f.read_text(encoding='utf-8')
+          js = "window.addEventListener('load',function(){  if(typeof window.miniCover!=='function')return;  var o=window.miniCover;  window.miniCover=function(b){    var d=o(b);    if(b&&b.coverImg){      var img=document.createElement('img');      img.alt='';img.loading='lazy';      img.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit';      img.onerror=function(){img.onerror=null;img.src=b.coverImg;};      try{img.src=b.coverImg.indexOf('/covers/')===0?b.coverImg:(BOOK_EXTRA[hostedSlug(b)]?'/covers/'+hostedSlug(b)+'.jpg':hostedFileUrl(b,'jpg','EN'));}catch(e){img.src=b.coverImg;}      d.style.position='relative';d.style.overflow='hidden';d.appendChild(img);    }    return d;  };  try{ if(state.view==='library') renderLibrary(); }catch(e){}});"
+          if 'bc-mini-cover' not in t and '</title>' in t[:300000]:
+              t = t.replace('</title>', '</title><script id="bc-mini-cover">' + js + '</script>', 1)
+              f.write_text(t, encoding='utf-8')
+              print('mini covers added')
+          PY
       - name: Optimise homepage artwork
         run: |
           python3 -m pip install --quiet pillow
