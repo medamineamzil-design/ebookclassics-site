@@ -370,6 +370,466 @@ jobs:
               f.write_text(t, encoding='utf-8')
               print('mini covers added')
           PY
+      - name: Translate book page labels
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          f = Path('_site/assets/library/navigation-fixes.js')
+          js = ";(function(){\nif(!/^\\/books\\/[^/]+/.test(location.pathname))return;\nvar LS=['EN','FR','ES','PT','AR','ZH','JA','RU','DE','SQ','IT'];\nfunction R(re,a){var o={};LS.forEach(function(l,i){o[l]=a[i]});return [new RegExp(re),o]}\nvar RULES=[\nR('^About this book
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          site = Path('_site')
+          src = site / 'assets/library/home-original.png'
+          if src.exists():
+              Image.open(src).convert('RGB').save(site / 'assets/library/home-original.webp', 'WEBP', quality=80, method=6)
+              for f in [p for ext in ('*.html', '*.js', '*.css') for p in site.rglob(ext)]:
+                  t = f.read_text(encoding='utf-8', errors='surrogateescape')
+                  if 'home-original.png' in t:
+                      f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
+                      print('webp:', f)
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+,['About this book','À propos de ce livre','Sobre este libro','Sobre este livro','عن هذا الكتاب','关于本书','この本について','Об этой книге','Über dieses Buch','Rreth këtij libri','Informazioni sul libro']),\nR('^How it begins
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          site = Path('_site')
+          src = site / 'assets/library/home-original.png'
+          if src.exists():
+              Image.open(src).convert('RGB').save(site / 'assets/library/home-original.webp', 'WEBP', quality=80, method=6)
+              for f in [p for ext in ('*.html', '*.js', '*.css') for p in site.rglob(ext)]:
+                  t = f.read_text(encoding='utf-8', errors='surrogateescape')
+                  if 'home-original.png' in t:
+                      f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
+                      print('webp:', f)
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+,['How it begins','Comment ça commence','Cómo empieza','Como começa','كيف تبدأ','开篇','冒頭','Начало','Wie es beginnt','Si fillon','Come inizia']),\nR('^Editions
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          site = Path('_site')
+          src = site / 'assets/library/home-original.png'
+          if src.exists():
+              Image.open(src).convert('RGB').save(site / 'assets/library/home-original.webp', 'WEBP', quality=80, method=6)
+              for f in [p for ext in ('*.html', '*.js', '*.css') for p in site.rglob(ext)]:
+                  t = f.read_text(encoding='utf-8', errors='surrogateescape')
+                  if 'home-original.png' in t:
+                      f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
+                      print('webp:', f)
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+,['Editions','Éditions','Ediciones','Edições','الطبعات','版本','版','Издания','Ausgaben','Botimet','Edizioni']),\nR('^You may also like
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          site = Path('_site')
+          src = site / 'assets/library/home-original.png'
+          if src.exists():
+              Image.open(src).convert('RGB').save(site / 'assets/library/home-original.webp', 'WEBP', quality=80, method=6)
+              for f in [p for ext in ('*.html', '*.js', '*.css') for p in site.rglob(ext)]:
+                  t = f.read_text(encoding='utf-8', errors='surrogateescape')
+                  if 'home-original.png' in t:
+                      f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
+                      print('webp:', f)
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+,['You may also like','Vous aimerez aussi','También te puede gustar','Você também pode gostar','قد يعجبك أيضًا','你可能还喜欢','こちらもおすすめ','Вам также может понравиться','Das könnte Ihnen auch gefallen','Mund t’ju pëlqejë gjithashtu','Potrebbe piacerti anche']),\nR('^On screen: (.+)
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          site = Path('_site')
+          src = site / 'assets/library/home-original.png'
+          if src.exists():
+              Image.open(src).convert('RGB').save(site / 'assets/library/home-original.webp', 'WEBP', quality=80, method=6)
+              for f in [p for ext in ('*.html', '*.js', '*.css') for p in site.rglob(ext)]:
+                  t = f.read_text(encoding='utf-8', errors='surrogateescape')
+                  if 'home-original.png' in t:
+                      f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
+                      print('webp:', f)
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+,['On screen: $1','À l’écran : $1','En pantalla: $1','Na tela: $1','على الشاشة: $1','影视改编：$1','映像化：$1','Экранизация: $1','Verfilmung: $1','Në ekran: $1','Sullo schermo: $1']),\nR('^More by (.+)
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          site = Path('_site')
+          src = site / 'assets/library/home-original.png'
+          if src.exists():
+              Image.open(src).convert('RGB').save(site / 'assets/library/home-original.webp', 'WEBP', quality=80, method=6)
+              for f in [p for ext in ('*.html', '*.js', '*.css') for p in site.rglob(ext)]:
+                  t = f.read_text(encoding='utf-8', errors='surrogateescape')
+                  if 'home-original.png' in t:
+                      f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
+                      print('webp:', f)
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+,['More by $1','Du même auteur : $1','Más de $1','Mais de $1','المزيد من $1','$1 的更多作品','$1 のほかの作品','Ещё от автора: $1','Mehr von $1','Më shumë nga $1','Altro di $1']),\nR('^About (.+)
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          site = Path('_site')
+          src = site / 'assets/library/home-original.png'
+          if src.exists():
+              Image.open(src).convert('RGB').save(site / 'assets/library/home-original.webp', 'WEBP', quality=80, method=6)
+              for f in [p for ext in ('*.html', '*.js', '*.css') for p in site.rglob(ext)]:
+                  t = f.read_text(encoding='utf-8', errors='surrogateescape')
+                  if 'home-original.png' in t:
+                      f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
+                      print('webp:', f)
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+,['About $1','À propos de $1','Sobre $1','Sobre $1','عن $1','关于 $1','$1について','Об авторе: $1','Über $1','Rreth $1','Su $1']),\nR('^Read online for free
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          site = Path('_site')
+          src = site / 'assets/library/home-original.png'
+          if src.exists():
+              Image.open(src).convert('RGB').save(site / 'assets/library/home-original.webp', 'WEBP', quality=80, method=6)
+              for f in [p for ext in ('*.html', '*.js', '*.css') for p in site.rglob(ext)]:
+                  t = f.read_text(encoding='utf-8', errors='surrogateescape')
+                  if 'home-original.png' in t:
+                      f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
+                      print('webp:', f)
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+,['Read online for free','Lire gratuitement en ligne','Leer gratis en línea','Ler grátis online','اقرأ مجانًا عبر الإنترنت','免费在线阅读','無料でオンラインで読む','Читать онлайн бесплатно','Kostenlos online lesen','Lexo falas në internet','Leggi gratis online']),\nR('^Download
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          site = Path('_site')
+          src = site / 'assets/library/home-original.png'
+          if src.exists():
+              Image.open(src).convert('RGB').save(site / 'assets/library/home-original.webp', 'WEBP', quality=80, method=6)
+              for f in [p for ext in ('*.html', '*.js', '*.css') for p in site.rglob(ext)]:
+                  t = f.read_text(encoding='utf-8', errors='surrogateescape')
+                  if 'home-original.png' in t:
+                      f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
+                      print('webp:', f)
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+,['Download','Télécharger','Descargar','Baixar','تنزيل','下载','ダウンロード','Скачать','Herunterladen','Shkarko','Scarica']),\nR('^Listen to the audiobook
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          site = Path('_site')
+          src = site / 'assets/library/home-original.png'
+          if src.exists():
+              Image.open(src).convert('RGB').save(site / 'assets/library/home-original.webp', 'WEBP', quality=80, method=6)
+              for f in [p for ext in ('*.html', '*.js', '*.css') for p in site.rglob(ext)]:
+                  t = f.read_text(encoding='utf-8', errors='surrogateescape')
+                  if 'home-original.png' in t:
+                      f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
+                      print('webp:', f)
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+,['Listen to the audiobook','Écouter le livre audio','Escuchar el audiolibro','Ouvir o audiolivro','استمع إلى الكتاب الصوتي','收听有声书','オーディオブックを聴く','Слушать аудиокнигу','Hörbuch anhören','Dëgjo librin audio','Ascolta l’audiolibro']),\nR('^Read more
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          site = Path('_site')
+          src = site / 'assets/library/home-original.png'
+          if src.exists():
+              Image.open(src).convert('RGB').save(site / 'assets/library/home-original.webp', 'WEBP', quality=80, method=6)
+              for f in [p for ext in ('*.html', '*.js', '*.css') for p in site.rglob(ext)]:
+                  t = f.read_text(encoding='utf-8', errors='surrogateescape')
+                  if 'home-original.png' in t:
+                      f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
+                      print('webp:', f)
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+,['Read more','Lire la suite','Leer más','Ler mais','اقرأ المزيد','展开阅读','続きを読む','Читать далее','Weiterlesen','Lexo më shumë','Leggi di più']),\nR('^Read less
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          site = Path('_site')
+          src = site / 'assets/library/home-original.png'
+          if src.exists():
+              Image.open(src).convert('RGB').save(site / 'assets/library/home-original.webp', 'WEBP', quality=80, method=6)
+              for f in [p for ext in ('*.html', '*.js', '*.css') for p in site.rglob(ext)]:
+                  t = f.read_text(encoding='utf-8', errors='surrogateescape')
+                  if 'home-original.png' in t:
+                      f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
+                      print('webp:', f)
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+,['Read less','Réduire','Leer menos','Ler menos','عرض أقل','收起','閉じる','Свернуть','Weniger anzeigen','Lexo më pak','Mostra meno']),\nR('^Read free
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          site = Path('_site')
+          src = site / 'assets/library/home-original.png'
+          if src.exists():
+              Image.open(src).convert('RGB').save(site / 'assets/library/home-original.webp', 'WEBP', quality=80, method=6)
+              for f in [p for ext in ('*.html', '*.js', '*.css') for p in site.rglob(ext)]:
+                  t = f.read_text(encoding='utf-8', errors='surrogateescape')
+                  if 'home-original.png' in t:
+                      f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
+                      print('webp:', f)
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+,['Read free','Lire gratuitement','Leer gratis','Ler grátis','اقرأ مجانًا','免费阅读','無料で読む','Читать бесплатно','Kostenlos lesen','Lexo falas','Leggi gratis']),\nR('^▶ Listen
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          site = Path('_site')
+          src = site / 'assets/library/home-original.png'
+          if src.exists():
+              Image.open(src).convert('RGB').save(site / 'assets/library/home-original.webp', 'WEBP', quality=80, method=6)
+              for f in [p for ext in ('*.html', '*.js', '*.css') for p in site.rglob(ext)]:
+                  t = f.read_text(encoding='utf-8', errors='surrogateescape')
+                  if 'home-original.png' in t:
+                      f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
+                      print('webp:', f)
+          PY
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+,['▶ Listen','▶ Écouter','▶ Escuchar','▶ Ouvir','▶ استمع','▶ 收听','▶ 聴く','▶ Слушать','▶ Anhören','▶ Dëgjo','▶ Ascolta'])\n];\nfunction lang(){var s=document.getElementById('uiLangSelect');var v=s&&s.value;if(!v){try{v=localStorage.getItem('ebc_ui_lang')}catch(e){}}return LS.indexOf(v)>=0?v:'EN'}\nvar busy=false;\nfunction apply(){if(busy)return;busy=true;try{var L=lang();\ndocument.querySelectorAll('h2,button,a.btn,.rm-btn').forEach(function(el){\n if(el.children.length)return;\n var cur=el.textContent.trim(),en=el.getAttribute('data-bc-en');\n if(!en||cur!==el.getAttribute('data-bc-tr'))en=cur;\n for(var i=0;i<RULES.length;i++){var m=en.match(RULES[i][0]);if(m){var out=(RULES[i][1][L]||RULES[i][1].EN).replace('$1',m[1]||'');\n  el.setAttribute('data-bc-en',en);el.setAttribute('data-bc-tr',out);if(cur!==out)el.textContent=out;break;}}\n});}finally{busy=false}}\nvar tm;function later(){clearTimeout(tm);tm=setTimeout(apply,120)}\ndocument.addEventListener('change',later);\ndocument.addEventListener('DOMContentLoaded',apply);setTimeout(apply,300);setTimeout(apply,1500);\ntry{new MutationObserver(later).observe(document.body||document.documentElement,{childList:true,subtree:true,characterData:true})}catch(e){}\n})();\n"
+          if f.exists():
+              t = f.read_text(encoding='utf-8')
+              if 'data-bc-en' not in t:
+                  f.write_text(t + '\n' + js, encoding='utf-8')
+                  print('book labels i18n added')
+          PY
       - name: Optimise homepage artwork
         run: |
           python3 -m pip install --quiet pillow
