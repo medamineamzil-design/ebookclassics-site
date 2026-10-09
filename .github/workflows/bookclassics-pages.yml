@@ -396,6 +396,20 @@ jobs:
                   f.write_text(t + '\n' + js, encoding='utf-8')
                   print('header + descriptions i18n added')
           PY
+      - name: Fix translated sections detection
+        run: |
+          python3 - <<'PY'
+          import base64, ast
+          from pathlib import Path
+          f = Path('_site/assets/library/navigation-fixes.js')
+          pairs = ast.literal_eval(base64.b64decode('WygnaWYoL15BYm91dCB8XkhvdyBpdCBiZWdpbnMkLy50ZXN0KGVuKSknLCAiaWYoIXMucXVlcnlTZWxlY3RvcignLmVkcywuZ3JpZCwueXQnKSkiKSwgKCJpZihoJiYvXkFib3V0IHxeSG93IGl0IGJlZ2lucyQvLnRlc3QoaC5nZXRBdHRyaWJ1dGUoJ2RhdGEtYmMtZW4nKXx8aC50ZXh0Q29udGVudC50cmltKCkpKSIsICJpZihoJiYhcy5xdWVyeVNlbGVjdG9yKCcuZWRzLC5ncmlkLC55dCcpKSIpXQ==').decode())
+          if f.exists():
+              t = f.read_text(encoding='utf-8')
+              for a, b in pairs:
+                  t = t.replace(a, b)
+              f.write_text(t, encoding='utf-8')
+              print('sections fix applied')
+          PY
       - name: Optimise homepage artwork
         run: |
           python3 -m pip install --quiet pillow
