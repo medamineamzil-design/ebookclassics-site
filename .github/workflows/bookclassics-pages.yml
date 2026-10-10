@@ -424,6 +424,27 @@ jobs:
           f.write_text(t, encoding='utf-8')
           print('gates opened', n)
           PY
+      - name: Fix truncated book descriptions
+        run: |
+          python3 - <<'PY'
+          import base64, gzip, json, html
+          from pathlib import Path
+          F = json.loads(gzip.decompress(base64.b64decode('H4sIAPLLymoC/71X21IjNxD9lS6/JKnyuhayIbBvLASoLAbKdoUXXmRN26OyLHklDd6prVTlH/KH+ZKc1swYcwnZJIQHD5hpdZ/uPn1afOnd9A5pqEIyytFlUcfI9U2PTCRFURt2mmlmdDLeUSx9SBSTDzVNazpccjAax9bBJA40TspZrul00HtP/4tfumbjpqpa9nE2xESrampNLLkg4+jauyKb+2A4yl92Dr5/N+j1CVAuVAgqmVsmP6NUMh2pFb6aVJNyBY1YwqsMBwbDEHMSSKCmkV9b2ETvvgF6rX3lkhiVCMaWbxlImRd4J8np7JepqIJxc/ooj6vSWLPC6WsVMq69H/f65N0GTJPNJvEp0ES2lgWGwHeOfuHgHd42JbzgNfJdwtb5W7ZStrOM+LHpzsHbg6ftm4paC6uprxJsa+Q2p3U2XJeeCp5JKSXTmUryI3mykh4MDMq9YjxQDmtmLJmdowfedaBzfoe3Hu3bBrOB0PTBqUJIoqoEHtB5pWsQpypo6F2ae9Sk7mcwd81Goc+7bF8uxsxb69fSr+x2XJoA2qFrTXdqVqHtcdSl9zax0lISpN3Gb/JOOeZQaKKMi5lPqnAc4z36v+noL/zTPi6NJoALwJfBW9XB3/Cihd92+hXi0NUALb1lHdQs9Sly6ngNK/684sJk12DFIVAEBNJNFU5Lj5p1swhoOAAT86mSkcr4NOrNuhu5eT4Q2wNA9AHTj3Z3KjDMSX+FW7T/3T/2TaMB/ayW3MzbZUD+hf9853Gfpt4v5Gijbs9b0McBHZUYYg7Juz4MVhhl75S9px9+jcmCYCxZCpiJWgYTs2TOlEllBnPTG4HyF8rY2AioGFoVUyceXV4zVqlpzhFCucahWUpTWzFNkKptgW37PPJTAKWfWt1+tXB05tcqFMIrnMFstzrOJhQ0UXYj4nu5EBME+GArpnM192hsS6IlILzxszdqzhREubBZmunfwnDGDvw4ZtFGlo2iV5hgfrxHYDvJdXgyWu7zcyH/OtR7SmtPGpugCCw7z6zWgfUCMWU2aQwFLulKaYN5RTRZOTQP4Ei1ImVlWSQ/ZxHhlhaTrGzWSmOOUlnZsuo27P0x/5v9etb2/eX8PZCNp3b1wx7v7m9ldVy5tdEl+CHx/nNSL+Lu3+R0sOHtia8gM8Za01ApDxJrbMstH/dF6w5RK1qXG16+jLeWqd+C1Hvf9QFZ26qQeW6qdmpmm5kfqrm56W2yOZP47avjgPkQjbPR08L5tZMduSUJ3n2qcCEJ/absM4VFEeu7eXlY6ntq9HrRvlqMfvjjt99bRToxiKthTeNKa1m8kzL4al7SUeDmtjkp5TsKGTK+cXv1RTqnnJJUeyTUzGDzAtkSLTkgF7fOxxBJLOW21WK/xrAqODvelOpZ9zsHO283S+qh70cu8WtKtl2IDSOuDG7I3M6PNECcJAMrCZhLnKl1poK3hZR2KvcSEbKTwIUUfiH/E4RapQ5x4zN7RHX3d3fvWgUs+fqvfWrvHqZp8rjklOVRPpdh4bhuBTN2JlacRrmbJ8anJI1nFepB79c/AejyaHPzDAAA')).decode())
+          site = Path('_site'); n = 0
+          f = site / 'index.html'; t = f.read_text(encoding='utf-8')
+          for o, w in F.items():
+              a = 'desc:' + json.dumps(o, ensure_ascii=False); b = 'desc:' + json.dumps(w, ensure_ascii=False)
+              if a in t: t = t.replace(a, b); n += 1
+          f.write_text(t, encoding='utf-8')
+          p = 0
+          for g in site.glob('books/*/index.html'):
+              t = g.read_text(encoding='utf-8'); t0 = t
+              for o, w in F.items():
+                  eo, ew = html.escape(o), html.escape(w)
+                  t = t.replace('<p class="lead">' + eo + '</p>', '<p class="lead">' + ew + '</p>').replace('. ' + eo + '"', '. ' + ew + '"')
+              if t != t0: g.write_text(t, encoding='utf-8'); p += 1
+          print('descriptions fixed', n, 'pages', p)
+          PY
       - name: Optimise homepage artwork
         run: |
           python3 -m pip install --quiet pillow
