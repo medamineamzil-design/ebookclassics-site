@@ -426,6 +426,16 @@ jobs:
                       f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
                       print('webp:', f)
           PY
+      - name: Apply shared book presentation to every page
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          tags = '<link rel="stylesheet" href="/book-presentation.css?v=1"><script defer src="/book-presentation.js?v=1"></script>'
+          for page in Path('_site').rglob('*.html'):
+              text = page.read_text(encoding='utf-8', errors='surrogateescape')
+              if '/book-presentation.js' not in text:
+                  page.write_text(text + '\n' + tags, encoding='utf-8', errors='surrogateescape')
+          PYCODE
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
