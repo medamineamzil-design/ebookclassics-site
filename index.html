@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<link rel="stylesheet" href="/catalog-v2.css?v=1">
+<script defer src="/catalog-v2.js?v=1"></script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>html,body{margin:0}
   /* ---------- gratuit : inscription, bibliothèque, publicité ---------- */
@@ -3433,7 +3436,7 @@ function matchesQuery(book,q){
   q=q.toLowerCase();
   return book.title.toLowerCase().includes(q) || book.author.toLowerCase().includes(q) || catLabel(book.cat).toLowerCase().includes(q);
 }
-const PAGE_SIZE = 25;
+const PAGE_SIZE = 12;
 function renderCatalog(){
   renderFilterPanels();
   const q=document.getElementById('searchInput').value.trim();
