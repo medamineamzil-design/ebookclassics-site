@@ -17,7 +17,16 @@ LABELS = {
     "it": ("Indice", "Traduzione di", "Traduzione anonima", "Edizione digitale BookClassics", "Testo di pubblico dominio."),
     "pt": ("Índice", "Tradução de", "Tradução anónima", "Edição digital BookClassics", "Texto em domínio público."),
     "sv": ("Innehåll", "Översättning av", "Anonym översättning", "Digital utgåva BookClassics", "Fri text (public domain)."),
+    "ar": ("المحتويات", "ترجمة", "ترجمة مجهولة", "النسخة الرقمية من BookClassics", "نص في الملك العام."),
 }
+RTL = {"ar"}
+AR_CSS = """
+body{font-family:"Amiri","Noto Naskh Arabic","Scheherazade New","Traditional Arabic",serif;font-size:1.3rem;line-height:1.95}
+p{text-indent:0;margin:0 0 .7em}
+.author{font-style:normal}
+h2.chapter + p::first-letter{float:none;font-size:inherit;padding:0;color:inherit}
+nav.toc h2{text-align:right;letter-spacing:0}
+"""
 def labels(lang):
     return LABELS.get(lang, LABELS["en"])
 
@@ -280,7 +289,9 @@ def wrap(text, width):
         lines.append(cur)
     return lines
 
-def cover_svg(title, author, seed):
+def cover_svg(title, author, seed, lang="en"):
+    if lang in RTL:
+        return cover_svg_rtl(title, author, seed)
     bg, accent, paper = PALETTES[seed % len(PALETTES)]
     lines = wrap(title, 14)
     size = 150 if len(lines) <= 2 else 124 if len(lines) <= 3 else 104
@@ -296,6 +307,26 @@ def cover_svg(title, author, seed):
 <rect x="160" y="930" width="140" height="10" fill="{accent}"/>
 {tl}
 <text x="160" y="{ay:.0f}" font-size="68" font-style="italic" font-family="Libertinus Serif, Georgia, serif" fill="{accent}">{html.escape(author)}</text>
+<text x="160" y="2230" font-size="44" letter-spacing="14" font-family="Libertinus Serif, Georgia, serif" fill="{paper}" opacity=".75">BOOKCLASSICS</text>
+</svg>'''
+
+def cover_svg_rtl(title, author, seed):
+    bg, accent, paper = PALETTES[seed % len(PALETTES)]
+    lines = wrap(title, 12)
+    size = 170 if len(lines) <= 2 else 140 if len(lines) <= 3 else 116
+    y0 = 1180 - (len(lines) - 1) * size * 0.6
+    ff = "Amiri, Noto Naskh Arabic, serif"
+    tl = "".join(f'<text x="1440" y="{y0 + i * size * 1.25:.0f}" text-anchor="end" direction="rtl" font-size="{size}" font-weight="700" '
+                 f'font-family="{ff}" fill="{paper}">{html.escape(l)}</text>' for i, l in enumerate(lines))
+    ay = y0 + len(lines) * size * 1.25 + 60
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2400" viewBox="0 0 1600 2400">
+<rect width="1600" height="2400" fill="{bg}"/>
+<circle cx="480" cy="560" r="300" fill="{accent}" opacity=".92"/>
+<circle cx="480" cy="560" r="210" fill="none" stroke="{bg}" stroke-width="12" opacity=".5"/>
+<circle cx="480" cy="560" r="120" fill="{bg}" opacity=".18"/>
+<rect x="1300" y="930" width="140" height="10" fill="{accent}"/>
+{tl}
+<text x="1440" y="{ay:.0f}" text-anchor="end" direction="rtl" font-size="80" font-family="{ff}" fill="{accent}">{html.escape(author)}</text>
 <text x="160" y="2230" font-size="44" letter-spacing="14" font-family="Libertinus Serif, Georgia, serif" fill="{paper}" opacity=".75">BOOKCLASSICS</text>
 </svg>'''
 
@@ -355,9 +386,12 @@ def build_html(title, author, lang, blocks, credit, cover_rel=None, toc=True):
     lab = labels(lang)
     tr = translator_line(credit, lang)
     heads = [t for k, t in blocks if k == "h"]
-    out = [f'<!DOCTYPE html>\n<html lang="{lang}"><head><meta charset="utf-8">',
+    rtl = lang in RTL
+    dir_attr = ' dir="rtl"' if rtl else ''
+    extra_css = AR_CSS if rtl else ''
+    out = [f'<!DOCTYPE html>\n<html lang="{lang}"{dir_attr}><head><meta charset="utf-8">',
            '<meta name="viewport" content="width=device-width, initial-scale=1">',
-           f"<title>{html.escape(title)} — {html.escape(author)}</title><style>{CSS}</style></head><body>",
+           f"<title>{html.escape(title)} — {html.escape(author)}</title><style>{CSS}{extra_css}</style></head><body>",
            '<header class="titlepage">']
     if cover_rel:
         out.append(f'<img src="{html.escape(cover_rel)}" alt="">')
@@ -411,11 +445,11 @@ h3.sub{font-size:1em;font-weight:600;font-variant:small-caps;text-align:center;m
 def make_epub(html_path, epub_path, title, author, lang, cover, workdir, credit=""):
     css_path = os.path.join(workdir, "_epub.css")
     with open(css_path, "w", encoding="utf-8") as f:
-        f.write(EPUB_CSS)
+        f.write(EPUB_CSS + (AR_CSS if lang in RTL else ""))
     base = ["pandoc", html_path, "-f", "html", "-t", "epub3", "-o", epub_path, "--toc", "--toc-depth=1",
             "--css", css_path, "--metadata", f"title={title}", "--metadata", f"author={author}",
             "--metadata", f"lang={lang}", "--metadata", "publisher=BookClassics",
-            "--metadata", f"rights={labels(lang)[4]}"]
+            "--metadata", f"rights={labels(lang)[4]}"] + (["--metadata", "dir=rtl"] if lang in RTL else [])
     tr = translator_line(credit, lang)
     if tr and ("by" in tr or "de " in tr or "von" in tr or "di " in tr or "av " in tr):
         base += ["--metadata", f"contributor={tr}"]
@@ -455,7 +489,12 @@ TYPST_HEAD = r'''
 def build_typst(title, author, lang, blocks, credit, cover_name):
     lab = labels(lang)
     tr = translator_line(credit, lang)
-    parts = [TYPST_HEAD.replace("TITLE", tq(title)).replace("AUTHOR", tq(author)).replace("LANG", tq(lang))]
+    head = TYPST_HEAD
+    if lang in RTL:
+        head = head.replace('#set text(font: ("Libertinus Serif", "Linux Libertine", "New Computer Modern"), size: 10.5pt, lang: LANG, hyphenate: true)',
+                            '#set text(font: ("Amiri", "Noto Naskh Arabic", "Libertinus Serif"), size: 12.5pt, lang: LANG, dir: rtl, hyphenate: false)')
+        head = head.replace("first-line-indent: 1.3em, spacing: 0.68em", "first-line-indent: 0em, spacing: 0.9em").replace("leading: 0.68em", "leading: 0.9em")
+    parts = [head.replace("TITLE", tq(title)).replace("AUTHOR", tq(author)).replace("LANG", tq(lang))]
     if cover_name:
         parts.append(f'#page(margin: 0pt, header: none, footer: none)[#image({tq(cover_name)}, width: 100%, height: 100%, fit: "cover")]')
     parts.append(f'''#page(header: none, footer: none)[
