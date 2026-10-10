@@ -30,7 +30,7 @@ FILES = os.environ.get("EBC_FILES", os.path.expanduser("~/ebookclassics-files"))
 SITE = os.environ.get("EBC_SITE", os.path.expanduser("~/ebookclassics-site"))
 WORK = os.environ.get("EBC_WORK", os.path.expanduser("~/bookclassics-auto/travail"))
 CATS = {"fiction", "aventure", "theatre", "philosophie", "jeunesse"}
-LANGS = {"en", "fr", "es", "de", "it", "pt", "sv"}
+LANGS = {"en", "fr", "es", "de", "it", "pt", "sv", "ar"}
 PUSH = "--sans-push" not in sys.argv
 AUDIO = "--audio" in sys.argv          # l'audio se fait à part (auto.sh, --audio-seulement)
 LOG = []
@@ -76,7 +76,10 @@ def check_lot(lot):
         if b.get("cat") not in CATS:
             e.append(f"catégorie inconnue « {b.get('cat')} »")
         for ed in b.get("editions", []):
-            if ed.get("lang") not in LANGS or not isinstance(ed.get("gid"), int) or not ed.get("check"):
+            if ed.get("wikisource"):
+                if ed.get("lang") != "ar" or not ed.get("title"):
+                    e.append(f"édition Wikisource invalide {ed}")
+            elif ed.get("lang") not in LANGS or not isinstance(ed.get("gid"), int) or not ed.get("check"):
                 e.append(f"édition invalide {ed}")
         if b.get("about") and (not isinstance(b["about"], list) or len(b["about"]) < 2):
             e.append("« about » doit contenir au moins 2 paragraphes")
@@ -101,6 +104,17 @@ def build(books, lot_name):
             continue
         seed = int(hashlib.md5(slug.encode()).hexdigest(), 16) % 97
         for ed in b["editions"]:
+            if ed.get("wikisource"):
+                import ws_ar
+                say(f"… {b['title']} [{ed['lang']}] — Wikisource « {ed['wikisource']} »")
+                try:
+                    ws_ar.produce_ar(EB.OUT, slug, ed["title"], ed.get("author") or b["author"], ed["wikisource"], seed, report,
+                                     credit=ed.get("credit", ""))
+                except Exception as ex:
+                    report.append(f"! {slug} [{ed['lang']}] ERREUR : {ex}")
+                say("   " + report[-1])
+                time.sleep(1)
+                continue
             say(f"… {b['title']} [{ed['lang']}] — Gutenberg #{ed['gid']}")
             try:
                 EB.produce(b["title"], b["author"], ed["lang"], ed["gid"], ed["check"], seed, report,
@@ -267,7 +281,7 @@ def rebuild_pages():
 
 # ------------------------------------------------------------------ 4. audio
 LV_LANG = {"en": "English", "fr": "French", "de": "German", "es": "Spanish", "it": "Italian",
-           "pt": "Portuguese", "sv": "Swedish"}
+           "pt": "Portuguese", "sv": "Swedish", "ar": "Arabic"}
 
 
 def lv_get(params):
@@ -362,6 +376,9 @@ def verifier(lot):
     bad = len(errs)
     for b in books:
         for ed in b["editions"]:
+            if ed.get("wikisource"):
+                print(f"OK  {b['title']} [ar] Wikisource « {ed['wikisource']} »")
+                continue
             try:
                 raw = EB.get_text(ed["gid"])
                 ok = EB.header_ok(raw, ed["check"], ed["lang"])
