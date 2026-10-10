@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<link rel="stylesheet" href="/catalog-v2.css?v=1">
-<script defer src="/catalog-v2.js?v=1"></script>
+<link rel="stylesheet" href="/catalog-v2.css?v=2">
+<script defer src="/catalog-v2.js?v=2"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>html,body{margin:0}
@@ -3462,6 +3462,11 @@ function renderCatalog(){
     return true;
   });
 
+  if(sort==='pertinence'){
+    const referenceOrder=['the-count-of-monte-cristo','pride-and-prejudice','treasure-island','dracula','jane-eyre','moby-dick','the-picture-of-dorian-gray','alice-s-adventures-in-wonderland','the-odyssey','frankenstein','the-great-gatsby','the-adventures-of-sherlock-holmes'];
+    const rank=b=>{const i=referenceOrder.indexOf(hostedSlug(b));return i<0?999:i};
+    list.sort((a,b)=>rank(a)-rank(b));
+  }
   const combined = list.concat(affList);
   const total = combined.length;
   document.getElementById('resultCount').textContent = t('catalog.resultCount',{n:total});

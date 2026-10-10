@@ -13,6 +13,7 @@ function install(){
  const format=selector('catalogFormat',v=>state.formats=new Set(v?[v]:[]));
  const sort=document.getElementById('sortSelect');bar.append(sort);view.prepend(bar);
  const words=()=>labels[state.uiLang]||labels.EN;
+ const paged=new WeakSet();
  function options(node,entries,value){node.replaceChildren();entries.forEach(([val,label])=>{const o=document.createElement('option');o.value=val;o.textContent=label;node.append(o)});node.value=value||''}
  function refresh(){
   const w=words();view.dir=state.uiLang==='AR'?'rtl':'ltr';heading.textContent=w[0];
@@ -29,6 +30,7 @@ function install(){
    const title=card.querySelector('.title')?.textContent||'';card.setAttribute('aria-label',w[3]+' — '+title);
   });
   const pager=document.getElementById('catalogPagination'),buttons=[...pager.querySelectorAll('button')];
+  if(!buttons.length||paged.has(buttons[0]))return;paged.add(buttons[0]);
   // Keep the first/last pages and nearby pages; collapse long runs into ellipses.
   let gap=false;buttons.forEach((b,i)=>{if(i===0||i===buttons.length-1)return;const page=Number(b.textContent);const keep=page===1||page===buttons.length-2||Math.abs(page-state.page)<=1;
    if(!keep){if(!gap){const e=document.createElement('span');e.textContent='…';e.setAttribute('aria-hidden','true');b.before(e)}gap=true;b.remove()}else gap=false;

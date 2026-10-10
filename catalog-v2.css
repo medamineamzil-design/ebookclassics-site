@@ -31,3 +31,7 @@ body[data-library-view="catalog"] main{max-width:none!important;padding-inline:0
 @media(max-width:600px){#view-catalog[data-twelve] #catalogGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-template-rows:repeat(6,270px);padding-inline:5%!important}#view-catalog[data-twelve] .bookcase{background-size:100% 810px!important;background-repeat:repeat-y!important}#view-catalog[data-twelve] .book3d-wrap{width:116px!important}#view-catalog[data-twelve] select{flex:1 0 42%;width:45%}#view-catalog[data-twelve] .catalog-real-book{padding-bottom:17px!important}#view-catalog[data-twelve] .info{height:72px}}
 #view-catalog[data-twelve] .book3d{width:auto!important;max-width:100%!important}
 #view-catalog[data-twelve] .cover-img{object-fit:contain!important;background:#302215}
+
+#view-catalog[data-twelve] .info{gap:0!important;height:82px;padding-top:5px!important}
+#view-catalog[data-twelve] .title,#view-catalog[data-twelve] .author,#view-catalog[data-twelve] .catalog-open{flex-shrink:0!important}
+body[data-library-view="catalog"] main{padding-top:0!important}
