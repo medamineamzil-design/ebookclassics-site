@@ -136,8 +136,12 @@ def paragraphs(extract):
     return [p for p in ps if len(p) > 60]
 
 
+HATNOTE = re.compile(r"is also the title|may refer to|for other uses|not to be confused|redirects here", re.I)
+
+
 def first_sentence(t, maxlen=220):
-    s = re.split(r"(?<=[.!?])\s+(?=[A-Z])", t.strip())[0]
+    # ne coupe pas après une initiale (« H. G. Wells ») ni une abréviation (« Mrs. », « Dr. »)
+    s = re.split(r"(?<!\s[A-Z]\.)(?<!^[A-Z]\.)(?<!Mrs\.)(?<!Mr\.)(?<!Dr\.)(?<!St\.)(?<!Jr\.)(?<!Sr\.)(?<!No\.)(?<=[.!?])\s+(?=[A-Z])", t.strip())[0]
     s = re.sub(r"\s*\([^)]*\)", "", s)          # retire les parenthèses (prononciation, dates)
     s = re.sub(r"\s+", " ", s).strip()
     if len(s) > maxlen:
@@ -279,7 +283,7 @@ def main():
         b = {"title": title, "author": aname,
              "cat": category(r.get("Subjects", ""), r.get("Bookshelves", ""), genres),
              "meta": " · ".join([c for c in countries if c] + [str(year)]),
-             "desc": first_sentence(paras[0]),
+             "desc": first_sentence(next((p for p in paras if not HATNOTE.search(p)), paras[0])),
              "editions": [{"lang": "en", "gid": gid, "check": check}],
              "about": paras + [credit(page["title"])],
              "librivox": [], "source": "wikipedia", "wikipedia": page["title"]}
