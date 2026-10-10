@@ -15,3 +15,6 @@ body .grid .card .book3d-wrap:has(.bc-hardcover){aspect-ratio:1/1!important}
 /* Catalogue sizing stays controlled by the twelve-book shelf layout. */
 #view-catalog[data-twelve] .bc-hardcover:not(.bc-reference)>.cover-face{left:9%!important;width:91%!important}
 #view-catalog[data-twelve] .bc-hardcover>.spine-edge,#view-catalog[data-twelve] .bc-hardcover>.pages,#view-catalog[data-twelve] .bc-hardcover>.shadow-drop{display:none!important}
+/* Preserve full portrait cover artwork on book detail pages. */
+body .bk3d:has(.bc-hardcover:not(.bc-reference)){aspect-ratio:20/27!important}
+body .bk3d .bc-hardcover:not(.bc-reference)>img.cover{left:9%!important;right:0!important;width:91%!important;height:100%!important;object-fit:contain!important;object-position:center!important;background:#17252b!important;box-shadow:none!important}
