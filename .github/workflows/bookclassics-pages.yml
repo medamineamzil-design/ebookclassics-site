@@ -410,6 +410,20 @@ jobs:
               f.write_text(t, encoding='utf-8')
               print('sections fix applied')
           PY
+      - name: Reading and downloads open freely (no email loop)
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          f = Path('_site/index.html')
+          t = f.read_text(encoding='utf-8')
+          n = 0
+          for a in ('const GATE_READING = true;', 'const GATE_DOWNLOADS = true;'):
+              if a in t:
+                  t = t.replace(a, a.replace('true', 'false'), 1)
+                  n += 1
+          f.write_text(t, encoding='utf-8')
+          print('gates opened', n)
+          PY
       - name: Optimise homepage artwork
         run: |
           python3 -m pip install --quiet pillow
