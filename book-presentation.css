@@ -1,0 +1,17 @@
+/* Shared hardcover treatment: automatically applied to newly rendered books. */
+body .bc-hardcover.bc-hardcover{border-radius:4px 5px 3px 3px!important;transform:none!important;overflow:visible!important;box-shadow:5px 4px 8px #0007!important}
+body .bc-hardcover:not(.bc-reference)::before{content:'';display:block!important;position:absolute;inset:0 auto 0 0;width:10%;z-index:8;pointer-events:none;background-image:url('/catalog-reference.png');background-size:7314.2857% 538.9474%;background-position:54.3234% 48.9209%;border-radius:4px 0 0 3px;box-shadow:2px 0 3px #0007}
+body .bc-hardcover:not(.bc-reference)::after{content:'';position:absolute;inset:0;z-index:9;pointer-events:none;border-radius:inherit;box-shadow:inset -2px 0 2px #e7cd9266,inset 0 -2px 2px #0006}
+body .bc-hardcover.bc-hardcover>.spine-edge,body .bc-hardcover.bc-hardcover>.pages,body .bc-hardcover.bc-hardcover>.shadow-drop,body .bc-hardcover>.bk3d-spine,body .bc-hardcover>.bk3d-pages,body .bc-hardcover>.bk3d-shine{display:none!important}
+body .bc-hardcover.bc-hardcover>.cover-face{inset:0 0 0 9%!important;width:91%!important;height:100%!important;aspect-ratio:auto!important;transform:none!important;border-radius:0 4px 3px 0!important;box-shadow:none!important}
+body .bc-hardcover>.cover{transform:none!important;border-radius:4px!important}
+body .bc-hardcover .cover-img{object-fit:fill!important}
+body .bc-hardcover.bc-reference{background-image:url('/catalog-reference.png')!important;background-size:var(--bc-size)!important;background-position:var(--bc-position)!important;background-repeat:no-repeat!important}
+body .bc-hardcover.bc-reference>*{visibility:hidden!important}
+body .bc-cover-frame{display:block;position:relative;width:100%;aspect-ratio:1/1;margin:0 0 9px}
+body .bc-cover-frame>img{position:absolute!important;inset:0 0 0 9%!important;width:91%!important;height:100%!important;aspect-ratio:auto!important;object-fit:fill!important;transform:none!important;margin:0!important;border-radius:0 4px 3px 0!important}
+body .bk3d:has(.bc-hardcover){aspect-ratio:1/1!important}
+body .grid .card .book3d-wrap:has(.bc-hardcover){aspect-ratio:1/1!important}
+/* Catalogue sizing stays controlled by the twelve-book shelf layout. */
+#view-catalog[data-twelve] .bc-hardcover:not(.bc-reference)>.cover-face{left:9%!important;width:91%!important}
+#view-catalog[data-twelve] .bc-hardcover>.spine-edge,#view-catalog[data-twelve] .bc-hardcover>.pages,#view-catalog[data-twelve] .bc-hardcover>.shadow-drop{display:none!important}
