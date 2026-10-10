@@ -15,9 +15,9 @@ BOOKS, BIOS = data["books"], data["bios"]
 CAT_LABEL = {c["slug"]: c["label"] for c in data["cats"]}
 MAN = json.load(open(os.path.join(REPO, "manifest.json")))["books"]
 AUDIO = json.load(open(os.path.join(REPO, "audio.json")))
-LANG = {"en": "English", "fr": "French", "de": "German", "es": "Spanish", "it": "Italian", "pt": "Portuguese", "sv": "Swedish"}
-LANG_NATIVE = {"en": "English", "fr": "Français", "de": "Deutsch", "es": "Español", "it": "Italiano", "pt": "Português", "sv": "Svenska"}
-ORDER = ["en", "fr", "es", "de", "it", "pt", "sv"]
+LANG = {"en": "English", "fr": "French", "de": "German", "es": "Spanish", "it": "Italian", "pt": "Portuguese", "sv": "Swedish", "ar": "Arabic"}
+LANG_NATIVE = {"en": "English", "fr": "Français", "de": "Deutsch", "es": "Español", "it": "Italiano", "pt": "Português", "sv": "Svenska", "ar": "العربية"}
+ORDER = ["en", "fr", "es", "de", "it", "pt", "sv", "ar"]
 
 site = open(SITE_INDEX, encoding="utf-8").read()
 emb = dict(re.findall(r"title:\"([^\"]*)\"", "")) or {}
