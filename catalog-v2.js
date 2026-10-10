@@ -1,6 +1,20 @@
 /* Twelve-book catalogue. Artwork is decorative; controls remain live and localized. */
 (function(){
 'use strict';
+const referenceBooks={
+'The Count of Monte Cristo':[213,131,194,185],
+'Pride and Prejudice':[519,132,187,184],
+'Treasure Island':[823,132,193,184],
+'Dracula':[1126,132,195,185],
+'Jane Eyre':[213,407,195,190],
+'Moby-Dick':[519,408,189,189],
+'The Picture of Dorian Gray':[823,408,194,190],
+"Alice's Adventures in Wonderland":[1126,408,195,190],
+'The Odyssey':[212,687,196,190],
+'Frankenstein':[519,687,190,191],
+'The Great Gatsby':[823,687,194,191],
+'The Adventures of Sherlock Holmes':[1125,688,196,190]
+};
 const labels={
 EN:['All books','All languages','All formats','Open'],FR:['Tous les livres','Toutes les langues','Tous les formats','Ouvrir'],ES:['Todos los libros','Todos los idiomas','Todos los formatos','Abrir'],PT:['Todos os livros','Todos os idiomas','Todos os formatos','Abrir'],PB:['Todos os livros','Todos os idiomas','Todos os formatos','Abrir'],AR:['جميع الكتب','جميع اللغات','جميع الصيغ','فتح'],ZH:['所有图书','所有语言','所有格式','打开'],ZT:['所有書籍','所有語言','所有格式','開啟'],JA:['すべての本','すべての言語','すべての形式','開く'],RU:['Все книги','Все языки','Все форматы','Открыть'],DE:['Alle Bücher','Alle Sprachen','Alle Formate','Öffnen'],SQ:['Të gjithë librat','Të gjitha gjuhët','Të gjitha formatet','Hap'],EU:['Liburu guztiak','Hizkuntza guztiak','Formatu guztiak','Ireki'],CA:['Tots els llibres','Totes les llengües','Tots els formats','Obre'],HI:['सभी पुस्तकें','सभी भाषाएँ','सभी प्रारूप','खोलें'],IT:['Tutti i libri','Tutte le lingue','Tutti i formati','Apri'],KO:['모든 도서','모든 언어','모든 형식','열기'],RO:['Toate cărțile','Toate limbile','Toate formatele','Deschide'],SR:['Све књиге','Сви језици','Сви формати','Отвори'],SV:['Alla böcker','Alla språk','Alla format','Öppna'],TR:['Tüm kitaplar','Tüm diller','Tüm biçimler','Aç'],UK:['Усі книги','Усі мови','Усі формати','Відкрити']};
 function install(){
@@ -27,7 +41,15 @@ function install(){
    card.querySelectorAll('.title,.author').forEach(n=>{n.setAttribute('translate','no');n.dir='auto'});
    if(!card.querySelector('.catalog-open')){const button=document.createElement('span');button.className='catalog-open';card.querySelector('.info').append(button)}
    card.querySelector('.catalog-open').textContent=w[3];
-   const title=card.querySelector('.title')?.textContent||'';card.setAttribute('aria-label',w[3]+' — '+title);
+   const title=card.querySelector('.title')?.textContent||'';
+   const crop=referenceBooks[title];
+   if(crop){
+    const [x,y,width,height]=crop,book=card.querySelector('.book3d');
+    card.classList.add('catalog-reference-book');
+    book.style.setProperty('--reference-size',`${1536/width*100}% ${1024/height*100}%`);
+    book.style.setProperty('--reference-position',`${x/(1536-width)*100}% ${y/(1024-height)*100}%`);
+   }
+   card.setAttribute('aria-label',w[3]+' — '+title);
   });
   const pager=document.getElementById('catalogPagination'),buttons=[...pager.querySelectorAll('button')];
   if(!buttons.length||paged.has(buttons[0]))return;paged.add(buttons[0]);

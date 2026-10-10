@@ -54,3 +54,13 @@ body[data-library-view="catalog"] main{padding-top:0!important}
 #view-catalog[data-twelve] .catalog-open{font-size:12px!important;padding:3px 12px!important;line-height:14px!important}
 @media(max-width:950px) and (min-width:601px){#view-catalog[data-twelve] .book3d-wrap{width:clamp(100px,15vw,145px)!important}#view-catalog[data-twelve] #catalogGrid{grid-template-rows:repeat(3,275px)!important}#view-catalog[data-twelve] .info{height:76px!important}}
 @media(max-width:600px){#view-catalog[data-twelve] #catalogGrid{grid-template-rows:repeat(6,300px)!important}#view-catalog[data-twelve] .book3d-wrap{width:clamp(110px,32vw,160px)!important}#view-catalog[data-twelve] .bookcase{background-size:100% 900px!important}#view-catalog[data-twelve] .info{height:76px!important}}
+
+/* Use the approved artwork itself so its cover art and leather tooling stay exact. */
+#view-catalog[data-twelve] .catalog-reference-book .book3d{background-image:url('/catalog-reference.png');background-size:var(--reference-size);background-position:var(--reference-position);background-repeat:no-repeat;transform:none!important;border-radius:5px 4px 2px 2px;box-shadow:5px 3px 7px #0007!important}
+#view-catalog[data-twelve] .catalog-reference-book .book3d>.cover-face,
+#view-catalog[data-twelve] .catalog-reference-book .book3d>.spine-edge,
+#view-catalog[data-twelve] .catalog-reference-book .book3d>.pages,
+#view-catalog[data-twelve] .catalog-reference-book .book3d>.shadow-drop{visibility:hidden!important}
+#view-catalog[data-twelve] .catalog-reference-book .book3d-wrap{width:clamp(145px,13vw,195px)!important}
+@media(max-width:950px) and (min-width:601px){#view-catalog[data-twelve] .catalog-reference-book .book3d-wrap{width:clamp(100px,15vw,145px)!important}}
+@media(max-width:600px){#view-catalog[data-twelve] .catalog-reference-book .book3d-wrap{width:clamp(110px,32vw,160px)!important}}
