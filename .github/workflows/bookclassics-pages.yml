@@ -445,6 +445,46 @@ jobs:
               if t != t0: g.write_text(t, encoding='utf-8'); p += 1
           print('descriptions fixed', n, 'pages', p)
           PY
+      - name: Remove withdrawn books and translate Show less
+        run: |
+          python3 - <<'PY'
+          import os, re, shutil, glob
+          GONE = ["the-elements-of-programming-style", "looking-backward-2000-1887", "the-narrative-of-arthur-gordon-pym-of-nantucket"]
+          p = "_site/index.html"
+          t = open(p, encoding="utf-8").read()
+          for s in GONE:
+              key = 'coverImg:"/covers/' + s + '.jpg"'
+              i = t.find(key)
+              if i >= 0:
+                  st = t.rfind("\n  {id:", 0, i)
+                  en = t.find("\n  {id:", i)
+                  if st >= 0 and en > i:
+                      t = t[:st] + t[en:]
+              t = re.sub('"' + re.escape(s) + r'":\{"t":\{[^{}]*\},"o":\[[^\]]*\]\},', "", t)
+          open(p, "w", encoding="utf-8").write(t)
+          for s in GONE:
+              shutil.rmtree("_site/books/" + s, ignore_errors=True)
+              for f in glob.glob("_site/covers/" + s + ".*"):
+                  os.remove(f)
+          for p in ["_site/sitemap.xml", "_site/feed.xml"]:
+              if os.path.exists(p):
+                  x = open(p, encoding="utf-8").read()
+                  for s in GONE:
+                      x = re.sub(r"<url>(?:(?!</url>).)*?/" + re.escape(s) + r"/(?:(?!</url>).)*?</url>\s*", "", x, flags=re.S)
+                      x = re.sub(r"<item>(?:(?!</item>).)*?/" + re.escape(s) + r"/(?:(?!</item>).)*?</item>\s*", "", x, flags=re.S)
+                  open(p, "w", encoding="utf-8").write(x)
+          js = r"""
+          (function(){var M={FR:['Afficher moins','Afficher plus'],ES:['Mostrar menos','Mostrar más'],PT:['Mostrar menos','Mostrar mais'],PB:['Mostrar menos','Mostrar mais'],AR:['عرض أقل','عرض المزيد'],DE:['Weniger anzeigen','Mehr anzeigen'],IT:['Mostra meno','Mostra di più'],RU:['Свернуть','Показать больше'],ZH:['收起','显示更多'],ZT:['收起','顯示更多'],JA:['表示を減らす','もっと見る'],TR:['Daha az göster','Daha fazla göster'],KO:['간단히 보기','더 보기']};
+          function lang(){var s=document.getElementById('uiLangSelect');if(s)return s.value;try{return localStorage.getItem('ebc_ui_lang')||'EN'}catch(e){return 'EN'}}
+          function run(){var L=M[lang()];document.querySelectorAll('button,a,summary,span').forEach(function(n){if(n.children.length)return;var o=n.getAttribute('data-bc-sl');var v=n.textContent.trim();if(!o){if(v==='Show less'||v==='Show more'){o=v;n.setAttribute('data-bc-sl',o)}else return}if(v!==o&&!(L&&(v===L[0]||v===L[1]))){n.removeAttribute('data-bc-sl');return}var cur=v===o||!L?v:(v===L[0]?'Show less':'Show more');n.textContent=L?(cur==='Show less'?L[0]:L[1]):cur})}
+          var q=0;function later(){if(q)return;q=1;setTimeout(function(){q=0;run()},60)}
+          document.addEventListener('DOMContentLoaded',run);window.addEventListener('load',run);document.addEventListener('change',function(e){if(e.target&&e.target.id==='uiLangSelect')later()});document.addEventListener('click',later,true);if(document.readyState!=='loading')run()})();
+          """
+          for f in ["_site/assets/library/navigation-fixes.js"]:
+              if os.path.exists(f):
+                  open(f, "a", encoding="utf-8").write("\n" + "\n".join(l.strip() for l in js.strip().splitlines()) + "\n")
+          print("withdrawn books removed; show-less i18n added")
+          PY
       - name: Optimise homepage artwork
         run: |
           python3 -m pip install --quiet pillow
