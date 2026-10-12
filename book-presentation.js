@@ -38,3 +38,25 @@ let queued=false;function schedule(){if(queued)return;queued=true;requestAnimati
 function start(){scan();new MutationObserver(schedule).observe(document.body,{subtree:true,childList:true})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
 })();
+
+/* Editorial detail layout; preserves existing checkout handlers and availability. */
+(()=>{'use strict';
+function present(){
+ const hero=document.querySelector('main .hero');if(!hero||!hero.querySelector('.bk3d'))return;
+ document.body.classList.add('bc-editorial');
+ const info=hero.children[1];if(!info)return;
+ if(!info.querySelector('.preview-kicker')){const k=document.createElement('p');k.className='preview-kicker';k.textContent='BookClassics · The classics collection';info.prepend(k)}
+ const facts=info.querySelector('.facts');if(facts&&!facts.querySelector('.preview-tag')){const values=facts.textContent.split(' · ');facts.replaceChildren(...values.map(v=>{const tag=document.createElement('span');tag.className='preview-tag';tag.textContent=v;return tag}))}
+ const buy=info.querySelector('#bcPrint');
+ if(buy&&!buy.querySelector('.preview-buy-copy')){
+ const original=buy.textContent;buy.setAttribute('aria-label',original);
+ const icon=document.createElement('span');icon.className='preview-book-icon';icon.setAttribute('aria-hidden','true');
+ const copy=document.createElement('span');copy.className='preview-buy-copy';
+ const title=document.createElement('span');title.textContent='Commander le livre';
+ const sub=document.createElement('span');sub.className='preview-buy-sub';sub.textContent='Broché ou relié · format 6 × 9 · mode test';copy.append(title,sub);
+ const arrow=document.createElement('span');arrow.className='preview-buy-arrow';arrow.setAttribute('aria-hidden','true');arrow.textContent='→';buy.replaceChildren(icon,copy,arrow);
+ }
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',present);else present();
+new MutationObserver(()=>{if(!document.body.classList.contains('bc-editorial')||document.querySelector('#bcPrint:not(:has(.preview-buy-copy))'))present()}).observe(document.documentElement,{childList:true,subtree:true});
+})();
