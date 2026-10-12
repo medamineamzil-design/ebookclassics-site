@@ -95,3 +95,22 @@ const params=new URLSearchParams(location.search),returned=params.get('print_tes
 if(returned){order=restore();dialog.showModal();form.hidden=true;history.replaceState(null,'',location.pathname);if(returned==='cancel'){msg.textContent='Paiement test annulé. Aucun paiement confirmé.';form.hidden=false;}else if(!order?.id||params.get('token')!==order.id){msg.textContent='Retour PayPal non reconnu. Recommencez le test depuis cette page.';form.hidden=false;}else if(order.phase==='sent'){track.hidden=false;showStatus();}else{lock(true);msg.textContent='Vérification du paiement test et transmission à Lulu…';(async()=>{try{await sandbox();const result=await api('/capture',{id:order.id});if(!result.ok)throw Error('Paiement test confirmé, mais transmission à Lulu non confirmée. Ne recommencez pas le paiement.');remember({id:order.id,phase:'sent'});msg.textContent=`Paiement test confirmé. Commande transmise à Lulu.\nRéférence : ${order.id}\nAucun paiement réel ni impression.`;track.hidden=false;}catch(e){msg.textContent=e.message+'\nRéférence : '+order.id;}finally{lock(false);}})();}}
 })();
 
+
+/* BookClassics destination preferences — 2026-10-12. Production stays gated. */
+(()=>{'use strict';
+const markets=[['GB','Royaume-Uni'],['US','États-Unis'],['IE','Irlande'],['NL','Pays-Bas'],['CA','Canada'],['AU','Australie'],['FR','France'],['DE','Allemagne'],['ES','Espagne'],['IT','Italie'],['DK','Danemark'],['LU','Luxembourg'],['EE','Estonie'],['NZ','Nouvelle-Zélande'],['MY','Malaisie'],['PH','Philippines'],['KE','Kenya'],['NG','Nigeria']];
+window.bookclassicsMarketPreferences=Object.freeze({countries:markets.map(([code])=>code),excluded:['MA'],suppliers:['lulu','bookvault'],pricing:'fixed-delivered-price-per-title-and-binding',productionReady:false});
+function applyCountries(){
+ document.querySelectorAll('#bcPrintForm input[name="country_code"]').forEach(input=>{
+  const select=document.createElement('select');select.name='country_code';select.required=true;select.setAttribute('aria-label','Pays de livraison');
+  const empty=document.createElement('option');empty.value='';empty.textContent='Choisir un pays';select.append(empty);
+  markets.forEach(([code,name])=>{const option=document.createElement('option');option.value=code;option.textContent=name;select.append(option);});
+  let saved='';try{saved=localStorage.getItem('bookclassics.deliveryCountry')||'';}catch{}
+  select.value=markets.some(([code])=>code===saved)?saved:(input.value||'').toUpperCase();
+  const label=input.closest('label');if(label?.firstChild?.nodeType===3)label.firstChild.textContent='Pays de livraison';
+  input.replaceWith(select);
+  select.addEventListener('change',()=>{try{localStorage.setItem('bookclassics.deliveryCountry',select.value);}catch{}select.dispatchEvent(new Event('input',{bubbles:true}));});
+ });
+}
+applyCountries();new MutationObserver(applyCountries).observe(document.body,{childList:true,subtree:true});
+})();
