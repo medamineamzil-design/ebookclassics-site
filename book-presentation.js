@@ -195,3 +195,12 @@ window.addEventListener('storage',e=>{if(e.key===KEY)location.reload();});
 function boot(){if(document.querySelector('header.site'))start();else new MutationObserver((_,obs)=>{if(document.querySelector('header.site')){obs.disconnect();start();}}).observe(document.body,{childList:true,subtree:true});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
+
+/* Frankenstein starting-price example, pending owner review before rollout. */
+(()=>{'use strict';
+if(location.pathname.replace(/\/$/,'')!=='/books/frankenstein')return;
+function show(){const hero=document.querySelector('main .hero');const info=hero?.children[1];const by=info?.querySelector('.by');if(!by||document.getElementById('bcBookStartingPrice'))return false;
+const line=document.createElement('div');line.id='bcBookStartingPrice';line.setAttribute('translate','no');line.innerHTML='<p class="bc-book-price"><span>À partir de</span> <strong>15,90 <small>$US</small></strong></p><p class="bc-book-price-note">Édition brochée · collection imprimée bientôt disponible</p>';
+const style=document.createElement('style');style.textContent='#bcBookStartingPrice{margin:14px 0 18px}#bcBookStartingPrice .bc-book-price{margin:0;display:flex;gap:10px;align-items:baseline;color:#244c3b;font:16px system-ui}#bcBookStartingPrice strong{font:normal 32px Georgia,serif}#bcBookStartingPrice small{font:16px system-ui}#bcBookStartingPrice .bc-book-price-note{margin:5px 0 0;font:11px/1.5 system-ui;color:#656b5c}';document.head.append(style);by.after(line);return true;}
+if(!show())new MutationObserver((_,o)=>{if(show())o.disconnect()}).observe(document.body,{childList:true,subtree:true});
+})();
