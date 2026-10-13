@@ -139,7 +139,7 @@ const offerWrap=document.createElement('div');offerWrap.id='bcLaunchOfferWrap';
 const footer=document.querySelector('footer');const main=document.querySelector('main');if(footer)footer.before(offerWrap);else if(main)main.after(offerWrap);else document.body.append(offerWrap);
 offerWrap.append(offer);document.body.append(dialog);draw();
 function updatePlacement(){const path=location.pathname.replace(/\/$/,'');const collection=path==='/books'||path==='/genres'||(path===''&&['#genres','#v-genres'].includes(location.hash));offerWrap.style.display=collection?'block':'none';if(!collection&&dialog.open)dialog.close();}
-updatePlacement();window.addEventListener('hashchange',updatePlacement);window.addEventListener('popstate',updatePlacement);document.addEventListener('change',e=>{if(e.target.id==='uiLangSelect')draw()});
+updatePlacement();new MutationObserver(updatePlacement).observe(document.querySelector('main')||document.body,{childList:true,subtree:true});window.addEventListener('hashchange',updatePlacement);window.addEventListener('popstate',updatePlacement);document.addEventListener('change',e=>{if(e.target.id==='uiLangSelect')draw()});
 return true;
 }
 function start(){if(mount())return;const observer=new MutationObserver(()=>{if(mount())observer.disconnect()});observer.observe(document.body,{childList:true,subtree:true});}
