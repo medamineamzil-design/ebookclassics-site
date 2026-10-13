@@ -1,1 +1,528 @@
-
+name: BookClassics library design
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Assemble catalogue and library design
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import shutil, zipfile, hashlib, re, json
+          source = Path('.')
+          output = Path('_site')
+          output.mkdir(exist_ok=True)
+          for p in source.iterdir():
+              if p.name in {'.git', '.github', '_site', 'bookclassics-design-assets.zip'} or p.name.startswith('bookclassics-generated-covers-'):
+                  continue
+              if p.is_dir():
+                  shutil.copytree(p, output / p.name, dirs_exist_ok=True)
+              else:
+                  shutil.copy2(p, output / p.name)
+          with zipfile.ZipFile('bookclassics-design-assets.zip') as archive:
+              for item in archive.infolist():
+                  path = Path(item.filename)
+                  if path.is_absolute() or '..' in path.parts or not item.filename.startswith('assets/library/'):
+                      raise ValueError('Unexpected design asset path')
+              archive.extractall(output)
+          for bundle in sorted(source.glob('bookclassics-generated-covers-*.zip')):
+              with zipfile.ZipFile(bundle) as archive:
+                  for item in archive.infolist():
+                      path = Path(item.filename)
+                      if path.is_absolute() or '..' in path.parts or not item.filename.startswith('covers/') or path.suffix != '.jpg':
+                          raise ValueError('Unexpected generated cover path')
+                  archive.extractall(output)
+          localized_copy = json.loads("{\"en\":[\"FREE\",\"Enter your library\",\"Stories to discover. Books to explore.\",\"Explore genres\",\"See all books\",\"Discover today\",\"Your library at a glance\",\"FREE · Classics to read, listen to and rediscover every day.\",\"Home\",\"My books\",\"Open\",\"Open the book\"],\"fr\":[\"GRATUIT\",\"Entrez dans votre bibliothèque\",\"Des histoires à découvrir, des livres à feuilleter.\",\"Explorer les genres\",\"Voir tous les livres\",\"À découvrir aujourd’hui\",\"Votre bibliothèque en un coup d’œil\",\"GRATUIT · Des classiques à lire, à écouter et à retrouver chaque jour.\",\"Accueil\",\"Mes livres\",\"Ouvrir\",\"Ouvrir le livre\"],\"es\":[\"GRATIS\",\"Entra en tu biblioteca\",\"Historias por descubrir. Libros para explorar.\",\"Explorar géneros\",\"Ver todos los libros\",\"Descubre hoy\",\"Tu biblioteca de un vistazo\",\"GRATIS · Clásicos para leer, escuchar y redescubrir cada día.\",\"Inicio\",\"Mis libros\",\"Abrir\",\"Abrir el libro\"],\"pt\":[\"GRÁTIS\",\"Entre na sua biblioteca\",\"Histórias para descobrir. Livros para folhear.\",\"Explorar géneros\",\"Ver todos os livros\",\"Descubra hoje\",\"A sua biblioteca num relance\",\"GRÁTIS · Clássicos para ler, ouvir e redescobrir todos os dias.\",\"Início\",\"Os meus livros\",\"Abrir\",\"Abrir o livro\"],\"pb\":[\"GRÁTIS\",\"Entre na sua biblioteca\",\"Histórias para descobrir. Livros para explorar.\",\"Explorar gêneros\",\"Ver todos os livros\",\"Descubra hoje\",\"Sua biblioteca em um relance\",\"GRÁTIS · Clássicos para ler, ouvir e redescobrir todos os dias.\",\"Início\",\"Meus livros\",\"Abrir\",\"Abrir o livro\"],\"ar\":[\"مجانًا\",\"ادخل إلى مكتبتك\",\"حكايات لاكتشافها وكتب لتتصفحها.\",\"استكشف الأنواع\",\"عرض كل الكتب\",\"اكتشف اليوم\",\"مكتبتك في لمحة\",\"مجانًا · كلاسيكيات للقراءة والاستماع وإعادة الاكتشاف كل يوم.\",\"الرئيسية\",\"كتبي\",\"افتح\",\"افتح الكتاب\"],\"zh\":[\"免费\",\"欢迎来到您的图书馆\",\"发现精彩故事，探索经典好书。\",\"按类型浏览\",\"查看全部图书\",\"今日推荐\",\"图书馆一览\",\"免费 · 每天阅读、聆听并重温经典。\",\"首页\",\"我的书籍\",\"打开\",\"打开图书\"],\"ja\":[\"無料\",\"図書館へようこそ\",\"物語との出会い、名作とのひとときを。\",\"ジャンルから探す\",\"すべての本を見る\",\"今日のおすすめ\",\"ライブラリの概要\",\"無料 · 毎日、読んで聴ける名作に出会えます。\",\"ホーム\",\"マイブック\",\"開く\",\"本を開く\"],\"ru\":[\"БЕСПЛАТНО\",\"Добро пожаловать в библиотеку\",\"Откройте для себя истории и книги.\",\"По жанрам\",\"Все книги\",\"Сегодня рекомендуем\",\"Ваша библиотека вкратце\",\"Бесплатно · Классика для чтения и прослушивания каждый день.\",\"Главная\",\"Мои книги\",\"Открыть\",\"Открыть книгу\"],\"de\":[\"KOSTENLOS\",\"Willkommen in Ihrer Bibliothek\",\"Geschichten entdecken und Bücher durchstöbern.\",\"Nach Genre stöbern\",\"Alle Bücher ansehen\",\"Heute entdecken\",\"Ihre Bibliothek auf einen Blick\",\"Kostenlos · Klassiker zum Lesen und Hören, jeden Tag neu.\",\"Startseite\",\"Meine Bücher\",\"Öffnen\",\"Buch öffnen\"],\"sq\":[\"FALAS\",\"Mirë se vini në bibliotekën tuaj\",\"Zbuloni histori dhe shfletoni libra.\",\"Shfleto sipas zhanrit\",\"Shiko të gjithë librat\",\"Zbuloni sot\",\"Biblioteka juaj me një vështrim\",\"Falas · Klasikë për t’u lexuar e dëgjuar çdo ditë.\",\"Kreu\",\"Librat e mi\",\"Hap\",\"Hap librin\"],\"eu\":[\"DOAN\",\"Ongi etorri zure liburutegira\",\"Aurkitu istorioak eta arakatu liburuak.\",\"Generoka arakatu\",\"Liburu guztiak ikusi\",\"Gaurko gomendioak\",\"Zure liburutegia begirada batean\",\"Doan · Egunero irakurri eta entzuteko klasikoak.\",\"Hasiera\",\"Nire liburuak\",\"Ireki\",\"Ireki liburua\"],\"ca\":[\"GRATUÏT\",\"Entra a la teva biblioteca\",\"Històries per descobrir i llibres per fullejar.\",\"Explora per gènere\",\"Veure tots els llibres\",\"Descobreix avui\",\"La teva biblioteca d’un cop d’ull\",\"Gratuït · Clàssics per llegir, escoltar i redescobrir cada dia.\",\"Inici\",\"Els meus llibres\",\"Obre\",\"Obre el llibre\"],\"hi\":[\"मुफ़्त\",\"अपनी लाइब्रेरी में आपका स्वागत है\",\"नई कहानियाँ खोजें, किताबें पढ़ें।\",\"शैली के अनुसार देखें\",\"सभी किताबें देखें\",\"आज की पसंद\",\"आपकी लाइब्रेरी एक नज़र में\",\"मुफ़्त · हर दिन पढ़ने और सुनने के लिए क्लासिक रचनाएँ।\",\"होम\",\"मेरी किताबें\",\"खोलें\",\"किताब खोलें\"],\"it\":[\"GRATIS\",\"Entra nella tua biblioteca\",\"Storie da scoprire e libri da sfogliare.\",\"Esplora per genere\",\"Vedi tutti i libri\",\"Scopri oggi\",\"La tua biblioteca in breve\",\"Gratis · Classici da leggere e ascoltare, da riscoprire ogni giorno.\",\"Home\",\"I miei libri\",\"Apri\",\"Apri il libro\"],\"ko\":[\"무료\",\"도서관에 오신 것을 환영합니다\",\"새로운 이야기를 만나고 책을 둘러보세요.\",\"장르별 둘러보기\",\"모든 책 보기\",\"오늘의 추천\",\"내 도서관 한눈에 보기\",\"무료 · 매일 읽고 들으며 다시 만나는 고전.\",\"홈\",\"내 책\",\"열기\",\"책 열기\"],\"ro\":[\"GRATUIT\",\"Bine ai venit în biblioteca ta\",\"Povești de descoperit și cărți de răsfoit.\",\"Răsfoiește după gen\",\"Vezi toate cărțile\",\"Descoperă azi\",\"Biblioteca ta dintr-o privire\",\"Gratuit · Clasici de citit și ascultat, în fiecare zi.\",\"Acasă\",\"Cărțile mele\",\"Deschide\",\"Deschide cartea\"],\"sr\":[\"БЕСПЛАТНО\",\"Добро дошли у своју библиотеку\",\"Откријте приче и прелистајте књиге.\",\"Прегледај по жанру\",\"Погледај све књиге\",\"Откријте данас\",\"Ваша библиотека на једном месту\",\"Бесплатно · Класици за читање и слушање сваког дана.\",\"Почетна\",\"Моје књиге\",\"Отвори\",\"Отвори књигу\"],\"sv\":[\"GRATIS\",\"Välkommen till ditt bibliotek\",\"Berättelser att upptäcka och böcker att bläddra i.\",\"Utforska efter genre\",\"Se alla böcker\",\"Upptäck i dag\",\"Ditt bibliotek i korthet\",\"Gratis · Klassiker att läsa och lyssna på, varje dag.\",\"Hem\",\"Mina böcker\",\"Öppna\",\"Öppna boken\"],\"zt\":[\"免費\",\"歡迎來到你的圖書館\",\"發現精彩故事，探索經典好書。\",\"按類別瀏覽\",\"查看所有書籍\",\"今日推薦\",\"圖書館一覽\",\"免費 · 每天閱讀、聆聽並重溫經典。\",\"首頁\",\"我的書籍\",\"開啟\",\"開啟書籍\"],\"tr\":[\"ÜCRETSİZ\",\"Kütüphanenize hoş geldiniz\",\"Keşfedilecek hikâyeler, göz atılacak kitaplar.\",\"Türe göre göz at\",\"Tüm kitapları gör\",\"Bugünü keşfet\",\"Kütüphaneniz bir bakışta\",\"Ücretsiz · Her gün okuyup dinleyebileceğiniz klasikler.\",\"Ana Sayfa\",\"Kitaplarım\",\"Aç\",\"Kitabı aç\"],\"uk\":[\"БЕЗКОШТОВНО\",\"Ласкаво просимо до вашої бібліотеки\",\"Відкривайте історії та переглядайте книжки.\",\"За жанрами\",\"Переглянути всі книги\",\"Рекомендації дня\",\"Ваша бібліотека одним поглядом\",\"Безкоштовно · Класика для читання й слухання щодня.\",\"Головна\",\"Мої книги\",\"Відкрити\",\"Відкрити книгу\"]}")
+          # Keep exactly the five books painted in the supplied reference image.
+          library_file = output / 'assets/library/library.js'
+          library = library_file.read_text()
+          library, replacements = re.subn(r'function choose\(date\)\{.*?\}\n', "function choose(date){return featured.map(slug=>BOOKS.find(b=>hostedSlug(b)===slug)).filter(Boolean)}\n", library, count=1)
+          assert replacements == 1, 'Original book selection function missing'
+          library = library.replace("if(date!=='2026-10-05')a.innerHTML=hxCover(b);", '')
+          library = library.replace('Only the daily book faces may change.', 'The five original book faces never change.')
+          library_file.write_text(library)
+          enhancement = r'''(function(){
+          var css="\n.library-original-home{position:relative}.library-image-copy{position:absolute;inset:0;pointer-events:none;z-index:5;font-family:Georgia,serif;color:#14283b}.library-image-copy span{position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;box-sizing:border-box}\n.image-free{top:18%;left:43%;width:14%;height:4%;background:#f3e8d3;color:#705126;font:700 clamp(8px,1vw,15px) Arial,sans-serif}\n.image-hero-title{top:23.3%;left:30.4%;width:39.2%;height:5.5%;background:#f3e8d3;font-weight:700;font-size:clamp(12px,2.5vw,39px)}\n.image-hero-lead{top:28.7%;left:30.4%;width:39.2%;height:3.7%;background:#f3e8d3;font-size:clamp(7px,1.4vw,22px)}\n.image-explore,.image-all{top:33.2%;height:5.3%;border-radius:5px;font-size:clamp(7px,1.15vw,18px)}.image-explore{left:33.4%;width:16.5%;background:#14283b;color:#fff8ea}.image-all{left:51.3%;width:15.6%;background:#f3e8d3;color:#14283b}\n.image-shelf{top:56.4%;left:41%;width:18%;height:3.7%;background:#573719;color:#ffe1a5;font-size:clamp(9px,1.65vw,25px)}\n.library-original-home .library-art-link.original-home,.library-original-home .library-art-link.original-genres,.library-original-home .library-art-link.original-library{z-index:7;display:flex;align-items:center;justify-content:center;background:#192b3e;color:#fff3dc;font:clamp(6px,1vw,16px)/1.2 Georgia,serif;text-align:center}\n.library-original-caption{display:none!important}.library-open-label{display:none!important}\n.library-account-tools{min-height:0!important;padding:6px 20px!important;gap:10px!important;align-items:center!important}.library-account-tools button,.library-account-tools select{min-height:30px!important;padding:5px 10px!important;margin:0!important}.library-account-tools .lang-switch{margin:0!important}\na:focus:not(:focus-visible),button:focus:not(:focus-visible){outline:none!important;box-shadow:none!important}.library-original-home a:focus:not(:focus-visible){outline:none!important;box-shadow:none!important}\n@media(max-width:600px){.library-original-home{isolation:isolate}.library-image-copy{bottom:auto;aspect-ratio:3/2}.library-original-links,.library-daily-books{bottom:auto;aspect-ratio:3/2}.library-account-tools{justify-content:center!important;gap:5px!important}.library-account-tools button{font-size:12px!important}}\n\n:focus,:focus-visible{outline:none!important;box-shadow:none!important}body[data-library-view=home] header.site{display:contents!important}body[data-library-view=home] .library-account-tools{position:absolute!important;top:1.2%;right:2%;z-index:30;background:transparent!important;color:#fff5df!important}body:not([data-library-view=home]) header.site .catbar{display:none!important}body:not([data-library-view=home]) .library-account-tools{position:absolute!important;top:7px;right:18px;z-index:30;padding:0!important;background:transparent!important}.library-original-home .image-free{display:none!important}.library-original-home .library-daily-books{z-index:8;pointer-events:none}.library-original-home .library-daily-book{top:60.75%!important;height:29.2%!important;display:flex!important;flex-direction:column;align-items:center;justify-content:flex-start;pointer-events:auto;transform-origin:50% 100%;filter:drop-shadow(0 9px 5px rgba(35,21,12,.5))}.library-original-home .library-daily-book:nth-child(1){left:10.9%!important;width:14.1%!important;transform:rotate(-3.8deg)}.library-original-home .library-daily-book:nth-child(2){left:27.6%!important;width:13.6%!important;transform:rotate(1.8deg)}.library-original-home .library-daily-book:nth-child(3){left:43.0%!important;width:14.1%!important;transform:rotate(-1.1deg)}.library-original-home .library-daily-book:nth-child(4){left:58.7%!important;width:13.8%!important;transform:rotate(2.7deg)}.library-original-home .library-daily-book:nth-child(5){left:74.3%!important;width:13.7%!important;transform:rotate(-2.6deg)}.library-original-home .library-daily-book::before{content:"";position:absolute;left:-2%;right:-2%;top:1%;bottom:9%;z-index:0;border-radius:2px 5px 3px 2px;background:linear-gradient(90deg,rgba(25,16,10,.7),rgba(105,67,35,.25) 8%,rgba(255,255,255,.12) 88%,rgba(20,10,5,.6));box-shadow:0 10px 8px rgba(32,19,10,.5),inset -3px 0 4px rgba(255,255,255,.18)}.library-original-home .library-daily-book img{position:relative;z-index:2;display:block;width:100%!important;height:88%!important;max-height:none!important;aspect-ratio:2/3;object-fit:fill!important;border-radius:2px 3px 2px 2px;box-shadow:-6px 2px 8px rgba(18,11,7,.5),inset 3px 0 5px rgba(255,255,255,.14);clip-path:none!important;transform-origin:50% 100%}.library-original-home .library-daily-book:nth-child(1) img{transform:perspective(900px) rotateY(-4deg)}.library-original-home .library-daily-book:nth-child(2) img{transform:perspective(900px) rotateY(2deg)}.library-original-home .library-daily-book:nth-child(3) img{transform:perspective(900px) rotateY(-1deg)}.library-original-home .library-daily-book:nth-child(4) img{transform:perspective(900px) rotateY(3deg)}.library-original-home .library-daily-book:nth-child(5) img{transform:perspective(900px) rotateY(-3deg)}.library-original-home .library-daily-book::after{content:var(--library-open-label,Open);position:absolute;left:14%;right:14%;bottom:-1.5%;height:10%;z-index:4;display:flex;align-items:center;justify-content:center;border:1px solid rgba(104,69,36,.65);border-radius:6px;background:linear-gradient(#fffaf0,#ead6b8);box-shadow:0 2px 4px rgba(32,19,10,.4);color:#14283b;font:600 clamp(7px,.9vw,14px)/1 Georgia,serif;white-space:nowrap;pointer-events:none}.library-summary{padding-top:22px!important;padding-bottom:32px!important}.library-summary h2{margin-bottom:12px!important}.library-summary p{margin-top:8px!important;font-weight:600}.library-summary p::first-letter{font-weight:700}";
+          var labels={fr:['GRATUIT','Entrez dans votre bibliothèque','Des histoires à découvrir, des livres à feuilleter.','Explorer les genres','Voir tous les livres','À découvrir aujourd’hui'],en:['FREE','Enter your library','Stories to discover. Books to explore.','Explore genres','See all books','Discover today'],es:['GRATIS','Entra en tu biblioteca','Historias para descubrir. Libros para explorar.','Explorar géneros','Ver todos los libros','Descubre hoy'],pt:['GRÁTIS','Entre na sua biblioteca','Histórias para descobrir. Livros para explorar.','Explorar gêneros','Ver todos os livros','Descubra hoje'],de:['KOSTENLOS','Betreten Sie Ihre Bibliothek','Geschichten entdecken. Bücher erkunden.','Genres erkunden','Alle Bücher ansehen','Heute entdecken'],it:['GRATIS','Entra nella tua biblioteca','Storie da scoprire. Libri da esplorare.','Esplora i generi','Vedi tutti i libri','Scopri oggi'],ar:['مجانًا','ادخل إلى مكتبتك','قصص لاكتشافها. كتب لاستكشافها.','استكشف الأنواع','عرض كل الكتب','اكتشف اليوم'],ru:['БЕСПЛАТНО','Войдите в свою библиотеку','Истории для открытия. Книги для чтения.','Все жанры','Все книги','Откройте сегодня'],zh:['免费','进入您的图书馆','发现故事，探索书籍。','探索分类','查看全部图书','今日推荐'],hi:['मुफ़्त','अपनी लाइब्रेरी में आएँ','खोजने के लिए कहानियाँ। पढ़ने के लिए किताबें।','शैलियाँ देखें','सभी किताबें देखें','आज खोजें'],ko:['무료','도서관에 오신 것을 환영합니다','발견할 이야기와 책을 만나보세요.','장르 둘러보기','모든 책 보기','오늘의 추천'],tr:['ÜCRETSİZ','Kütüphanenize hoş geldiniz','Keşfedilecek hikâyeler, okunacak kitaplar.','Türleri keşfet','Tüm kitapları gör','Bugün keşfet']};
+          function refresh(){var room=document.querySelector('.library-original-home');if(!room)return;var style=document.getElementById('home-overlay-style');if(!style){style=document.createElement('style');style.id='home-overlay-style';style.textContent=css;document.head.appendChild(style)}var layer=room.querySelector('.library-image-copy');if(!layer){layer=document.createElement('div');layer.className='library-image-copy';layer.setAttribute('aria-live','polite');room.appendChild(layer)}var select=document.getElementById('uiLangSelect');var code=((select&&select.value)||document.documentElement.lang||'en').toLowerCase().split('-')[0];var t=labels[code]||labels.en;var openLabel=code==='fr'?'Ouvrir':code==='es'?'Abrir':code==='de'?'Öffnen':code==='it'?'Apri':code==='pt'?'Abrir':code==='ar'?'افتح':'Open';room.style.setProperty('--library-open-label',JSON.stringify(openLabel));layer.innerHTML='<span class="image-free">'+t[0]+'</span><span class="image-hero-title">'+t[1]+'</span><span class="image-hero-lead">'+t[2]+'</span><span class="image-explore">'+t[3]+'</span><span class="image-all">'+t[4]+'</span><span class="image-shelf">'+t[5]+'</span>';room.querySelectorAll('.library-daily-book').forEach(function(a){var cap=a.querySelector('.library-original-caption');var title=(a.getAttribute('aria-label')||'').split(' — ')[0];if(!cap){cap=document.createElement('span');cap.className='library-original-caption';a.appendChild(cap)}cap.textContent=title;cap.setAttribute('translate','no');a.setAttribute('translate','no');var open=a.querySelector('.library-open-label');if(!open){open=document.createElement('span');open.className='library-open-label';a.appendChild(open)}open.textContent=openLabel});room.querySelector('.original-home').textContent=code==='fr'?'Accueil':code==='es'?'Inicio':code==='de'?'Start':code==='ar'?'الرئيسية':'Home';room.querySelector('.original-genres').textContent=t[3];room.querySelector('.original-library').textContent=code==='fr'?'Mes livres':code==='es'?'Mis libros':code==='de'?'Meine Bücher':code==='it'?'I miei libri':code==='pt'?'Meus livros':code==='ar'?'كتبي':'My books';if(select&&!select.dataset.homeOverlayBound){select.dataset.homeOverlayBound='1';select.addEventListener('change',function(){setTimeout(refresh,80)})}}
+          function polish(){
+          var root=document.documentElement,code=((document.getElementById('uiLangSelect')||{}).value||root.lang||'en').toLowerCase().split('-')[0];
+          var fr=code==='fr', es=code==='es', de=code==='de', it=code==='it', pt=code==='pt', ar=code==='ar';
+          var summary=document.querySelector('.library-summary'); if(summary){var h=summary.querySelector('h2');if(h)h.textContent=fr?'La bibliothèque en quelques chiffres':es?'Tu biblioteca de un vistazo':de?'Ihre Bibliothek auf einen Blick':it?'La tua biblioteca in sintesi':pt?'A sua biblioteca em números':ar?'لمحة عن مكتبتك':'Your library at a glance';var p=summary.querySelector('p');if(p)p.textContent=fr?'GRATUIT · Des classiques à lire, à écouter et à retrouver chaque jour.':es?'GRATIS · Clásicos para leer, escuchar y redescubrir cada día.':de?'KOSTENLOS · Klassiker zum Lesen, Hören und täglichen Wiederentdecken.':it?'GRATIS · Classici da leggere, ascoltare e riscoprire ogni giorno.':pt?'GRÁTIS · Clássicos para ler, ouvir e redescobrir todos os dias.':ar?'مجانًا · كلاسيكيات للقراءة والاستماع وإعادة الاكتشاف كل يوم.':'FREE · Classic stories to read, listen to and rediscover every day.';}
+          document.querySelectorAll('.library-original-caption,.library-open-label').forEach(function(n){n.remove()});
+          var free=document.querySelector('.image-free');if(free)free.remove();
+          }
+          refresh();polish();document.addEventListener('change',function(e){if(e.target&&e.target.id==='uiLangSelect'){setTimeout(function(){refresh();polish()},80)}});setInterval(function(){refresh();polish()},1200);
+          })();'''
+          # Parse the stylesheet and serialize its text safely into JavaScript.
+          parts = enhancement.split('\n', 2)
+          if len(parts) == 3 and parts[1].startswith('var css="') and parts[1].endswith('";'):
+              css_text = parts[1][len('var css="'):-2].replace(r'\n', '\n')
+              css_text += r'''
+          .library-original-home .library-account-tools{position:absolute!important;top:5.1%!important;left:32%!important;right:auto!important;width:26%!important;height:5.7%!important;min-height:0!important;padding:0!important;gap:6px!important;align-items:center!important;justify-content:flex-start!important;z-index:40!important;background:transparent!important;box-sizing:border-box!important}
+          .library-original-home .library-account-tools select{flex:1 1 108px!important;width:38%!important;max-width:130px!important;min-width:78px!important;height:30px!important;min-height:30px!important;padding:4px 6px!important;margin:0!important;font-size:12px!important;box-sizing:border-box!important}
+          .library-original-home .library-account-tools button{flex:0 1 auto!important;min-width:0!important;height:30px!important;min-height:30px!important;padding:4px 7px!important;margin:0!important;font-size:clamp(10px,.86vw,13px)!important;line-height:1!important;white-space:nowrap!important;box-sizing:border-box!important}
+          .library-original-home .library-art-link.original-home,.library-original-home .library-art-link.original-library{background:#14283b!important}
+          .library-original-home .library-art-link.original-genres{background:#14283b!important;color:transparent!important;pointer-events:none!important}
+          .library-home-mobile-mask{display:none;position:absolute;left:30.5%;top:4.4%;width:57.5%;height:7.4%;z-index:20;background:#14283b;pointer-events:none}
+          @media(max-width:900px){.library-home-mobile-mask{display:block}.library-original-home .library-original-links .original-home,.library-original-home .library-original-links .original-genres,.library-original-home .library-original-links .original-library,.library-original-home .library-original-links .original-search{display:none!important}.library-original-home .library-account-tools{left:31.5%!important;top:5.1%!important;width:56%!important;max-width:none!important;gap:5px!important}.library-original-home .library-account-tools select{flex:0 1 124px!important;width:124px!important;min-width:74px!important;max-width:132px!important}}
+          @media(max-width:420px){.library-original-home .library-account-tools{left:30.5%!important;width:62%!important;gap:3px!important}.library-original-home .library-account-tools select{flex:0 1 78px!important;width:78px!important;min-width:64px!important;max-width:82px!important}.library-original-home .library-account-tools button{padding:3px 4px!important;font-size:11px!important}}'''
+              parts[1] = 'var css=' + json.dumps(css_text, ensure_ascii=False) + ';'
+              enhancement = '\n'.join(parts)
+          enhancement = enhancement.replace('setInterval(function(){refresh();polish()},1200);', '')
+          locale_script = r'''(function(){
+          var copy=__LOCALIZED_COPY__;
+          function applyLocale(){
+            var room=document.querySelector('.library-original-home');if(!room)return;
+            var select=document.getElementById('uiLangSelect'),code=((select&&select.value)||document.documentElement.lang||'en').toLowerCase().split('-')[0],c=copy[code]||copy.en;
+            function text(el,value){if(el&&el.textContent!==value)el.textContent=value;return el}
+            text(room.querySelector('.image-free'),c[0]);text(room.querySelector('.image-hero-title'),c[1]);text(room.querySelector('.image-hero-lead'),c[2]);text(room.querySelector('.image-explore'),c[3]);text(room.querySelector('.image-all'),c[4]);text(room.querySelector('.image-shelf'),c[5]);
+            [['.original-explore',c[3]],['.original-catalog',c[4]]].forEach(function(pair){var a=room.querySelector(pair[0]);if(a){if(a.getAttribute('aria-label')!==pair[1])a.setAttribute('aria-label',pair[1]);text(a.querySelector('.library-sr-only'),pair[1])}});
+            var home=text(room.querySelector('.original-home'),c[8]),library=text(room.querySelector('.original-library'),c[9]),genres=room.querySelector('.original-genres');
+            if(home&&home.getAttribute('aria-label')!==c[8])home.setAttribute('aria-label',c[8]);if(library&&library.getAttribute('aria-label')!==c[9])library.setAttribute('aria-label',c[9]);
+            if(genres){if(genres.textContent)genres.textContent='';genres.removeAttribute('href');genres.tabIndex=-1;if(genres.getAttribute('aria-hidden')!=='true')genres.setAttribute('aria-hidden','true')}
+            var buttons=room.querySelector('.library-open-translations');
+            if(!buttons){buttons=document.createElement('div');buttons.className='library-open-translations';buttons.setAttribute('aria-hidden','true');[14.1,30.5,46.4,62.3,78.4].forEach(function(left){var button=document.createElement('span');button.style.left=left+'%';buttons.appendChild(button)});room.appendChild(buttons)}
+            buttons.querySelectorAll('span').forEach(function(button){text(button,c[10]+' →')});
+            if(!document.getElementById('library-open-translation-style')){var buttonStyle=document.createElement('style');buttonStyle.id='library-open-translation-style';buttonStyle.textContent='.library-open-translations{position:absolute;top:0;left:0;width:100%;aspect-ratio:3/2;z-index:10;pointer-events:none}.library-open-translations span{position:absolute;top:84.8%;width:7.2%;height:3.1%;box-sizing:border-box;display:flex;align-items:center;justify-content:center;border:1px solid #c8b396;border-radius:6px;background:linear-gradient(#fffaf0,#eadbc5);color:#14283b;font:400 clamp(4px,.85vw,14px)/1 Georgia,serif;white-space:nowrap}';document.head.appendChild(buttonStyle)}
+            var art=room.querySelector('.library-original-art');if(art&&art.alt!==c[1]+'. '+c[2])art.alt=c[1]+'. '+c[2];room.style.setProperty('--library-open-label',JSON.stringify(c[10]));
+            room.querySelectorAll('.library-daily-book').forEach(function(a){if(!a.dataset.libraryOriginalAria)a.dataset.libraryOriginalAria=a.getAttribute('aria-label')||'';var original=a.dataset.libraryOriginalAria.split(' : ')[0],label=original+' : '+c[11];if(a.getAttribute('aria-label')!==label)a.setAttribute('aria-label',label);if(a.getAttribute('translate')!=='no')a.setAttribute('translate','no');var img=a.querySelector('img');if(img&&img.getAttribute('translate')!=='no')img.setAttribute('translate','no')});
+            var summary=document.querySelector('.library-summary');if(summary){text(summary.querySelector('h2'),c[6]);text(summary.querySelector('p'),c[7])}
+            var tools=document.querySelector('.library-account-tools'),bar=document.querySelector('header.site .topbar');if(tools&&bar&&tools.parentElement!==bar)bar.appendChild(tools);
+            if(!room.querySelector('.library-home-mobile-mask')){var mask=document.createElement('span');mask.className='library-home-mobile-mask';mask.setAttribute('aria-hidden','true');room.appendChild(mask)}
+          }
+          applyLocale();document.addEventListener('change',function(e){if(e.target&&e.target.id==='uiLangSelect')setTimeout(applyLocale,120)});
+          var room=document.querySelector('.library-original-home');if(room)new MutationObserver(applyLocale).observe(room,{childList:true,subtree:true});new MutationObserver(applyLocale).observe(document.body,{attributes:true,attributeFilter:['data-library-view']});
+          })();'''.replace('__LOCALIZED_COPY__', json.dumps(localized_copy, ensure_ascii=False))
+          enhancement += '\n' + locale_script
+          navigation_fixes = '(function(){var s=document.createElement("style");s.id="navigation-fixes-style";s.textContent="/* Shared compact navigation, preserving the original five-book artwork. */\\nbody header.site.bc-shared-header{display:block!important;position:relative!important;inset:auto!important;width:100%!important;background:#14283b!important;color:#fff3dc!important;z-index:40;box-shadow:none!important;direction:ltr}\\nbody header.site.bc-shared-header>.topbar{display:flex!important;align-items:center;flex-wrap:nowrap!important;gap:16px!important;width:100%;max-width:1320px;padding:10px 22px!important;margin:auto;min-height:58px;box-sizing:border-box}\\n.bc-shared-header .logo{display:block!important;flex:none;color:#e5c98b!important;font:500 clamp(18px,1.7vw,28px)/1.2 Georgia,serif!important;white-space:nowrap;text-decoration:none}\\n.bc-shared-header .logo-mark3d,.bc-shared-header .topbar-divider,.bc-shared-header .topbar-spacer,.bc-shared-header .catbar,#nav-home,#nav-genres,#nav-catalog{display:none!important}\\n.bc-shared-header nav.main{display:flex!important;flex:0 0 auto!important;gap:0!important;min-width:0;margin:0!important}\\n.bc-shared-header .navlink{display:inline-flex;align-items:center;min-height:38px;padding:6px!important;margin:0!important;color:#fff3dc!important;background:transparent;border:0;font:14px/1.2 Georgia,serif!important;white-space:nowrap;text-decoration:none;cursor:pointer}\\n.bc-shared-header .search{display:flex!important;align-items:center;gap:5px;flex:1 1 180px!important;order:0!important;min-width:100px!important;width:auto!important;max-width:320px;margin:0 auto!important;padding:0 6px 0 12px!important;border:1px solid #bda98a!important;border-radius:6px!important;background:#fff8ea!important;box-sizing:border-box;height:38px}\\n.bc-shared-header .search input{display:block;width:100%;min-width:0;flex:1;border:0!important;border-radius:0;background:transparent!important;color:#14283b!important;font:14px/1.2 system-ui!important;padding:7px 0!important;box-shadow:none!important}\\n.bc-shared-header .search>svg{display:none}\\n.bc-shared-header .search button{flex:none;display:flex;align-items:center;justify-content:center;width:30px;height:32px;padding:5px;border:0;background:transparent;color:#14283b;cursor:pointer}\\nbody header.site.bc-shared-header .library-account-tools{display:flex!important;position:static!important;inset:auto!important;transform:none!important;width:auto!important;max-width:none!important;min-height:0!important;flex:none;flex-wrap:nowrap!important;padding:0!important;margin:0!important;gap:8px!important;background:transparent!important}\\n.bc-shared-header .library-account-tools .lang-switch{display:flex!important;gap:3px;padding:0!important;border:0!important;background:transparent!important;margin:0!important}\\n.bc-shared-header .library-account-tools .lang-switch>svg{display:none}\\n.bc-shared-header .library-account-tools select{display:block!important;min-width:0!important;width:105px!important;max-width:120px!important;min-height:38px!important;height:38px;border:1px solid #bda98a!important;border-radius:5px!important;padding:5px!important;background:#14283b!important;color:#fff3dc!important;font:12px/1.2 system-ui!important}\\n.bc-shared-header .library-account-tools option{background:#14283b!important;color:#fff3dc!important}\\n.bc-shared-header .topbar-auth{display:flex!important;gap:6px!important}\\n.bc-shared-header .library-account-tools .btn-auth{display:inline-flex;align-items:center;justify-content:center;min-height:38px!important;padding:6px 9px!important;border:1px solid #bda98a!important;border-radius:5px!important;font:12px/1.2 system-ui!important;text-decoration:none;white-space:nowrap}\\nbody[data-library-view=home] header.site.bc-shared-header{position:absolute!important;top:3.386vw!important;left:8.4%!important;width:83.2%!important;min-height:3.91vw}\\nbody[data-library-view=home] header.site.bc-shared-header>.topbar{min-height:3.91vw;padding:6px 18px!important;gap:12px!important}\\n.library-original-home .original-brand,.library-original-home .original-home,.library-original-home .original-genres,.library-original-home .original-library,.library-original-home .original-search{display:none!important}\\n.library-original-home .library-daily-book{top:60.75%!important;height:27.4%!important;transform:none!important;filter:none!important;background:transparent!important;border:0!important;box-shadow:none!important}\\n.library-original-home .library-daily-book:nth-child(1){left:11.46%!important;width:12.96%!important}\\n.library-original-home .library-daily-book:nth-child(2){left:27.80%!important;width:12.96%!important}\\n.library-original-home .library-daily-book:nth-child(3){left:43.10%!important;width:13.67%!important}\\n.library-original-home .library-daily-book:nth-child(4){left:59.05%!important;width:12.96%!important}\\n.library-original-home .library-daily-book:nth-child(5){left:74.35%!important;width:13.28%!important}\\n.library-original-home .library-daily-book::before,.library-original-home .library-daily-book::after,.library-original-home .library-daily-book img{display:none!important}\\n.library-image-copy .image-hero-title{white-space:nowrap!important;line-height:1.1!important;font-size:2.4vw;font-weight:700;overflow:visible!important}\\n.library-image-copy .image-hero-lead{white-space:nowrap!important}\\n.library-home-mobile-mask{display:none!important}\\n.library-mobile-menu>a:not(.library-mobile-book){display:none!important}\\n.library-catalog-head{padding:18px 24px!important;margin:16px 0!important}\\n.library-catalog-head h1{font-size:clamp(26px,3vw,38px)!important;margin:6px 0!important}\\n.library-catalog-head p{margin:6px 0!important}.library-views{margin-top:10px!important}\\n#resultCount{background:#fff8ea;color:#14283b;padding:6px 12px;border-radius:5px}\\nbody .drawer:not(.open),body .modal:not(.open),body .preview-modal:not(.open){visibility:hidden;pointer-events:none}\\nbody a:focus:not(:focus-visible),body button:focus:not(:focus-visible){outline:none!important;box-shadow:none!important}\\nbody .bc-shared-header :focus-visible,body .library-original-home a:focus-visible,body button:focus-visible,body input:focus-visible,body select:focus-visible,body a:focus-visible{outline:2px solid #669ec2!important;outline-offset:3px!important}\\n@media(max-width:1100px){.bc-shared-header .logo{font-size:20px!important}.bc-shared-header .navlink{font-size:12px!important}.bc-shared-header .library-account-tools select{width:86px!important}.bc-shared-header .library-account-tools .btn-auth{font-size:11px!important;padding:5px!important}body header.site.bc-shared-header>.topbar{gap:9px!important;padding-inline:12px!important}}\\n@media(max-width:900px){body[data-library-view=home] header.site.bc-shared-header{position:relative!important;inset:auto!important;width:100%!important}body header.site.bc-shared-header>.topbar{display:grid!important;grid-template-columns:1fr auto!important;gap:10px!important;padding:12px!important}.bc-shared-header .logo{grid-column:1;grid-row:1}.bc-shared-header nav.main{grid-column:2;grid-row:1;justify-content:end!important}.bc-shared-header .search{grid-column:1/-1;grid-row:3;width:100%!important;max-width:none;min-height:40px}.bc-shared-header .library-account-tools{grid-column:1/-1;grid-row:2;justify-content:end!important}.bc-shared-header .library-account-tools select{width:125px!important}.bc-shared-header .library-account-tools .btn-auth{font-size:12px!important;padding:6px 10px!important}.library-home-mobile-mask{display:block!important;position:absolute;left:8.4%!important;top:3.386vw!important;width:83.2%!important;height:3.91vw!important;background:#14283b!important;z-index:15;pointer-events:none}.library-home-mobile-mask::after{content:\'BookClassics\';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:2.6vw/1 Georgia,serif;color:#e5c98b}.library-image-copy,.library-original-links,.library-daily-books{bottom:auto!important;aspect-ratio:3/2}.library-summary p{line-height:1.5}.library-catalog-head{padding:16px!important}}\\n";document.head.appendChild(s)})();\n/* Existing controls keep their listeners; no account or reading data is replaced. */\n(function(){\n\'use strict\';\nvar translations={"search.placeholder": {"EN": "Search a title, author, or genre…", "FR": "Rechercher un titre, un auteur ou un genre…", "ES": "Busca un título, autor o género…", "PT": "Pesquise um título, autor ou gênero…", "AR": "ابحث عن عنوان أو مؤلف أو نوع أدبي…", "ZH": "搜索书名、作者或类型…", "JA": "タイトル、著者、ジャンルを検索…", "RU": "Поиск по названию, автору или жанру…", "DE": "Titel, Autor oder Genre suchen…", "SQ": "Kërkoni një titull, autor ose zhanër…", "EU": "Bilatu izenburu, egile edo generoa…", "CA": "Cerca un títol, autor o gènere…", "HI": "शीर्षक, लेखक या विधा खोजें…", "IT": "Cerca un titolo, autore o genere…", "KO": "제목, 작가, 장르로 검색…", "PB": "Busque por título, autor ou gênero…", "RO": "Caută un titlu, autor sau gen…", "SR": "Претражите наслов, аутора или жанр…", "SV": "Sök efter titel, författare eller genre…", "ZT": "搜尋書名、作者或類型…", "TR": "Kitap, yazar veya tür ara…", "UK": "Пошук за назвою, автором або жанром…"}, "search.aria": {"EN": "Search", "FR": "Recherche", "ES": "Buscar", "PT": "Pesquisar", "AR": "بحث", "ZH": "搜索", "JA": "検索", "RU": "Поиск", "DE": "Suche", "SQ": "Kërko", "EU": "Bilatu", "CA": "Cerca", "HI": "खोजें", "IT": "Cerca", "KO": "검색", "PB": "Buscar", "RO": "Căutare", "SR": "Претрага", "SV": "Sök", "ZT": "搜尋", "TR": "Ara", "UK": "Пошук"}, "lang.switcherAria": {"EN": "Site language", "FR": "Langue du site", "ES": "Idioma del sitio", "PT": "Idioma do site", "AR": "لغة الموقع", "ZH": "网站语言", "JA": "サイトの言語", "RU": "Язык сайта", "DE": "Sprache der Website", "SQ": "Gjuha e faqes", "EU": "Guneko hizkuntza", "CA": "Idioma del lloc", "HI": "साइट की भाषा", "IT": "Lingua del sito", "KO": "사이트 언어", "PB": "Idioma do site", "RO": "Limba site-ului", "SR": "Језик сајта", "SV": "Webbplatsens språk", "ZT": "網站語言", "TR": "Site dili", "UK": "Мова сайту"}, "nav.library": {"EN": "My Library", "FR": "Ma bibliothèque", "ES": "Mi biblioteca", "PT": "Minha biblioteca", "AR": "مكتبتي", "ZH": "我的图书馆", "JA": "マイライブラリ", "RU": "Моя библиотека", "DE": "Meine Bibliothek", "SQ": "Biblioteka Ime", "EU": "Nire liburutegia", "CA": "La meva biblioteca", "HI": "मेरी लाइब्रेरी", "IT": "La mia libreria", "KO": "내 서재", "PB": "Minha Biblioteca", "RO": "Biblioteca mea", "SR": "Моја библиотека", "SV": "Mitt bibliotek", "ZT": "我的書庫", "TR": "Kitaplığım", "UK": "Моя бібліотека"}, "account.signInBtn": {"EN": "Sign In", "FR": "Se connecter", "ES": "Iniciar sesión", "PT": "Entrar", "AR": "تسجيل الدخول", "ZH": "登录", "JA": "サインイン", "RU": "Войти", "DE": "Anmelden", "SQ": "Identifikohu", "EU": "Hasi saioa", "CA": "Inicia sessió", "HI": "साइन इन करें", "IT": "Accedi", "KO": "로그인", "PB": "Entrar", "RO": "Conectare", "SR": "Пријави се", "SV": "Logga in", "ZT": "登入", "TR": "Giriş Yap", "UK": "Увійти"}, "account.signUpBtn": {"EN": "Sign Up", "FR": "S\'inscrire", "ES": "Registrarse", "PT": "Cadastrar-se", "AR": "إنشاء حساب", "ZH": "注册", "JA": "サインアップ", "RU": "Регистрация", "DE": "Registrieren", "SQ": "Regjistrohu", "EU": "Izena eman", "CA": "Registra\'t", "HI": "साइन अप करें", "IT": "Registrati", "KO": "회원가입", "PB": "Cadastrar-se", "RO": "Înregistrare", "SR": "Региструј се", "SV": "Registrera dig", "ZT": "註冊", "TR": "Kaydol", "UK": "Зареєструватися"}, "bd2.readOnline": {"EN": "Read online for free", "FR": "Lire gratuitement en ligne", "ES": "Leer gratis en línea", "PT": "Ler grátis online", "AR": "اقرأ مجانًا على الإنترنت", "ZH": "免费在线阅读", "JA": "無料でオンラインで読む", "RU": "Читать онлайн бесплатно", "DE": "Kostenlos online lesen", "SQ": "Lexo falas në internet", "EU": "Irakurri doan sarean", "CA": "Llegeix en línia gratis", "HI": "मुफ़्त में ऑनलाइन पढ़ें", "IT": "Leggi gratis online", "KO": "무료로 온라인에서 읽기", "PB": "Ler grátis online", "RO": "Citește gratuit online", "SR": "Читај бесплатно онлајн", "SV": "Läs gratis online", "ZT": "免費線上閱讀", "TR": "Ücretsiz çevrimiçi oku", "UK": "Читати онлайн безкоштовно"}, "bd2.listen": {"EN": "Listen to the audiobook", "FR": "Écouter le livre audio", "ES": "Escuchar el audiolibro", "PT": "Ouvir o audiolivro", "AR": "استمع إلى الكتاب الصوتي", "ZH": "收听有声书", "JA": "オーディオブックを聴く", "RU": "Слушать аудиокнигу", "DE": "Hörbuch anhören", "SQ": "Dëgjo librin audio", "EU": "Entzun audio-liburua", "CA": "Escolta l\'audiollibre", "HI": "ऑडियोबुक सुनें", "IT": "Ascolta l\'audiolibro", "KO": "오디오북 듣기", "PB": "Ouvir o audiolivro", "RO": "Ascultă cartea audio", "SR": "Слушај аудио-књигу", "SV": "Lyssna på ljudboken", "ZT": "收聽有聲書", "TR": "Sesli kitabı dinle", "UK": "Слухати аудіокнигу"}, "bd2.download": {"EN": "Download", "FR": "Télécharger", "ES": "Descargar", "PT": "Descarregar", "AR": "تنزيل", "ZH": "下载", "JA": "ダウンロード", "RU": "Скачать", "DE": "Herunterladen", "SQ": "Shkarko", "EU": "Deskargatu", "CA": "Descarrega", "HI": "डाउनलोड करें", "IT": "Scarica", "KO": "다운로드", "PB": "Baixar", "RO": "Descarcă", "SR": "Преузми", "SV": "Ladda ner", "ZT": "下載", "TR": "İndir", "UK": "Завантажити"}, "bd2.editions": {"EN": "Editions", "FR": "Éditions", "ES": "Ediciones", "PT": "Edições", "AR": "الطبعات", "ZH": "版本", "JA": "版", "RU": "Издания", "DE": "Ausgaben", "SQ": "Botime", "EU": "Edizioak", "CA": "Edicions", "HI": "संस्करण", "IT": "Edizioni", "KO": "판본", "PB": "Edições", "RO": "Ediții", "SR": "Издања", "SV": "Utgåvor", "ZT": "版本", "TR": "Baskılar", "UK": "Видання"}, "bd.aboutBook": {"EN": "About this book", "FR": "À propos de ce livre", "ES": "Sobre este libro", "PT": "Sobre este livro", "AR": "نبذة عن الكتاب", "ZH": "关于本书", "JA": "この本について", "RU": "Об этой книге", "DE": "Über dieses Buch", "SQ": "Rreth këtij libri", "EU": "Liburu honi buruz", "CA": "Sobre aquest llibre", "HI": "इस किताब के बारे में", "IT": "Informazioni sul libro", "KO": "책 소개", "PB": "Sobre este livro", "RO": "Despre această carte", "SR": "О овој књизи", "SV": "Om boken", "ZT": "關於本書", "TR": "Bu kitap hakkında", "UK": "Про цю книгу"}, "bd.readFree": {"EN": "Read for free", "FR": "Lire gratuitement", "ES": "Leer gratis", "PT": "Ler grátis", "AR": "اقرأ مجانًا", "ZH": "免费阅读", "JA": "無料で読む", "RU": "Читать бесплатно", "DE": "Kostenlos lesen", "SQ": "Lexo falas", "EU": "Irakurri doan", "CA": "Llegeix gratis", "HI": "मुफ़्त पढ़ें", "IT": "Leggi gratis", "KO": "무료로 읽기", "PB": "Ler grátis", "RO": "Citește gratuit", "SR": "Читај бесплатно", "SV": "Läs gratis", "ZT": "免費閱讀", "TR": "Ücretsiz oku", "UK": "Читати безкоштовно"}},languages=[{"code": "EN", "label": "English", "iso": "en"}, {"code": "FR", "label": "Français", "iso": "fr"}, {"code": "ES", "label": "Español", "iso": "es"}, {"code": "PT", "label": "Português", "iso": "pt"}, {"code": "AR", "label": "العربية", "iso": "ar"}, {"code": "ZH", "label": "中文", "iso": "zh"}, {"code": "JA", "label": "日本語", "iso": "ja"}, {"code": "RU", "label": "Русский", "iso": "ru"}, {"code": "DE", "label": "Deutsch", "iso": "de"}, {"code": "SQ", "label": "Shqip", "iso": "sq"}, {"code": "EU", "label": "Euskara", "iso": "eu"}, {"code": "CA", "label": "Català", "iso": "ca"}, {"code": "HI", "label": "हिन्दी", "iso": "hi"}, {"code": "IT", "label": "Italiano", "iso": "it"}, {"code": "KO", "label": "한국어", "iso": "ko"}, {"code": "PB", "label": "Português (Brasil)", "iso": "pt-BR"}, {"code": "RO", "label": "Română", "iso": "ro"}, {"code": "SR", "label": "Српски", "iso": "sr"}, {"code": "SV", "label": "Svenska", "iso": "sv"}, {"code": "ZT", "label": "繁體中文", "iso": "zh-TW"}, {"code": "TR", "label": "Türkçe", "iso": "tr"}, {"code": "UK", "label": "Українська", "iso": "uk"}];\nvar main=!!document.getElementById(\'view-home\');\nvar header=document.querySelector(main?\'header.site\':\'header\');if(!header)return;\nheader.classList.add(\'site\',\'bc-shared-header\');\nvar saved=\'EN\';try{saved=localStorage.getItem(\'ebc_ui_lang\')||\'EN\'}catch(e){}\nvar select=document.getElementById(\'uiLangSelect\');\nfunction code(){return select?select.value:saved}\nfunction tr(key){var d=translations[key]||{};return d[code()]||d.EN||key}\nif(!main){\n header.innerHTML=\'<div class="wrap topbar"><a class="logo" href="/">BookClassics</a><nav class="main"><a class="navlink" id="nav-library" href="/#library"></a></nav><form class="search" action="/" role="search"><input id="searchInput" type="search" name="q"></form><div class="library-account-tools"><div class="lang-switch"><select id="uiLangSelect"></select></div><div class="topbar-auth"><a class="btn btn-secondary btn-auth" id="btnAuthSignIn" href="/#signin"></a><a class="btn btn-primary btn-auth" id="btnAuthSignUp" href="/#signup"></a></div></div></div>\';\n select=document.getElementById(\'uiLangSelect\');languages.forEach(function(l){var o=document.createElement(\'option\');o.value=l.code;o.textContent=l.label;select.append(o)});select.value=languages.some(function(l){return l.code===saved})?saved:\'EN\';\n select.addEventListener(\'change\',function(){saved=select.value;try{localStorage.setItem(\'ebc_ui_lang\',saved)}catch(e){}localize()});\n}else{\n var bar=header.querySelector(\'.topbar\'),tools=document.querySelector(\'.library-account-tools\');if(tools)bar.append(tools);\n [\'nav-home\',\'nav-genres\',\'nav-catalog\'].forEach(function(id){var n=document.getElementById(id);if(n)n.hidden=true});\n var oldSearch=bar.querySelector(\'.search\'),form=document.createElement(\'form\');form.className=\'search\';form.setAttribute(\'role\',\'search\');while(oldSearch.firstChild)form.append(oldSearch.firstChild);oldSearch.replaceWith(form);\n form.addEventListener(\'submit\',function(e){e.preventDefault();state.page=1;showView(\'catalog\');document.getElementById(\'searchInput\').focus()});\n document.getElementById(\'searchInput\').addEventListener(\'input\',function(){state.cat=null;state.formats=new Set();state.languages=new Set();state.page=1},true);\n var normalize=function(s){return String(s||\'\').normalize(\'NFD\').replace(/[\\u0300-\\u036f]/g,\'\').toLowerCase().replace(/[’\']/g,\' \')};\n matchesQuery=function(book,q){if(!q)return true;var aliases={\'treasure-island\':\'L’île au trésor\',\'alice-s-adventures-in-wonderland\':\'Alice au pays des merveilles\',\'pride-and-prejudice\':\'Orgueil et Préjugés\'};var hay=normalize(book.title+\' \'+book.author+\' \'+catLabel(book.cat)+\' \'+(aliases[hostedSlug(book)]||\'\'));return normalize(q).split(/\\s+/).filter(Boolean).every(function(part){return hay.includes(part)})};\n document.addEventListener(\'click\',function(e){if(e.target.closest(\'.original-catalog,.original-explore,.library-genre-card,.library-browse,.library-catalog-head>a\')){document.getElementById(\'searchInput\').value=\'\';state.cat=null;state.formats=new Set();state.languages=new Set();state.page=1}},true);\n var oldCatalog=renderCatalog;renderCatalog=function(){oldCatalog();var count=document.getElementById(\'resultCount\');if(state.uiLang===\'FR\'&&count.textContent===\'1 titres\')count.textContent=\'1 titre\'};\n var count=document.getElementById(\'resultCount\');count.setAttribute(\'role\',\'status\');count.setAttribute(\'aria-live\',\'polite\');\n var priorLang=applyUILang;applyUILang=function(c,o){priorLang(c,o);localize();requestAnimationFrame(fitTitle)};\n var query=new URLSearchParams(location.search).get(\'q\');if(query){document.getElementById(\'searchInput\').value=query;state.cat=null;state.page=1;showView(\'catalog\')}\n}\nvar search=header.querySelector(\'.search\'),submit=document.createElement(\'button\');submit.type=\'submit\';submit.innerHTML=\'<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="7"/><path d="m16 16 5 5"/></svg>\';search.append(submit);\nvar originalNodes=new Map();\nfunction localize(){\n var lang=code();var input=document.getElementById(\'searchInput\');input.placeholder=tr(\'search.placeholder\');input.setAttribute(\'aria-label\',tr(\'search.aria\'));submit.setAttribute(\'aria-label\',tr(\'search.aria\'));select.setAttribute(\'aria-label\',tr(\'lang.switcherAria\'));\n var nav=document.getElementById(\'nav-library\');nav.removeAttribute(\'data-i18n\');nav.textContent=lang===\'FR\'?\'Mes livres\':tr(\'nav.library\');\n if(!main){\n  document.getElementById(\'btnAuthSignIn\').textContent=tr(\'account.signInBtn\');document.getElementById(\'btnAuthSignUp\').textContent=tr(\'account.signUpBtn\');\n  var meta=languages.find(function(l){return l.code===lang});document.documentElement.lang=meta?meta.iso:\'en\';\n  [[\'bcRead\',\'bd2.readOnline\'],[\'bcListen\',\'bd2.listen\'],[\'bcDl\',\'bd2.download\']].forEach(function(pair){var n=document.getElementById(pair[0]);if(n)n.textContent=tr(pair[1])});\n  document.querySelectorAll(\'.bcReadLink\').forEach(function(n){n.textContent=tr(\'bd.readFree\')+\' →\'});\n  document.querySelectorAll(\'main h2\').forEach(function(n){if(!originalNodes.has(n))originalNodes.set(n,n.textContent);var keys={\'Editions\':\'bd2.editions\',\'About the book\':\'bd.aboutBook\'};var k=keys[originalNodes.get(n)];if(k)n.textContent=tr(k)});\n  document.querySelectorAll(\'h1,.ed>span,.grid strong,.grid b\').forEach(function(n){n.setAttribute(\'translate\',\'no\')});\n }\n requestAnimationFrame(fitTitle);\n}\nfunction fitTitle(){\n document.querySelectorAll(\'.image-hero-title,.image-hero-lead\').forEach(function(el){\n  var width=el.clientWidth;if(!width)return;var max=(el.classList.contains(\'image-hero-title\')?2.4:1.4)*window.innerWidth/100;\n  el.style.fontSize=max+\'px\';var range=document.createRange();range.selectNodeContents(el);var content=range.getBoundingClientRect().width;if(content>width-6)el.style.fontSize=Math.max(5,max*(width-6)/content)+\'px\';\n });\n}\nlocalize();window.addEventListener(\'resize\',fitTitle);if(document.fonts)document.fonts.ready.then(fitTitle);\nif(main){var title=document.querySelector(\'.image-hero-title\');title.setAttribute(\'role\',\'heading\');title.setAttribute(\'aria-level\',\'1\');var room=document.querySelector(\'.library-original-home\');new MutationObserver(function(){requestAnimationFrame(fitTitle)}).observe(room.querySelector(\'.library-image-copy\'),{childList:true,subtree:true,characterData:true})}\n})();\n'
+          enhancement += '\n' + navigation_fixes
+          (output / 'assets/library/navigation-fixes.js').write_text(navigation_fixes)
+          (output / 'assets/library/home-enhancements.js').write_text(enhancement)
+          version = hashlib.sha256(Path('bookclassics-design-assets.zip').read_bytes() + enhancement.encode() + b'fragment-safe-v2').hexdigest()[:12]
+          css = '<link rel="stylesheet" href="/assets/library/library.css?v=' + version + '">\n<link rel="stylesheet" href="/assets/library/cohesion.css?v=' + version + '">' 
+          root = output / 'index.html'
+          html = root.read_text()
+          # Connect the previously generated covers to entries still using text-only faces.
+          missing_covers = {'b88': 'the-book-of-common-prayer', 'b94': 'a-christmas-carol', 'b111': 'macbeth', 'b112': 'othello', 'b113': 'king-lear', 'b115': 'the-tempest', 'b123': 'the-red-and-the-black', 'b124': 'father-goriot', 'b125': 'bel-ami', 'b127': 'grimm-s-fairy-tales', 'b128': 'andersen-s-fairy-tales', 'b129': 'the-arabian-nights', 'b130': 'the-prophet', 'b131': 'tao-te-ching', 'b132': 'the-rubaiyat-of-omar-khayyam'}
+          for book_id, slug in missing_covers.items():
+              assert (output / 'covers' / (slug + '.jpg')).is_file(), 'Missing cover: ' + slug
+              marker = "{id:'" + book_id + "',"
+              assert html.count(marker) == 1, 'Ambiguous catalogue entry: ' + book_id
+              html = html.replace(marker, marker + ' coverImg:"/covers/' + slug + '.jpg",', 1)
+          # Assign reviewed cover art before rendering catalogue and book details.
+          generated_covers = json.loads(Path('generated-covers.json').read_text())
+          for slug in generated_covers.values():
+              assert (output / 'covers' / (slug + '.jpg')).is_file(), slug
+          books_start = html.index('const BOOKS =')
+          books_end = html.index('\n];', books_start) + 3
+          assignment = '\nconst GENERATED_COVERS = ' + json.dumps(generated_covers) + ';\nBOOKS.forEach(book=>{if(GENERATED_COVERS[book.id])book.coverImg="/covers/"+GENERATED_COVERS[book.id]+".jpg";});\n'
+          html = html[:books_end] + assignment + html[books_end:]
+          old_source = "img.src = BOOK_EXTRA[hostedSlug(book)]"
+          assert old_source in html, 'Cover source selection changed'
+          html = html.replace(old_source, "img.src = book.coverImg.startsWith('/covers/') ? book.coverImg : BOOK_EXTRA[hostedSlug(book)]", 1)
+          html = re.sub(r'<link[^>]+href="/assets/library/library.css[^" ]*"[^>]*>', '', html)
+          html = re.sub(r'<script src="/assets/library/[^" ]+"></script>', '', html)
+          html = html.replace('<header', css + '\n<header', 1)
+          scripts = ''.join('<script src="/assets/library/' + name + '?v=' + version + '"></script>\n' for name in ['library.js', 'reader-pages.js', 'cohesion.js', 'home-enhancements.js'])
+          # The source is an HTML fragment; its closing body tags belong to book templates.
+          html += '\n' + scripts
+          html = html.replace('content="#2D49EC"', 'content="#14283B"')
+          root.write_text(html)
+          pages = list((output / 'books').glob('*/index.html')) + [output / 'books/index.html'] + [output / name for name in ['about.html', 'contact.html', 'privacy.html']]
+          for page in pages:
+              if not page.exists():
+                  continue
+              html = page.read_text()
+              if page.parent.name == 'a-christmas-carol':
+                  html = re.sub(r'<div class="cover text">.*?</div>', '<img class="cover" src="/covers/a-christmas-carol.jpg" width="1024" height="1536" alt="A Christmas Carol — Charles Dickens" loading="eager">', html, count=1, flags=re.S)
+              html = re.sub(r'<link[^>]+href="/assets/library/library.css[^" ]*"[^>]*>', '', html)
+              html = html.replace('</head>', css + '\n</head>', 1)
+              html = html.replace('<body>', '<body class="standalone-library">')
+              html = html.replace('</body>', '<script src="/assets/library/navigation-fixes.js?v=' + version + '"></script>\n</body>')
+              page.write_text(html)
+          PY
+      - name: Soft email prompt and terms page
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          site = Path('_site')
+          COOL = "try{var t=+localStorage.getItem('ebc_gate_seen')||0;if(Date.now()-t<6048e5)return;localStorage.setItem('ebc_gate_seen',Date.now());}catch(e){return;}"
+          idx = site / 'index.html'
+          if idx.exists():
+              t = idx.read_text(encoding='utf-8')
+              t, n1 = re.subn(r'function requireEmail\(action\)\{\s*if\(isRegistered\(\)\)\{\s*action\(\);\s*return;\s*\}', 'function requireEmail(action){ action(); if(isRegistered()) return; ' + COOL + ' action=function(){};', t)
+              t, n2 = re.subn(r'if\(readerReturnUrl && !isRegistered\(\)\)', 'if(false && readerReturnUrl)', t)
+              t = t.replace('Enter your email once to read and download all our books for free.', 'Optional: get new free classics by email. You can close this and keep reading.')
+              idx.write_text(t, encoding='utf-8')
+              print('spa gate', n1, n2)
+          nb = 0
+          for f in site.glob('books/*/index.html'):
+              t = f.read_text(encoding='utf-8')
+              t2, n = re.subn(r'function gate\(fn\)\{\s*if\(reg\(\)\)\{\s*fn\(\);\s*return;\s*\}\s*pending=fn;', 'function gate(fn){ fn(); if(reg())return; ' + COOL + ' pending=function(){};', t)
+              if n:
+                  f.write_text(t2, encoding='utf-8'); nb += 1
+          print('book gates', nb)
+          (site / 'terms.html').write_text('''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Terms of Use - BookClassics</title><style>body{font-family:Georgia,serif;max-width:760px;margin:0 auto;padding:24px 16px;line-height:1.6;color:#222;background:#fdfbf6}a{color:#8b2c1c}</style></head><body>
+          <p><a href="/">&larr; BookClassics</a></p><h1>Terms of Use</h1><p>Last updated: October 2026</p>
+          <h2>1. The service</h2><p>BookClassics offers free access to public-domain books and audiobooks. The site is funded by advertising.</p>
+          <h2>2. Public-domain content</h2><p>The books are in the public domain in the United States and/or the European Union. Copyright law differs between countries: you are responsible for checking that a work is in the public domain where you live before downloading it.</p>
+          <h2>3. Audiobooks</h2><p>Audiobooks come from LibriVox volunteer recordings, which are in the public domain.</p>
+          <h2>4. Book descriptions</h2><p>Some descriptions come from Wikipedia and are available under the Creative Commons Attribution-ShareAlike licence (CC BY-SA). Credit is given on each page.</p>
+          <h2>5. Acceptable use</h2><p>Do not use automated tools to download the site in bulk, overload it, or interfere with its operation.</p>
+          <h2>6. Newsletter</h2><p>Signing up for emails is optional. You can unsubscribe at any time with the link in every email.</p>
+          <h2>7. Advertising and privacy</h2><p>We show ads through Google AdSense. See our <a href="/privacy.html">Privacy Policy</a> for cookies and your choices.</p>
+          <h2>8. No warranty</h2><p>The site is provided "as is", without warranty. We are not liable for errors in texts or for interruptions of service.</p>
+          <h2>9. Changes</h2><p>We may update these terms. The date above shows the latest version.</p>
+          <h2>10. Contact</h2><p><a href="mailto:contact@bookclassics.org">contact@bookclassics.org</a> &middot; <a href="/contact.html">Contact page</a></p>
+          </body></html>''', encoding='utf-8')
+          nl = 0
+          for f in site.rglob('*.html'):
+              if f.name == 'terms.html': continue
+              t = f.read_text(encoding='utf-8', errors='surrogateescape')
+              if 'terms.html' in t: continue
+              t2, n = re.subn(r'(<a[^>]*href="[^"]*privacy\.html"[^>]*>[^<]*</a>)', r'\1 &middot; <a href="/terms.html">Terms of Use</a>', t, count=1)
+              if n:
+                  f.write_text(t2, encoding='utf-8', errors='surrogateescape'); nl += 1
+          print('terms links', nl)
+          PY
+      - name: Subscribe button instead of sign in
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+          idx = Path('_site/index.html')
+          if idx.exists():
+              t = idx.read_text(encoding='utf-8')
+              btn = '''<div class="topbar-auth" style="display:flex !important"><button class="btn btn-primary btn-auth" id="btnSubscribe" type="button" onclick="bcSubscribe()">Subscribe for new books</button></div>
+          <script>
+          function bcSubscribe(){try{localStorage.removeItem('ebc_gate_seen')}catch(e){} if(typeof isRegistered==='function'&&isRegistered()){var b=document.getElementById('btnSubscribe');b.textContent='\\u2713';return;} requireEmail(function(){});}
+          (function(){var L={EN:'Subscribe for new books',FR:"S'abonner aux nouveaut\\u00e9s",ES:'Suscribirse a las novedades',PT:'Assinar as novidades',AR:'\\u0627\\u0634\\u062a\\u0631\\u0643 \\u0641\\u064a \\u0627\\u0644\\u0643\\u062a\\u0628 \\u0627\\u0644\\u062c\\u062f\\u064a\\u062f\\u0629',ZH:'\\u8ba2\\u9605\\u65b0\\u4e66',JA:'\\u65b0\\u7740\\u3092\\u30e1\\u30fc\\u30eb\\u3067\\u53d7\\u3051\\u53d6\\u308b',RU:'\\u041f\\u043e\\u0434\\u043f\\u0438\\u0441\\u0430\\u0442\\u044c\\u0441\\u044f \\u043d\\u0430 \\u043d\\u043e\\u0432\\u0438\\u043d\\u043a\\u0438',DE:'Neuheiten abonnieren',SQ:'Abonohu p\\u00ebr librat e rinj'};
+          function up(){var b=document.getElementById('btnSubscribe');if(!b)return;var v='EN';document.querySelectorAll('select').forEach(function(s){if(L[s.value])v=s.value;});b.textContent=L[v];}
+          document.addEventListener('change',function(){setTimeout(up,50)});document.addEventListener('DOMContentLoaded',up);setTimeout(up,800);})();
+          </script>'''
+              t, n = re.subn(r'<div class="topbar-auth">.*?</div>', lambda m: btn, t, count=1, flags=re.S)
+              t = t.replace('<div class="account-chip" id="accountChip"', '<div class="account-chip" id="accountChip" style="display:none !important"', 1)
+              idx.write_text(t, encoding='utf-8')
+              print('subscribe button', n)
+          PY
+      - name: GoatCounter statistics
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          tag = '<script data-goatcounter="https://amzil.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
+          n = 0
+          for f in Path('_site').rglob('*.html'):
+              t = f.read_text(encoding='utf-8', errors='surrogateescape')
+              if 'goatcounter.com/count' in t or '</title>' not in t[:300000]:
+                  continue
+              f.write_text(t.replace('</title>', '</title>' + tag, 1), encoding='utf-8', errors='surrogateescape')
+              n += 1
+          print('goatcounter pages', n)
+          PY
+      - name: RSS feed of new books
+        run: |
+          python3 - <<'PY'
+          import re, html, urllib.request, email.utils, datetime
+          from pathlib import Path
+          site = Path('_site')
+          old = {}
+          try:
+              x = urllib.request.urlopen('https://bookclassics.org/feed.xml', timeout=20).read().decode('utf-8')
+              for link, d in re.findall(r'<link>([^<]+)</link>\s*<guid[^>]*>[^<]*</guid>\s*<pubDate>([^<]+)</pubDate>', x):
+                  old[link] = d
+          except Exception as e:
+              print('no previous feed', e)
+          first = not old
+          now = email.utils.format_datetime(datetime.datetime.now(datetime.timezone.utc))
+          base = email.utils.format_datetime(datetime.datetime(2026, 10, 1, tzinfo=datetime.timezone.utc))
+          items = []
+          for f in site.glob('books/*/index.html'):
+              t = f.read_text(encoding='utf-8', errors='ignore')
+              def meta(p):
+                  m = re.search(r'<meta property="og:%s" content="([^"]*)"' % p, t)
+                  return html.unescape(m.group(1)) if m else ''
+              title = meta('title') or html.unescape((re.search(r'<title>([^<]*)', t) or [None, f.parent.name])[1])
+              title = re.split(r' — | \| ', title)[0]
+              link = 'https://bookclassics.org/books/%s/' % f.parent.name
+              d = old.get(link) or (base if first else now)
+              items.append((email.utils.parsedate_to_datetime(d), d, title, link, meta('description'), meta('image')))
+          items.sort(key=lambda i: i[0], reverse=True)
+          esc = lambda s: html.escape(s, quote=True)
+          out = ['<?xml version="1.0" encoding="UTF-8"?>', '<rss version="2.0"><channel>',
+                 '<title>BookClassics - new free classics</title><link>https://bookclassics.org/</link>',
+                 '<description>New public-domain books to read, download and listen to for free.</description><language>en</language>']
+          for _, d, title, link, desc, img in items[:200]:
+              body = ('<img src="%s" alt="" width="200"><br>' % img if img else '') + esc(desc)
+              out.append('<item><title>%s</title><link>%s</link><guid isPermaLink="true">%s</guid><pubDate>%s</pubDate><description>%s</description></item>' % (esc(title), link, link, d, esc(body)))
+          out.append('</channel></rss>')
+          (site / 'feed.xml').write_text('\n'.join(out), encoding='utf-8')
+          print('feed items', len(items), 'first run' if first else '')
+          PY
+      - name: Count newsletter signups
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          js = "<script>document.addEventListener('submit',function(e){var f=e.target;if(f&&/gate|news/i.test(f.id||'')){var i=f.querySelector('input[type=email]');if(i&&i.checkValidity()&&window.goatcounter&&goatcounter.count){goatcounter.count({path:'newsletter-signup',title:'Newsletter signup',event:true});}}},true);</script>"
+          n = 0
+          for f in Path('_site').rglob('*.html'):
+              t = f.read_text(encoding='utf-8', errors='surrogateescape')
+              if 'newsletter-signup' in t or '</title>' not in t[:300000]:
+                  continue
+              i = t.find('</title>') + 8
+              f.write_text(t[:i] + js + t[i:], encoding='utf-8', errors='surrogateescape')
+              n += 1
+          print('signup counter pages', n)
+          PY
+      - name: Subscribe button on book pages
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          f = Path('_site/assets/library/navigation-fixes.js')
+          if f.exists():
+              t = f.read_text(encoding='utf-8')
+              old = '<div class="topbar-auth"><a class="btn btn-secondary btn-auth" id="btnAuthSignIn" href="/#signin"></a><a class="btn btn-primary btn-auth" id="btnAuthSignUp" href="/#signup"></a></div>'
+              new = '<div class="topbar-auth"><a id="btnAuthSignIn" hidden style="display:none"></a><a id="btnAuthSignUp" hidden style="display:none"></a><a class="btn btn-primary btn-auth" id="btnSubscribe" href="/" onclick="return bcSub(event)">Subscribe for new books</a></div>'
+              n = t.count(old)
+              t = t.replace(old, new)
+              t += r'''
+          ;(function(){var L={EN:"Subscribe for new books",FR:"S'abonner aux nouveautés",ES:"Suscribirse a las novedades",PT:"Assinar as novidades",AR:"اشترك في الكتب الجديدة",ZH:"订阅新书",JA:"新着をメールで受け取る",RU:"Подписаться на новинки",DE:"Neuheiten abonnieren",SQ:"Abonohu për librat e rinj"};
+          window.bcSub=function(e){var g=document.getElementById("bcGate");if(g){try{localStorage.removeItem("ebc_gate_seen")}catch(x){}g.hidden=false;if(e)e.preventDefault();return false}return true};
+          function up(){var b=document.getElementById("btnSubscribe");if(!b)return;var v="EN";document.querySelectorAll("select").forEach(function(s){if(L[s.value])v=s.value});b.textContent=L[v]}
+          document.addEventListener("change",function(){setTimeout(up,50)});document.addEventListener("DOMContentLoaded",up);setTimeout(up,600);setTimeout(up,2000);})();
+          '''
+              f.write_text(t, encoding='utf-8')
+              print('book header subscribe', n)
+          PY
+      - name: Hide old homepage until new design is ready
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          f = Path('_site/index.html')
+          t = f.read_text(encoding='utf-8')
+          snip = ('<style id="bc-noflash">html:not(.library-ready) body>main,html:not(.library-ready) body>footer{visibility:hidden}'
+                  'html:not(.library-ready),html:not(.library-ready) body{background:#13233a}</style>'
+                  '<script>setTimeout(function(){document.documentElement.classList.add("library-ready")},4000)</script>')
+          if 'bc-noflash' not in t and '</title>' in t[:300000]:
+              t = t.replace('</title>', '</title>' + snip, 1)
+              f.write_text(t, encoding='utf-8')
+              print('noflash added')
+          PY
+      - name: Move inline cover images out of homepage
+        run: |
+          python3 - <<'PY'
+          import re, base64, hashlib
+          from pathlib import Path
+          site = Path('_site')
+          f = site / 'index.html'
+          t = f.read_text(encoding='utf-8')
+          out = site / 'assets' / 'inline'
+          out.mkdir(parents=True, exist_ok=True)
+          EXT = {'image/png': 'png', 'image/jpeg': 'jpg', 'image/jpg': 'jpg', 'image/webp': 'webp', 'image/gif': 'gif'}
+          n = 0; saved = 0
+          def rep(m):
+              global n, saved
+              mime, data = m.group(1), m.group(2)
+              try:
+                  raw = base64.b64decode(data, validate=True)
+              except Exception:
+                  return m.group(0)
+              name = hashlib.md5(raw).hexdigest()[:16] + '.' + EXT[mime]
+              (out / name).write_bytes(raw)
+              n += 1; saved += len(m.group(0))
+              return '/assets/inline/' + name
+          t2 = re.sub(r'data:(image/(?:png|jpeg|jpg|webp|gif));base64,([A-Za-z0-9+/=]{2000,})', rep, t)
+          f.write_text(t2, encoding='utf-8')
+          print('inline images extracted', n, 'chars removed', saved, 'new size', len(t2))
+          PY
+      - name: Back button history for homepage views
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          f = Path('_site/index.html')
+          t = f.read_text(encoding='utf-8')
+          js = '(function(){window.addEventListener(\'load\',function(){  if(typeof window.showView!==\'function\')return;  var orig=window.showView, fromPop=false;  window.showView=function(n){    var r=orig.apply(this,arguments);    if(!fromPop){      var cur=(history.state||{}).bcv||\'home\';      if(cur!==n){ history.pushState({bcv:n},\'\',n===\'home\'?location.pathname+location.search:\'#v-\'+n); }    }    return r;  };  if(!(history.state||{}).bcv){ history.replaceState({bcv:\'home\'},\'\',location.href); }  var m=(location.hash||\'\').match(/^#v-([a-z]+)$/);  if(m&&m[1]!==\'book\'&&m[1]!==\'author\'){ fromPop=true; try{orig(m[1]);}finally{fromPop=false;} history.replaceState({bcv:m[1]},\'\',location.href); }  window.addEventListener(\'popstate\',function(e){    var v=(e.state&&e.state.bcv)||((location.hash||\'\').match(/^#v-([a-z]+)$/)||[])[1]||\'home\';    if(/^#livre-|^#lire-/.test(location.hash||\'\'))return;    fromPop=true; try{orig(v);}finally{fromPop=false;}  });  document.addEventListener(\'click\',function(e){    var a=e.target.closest&&e.target.closest(\'a[data-bc-none]\');    if(a){ e.preventDefault(); window.showView(\'catalog\'); }  },true);});})();'
+          if 'bc-nav-history' not in t and '</title>' in t[:300000]:
+              t = t.replace('</title>', '</title><script id="bc-nav-history">' + js + '</script>', 1)
+              f.write_text(t, encoding='utf-8')
+              print('nav history added')
+          PY
+      - name: Real covers in My Library
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          f = Path('_site/index.html')
+          t = f.read_text(encoding='utf-8')
+          js = "window.addEventListener('load',function(){  if(typeof window.miniCover!=='function')return;  var o=window.miniCover;  window.miniCover=function(b){    var d=o(b);    if(b&&b.coverImg){      var img=document.createElement('img');      img.alt='';img.loading='lazy';      img.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit';      img.onerror=function(){img.onerror=null;img.src=b.coverImg;};      try{img.src=b.coverImg.indexOf('/covers/')===0?b.coverImg:(BOOK_EXTRA[hostedSlug(b)]?'/covers/'+hostedSlug(b)+'.jpg':hostedFileUrl(b,'jpg','EN'));}catch(e){img.src=b.coverImg;}      d.style.position='relative';d.style.overflow='hidden';d.appendChild(img);    }    return d;  };  try{ if(state.view==='library') renderLibrary(); }catch(e){}});"
+          if 'bc-mini-cover' not in t and '</title>' in t[:300000]:
+              t = t.replace('</title>', '</title><script id="bc-mini-cover">' + js + '</script>', 1)
+              f.write_text(t, encoding='utf-8')
+              print('mini covers added')
+          PY
+      - name: Translate book page labels
+        run: |
+          python3 - <<'PY'
+          import base64
+          from pathlib import Path
+          f = Path('_site/assets/library/navigation-fixes.js')
+          js = base64.b64decode('OyhmdW5jdGlvbigpewppZighL15cL2Jvb2tzXC9bXi9dKy8udGVzdChsb2NhdGlvbi5wYXRobmFtZSkpcmV0dXJuOwp2YXIgTFM9WydFTicsJ0ZSJywnRVMnLCdQVCcsJ0FSJywnWkgnLCdKQScsJ1JVJywnREUnLCdTUScsJ0lUJ107CmZ1bmN0aW9uIFIocmUsYSl7dmFyIG89e307TFMuZm9yRWFjaChmdW5jdGlvbihsLGkpe29bbF09YVtpXX0pO3JldHVybiBbbmV3IFJlZ0V4cChyZSksb119CnZhciBSVUxFUz1bClIoJ15BYm91dCB0aGlzIGJvb2skJyxbJ0Fib3V0IHRoaXMgYm9vaycsJ8OAIHByb3BvcyBkZSBjZSBsaXZyZScsJ1NvYnJlIGVzdGUgbGlicm8nLCdTb2JyZSBlc3RlIGxpdnJvJywn2LnZhiDZh9iw2Kcg2KfZhNmD2KrYp9ioJywn5YWz5LqO5pys5LmmJywn44GT44Gu5pys44Gr44Gk44GE44GmJywn0J7QsSDRjdGC0L7QuSDQutC90LjQs9C1Jywnw5xiZXIgZGllc2VzIEJ1Y2gnLCdScmV0aCBrw6t0aWogbGlicmknLCdJbmZvcm1hemlvbmkgc3VsIGxpYnJvJ10pLApSKCdeSG93IGl0IGJlZ2lucyQnLFsnSG93IGl0IGJlZ2lucycsJ0NvbW1lbnQgw6dhIGNvbW1lbmNlJywnQ8OzbW8gZW1waWV6YScsJ0NvbW8gY29tZcOnYScsJ9mD2YrZgSDYqtio2K/YoycsJ+W8gOevhycsJ+WGkumgrScsJ9Cd0LDRh9Cw0LvQvicsJ1dpZSBlcyBiZWdpbm50JywnU2kgZmlsbG9uJywnQ29tZSBpbml6aWEnXSksClIoJ15FZGl0aW9ucyQnLFsnRWRpdGlvbnMnLCfDiWRpdGlvbnMnLCdFZGljaW9uZXMnLCdFZGnDp8O1ZXMnLCfYp9mE2LfYqNi52KfYqicsJ+eJiOacrCcsJ+eJiCcsJ9CY0LfQtNCw0L3QuNGPJywnQXVzZ2FiZW4nLCdCb3RpbWV0JywnRWRpemlvbmknXSksClIoJ15Zb3UgbWF5IGFsc28gbGlrZSQnLFsnWW91IG1heSBhbHNvIGxpa2UnLCdWb3VzIGFpbWVyZXogYXVzc2knLCdUYW1iacOpbiB0ZSBwdWVkZSBndXN0YXInLCdWb2PDqiB0YW1iw6ltIHBvZGUgZ29zdGFyJywn2YLYryDZiti52KzYqNmDINij2YrYttmL2KcnLCfkvaDlj6/og73ov5jllpzmrKInLCfjgZPjgaHjgonjgoLjgYrjgZnjgZnjgoEnLCfQktCw0Lwg0YLQsNC60LbQtSDQvNC+0LbQtdGCINC/0L7QvdGA0LDQstC40YLRjNGB0Y8nLCdEYXMga8O2bm50ZSBJaG5lbiBhdWNoIGdlZmFsbGVuJywnTXVuZCB04oCZanUgcMOrbHFlasOrIGdqaXRoYXNodHUnLCdQb3RyZWJiZSBwaWFjZXJ0aSBhbmNoZSddKSwKUignXk9uIHNjcmVlbjogKC4rKSQnLFsnT24gc2NyZWVuOiAkMScsJ8OAIGzigJnDqWNyYW4gOiAkMScsJ0VuIHBhbnRhbGxhOiAkMScsJ05hIHRlbGE6ICQxJywn2LnZhNmJINin2YTYtNin2LTYqTogJDEnLCflvbHop4bmlLnnvJbvvJokMScsJ+aYoOWDj+WMlu+8miQxJywn0K3QutGA0LDQvdC40LfQsNGG0LjRjzogJDEnLCdWZXJmaWxtdW5nOiAkMScsJ07DqyBla3JhbjogJDEnLCdTdWxsbyBzY2hlcm1vOiAkMSddKSwKUignXk1vcmUgYnkgKC4rKSQnLFsnTW9yZSBieSAkMScsJ0R1IG3Dqm1lIGF1dGV1ciA6ICQxJywnTcOhcyBkZSAkMScsJ01haXMgZGUgJDEnLCfYp9mE2YXYstmK2K8g2YXZhiAkMScsJyQxIOeahOabtOWkmuS9nOWTgScsJyQxIOOBruOBu+OBi+OBruS9nOWTgScsJ9CV0YnRkSDQvtGCINCw0LLRgtC+0YDQsDogJDEnLCdNZWhyIHZvbiAkMScsJ03DqyBzaHVtw6sgbmdhICQxJywnQWx0cm8gZGkgJDEnXSksClIoJ15BYm91dCAoLispJCcsWydBYm91dCAkMScsJ8OAIHByb3BvcyBkZSAkMScsJ1NvYnJlICQxJywnU29icmUgJDEnLCfYudmGICQxJywn5YWz5LqOICQxJywnJDHjgavjgaTjgYTjgaYnLCfQntCxINCw0LLRgtC+0YDQtTogJDEnLCfDnGJlciAkMScsJ1JyZXRoICQxJywnU3UgJDEnXSksClIoJ15SZWFkIG9ubGluZSBmb3IgZnJlZSQnLFsnUmVhZCBvbmxpbmUgZm9yIGZyZWUnLCdMaXJlIGdyYXR1aXRlbWVudCBlbiBsaWduZScsJ0xlZXIgZ3JhdGlzIGVuIGzDrW5lYScsJ0xlciBncsOhdGlzIG9ubGluZScsJ9in2YLYsdijINmF2KzYp9mG2YvYpyDYudio2LEg2KfZhNil2YbYqtix2YbYqicsJ+WFjei0ueWcqOe6v+mYheivuycsJ+eEoeaWmeOBp+OCquODs+ODqeOCpOODs+OBp+iqreOCgCcsJ9Cn0LjRgtCw0YLRjCDQvtC90LvQsNC50L0g0LHQtdGB0L/Qu9Cw0YLQvdC+JywnS29zdGVubG9zIG9ubGluZSBsZXNlbicsJ0xleG8gZmFsYXMgbsOrIGludGVybmV0JywnTGVnZ2kgZ3JhdGlzIG9ubGluZSddKSwKUignXkRvd25sb2FkJCcsWydEb3dubG9hZCcsJ1TDqWzDqWNoYXJnZXInLCdEZXNjYXJnYXInLCdCYWl4YXInLCfYqtmG2LLZitmEJywn5LiL6L29Jywn44OA44Km44Oz44Ot44O844OJJywn0KHQutCw0YfQsNGC0YwnLCdIZXJ1bnRlcmxhZGVuJywnU2hrYXJrbycsJ1NjYXJpY2EnXSksClIoJ15MaXN0ZW4gdG8gdGhlIGF1ZGlvYm9vayQnLFsnTGlzdGVuIHRvIHRoZSBhdWRpb2Jvb2snLCfDiWNvdXRlciBsZSBsaXZyZSBhdWRpbycsJ0VzY3VjaGFyIGVsIGF1ZGlvbGlicm8nLCdPdXZpciBvIGF1ZGlvbGl2cm8nLCfYp9iz2KrZhdi5INil2YTZiSDYp9mE2YPYqtin2Kgg2KfZhNi12YjYqtmKJywn5pS25ZCs5pyJ5aOw5LmmJywn44Kq44O844OH44Kj44Kq44OW44OD44Kv44KS6IG044GPJywn0KHQu9GD0YjQsNGC0Ywg0LDRg9C00LjQvtC60L3QuNCz0YMnLCdIw7ZyYnVjaCBhbmjDtnJlbicsJ0TDq2dqbyBsaWJyaW4gYXVkaW8nLCdBc2NvbHRhIGzigJlhdWRpb2xpYnJvJ10pLApSKCdeUmVhZCBtb3JlJCcsWydSZWFkIG1vcmUnLCdMaXJlIGxhIHN1aXRlJywnTGVlciBtw6FzJywnTGVyIG1haXMnLCfYp9mC2LHYoyDYp9mE2YXYstmK2K8nLCflsZXlvIDpmIXor7snLCfntprjgY3jgpLoqq3jgoAnLCfQp9C40YLQsNGC0Ywg0LTQsNC70LXQtScsJ1dlaXRlcmxlc2VuJywnTGV4byBtw6sgc2h1bcOrJywnTGVnZ2kgZGkgcGnDuSddKSwKUignXlJlYWQgbGVzcyQnLFsnUmVhZCBsZXNzJywnUsOpZHVpcmUnLCdMZWVyIG1lbm9zJywnTGVyIG1lbm9zJywn2LnYsdi2INij2YLZhCcsJ+aUtui1tycsJ+mWieOBmOOCiycsJ9Ch0LLQtdGA0L3Rg9GC0YwnLCdXZW5pZ2VyIGFuemVpZ2VuJywnTGV4byBtw6sgcGFrJywnTW9zdHJhIG1lbm8nXSksClIoJ15SZWFkIGZyZWUkJyxbJ1JlYWQgZnJlZScsJ0xpcmUgZ3JhdHVpdGVtZW50JywnTGVlciBncmF0aXMnLCdMZXIgZ3LDoXRpcycsJ9in2YLYsdijINmF2KzYp9mG2YvYpycsJ+WFjei0uemYheivuycsJ+eEoeaWmeOBp+iqreOCgCcsJ9Cn0LjRgtCw0YLRjCDQsdC10YHQv9C70LDRgtC90L4nLCdLb3N0ZW5sb3MgbGVzZW4nLCdMZXhvIGZhbGFzJywnTGVnZ2kgZ3JhdGlzJ10pLApSKCde4pa2IExpc3RlbiQnLFsn4pa2IExpc3RlbicsJ+KWtiDDiWNvdXRlcicsJ+KWtiBFc2N1Y2hhcicsJ+KWtiBPdXZpcicsJ+KWtiDYp9iz2KrZhdi5Jywn4pa2IOaUtuWQrCcsJ+KWtiDogbTjgY8nLCfilrYg0KHQu9GD0YjQsNGC0YwnLCfilrYgQW5ow7ZyZW4nLCfilrYgRMOrZ2pvJywn4pa2IEFzY29sdGEnXSkKXTsKZnVuY3Rpb24gbGFuZygpe3ZhciBzPWRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCd1aUxhbmdTZWxlY3QnKTt2YXIgdj1zJiZzLnZhbHVlO2lmKCF2KXt0cnl7dj1sb2NhbFN0b3JhZ2UuZ2V0SXRlbSgnZWJjX3VpX2xhbmcnKX1jYXRjaChlKXt9fXJldHVybiBMUy5pbmRleE9mKHYpPj0wP3Y6J0VOJ30KdmFyIGJ1c3k9ZmFsc2U7CmZ1bmN0aW9uIGFwcGx5KCl7aWYoYnVzeSlyZXR1cm47YnVzeT10cnVlO3RyeXt2YXIgTD1sYW5nKCk7CmRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJ2gyLGJ1dHRvbixhLmJ0biwucm0tYnRuJykuZm9yRWFjaChmdW5jdGlvbihlbCl7CiBpZihlbC5jaGlsZHJlbi5sZW5ndGgpcmV0dXJuOwogdmFyIGN1cj1lbC50ZXh0Q29udGVudC50cmltKCksZW49ZWwuZ2V0QXR0cmlidXRlKCdkYXRhLWJjLWVuJyk7CiBpZighZW58fGN1ciE9PWVsLmdldEF0dHJpYnV0ZSgnZGF0YS1iYy10cicpKWVuPWN1cjsKIGZvcih2YXIgaT0wO2k8UlVMRVMubGVuZ3RoO2krKyl7dmFyIG09ZW4ubWF0Y2goUlVMRVNbaV1bMF0pO2lmKG0pe3ZhciBvdXQ9KFJVTEVTW2ldWzFdW0xdfHxSVUxFU1tpXVsxXS5FTikucmVwbGFjZSgnJDEnLG1bMV18fCcnKTsKICBlbC5zZXRBdHRyaWJ1dGUoJ2RhdGEtYmMtZW4nLGVuKTtlbC5zZXRBdHRyaWJ1dGUoJ2RhdGEtYmMtdHInLG91dCk7aWYoY3VyIT09b3V0KWVsLnRleHRDb250ZW50PW91dDticmVhazt9fQp9KTt9ZmluYWxseXtidXN5PWZhbHNlfX0KdmFyIHRtO2Z1bmN0aW9uIGxhdGVyKCl7Y2xlYXJUaW1lb3V0KHRtKTt0bT1zZXRUaW1lb3V0KGFwcGx5LDEyMCl9CmRvY3VtZW50LmFkZEV2ZW50TGlzdGVuZXIoJ2NoYW5nZScsbGF0ZXIpOwpkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCdET01Db250ZW50TG9hZGVkJyxhcHBseSk7c2V0VGltZW91dChhcHBseSwzMDApO3NldFRpbWVvdXQoYXBwbHksMTUwMCk7CnRyeXtuZXcgTXV0YXRpb25PYnNlcnZlcihsYXRlcikub2JzZXJ2ZShkb2N1bWVudC5ib2R5fHxkb2N1bWVudC5kb2N1bWVudEVsZW1lbnQse2NoaWxkTGlzdDp0cnVlLHN1YnRyZWU6dHJ1ZSxjaGFyYWN0ZXJEYXRhOnRydWV9KX1jYXRjaChlKXt9Cn0pKCk7Cg==').decode('utf-8')
+          if f.exists():
+              t = f.read_text(encoding='utf-8')
+              if 'data-bc-en' not in t:
+                  f.write_text(t + '\n' + js, encoding='utf-8')
+                  print('book labels i18n added')
+          PY
+      - name: Translate book header and descriptions
+        run: |
+          python3 - <<'PY'
+          import base64
+          from pathlib import Path
+          f = Path('_site/assets/library/navigation-fixes.js')
+          js = base64.b64decode('OyhmdW5jdGlvbigpewppZighL15cL2Jvb2tzXC9bXi9dKy8udGVzdChsb2NhdGlvbi5wYXRobmFtZSkpcmV0dXJuOwp2YXIgTFM9WydFTicsJ0ZSJywnRVMnLCdQVCcsJ0FSJywnWkgnLCdKQScsJ1JVJywnREUnLCdTUScsJ0lUJ107CmZ1bmN0aW9uIE0oYSl7dmFyIG89e307TFMuZm9yRWFjaChmdW5jdGlvbihsLGkpe29bbF09YVtpXX0pO3JldHVybiBvfQp2YXIgQlk9TShbJ2J5JywnZGUnLCdkZScsJ2RlJywn2KrYo9mE2YrZgScsJ+S9nOiAhScsJ+iRlycsJ9Cw0LLRgtC+0YAnLCd2b24nLCduZ2EnLCdkaSddKTsKdmFyIFBBR0VTPU0oWydwYWdlcycsJ3BhZ2VzJywncMOhZ2luYXMnLCdww6FnaW5hcycsJ9i12YHYrdipJywn6aG1Jywn44Oa44O844K4Jywn0YHRgtGALicsJ1NlaXRlbicsJ2ZhcWUnLCdwYWdpbmUnXSk7CnZhciBHRU49ewonTm92ZWxzICYgRmljdGlvbic6TShbJ05vdmVscyAmIEZpY3Rpb24nLCdSb21hbnMgJiBmaWN0aW9uJywnTm92ZWxhcyB5IGZpY2Npw7NuJywnUm9tYW5jZXMgZSBmaWPDp8OjbycsJ9ix2YjYp9mK2KfYqiDZiNmC2LXYtScsJ+Wwj+ivtCcsJ+Wwj+iqrCcsJ9Cg0L7QvNCw0L3RiyDQuCDQv9GA0L7Qt9CwJywnUm9tYW5lICYgQmVsbGV0cmlzdGlrJywnUm9tYW5lICYgcHJvesOrJywnUm9tYW56aSBlIG5hcnJhdGl2YSddKSwKJ0FkdmVudHVyZSAmIEVwaWNzJzpNKFsnQWR2ZW50dXJlICYgRXBpY3MnLCdBdmVudHVyZSAmIMOpcG9ww6llcycsJ0F2ZW50dXJhIHkgZXBvcGV5YXMnLCdBdmVudHVyYSBlIGVwb3BlaWFzJywn2YXYutin2YXYsdin2Kog2YjZhdmE2KfYrdmFJywn5YaS6Zmp5LiO5Y+y6K+XJywn5YaS6Zm644Go5Y+Z5LqL6KmpJywn0J/RgNC40LrQu9GO0YfQtdC90LjRjyDQuCDRjdC/0L7RgScsJ0FiZW50ZXVlciAmIEVwZW4nLCdBdmVudHVyw6sgJiBlcGlrYScsJ0F2dmVudHVyYSBlZCBlcGljYSddKSwKJ0RyYW1hICYgUG9ldHJ5JzpNKFsnRHJhbWEgJiBQb2V0cnknLCdUaMOpw6J0cmUgJiBwb8Opc2llJywnVGVhdHJvIHkgcG9lc8OtYScsJ1RlYXRybyBlIHBvZXNpYScsJ9mF2LPYsditINmI2LTYudixJywn5oiP5Ymn5LiO6K+X5q2MJywn5oiv5puy44Go6KmpJywn0JTRgNCw0LzQsCDQuCDQv9C+0Y3Qt9C40Y8nLCdEcmFtYSAmIEx5cmlrJywnRHJhbcOrICYgcG9lemknLCdUZWF0cm8gZSBwb2VzaWEnXSksCidQaGlsb3NvcGh5ICYgRXNzYXlzJzpNKFsnUGhpbG9zb3BoeSAmIEVzc2F5cycsJ1BoaWxvc29waGllICYgZXNzYWlzJywnRmlsb3NvZsOtYSB5IGVuc2F5b3MnLCdGaWxvc29maWEgZSBlbnNhaW9zJywn2YHZhNiz2YHYqSDZiNmF2YLYp9mE2KfYqicsJ+WTsuWtpuS4jumaj+eslCcsJ+WTsuWtpuOBqOOCqOODg+OCu+OCpCcsJ9Ck0LjQu9C+0YHQvtGE0LjRjyDQuCDRjdGB0YHQtScsJ1BoaWxvc29waGllICYgRXNzYXlzJywnRmlsb3pvZmkgJiBlc2UnLCdGaWxvc29maWEgZSBzYWdnaSddKSwKJ0NoaWxkcmVu4oCZcyBDbGFzc2ljcyc6TShbJ0NoaWxkcmVu4oCZcyBDbGFzc2ljcycsJ0NsYXNzaXF1ZXMgamV1bmVzc2UnLCdDbMOhc2ljb3MgaW5mYW50aWxlcycsJ0Nsw6Fzc2ljb3MgaW5mYW50aXMnLCfZg9mE2KfYs9mK2YPZitin2Kog2KfZhNij2LfZgdin2YQnLCflhL/nq6Xnu4/lhbgnLCflhZDnq6XmloflraYnLCfQlNC10YLRgdC60LDRjyDQutC70LDRgdGB0LjQutCwJywnS2luZGVya2xhc3Npa2VyJywnS2xhc2lrw6sgcMOrciBmw6ttaWrDqycsJ0NsYXNzaWNpIHBlciByYWdhenppJ10pLAoiQ2hpbGRyZW4ncyBDbGFzc2ljcyI6bnVsbH07CkdFTlsiQ2hpbGRyZW4ncyBDbGFzc2ljcyJdPUdFTlsnQ2hpbGRyZW7igJlzIENsYXNzaWNzJ107CnZhciBGUkVFPU0oWydGcmVlIMK3IHB1YmxpYyBkb21haW4nLCdHcmF0dWl0IMK3IGRvbWFpbmUgcHVibGljJywnR3JhdGlzIMK3IGRvbWluaW8gcMO6YmxpY28nLCdHcsOhdGlzIMK3IGRvbcOtbmlvIHDDumJsaWNvJywn2YXYrNin2YbZiiDCtyDZhdmE2YMg2LnYp9mFJywn5YWN6LS5IMK3IOWFrOaciemihuWfnycsJ+eEoeaWmSDCtyDjg5Hjg5bjg6rjg4Pjgq/jg4njg6HjgqTjg7MnLCfQkdC10YHQv9C70LDRgtC90L4gwrcg0L7QsdGJ0LXRgdGC0LLQtdC90L3QvtC1INC00L7RgdGC0L7Rj9C90LjQtScsJ0tvc3RlbmxvcyDCtyBnZW1laW5mcmVpJywnRmFsYXMgwrcgZG9tZW4gcHVibGlrJywnR3JhdGlzIMK3IHB1YmJsaWNvIGRvbWluaW8nXSk7CnZhciBFRFM9TShbJ2VkaXRpb25zIGluJywnw6lkaXRpb25zIGVuJywnZWRpY2lvbmVzIGVuJywnZWRpw6fDtWVzIGVtJywn2LfYqNi52KfYqiDYqNmAJywn54mI5pys77yaJywn54mI77yaJywn0LjQt9C00LDQvdC40Y8g0L3QsCcsJ0F1c2dhYmVuIGF1ZicsJ2JvdGltZSBuw6snLCdlZGl6aW9uaSBpbiddKTsKdmFyIEFORD1NKFsnYW5kJywnZXQnLCd5JywnZScsJ9mIJywn5ZKMJywn44GoJywn0LgnLCd1bmQnLCdkaGUnLCdlJ10pOwp2YXIgTE49e0VuZ2xpc2g6TShbJ0VuZ2xpc2gnLCdhbmdsYWlzJywnaW5nbMOpcycsJ2luZ2zDqnMnLCfYp9mE2KXZhtis2YTZitiy2YrYqScsJ+iLseivrScsJ+iLseiqnicsJ9Cw0L3Qs9C70LjQudGB0LrQvtC8JywnRW5nbGlzY2gnLCdhbmdsaXNodCcsJ2luZ2xlc2UnXSksRnJlbmNoOk0oWydGcmVuY2gnLCdmcmFuw6dhaXMnLCdmcmFuY8OpcycsJ2ZyYW5jw6pzJywn2KfZhNmB2LHZhtiz2YrYqScsJ+azleivrScsJ+ODleODqeODs+OCueiqnicsJ9GE0YDQsNC90YbRg9C30YHQutC+0LwnLCdGcmFuesO2c2lzY2gnLCdmcsOrbmdqaXNodCcsJ2ZyYW5jZXNlJ10pLFNwYW5pc2g6TShbJ1NwYW5pc2gnLCdlc3BhZ25vbCcsJ2VzcGHDsW9sJywnZXNwYW5ob2wnLCfYp9mE2KXYs9io2KfZhtmK2KknLCfopb/nj63niZnor60nLCfjgrnjg5rjgqTjg7Poqp4nLCfQuNGB0L/QsNC90YHQutC+0LwnLCdTcGFuaXNjaCcsJ3NwYW5qaXNodCcsJ3NwYWdub2xvJ10pLEdlcm1hbjpNKFsnR2VybWFuJywnYWxsZW1hbmQnLCdhbGVtw6FuJywnYWxlbcOjbycsJ9in2YTYo9mE2YXYp9mG2YrYqScsJ+W+t+ivrScsJ+ODieOCpOODhOiqnicsJ9C90LXQvNC10YbQutC+0LwnLCdEZXV0c2NoJywnZ2plcm1hbmlzaHQnLCd0ZWRlc2NvJ10pLEl0YWxpYW46TShbJ0l0YWxpYW4nLCdpdGFsaWVuJywnaXRhbGlhbm8nLCdpdGFsaWFubycsJ9in2YTYpdmK2LfYp9mE2YrYqScsJ+aEj+Wkp+WIqeivrScsJ+OCpOOCv+ODquOCouiqnicsJ9C40YLQsNC70YzRj9C90YHQutC+0LwnLCdJdGFsaWVuaXNjaCcsJ2l0YWxpc2h0JywnaXRhbGlhbm8nXSksUG9ydHVndWVzZTpNKFsnUG9ydHVndWVzZScsJ3BvcnR1Z2FpcycsJ3BvcnR1Z3XDqXMnLCdwb3J0dWd1w6pzJywn2KfZhNio2LHYqti62KfZhNmK2KknLCfokaHokITniZnor60nLCfjg53jg6vjg4jjgqzjg6voqp4nLCfQv9C+0YDRgtGD0LPQsNC70YzRgdC60L7QvCcsJ1BvcnR1Z2llc2lzY2gnLCdwb3J0dWdhbGlzaHQnLCdwb3J0b2doZXNlJ10pLFJ1c3NpYW46TShbJ1J1c3NpYW4nLCdydXNzZScsJ3J1c28nLCdydXNzbycsJ9in2YTYsdmI2LPZitipJywn5L+E6K+tJywn44Ot44K344Ki6KqeJywn0YDRg9GB0YHQutC+0LwnLCdSdXNzaXNjaCcsJ3J1c2lzaHQnLCdydXNzbyddKX07CmZ1bmN0aW9uIGxhbmcoKXt2YXIgcz1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgndWlMYW5nU2VsZWN0Jyk7dmFyIHY9cyYmcy52YWx1ZTtpZighdil7dHJ5e3Y9bG9jYWxTdG9yYWdlLmdldEl0ZW0oJ2ViY191aV9sYW5nJyl9Y2F0Y2goZSl7fX1yZXR1cm4gTFMuaW5kZXhPZih2KT49MD92OidFTid9CmZ1bmN0aW9uIG9yaWcoZWwpe3ZhciBvPWVsLmdldEF0dHJpYnV0ZSgnZGF0YS1iYy1vcmlnJyk7aWYobz09PW51bGwpe289ZWwudGV4dENvbnRlbnQ7ZWwuc2V0QXR0cmlidXRlKCdkYXRhLWJjLW9yaWcnLG8pfXJldHVybiBvfQpmdW5jdGlvbiBhcHBseSgpe3ZhciBMPWxhbmcoKTsKIHZhciBieT1kb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcuaGVybyAuYnksIHAuYnknKTsKIGlmKGJ5JiZieS5maXJzdENoaWxkJiZieS5maXJzdENoaWxkLm5vZGVUeXBlPT09Myl7dmFyIG89YnkuZ2V0QXR0cmlidXRlKCdkYXRhLWJjLW9yaWcnKTtpZihvPT09bnVsbCl7bz1ieS5maXJzdENoaWxkLm5vZGVWYWx1ZTtieS5zZXRBdHRyaWJ1dGUoJ2RhdGEtYmMtb3JpZycsbyl9dmFyIG52PW8ucmVwbGFjZSgvXlxzKmJ5XHMvLEJZW0xdKycgJyk7aWYoYnkuZmlyc3RDaGlsZC5ub2RlVmFsdWUhPT1udilieS5maXJzdENoaWxkLm5vZGVWYWx1ZT1udn0KIHZhciBmPWRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoJ3AuZmFjdHMnKTsKIGlmKGYmJiFmLmNoaWxkcmVuLmxlbmd0aCl7dmFyIHQ9b3JpZyhmKTtPYmplY3Qua2V5cyhHRU4pLmZvckVhY2goZnVuY3Rpb24oZyl7aWYoR0VOW2ddJiZ0LmluZGV4T2YoZyk+PTApdD10LnJlcGxhY2UoZyxHRU5bZ11bTF0pfSk7dD10LnJlcGxhY2UoLyhcZCspXHMrcGFnZXNcYi8sJyQxICcrUEFHRVNbTF0pO2lmKGYudGV4dENvbnRlbnQhPT10KWYudGV4dENvbnRlbnQ9dH0KIHZhciBmcj1kb2N1bWVudC5xdWVyeVNlbGVjdG9yKCdwLmZyZWUnKTsKIGlmKGZyJiYhZnIuY2hpbGRyZW4ubGVuZ3RoKXt2YXIgdDI9b3JpZyhmcik7dmFyIG09dDIubWF0Y2goL15GcmVlIMK3IHB1YmxpYyBkb21haW4oPzogwrcgZWRpdGlvbnMgaW4gKC4rKSk/JC8pO2lmKG0pe3ZhciBvdXQ9RlJFRVtMXTtpZihtWzFdKXt2YXIgbHM9bVsxXS5zcGxpdCgvLFxzKnxccythbmRccysvKS5tYXAoZnVuY3Rpb24obil7cmV0dXJuIExOW24udHJpbSgpXT9MTltuLnRyaW0oKV1bTF06bi50cmltKCl9KTtvdXQrPScgwrcgJytFRFNbTF0rJyAnKyhscy5sZW5ndGg+MT9scy5zbGljZSgwLC0xKS5qb2luKCcsICcpKycgJytBTkRbTF0rJyAnK2xzW2xzLmxlbmd0aC0xXTpsc1swXSl9aWYoZnIudGV4dENvbnRlbnQhPT1vdXQpZnIudGV4dENvbnRlbnQ9b3V0fX0KfQpkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCdjaGFuZ2UnLGZ1bmN0aW9uKCl7c2V0VGltZW91dChhcHBseSwxNTApfSk7CmRvY3VtZW50LmFkZEV2ZW50TGlzdGVuZXIoJ0RPTUNvbnRlbnRMb2FkZWQnLGFwcGx5KTtzZXRUaW1lb3V0KGFwcGx5LDMwMCk7c2V0VGltZW91dChhcHBseSwxNTAwKTsKfSkoKTsKOyhmdW5jdGlvbigpewppZighL15cL2Jvb2tzXC9bXi9dKy8udGVzdChsb2NhdGlvbi5wYXRobmFtZSkpcmV0dXJuOwp2YXIgSVNPPXtGUjonZnInLEVTOidlcycsUFQ6J3B0JyxBUjonYXInLFpIOid6aC1DTicsSkE6J2phJyxSVToncnUnLERFOidkZScsU1E6J3NxJyxJVDonaXQnfTsKdmFyIE5PVEU9e0ZSOlsnVHJhZHVjdGlvbiBhdXRvbWF0aXF1ZScsJ1ZvaXIgbOKAmW9yaWdpbmFsJywnVm9pciBsYSB0cmFkdWN0aW9uJ10sRVM6WydUcmFkdWNjacOzbiBhdXRvbcOhdGljYScsJ1ZlciBlbCBvcmlnaW5hbCcsJ1ZlciBsYSB0cmFkdWNjacOzbiddLFBUOlsnVHJhZHXDp8OjbyBhdXRvbcOhdGljYScsJ1ZlciBvIG9yaWdpbmFsJywnVmVyIGEgdHJhZHXDp8OjbyddLEFSOlsn2KrYsdis2YXYqSDYotmE2YrYqScsJ9i52LHYtiDYp9mE2YbYtSDYp9mE2KPYtdmE2YonLCfYudix2LYg2KfZhNiq2LHYrNmF2KknXSxaSDpbJ+acuuWZqOe/u+ivkScsJ+afpeeci+WOn+aWhycsJ+afpeeci+ivkeaWhyddLEpBOlsn6Ieq5YuV57+76KizJywn5Y6f5paH44KS6KGo56S6Jywn57+76Kiz44KS6KGo56S6J10sUlU6WyfQkNCy0YLQvtC80LDRgtC40YfQtdGB0LrQuNC5INC/0LXRgNC10LLQvtC0Jywn0J/QvtC60LDQt9Cw0YLRjCDQvtGA0LjQs9C40L3QsNC7Jywn0J/QvtC60LDQt9Cw0YLRjCDQv9C10YDQtdCy0L7QtCddLERFOlsnTWFzY2hpbmVsbGUgw5xiZXJzZXR6dW5nJywnT3JpZ2luYWwgYW56ZWlnZW4nLCfDnGJlcnNldHp1bmcgYW56ZWlnZW4nXSxTUTpbJ1DDq3JrdGhpbSBhdXRvbWF0aWsnLCdTaGlrbyBvcmlnamluYWxpbicsJ1NoaWtvIHDDq3JrdGhpbWluJ10sSVQ6WydUcmFkdXppb25lIGF1dG9tYXRpY2EnLCdWZWRpIGzigJlvcmlnaW5hbGUnLCdWZWRpIGxhIHRyYWR1emlvbmUnXX07CmZ1bmN0aW9uIGxhbmcoKXt2YXIgcz1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgndWlMYW5nU2VsZWN0Jyk7dmFyIHY9cyYmcy52YWx1ZTtpZighdil7dHJ5e3Y9bG9jYWxTdG9yYWdlLmdldEl0ZW0oJ2ViY191aV9sYW5nJyl9Y2F0Y2goZSl7fX1yZXR1cm4gdnx8J0VOJ30KZnVuY3Rpb24gdGFyZ2V0cygpe3ZhciBvdXQ9W107dmFyIGxlYWQ9ZG9jdW1lbnQucXVlcnlTZWxlY3RvcigncC5sZWFkJyk7aWYobGVhZClvdXQucHVzaChsZWFkKTsKIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJ3NlY3Rpb24nKS5mb3JFYWNoKGZ1bmN0aW9uKHMpe3ZhciBoPXMucXVlcnlTZWxlY3RvcignaDInKTtpZighaClyZXR1cm47dmFyIGVuPWguZ2V0QXR0cmlidXRlKCdkYXRhLWJjLWVuJyl8fGgudGV4dENvbnRlbnQudHJpbSgpOwogIGlmKC9eQWJvdXQgfF5Ib3cgaXQgYmVnaW5zJC8udGVzdChlbikpe3MucXVlcnlTZWxlY3RvckFsbCgncCwgYmxvY2txdW90ZSwgbGknKS5mb3JFYWNoKGZ1bmN0aW9uKHApe2lmKHAuY2xhc3NMaXN0LmNvbnRhaW5zKCdmcmVlJyl8fHAuY2xhc3NMaXN0LmNvbnRhaW5zKCdiYy1tdCcpKXJldHVybjtpZihwLnF1ZXJ5U2VsZWN0b3IoJ2EscCxpbWcsYnV0dG9uJykpcmV0dXJuO2lmKHAuY2xvc2VzdCgnYmxvY2txdW90ZScpJiZwLnRhZ05hbWUhPT0nQkxPQ0tRVU9URScmJnAuY2xvc2VzdCgnYmxvY2txdW90ZScpIT09cCl7fWlmKHAudGV4dENvbnRlbnQudHJpbSgpLmxlbmd0aDwzKXJldHVybjtvdXQucHVzaChwKX0pfX0pOwogcmV0dXJuIG91dC5maWx0ZXIoZnVuY3Rpb24oZWwsaSxhKXtyZXR1cm4gIWEuc29tZShmdW5jdGlvbihvKXtyZXR1cm4gbyE9PWVsJiZvLmNvbnRhaW5zKGVsKX0pfSl9CmZ1bmN0aW9uIGNhY2hlR2V0KGspe3RyeXtyZXR1cm4gc2Vzc2lvblN0b3JhZ2UuZ2V0SXRlbShrKX1jYXRjaChlKXtyZXR1cm4gbnVsbH19CmZ1bmN0aW9uIGNhY2hlU2V0KGssdil7dHJ5e3Nlc3Npb25TdG9yYWdlLnNldEl0ZW0oayx2KX1jYXRjaChlKXt9fQpmdW5jdGlvbiBjaHVua3ModCl7aWYodC5sZW5ndGg8PTE1MDApcmV0dXJuIFt0XTt2YXIgcGFydHM9dC5tYXRjaCgvW14uIT9dK1suIT9dK1siJ+KAneKAmSldKlxzKnxbXi4hP10rJC9nKXx8W3RdO3ZhciBvdXQ9W10sY3VyPScnO3BhcnRzLmZvckVhY2goZnVuY3Rpb24ocCl7aWYoKGN1citwKS5sZW5ndGg+MTUwMCYmY3VyKXtvdXQucHVzaChjdXIpO2N1cj0nJ31jdXIrPXB9KTtpZihjdXIpb3V0LnB1c2goY3VyKTtyZXR1cm4gb3V0fQpmdW5jdGlvbiB0cjEodGV4dCx0bCl7dmFyIGs9J2JjbXQ6Jyt0bCsnOicrdGV4dC5sZW5ndGgrJzonK3RleHQuc2xpY2UoMCw0MCkrdGV4dC5zbGljZSgtNDApO3ZhciBjPWNhY2hlR2V0KGspO2lmKGMpcmV0dXJuIFByb21pc2UucmVzb2x2ZShjKTsKIHJldHVybiBQcm9taXNlLmFsbChjaHVua3ModGV4dCkubWFwKGZ1bmN0aW9uKGNoKXtyZXR1cm4gZmV0Y2goJ2h0dHBzOi8vdHJhbnNsYXRlLmdvb2dsZWFwaXMuY29tL3RyYW5zbGF0ZV9hL3NpbmdsZT9jbGllbnQ9Z3R4JnNsPWVuJnRsPScrdGwrJyZkdD10JnE9JytlbmNvZGVVUklDb21wb25lbnQoY2gpKS50aGVuKGZ1bmN0aW9uKHIpe3JldHVybiByLmpzb24oKX0pLnRoZW4oZnVuY3Rpb24oail7cmV0dXJuIChqWzBdfHxbXSkubWFwKGZ1bmN0aW9uKHgpe3JldHVybiB4WzBdfSkuam9pbignJyl9KX0pKS50aGVuKGZ1bmN0aW9uKGEpe3ZhciByPWEuam9pbignICcpO2NhY2hlU2V0KGsscik7cmV0dXJuIHJ9KX0KdmFyIGdlbj0wLHNob3dPcmlnPWZhbHNlOwpmdW5jdGlvbiBub3RlKEwpe3ZhciBuPU5PVEVbTF07ZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnLmJjLW10JykuZm9yRWFjaChmdW5jdGlvbihlKXtlLnJlbW92ZSgpfSk7aWYoIW4pcmV0dXJuOwogdmFyIHNwb3RzPVtkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCdwLmxlYWQnKV07ZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnc2VjdGlvbicpLmZvckVhY2goZnVuY3Rpb24ocyl7dmFyIGg9cy5xdWVyeVNlbGVjdG9yKCdoMicpO2lmKGgmJi9eQWJvdXQgfF5Ib3cgaXQgYmVnaW5zJC8udGVzdChoLmdldEF0dHJpYnV0ZSgnZGF0YS1iYy1lbicpfHxoLnRleHRDb250ZW50LnRyaW0oKSkpc3BvdHMucHVzaChoKX0pOwogc3BvdHMuZm9yRWFjaChmdW5jdGlvbihzcCl7aWYoIXNwKXJldHVybjt2YXIgZD1kb2N1bWVudC5jcmVhdGVFbGVtZW50KCdwJyk7ZC5jbGFzc05hbWU9J2JjLW10JztkLnN0eWxlLmNzc1RleHQ9J2ZvbnQtc2l6ZTouNzVyZW07b3BhY2l0eTouNzttYXJnaW46LjJyZW0gMCAuNnJlbSc7ZC5pbm5lckhUTUw9J+Kame+4jyAnK25bMF0rJyDCtyA8YSBocmVmPSIjIiBzdHlsZT0idGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZSI+Jysoc2hvd09yaWc/blsyXTpuWzFdKSsnPC9hPic7ZC5xdWVyeVNlbGVjdG9yKCdhJykuYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLGZ1bmN0aW9uKGUpe2UucHJldmVudERlZmF1bHQoKTtzaG93T3JpZz0hc2hvd09yaWc7cnVuKCl9KTtzcC5pbnNlcnRBZGphY2VudEVsZW1lbnQoJ2FmdGVyZW5kJyxkKX0pfQpmdW5jdGlvbiBydW4oKXt2YXIgTD1sYW5nKCk7dmFyIG15PSsrZ2VuO3ZhciBlbHM9dGFyZ2V0cygpOwogZWxzLmZvckVhY2goZnVuY3Rpb24oZWwpe2lmKGVsLmdldEF0dHJpYnV0ZSgnZGF0YS1iYy1vaCcpPT09bnVsbCllbC5zZXRBdHRyaWJ1dGUoJ2RhdGEtYmMtb2gnLGVsLnRleHRDb250ZW50KX0pOwogdmFyIHRsPUlTT1tMXTsKIGlmKCF0bHx8c2hvd09yaWcpe2Vscy5mb3JFYWNoKGZ1bmN0aW9uKGVsKXt2YXIgbz1lbC5nZXRBdHRyaWJ1dGUoJ2RhdGEtYmMtb2gnKTtpZihvIT09bnVsbCYmZWwudGV4dENvbnRlbnQhPT1vKXtlbC50ZXh0Q29udGVudD1vO2VsLnJlbW92ZUF0dHJpYnV0ZSgnZGlyJyl9fSk7bm90ZSh0bD9MOm51bGwpO3JldHVybn0KIG5vdGUoTCk7CiB2YXIgaT0wO2Z1bmN0aW9uIG5leHQoKXtpZihteSE9PWdlbnx8aT49ZWxzLmxlbmd0aClyZXR1cm4gUHJvbWlzZS5yZXNvbHZlKCk7dmFyIGVsPWVsc1tpKytdO3JldHVybiB0cjEoZWwuZ2V0QXR0cmlidXRlKCdkYXRhLWJjLW9oJyksdGwpLnRoZW4oZnVuY3Rpb24odCl7aWYobXk9PT1nZW4mJnQpe2VsLnRleHRDb250ZW50PXQ7aWYoTD09PSdBUicpZWwuc2V0QXR0cmlidXRlKCdkaXInLCdydGwnKTtlbHNlIGVsLnJlbW92ZUF0dHJpYnV0ZSgnZGlyJyl9fSkuY2F0Y2goZnVuY3Rpb24oKXt9KS50aGVuKG5leHQpfQogbmV4dCgpO25leHQoKTtuZXh0KCk7Cn0KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignY2hhbmdlJyxmdW5jdGlvbihlKXtpZihlLnRhcmdldCYmZS50YXJnZXQuaWQ9PT0ndWlMYW5nU2VsZWN0JylzZXRUaW1lb3V0KHJ1biwyMDApfSk7CnNldFRpbWVvdXQocnVuLDkwMCk7Cn0pKCk7Cg==').decode('utf-8')
+          if f.exists():
+              t = f.read_text(encoding='utf-8')
+              if 'bcmt:' not in t:
+                  f.write_text(t + '\n' + js, encoding='utf-8')
+                  print('header + descriptions i18n added')
+          PY
+      - name: Fix translated sections detection
+        run: |
+          python3 - <<'PY'
+          import base64, ast
+          from pathlib import Path
+          f = Path('_site/assets/library/navigation-fixes.js')
+          pairs = ast.literal_eval(base64.b64decode('WygnaWYoL15BYm91dCB8XkhvdyBpdCBiZWdpbnMkLy50ZXN0KGVuKSknLCAiaWYoIXMucXVlcnlTZWxlY3RvcignLmVkcywuZ3JpZCwueXQnKSkiKSwgKCJpZihoJiYvXkFib3V0IHxeSG93IGl0IGJlZ2lucyQvLnRlc3QoaC5nZXRBdHRyaWJ1dGUoJ2RhdGEtYmMtZW4nKXx8aC50ZXh0Q29udGVudC50cmltKCkpKSIsICJpZihoJiYhcy5xdWVyeVNlbGVjdG9yKCcuZWRzLC5ncmlkLC55dCcpKSIpXQ==').decode())
+          if f.exists():
+              t = f.read_text(encoding='utf-8')
+              for a, b in pairs:
+                  t = t.replace(a, b)
+              f.write_text(t, encoding='utf-8')
+              print('sections fix applied')
+          PY
+      - name: Reading and downloads open freely (no email loop)
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          f = Path('_site/index.html')
+          t = f.read_text(encoding='utf-8')
+          n = 0
+          for a in ('const GATE_READING = true;', 'const GATE_DOWNLOADS = true;'):
+              if a in t:
+                  t = t.replace(a, a.replace('true', 'false'), 1)
+                  n += 1
+          f.write_text(t, encoding='utf-8')
+          print('gates opened', n)
+          PY
+      - name: Fix truncated book descriptions
+        run: |
+          python3 - <<'PY'
+          import base64, gzip, json, html
+          from pathlib import Path
+          F = json.loads(gzip.decompress(base64.b64decode('H4sIAPLLymoC/71X21IjNxD9lS6/JKnyuhayIbBvLASoLAbKdoUXXmRN26OyLHklDd6prVTlH/KH+ZKc1swYcwnZJIQHD5hpdZ/uPn1afOnd9A5pqEIyytFlUcfI9U2PTCRFURt2mmlmdDLeUSx9SBSTDzVNazpccjAax9bBJA40TspZrul00HtP/4tfumbjpqpa9nE2xESrampNLLkg4+jauyKb+2A4yl92Dr5/N+j1CVAuVAgqmVsmP6NUMh2pFb6aVJNyBY1YwqsMBwbDEHMSSKCmkV9b2ETvvgF6rX3lkhiVCMaWbxlImRd4J8np7JepqIJxc/ooj6vSWLPC6WsVMq69H/f65N0GTJPNJvEp0ES2lgWGwHeOfuHgHd42JbzgNfJdwtb5W7ZStrOM+LHpzsHbg6ftm4paC6uprxJsa+Q2p3U2XJeeCp5JKSXTmUryI3mykh4MDMq9YjxQDmtmLJmdowfedaBzfoe3Hu3bBrOB0PTBqUJIoqoEHtB5pWsQpypo6F2ae9Sk7mcwd81Goc+7bF8uxsxb69fSr+x2XJoA2qFrTXdqVqHtcdSl9zax0lISpN3Gb/JOOeZQaKKMi5lPqnAc4z36v+noL/zTPi6NJoALwJfBW9XB3/Cihd92+hXi0NUALb1lHdQs9Sly6ngNK/684sJk12DFIVAEBNJNFU5Lj5p1swhoOAAT86mSkcr4NOrNuhu5eT4Q2wNA9AHTj3Z3KjDMSX+FW7T/3T/2TaMB/ayW3MzbZUD+hf9853Gfpt4v5Gijbs9b0McBHZUYYg7Juz4MVhhl75S9px9+jcmCYCxZCpiJWgYTs2TOlEllBnPTG4HyF8rY2AioGFoVUyceXV4zVqlpzhFCucahWUpTWzFNkKptgW37PPJTAKWfWt1+tXB05tcqFMIrnMFstzrOJhQ0UXYj4nu5EBME+GArpnM192hsS6IlILzxszdqzhREubBZmunfwnDGDvw4ZtFGlo2iV5hgfrxHYDvJdXgyWu7zcyH/OtR7SmtPGpugCCw7z6zWgfUCMWU2aQwFLulKaYN5RTRZOTQP4Ei1ImVlWSQ/ZxHhlhaTrGzWSmOOUlnZsuo27P0x/5v9etb2/eX8PZCNp3b1wx7v7m9ldVy5tdEl+CHx/nNSL+Lu3+R0sOHtia8gM8Za01ApDxJrbMstH/dF6w5RK1qXG16+jLeWqd+C1Hvf9QFZ26qQeW6qdmpmm5kfqrm56W2yOZP47avjgPkQjbPR08L5tZMduSUJ3n2qcCEJ/absM4VFEeu7eXlY6ntq9HrRvlqMfvjjt99bRToxiKthTeNKa1m8kzL4al7SUeDmtjkp5TsKGTK+cXv1RTqnnJJUeyTUzGDzAtkSLTkgF7fOxxBJLOW21WK/xrAqODvelOpZ9zsHO283S+qh70cu8WtKtl2IDSOuDG7I3M6PNECcJAMrCZhLnKl1poK3hZR2KvcSEbKTwIUUfiH/E4RapQ5x4zN7RHX3d3fvWgUs+fqvfWrvHqZp8rjklOVRPpdh4bhuBTN2JlacRrmbJ8anJI1nFepB79c/AejyaHPzDAAA')).decode())
+          site = Path('_site'); n = 0
+          f = site / 'index.html'; t = f.read_text(encoding='utf-8')
+          for o, w in F.items():
+              a = 'desc:' + json.dumps(o, ensure_ascii=False); b = 'desc:' + json.dumps(w, ensure_ascii=False)
+              if a in t: t = t.replace(a, b); n += 1
+          f.write_text(t, encoding='utf-8')
+          p = 0
+          for g in site.glob('books/*/index.html'):
+              t = g.read_text(encoding='utf-8'); t0 = t
+              for o, w in F.items():
+                  eo, ew = html.escape(o), html.escape(w)
+                  t = t.replace('<p class="lead">' + eo + '</p>', '<p class="lead">' + ew + '</p>').replace('. ' + eo + '"', '. ' + ew + '"')
+              if t != t0: g.write_text(t, encoding='utf-8'); p += 1
+          print('descriptions fixed', n, 'pages', p)
+          PY
+      - name: Remove withdrawn books and translate Show less
+        run: |
+          python3 - <<'PY'
+          import os, re, shutil, glob
+          GONE = ["the-elements-of-programming-style", "looking-backward-2000-1887", "the-narrative-of-arthur-gordon-pym-of-nantucket"]
+          p = "_site/index.html"
+          t = open(p, encoding="utf-8").read()
+          for s in GONE:
+              key = 'coverImg:"/covers/' + s + '.jpg"'
+              i = t.find(key)
+              if i >= 0:
+                  st = t.rfind("\n  {id:", 0, i)
+                  en = t.find("\n  {id:", i)
+                  if st >= 0 and en > i:
+                      t = t[:st] + t[en:]
+              t = re.sub('"' + re.escape(s) + r'":\{"t":\{[^{}]*\},"o":\[[^\]]*\]\},', "", t)
+          open(p, "w", encoding="utf-8").write(t)
+          for s in GONE:
+              shutil.rmtree("_site/books/" + s, ignore_errors=True)
+              for f in glob.glob("_site/covers/" + s + ".*"):
+                  os.remove(f)
+          for p in ["_site/sitemap.xml", "_site/feed.xml"]:
+              if os.path.exists(p):
+                  x = open(p, encoding="utf-8").read()
+                  for s in GONE:
+                      x = re.sub(r"<url>(?:(?!</url>).)*?/" + re.escape(s) + r"/(?:(?!</url>).)*?</url>\s*", "", x, flags=re.S)
+                      x = re.sub(r"<item>(?:(?!</item>).)*?/" + re.escape(s) + r"/(?:(?!</item>).)*?</item>\s*", "", x, flags=re.S)
+                  open(p, "w", encoding="utf-8").write(x)
+          js = r"""
+          (function(){var M={FR:['Afficher moins','Afficher plus'],ES:['Mostrar menos','Mostrar más'],PT:['Mostrar menos','Mostrar mais'],PB:['Mostrar menos','Mostrar mais'],AR:['عرض أقل','عرض المزيد'],DE:['Weniger anzeigen','Mehr anzeigen'],IT:['Mostra meno','Mostra di più'],RU:['Свернуть','Показать больше'],ZH:['收起','显示更多'],ZT:['收起','顯示更多'],JA:['表示を減らす','もっと見る'],TR:['Daha az göster','Daha fazla göster'],KO:['간단히 보기','더 보기']};
+          function lang(){var s=document.getElementById('uiLangSelect');if(s)return s.value;try{return localStorage.getItem('ebc_ui_lang')||'EN'}catch(e){return 'EN'}}
+          function run(){var L=M[lang()];document.querySelectorAll('button,a,summary,span').forEach(function(n){if(n.children.length)return;var o=n.getAttribute('data-bc-sl');var v=n.textContent.trim();if(!o){if(v==='Show less'||v==='Show more'){o=v;n.setAttribute('data-bc-sl',o)}else return}if(v!==o&&!(L&&(v===L[0]||v===L[1]))){n.removeAttribute('data-bc-sl');return}var cur=v===o||!L?v:(v===L[0]?'Show less':'Show more');n.textContent=L?(cur==='Show less'?L[0]:L[1]):cur})}
+          var q=0;function later(){if(q)return;q=1;setTimeout(function(){q=0;run()},60)}
+          document.addEventListener('DOMContentLoaded',run);window.addEventListener('load',run);document.addEventListener('change',function(e){if(e.target&&e.target.id==='uiLangSelect')later()});document.addEventListener('click',later,true);if(document.readyState!=='loading')run()})();
+          """
+          for f in ["_site/assets/library/navigation-fixes.js"]:
+              if os.path.exists(f):
+                  open(f, "a", encoding="utf-8").write("\n" + "\n".join(l.strip() for l in js.strip().splitlines()) + "\n")
+          print("withdrawn books removed; show-less i18n added")
+          PY
+      - name: Optimise homepage artwork
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          site = Path('_site')
+          src = site / 'assets/library/home-original.png'
+          if src.exists():
+              Image.open(src).convert('RGB').save(site / 'assets/library/home-original.webp', 'WEBP', quality=80, method=6)
+              for f in [p for ext in ('*.html', '*.js', '*.css') for p in site.rglob(ext)]:
+                  t = f.read_text(encoding='utf-8', errors='surrogateescape')
+                  if 'home-original.png' in t:
+                      f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
+                      print('webp:', f)
+          PY
+      - name: Apply shared book presentation to every page
+        run: |
+          python3 - <<'PYCODE'
+          from pathlib import Path
+          tags = '<link rel="stylesheet" href="/book-presentation.css?v=4"><script defer src="/book-presentation.js?v=11"></script>'
+          for page in Path('_site').rglob('*.html'):
+              text = page.read_text(encoding='utf-8', errors='surrogateescape')
+              if '/book-presentation.js' not in text:
+                  page.write_text(text + '\n' + tags, encoding='utf-8', errors='surrogateescape')
+          PYCODE
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+    steps:
+      - name: Deploy BookClassics
+        id: deployment
+        uses: actions/deploy-pages@v4
