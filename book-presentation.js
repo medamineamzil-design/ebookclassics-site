@@ -235,3 +235,42 @@ let q=false;const sched=()=>{if(q)return;q=true;requestAnimationFrame(()=>{q=fal
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',place,{once:true});else place();
 new MutationObserver(sched).observe(document.body,{childList:true,subtree:true});
 })();
+
+/* Shop text in English when the site language is not French. */
+(()=>{'use strict';
+const P=[['Collection imprimée en préparation · sélection et estimation de lancement.','Print collection in preparation · launch selection and estimate.'],
+['Estimation avant taxes. Le prix et la disponibilité de chaque édition ainsi que la livraison restent à confirmer. Les devises sont présentées séparément. Aucun paiement ni réservation n’est effectué.','Estimate before tax. Price, availability of each edition and delivery are confirmed before payment. No payment or reservation is made.'],
+[' Les réductions sont suspendues pour la France dans l’attente de validation des règles du prix du livre.',' Discounts are suspended for France pending validation of book-pricing rules.'],
+[' Remise simulée pour une seule commande à une même adresse.',' Simulated discount for a single order to one address.'],
+['Votre panier est vide. Ajoutez un livre depuis sa fiche.','Your cart is empty. Add a book from its page.'],
+['Livre ajouté à votre sélection. Choisissez l’édition dans le panier.','Book added. Choose the edition in your cart.'],
+['Livre ajouté pour cette visite. La sauvegarde sur cet appareil est indisponible.','Book added for this visit. Saving on this device is unavailable.'],
+['Votre sélection est conservée sur cet appareil.','Your selection is saved on this device.'],
+['Tarif de lancement provisoire · édition imprimée bientôt disponible · à confirmer avant paiement','Provisional launch price · print edition coming soon · confirmed before payment'],
+['Tarif de lancement provisoire · édition et livraison à confirmer avant paiement','Provisional launch price · edition and delivery confirmed before payment'],
+['Éditions imprimées bientôt disponibles · tarifs de lancement provisoires avant taxes, à confirmer selon l’édition et la livraison. La lecture numérique reste gratuite.','Print editions coming soon · provisional launch prices before tax, confirmed by edition and delivery. Digital reading stays free.'],
+['Broché ou relié · format 6 × 9 · mode test','Paperback or hardcover · 6 × 9 · test mode'],
+['Paiement groupé en préparation','Combined checkout coming soon'],['Pays de livraison envisagé','Delivery country'],['Pays de livraison','Delivery country'],['Collection envisagée','Edition'],
+['Commander le livre','Order the book'],['Ajouter au panier','Add to cart'],['Fermer le panier','Close cart'],['Votre panier','Your cart'],['Choisir un pays','Choose a country'],['Tarif à confirmer','Price to be confirmed'],
+['Sous-total indicatif : ','Indicative subtotal: '],['Remise simulée : ','Simulated discount: '],['Réduire la quantité de ','Decrease quantity of '],['Augmenter la quantité de ','Increase quantity of '],['Édition de ','Edition of '],
+['Broché court / moyen','Short / medium paperback'],['Broché long','Long paperback'],['Relié classique','Classic hardcover'],['Relié long','Long hardcover'],['Classique express','Express classic'],['Petit classique','Short classic'],['Illustré N&B · broché','B&W illustrated · paperback'],['Illustré N&B · relié','B&W illustrated · hardcover'],['Collector couleur · relié','Colour collector · hardcover'],['Couleur · broché','Colour · paperback'],
+['Royaume-Uni','United Kingdom'],['États-Unis','United States'],['Irlande','Ireland'],['Pays-Bas','Netherlands'],['Australie','Australia'],['Allemagne','Germany'],['Espagne','Spain'],['Italie','Italy'],['Danemark','Denmark'],['Estonie','Estonia'],['Nouvelle-Zélande','New Zealand'],['Malaisie','Malaysia'],
+[' · à partir de ',' · from '],['À partir de ','From '],['À partir de','From'],['Retirer','Remove']];
+const R=[[/(\d+) livres? · remise estimée (\d+) %/g,(m,n,r)=>n+(n==='1'?' book':' books')+' · estimated discount '+r+'%'],[/Ouvrir le panier, (\d+) livres/g,'Open cart, $1 books'],
+[/(\d{1,3}(?:[   ]\d{3})*),(\d{2})[   ]?\$US/g,(m,a,b)=>'US$'+a.replace(/[   ]/g,',')+'.'+b]];
+const tr=s=>{for(const [a,b] of P)s=s.split(a).join(b);for(const [a,b] of R)s=s.replace(a,b);return s;};
+const fr=()=>(document.getElementById('uiLangSelect')?.value||document.documentElement.lang||'').toUpperCase().startsWith('FR');
+const SEL='#bcCart,#bcCartOpen,#bcAddCart,#bcCartStatus,#bcBookStartingPrice,.bc-card-starting-price,#bcCatalogPriceNote,#bcPrintDialog,#bcPrint';
+const orig=new WeakMap();let busy=false;
+function run(){if(busy)return;busy=true;const f=fr();
+ document.querySelectorAll(SEL).forEach(root=>{
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;
+  while((n=w.nextNode())){let o=orig.get(n);if(o===undefined||(n.data!==o&&n.data!==tr(o))){o=n.data;orig.set(n,o);}const v=f?o:tr(o);if(n.data!==v){n.data=v;orig.set(n,o);}}
+  [root,...root.querySelectorAll('[aria-label],[title]')].forEach(el=>['aria-label','title'].forEach(a=>{if(!el.hasAttribute(a))return;const k='data-bcfr-'+a;const cur=el.getAttribute(a);let o=el.getAttribute(k);if(o===null||(cur!==o&&cur!==tr(o))){o=cur;el.setAttribute(k,o);}const v=f?o:tr(o);if(el.getAttribute(a)!==v)el.setAttribute(a,v);}));
+ });
+ busy=false;}
+let q=false;const sched=()=>{if(q||busy)return;q=true;requestAnimationFrame(()=>{q=false;run();});};
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});else run();
+new MutationObserver(sched).observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['aria-label','title']});
+document.addEventListener('change',e=>{if(e.target.id==='uiLangSelect')setTimeout(run,50);});
+})();
