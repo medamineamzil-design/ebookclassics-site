@@ -135,7 +135,7 @@ offer.innerHTML=`<div><p class="bc-offer-kicker">${t.k}</p><h2>${t.h}<br><span c
 dialog.innerHTML=`<div class="bc-price-heading"><h2 id="bcLaunchPricesTitle">${t.title}</h2><button type="button" class="bc-price-close" aria-label="${t.close}">×</button></div><p class="bc-price-intro">${t.intro}</p><div class="bc-price-grid">${data.map(([a,b,p])=>`<article class="bc-price-card"><h3>${fr?a:b}</h3><p>${t.from}<strong>${p}</strong></p></article>`).join('')}</div><div class="bc-price-promo"><strong>${t.group}</strong><br>${t.promo}</div><p class="bc-price-note">${t.note}</p>`;
 offer.querySelector('button').onclick=()=>dialog.showModal();dialog.querySelector('button').onclick=()=>dialog.close();
 }
-const sharedHeader=document.querySelector('header.site');sharedHeader.after(offer);document.body.append(dialog);draw();
+const sharedHeader=document.querySelector('header.site');const offerWrap=document.createElement('div');offerWrap.id='bcLaunchOfferWrap';offerWrap.style.paddingTop='1px';sharedHeader.after(offerWrap);offerWrap.append(offer);document.body.append(dialog);draw();
 function positionOffer(){const mode=getComputedStyle(sharedHeader).position;const bottom=sharedHeader.getBoundingClientRect().bottom+(mode==='absolute'?window.scrollY:0);offer.style.marginTop=(mode==='absolute'||mode==='fixed'?Math.ceil(bottom+16):18)+'px';}
 positionOffer();window.addEventListener('load',positionOffer,{once:true});window.addEventListener('resize',positionOffer);if(window.ResizeObserver)new ResizeObserver(positionOffer).observe(sharedHeader);document.addEventListener('change',e=>{if(e.target.id==='uiLangSelect')draw()});
 return true;
