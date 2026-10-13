@@ -216,3 +216,22 @@ function scan(){
 }
 scan();new MutationObserver(scan).observe(document.querySelector('main')||document.body,{childList:true,subtree:true});
 })();
+
+/* Trust block near payment + shipping help link. */
+(()=>{'use strict';
+const fr=()=>(document.getElementById('uiLangSelect')?.value||document.documentElement.lang||'').toUpperCase().startsWith('FR');
+const css=document.createElement('style');css.textContent='.bc-trust{margin:14px 0 0;padding:12px 14px;border:1px solid #d9cfae;border-radius:12px;background:#fbf7ec;color:#213d30;font:13px/1.5 system-ui,sans-serif}.bc-trust ul{list-style:none;margin:0;padding:0;display:grid;gap:5px}.bc-trust li{display:flex;gap:8px;align-items:flex-start}.bc-trust li::before{content:"✓";color:#2f6b4f;font-weight:700;flex:none}.bc-trust a{color:#2f6b4f;font-weight:600}';
+document.head.append(css);
+function block(){const f=fr();const d=document.createElement('div');d.className='bc-trust';d.setAttribute('translate','no');
+const items=f?['Paiement sécurisé par PayPal : carte bancaire acceptée, compte PayPal non obligatoire','Livré ou remboursé : réimpression ou remboursement si le colis n’arrive pas ou arrive abîmé','Envoi suivi : numéro de suivi envoyé par email à l’expédition','Prix affiché tout compris : impression et livraison, sans frais cachés']:['Secure payment with PayPal: pay by card, no PayPal account required','Delivered or refunded: reprint or refund if your parcel does not arrive or arrives damaged','Tracked shipping: tracking number emailed when your book ships','All-in price: printing and delivery included, no hidden fees'];
+d.innerHTML='<ul>'+items.map(t=>'<li>'+t+'</li>').join('')+'</ul><p style="margin:8px 0 0"><a href="/shipping.html">'+(f?'Livraison, suivi et remboursement →':'Shipping, tracking & refunds →')+'</a></p>';return d;}
+function place(){
+ const pay=document.getElementById('bcPrintPay');const box=pay?.parentElement;
+ if(box&&!box.nextElementSibling?.classList.contains('bc-trust'))box.after(block());
+ const cart=document.getElementById('bcCart');if(cart&&cart.childElementCount&&!cart.querySelector('.bc-trust'))cart.append(block());
+ document.querySelectorAll('footer .wrap').forEach(w=>{if(!w.querySelector('a[href="/shipping.html"]')){const a=document.createElement('a');a.href='/shipping.html';a.textContent=fr()?'Livraison':'Shipping';const p=w.querySelector('p');p?p.before(a):w.append(a);}});
+}
+let q=false;const sched=()=>{if(q)return;q=true;requestAnimationFrame(()=>{q=false;place();});};
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',place,{once:true});else place();
+new MutationObserver(sched).observe(document.body,{childList:true,subtree:true});
+})();
