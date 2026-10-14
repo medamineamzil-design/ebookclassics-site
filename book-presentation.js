@@ -274,3 +274,48 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 new MutationObserver(sched).observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['aria-label','title']});
 document.addEventListener('change',e=>{if(e.target.id==='uiLangSelect')setTimeout(run,50);});
 })();
+
+/* Coherence: print price, cart and offers only for titles that can really be ordered (print.json). */
+(()=>{'use strict';
+const FILES='https://raw.githubusercontent.com/medamineamzil-design/ebookclassics-files/main/print.json';
+const KEY='bookclassics.printCart.v1';
+const fr=()=>(document.getElementById('uiLangSelect')?.value||document.documentElement.lang||'').toUpperCase().startsWith('FR');
+const css=document.createElement('style');css.textContent='#bcLaunchOfferWrap,#bcLaunchPrices{display:none!important}.bc-hide{display:none!important}.bc-soon{margin:14px 0 18px;color:#5b6b60;font:14px/1.5 system-ui,sans-serif}.bc-cart-orders{display:grid;gap:8px;margin:12px 0}.bc-cart-orders a{display:block;text-align:center;padding:11px 14px;border-radius:10px;background:#244c3b;color:#fff;text-decoration:none;font:600 14px system-ui,sans-serif}';
+document.head.append(css);
+let ok=null;
+fetch(FILES,{cache:'no-store'}).then(r=>r.json()).then(d=>{ok={};for(const [k,v] of Object.entries(d)){if(v&&v.bv_interior&&v.bv_cover&&v.price_usd&&!k.endsWith('-hardcover'))ok[k]=Number(v.price_usd);}apply();}).catch(()=>{ok={};apply();});
+const money=n=>fr()?n.toFixed(2).replace('.',',')+' $US':'US$'+n.toFixed(2);
+const slugOfPage=()=>{const p=location.pathname.split('/').filter(Boolean);return p[0]==='books'&&p[1]?p[1]:null;};
+function apply(){
+ if(!ok)return;
+ const slug=slugOfPage();
+ const price=document.getElementById('bcBookStartingPrice');
+ if(price&&slug){
+  if(slug in ok){const s=price.querySelector('strong');if(s&&s.dataset.bcp!==String(ok[slug])){s.dataset.bcp=String(ok[slug]);s.textContent=money(ok[slug]);}price.classList.remove('bc-hide');}
+  else{price.classList.add('bc-hide');}
+  let soon=document.getElementById('bcPrintSoon');
+  if(!(slug in ok)){if(!soon){soon=document.createElement('p');soon.id='bcPrintSoon';soon.className='bc-soon';price.after(soon);}const t=fr()?'Version imprimée bientôt disponible.':'Printed edition coming soon.';if(soon.textContent!==t)soon.textContent=t;}else if(soon)soon.remove();
+ }
+ const add=document.getElementById('bcAddCart');if(add&&slug)add.classList.toggle('bc-hide',!(slug in ok));
+ const st=document.getElementById('bcCartStatus');if(st&&slug&&!(slug in ok))st.classList.add('bc-hide');
+ document.querySelectorAll('#catalogGrid .card').forEach(card=>{const l=card.querySelector('.bc-card-starting-price');if(!l)return;const s=card.querySelector('img')?.getAttribute('src')?.split('/').pop()?.replace(/\.[^.]+$/,'');if(s in ok){const t=(fr()?'À partir de ':'From ')+money(ok[s]);if(l.textContent!==t)l.textContent=t;l.classList.remove('bc-hide');}else l.classList.add('bc-hide');});
+ const note=document.getElementById('bcCatalogPriceNote');if(note){const t=fr()?'Version imprimée disponible pour une sélection de titres, au même prix livraison suivie incluse dans tous les pays desservis. La lecture numérique reste gratuite.':'Printed editions available for selected titles, one price with tracked delivery included in every country we serve. Digital reading stays free.';if(note.textContent!==t)note.textContent=t;}
+ const cart=document.getElementById('bcCart');
+ if(cart&&cart.childElementCount){
+  cart.querySelectorAll('select[data-edition] option').forEach(o=>{if(o.value!=='pb'&&o.value!=='pb-long'&&o.value!=='short'&&o.value!=='express')o.remove();});
+  cart.querySelectorAll('.cart-estimate').forEach(e=>e.classList.add('bc-hide'));
+  cart.querySelectorAll('.cart-muted').forEach(e=>{if(/Estimation avant taxes|Estimate before tax|Remise simulée|Simulated discount/.test(e.textContent))e.classList.add('bc-hide');});
+  const head=cart.querySelector('.cart-head + .cart-muted');if(head){const t=fr()?'Commandez chaque livre depuis sa fiche : prix fixe, livraison suivie incluse.':'Order each book from its page: one fixed price, tracked delivery included.';if(head.textContent!==t)head.textContent=t;}
+  const btn=cart.querySelector('.cart-primary');
+  if(btn&&!btn.classList.contains('bc-hide')){btn.classList.add('bc-hide');}
+  if(!cart.querySelector('.bc-cart-orders')&&btn){let items=[];try{items=(JSON.parse(localStorage.getItem(KEY)||'{}').items||[]);}catch{}
+   const box=document.createElement('div');box.className='bc-cart-orders';
+   items.forEach(x=>{if(!(x.slug in ok))return;const a=document.createElement('a');a.href='/books/'+x.slug+'/?order=1';a.textContent=(fr()?'Commander : ':'Order: ')+x.title+' — '+money(ok[x.slug]);box.append(a);});
+   btn.after(box);}
+  cart.querySelectorAll('article.cart-item').forEach(a=>{const t=a.querySelector('.cart-title')?.textContent;let items=[];try{items=(JSON.parse(localStorage.getItem(KEY)||'{}').items||[]);}catch{}const it=items.find(x=>x.title===t);if(it&&!(it.slug in ok))a.classList.add('bc-hide');});
+ }
+}
+if(new URLSearchParams(location.search).get('order')==='1'){const t=setInterval(()=>{const b=document.getElementById('bcPrint');if(b){clearInterval(t);b.click();}},300);setTimeout(()=>clearInterval(t),10000);}
+document.addEventListener('change',e=>{if(e.target.id==='uiLangSelect'){document.querySelectorAll('.bc-trust').forEach(x=>x.remove());document.querySelectorAll('footer a[href="/shipping.html"]').forEach(a=>a.textContent=fr()?'Livraison':'Shipping');document.querySelectorAll('.bc-cart-orders').forEach(x=>x.remove());setTimeout(apply,80);}});
+let q=false;new MutationObserver(()=>{if(q)return;q=true;requestAnimationFrame(()=>{q=false;apply();});}).observe(document.body,{childList:true,subtree:true});
+})();
