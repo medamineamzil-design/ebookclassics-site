@@ -505,7 +505,7 @@ jobs:
         run: |
           python3 - <<'PYCODE'
           from pathlib import Path
-          tags = '<link rel="stylesheet" href="/book-presentation.css?v=4"><script defer src="/book-presentation.js?v=17"></script>'
+          tags = '<link rel="stylesheet" href="/book-presentation.css?v=4"><script defer src="/book-presentation.js?v=18"></script>'
           for page in Path('_site').rglob('*.html'):
               text = page.read_text(encoding='utf-8', errors='surrogateescape')
               if '/book-presentation.js' not in text:
