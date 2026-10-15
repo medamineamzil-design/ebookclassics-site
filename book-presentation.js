@@ -322,3 +322,70 @@ if(new URLSearchParams(location.search).get('order')==='1'){const t=setInterval(
 document.addEventListener('change',e=>{if(e.target.id==='uiLangSelect'){document.querySelectorAll('.bc-trust').forEach(x=>x.remove());document.querySelectorAll('footer a[href="/shipping.html"]').forEach(a=>a.textContent=fr()?'Livraison':'Shipping');document.querySelectorAll('.bc-cart-orders').forEach(x=>x.remove());setTimeout(apply,80);}});
 let q=false;new MutationObserver(()=>{if(q)return;q=true;requestAnimationFrame(()=>{q=false;apply();});}).observe(document.body,{childList:true,subtree:true});
 })();
+
+/* Paid downloads: ebook files US$0.50, audiobook US$1.00; online reading stays free. */
+(()=>{'use strict';
+const API='https://bookclassics-shop.medamine-amzil.workers.dev';
+const PRICE={text:'0.50',audio:'1.00',both:'1.25'};
+const fr=()=>(document.getElementById('uiLangSelect')?.value||document.documentElement.lang||'').toUpperCase().startsWith('FR');
+const money=p=>fr()?p.replace('.',',')+' $US':'US$'+p;
+const LS={get:k=>{try{return localStorage.getItem(k)}catch{return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch{}}};
+const key=(s,l,k)=>'bc.dl.'+s+'.'+l+'.'+k;
+async function api(path,data){const r=await fetch(API+path,{method:data?'POST':'GET',headers:data?{'Content-Type':'application/json'}:undefined,body:data?JSON.stringify(data):undefined,cache:'no-store'});const j=await r.json().catch(()=>({}));if(!r.ok)throw Error(j.error||(fr()?'Service indisponible. Réessayez plus tard.':'Service unavailable. Please try again later.'));return j;}
+async function buy(slug,lang,kind,msg){
+ msg.textContent=fr()?'Ouverture du paiement sécurisé…':'Opening secure payment…';
+ try{const o=await api('/dl/create',{slug,lang,kind});const u=new URL(o.approval_url);if(u.protocol!=='https:'||!['www.paypal.com','www.sandbox.paypal.com'].includes(u.hostname))throw Error('PayPal');
+  try{sessionStorage.setItem('bc.dl.pending',JSON.stringify({id:o.id,slug,lang,kind}))}catch{}location.assign(u.href);}
+ catch(e){msg.textContent=e.message;}
+}
+/* ---------- Home page: send download / listen actions to the book page ---------- */
+function homeOverrides(){
+ if(typeof window.bookById!=='function'||typeof window.hostedSlug!=='function')return;
+ const go=(id,kind)=>{const b=window.bookById(id||(typeof state!=='undefined'&&state?state.currentBookId:null));if(!b)return;location.href='/books/'+window.hostedSlug(b)+'/?buy='+kind;};
+ window.bd2Download=(id)=>go(id,'text');window.bd2Listen=()=>go(null,'audio');
+ window.downloadSelected=(id)=>go(id,'text');
+ ['downloadEpub','downloadPdf','downloadTxt','downloadHtml'].forEach(f=>{if(typeof window[f]==='function')window[f]=(b)=>{if(b&&b.id)go(b.id,'text');};});
+}
+if(document.readyState==='complete')homeOverrides();else window.addEventListener('load',homeOverrides);
+/* ---------- Book page ---------- */
+if(typeof BC==='undefined'||!BC||!BC.slug)return;
+const slug=BC.slug;
+const curLang=()=>document.querySelector('.ed.active')?.dataset.lang||BC.lang;
+const css=document.createElement('style');css.textContent='#bcDigital{margin:16px 0;display:grid;gap:12px;font-family:system-ui,sans-serif}#bcDigital[hidden]{display:none}#bcDigital .dg{border:1px solid #d9cfbd;border-radius:12px;padding:14px 16px;background:#fffdf8;color:#29221a}#bcDigital h3{margin:0 0 4px;font-size:15px}#bcDigital p{margin:4px 0 10px;font-size:13px;color:#5b5145}#bcDigital .dg-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}#bcDigital .dg-buy{background:#244c3b;color:#fff;border:0;border-radius:999px;padding:10px 16px;font:600 14px system-ui;cursor:pointer}#bcDigital a.dg-chip{display:inline-block;border:1px solid #67553c;border-radius:8px;padding:7px 12px;color:#29221a;text-decoration:none;font:600 13px system-ui}#bcDigital audio{width:100%;margin:6px 0}#bcDigital .dg-msg{font-size:13px;margin:6px 0 0;color:#7a3b12}';document.head.append(css);
+const panel=document.createElement('div');panel.id='bcDigital';panel.hidden=true;
+(document.querySelector('.hero .actions')||document.getElementById('bcDl')?.parentNode)?.after(panel);
+function render(focus){
+ const lang=curLang(),hasText=!!(BC.ed&&BC.ed[lang]&&BC.ed[lang].length),hasAudio=!!(BC.audio&&BC.audio[lang]);
+ const F=fr();let h='';
+ if(hasText){const t=LS.get(key(slug,lang,'text'));
+  h+=`<div class="dg" data-k="text"><h3>${F?'Livre numérique':'Ebook'} · PDF + EPUB</h3>`+(t?`<p>${F?'Acheté. Téléchargez autant de fois que vous voulez :':'Purchased. Download as often as you like:'}</p><div class="dg-row">${BC.ed[lang].map(x=>`<a class="dg-chip" href="${API}/dl/file?tok=${t}&ext=${x}">${x.toUpperCase()}</a>`).join('')}</div>`
+   :`<p>${F?'PDF mis en page et EPUB pour liseuse (TXT et HTML inclus), en un seul achat. La lecture en ligne reste gratuite.':'Typeset PDF and EPUB for e-readers (TXT and HTML included), in one purchase. Reading online stays free.'}</p><div class="dg-row"><button type="button" class="dg-buy">${F?'Acheter':'Buy'} · ${money(PRICE.text)}</button></div>`)+`<p class="dg-msg" role="status"></p></div>`;}
+ if(hasAudio){const t=LS.get(key(slug,lang,'audio'));const d=BC.audio[lang].d||0,hh=Math.floor(d/3600),mm=Math.round(d%3600/60);const dur=hh?hh+' h '+String(mm).padStart(2,'0')+' min':mm+' min';
+  h+=`<div class="dg" data-k="audio"><h3>${F?'Livre audio':'Audiobook'} · MP3 · ${dur}</h3>`+(t?`<audio controls preload="none" src="${API}/dl/file?tok=${t}&ext=mp3&play=1"></audio><div class="dg-row"><a class="dg-chip" href="${API}/dl/file?tok=${t}&ext=mp3">${F?'Télécharger le MP3':'Download MP3'}</a></div>`
+   :`<p>${F?'Extrait gratuit : les 5 premières minutes.':'Free preview: the first 5 minutes.'}</p><audio controls preload="none" src="${API}/dl/preview?slug=${slug}&lang=${lang}"></audio><p>${F?'Livre audio complet : écoute en ligne et MP3 à télécharger (enregistrement LibriVox, domaine public).':'Full audiobook: listen online and download the MP3 (LibriVox public-domain recording).'}</p><div class="dg-row"><button type="button" class="dg-buy">${F?'Acheter le livre audio complet':'Buy the full audiobook'} · ${money(PRICE.audio)}</button></div>`)+`<p class="dg-msg" role="status"></p></div>`;}
+ if(hasText&&hasAudio&&!LS.get(key(slug,lang,'text'))&&!LS.get(key(slug,lang,'audio')))
+  h+=`<div class="dg" data-k="both"><h3>${F?'Offre complète':'Complete bundle'} · PDF + EPUB + ${F?'livre audio':'audiobook'}</h3><p>${F?'Les deux en un seul paiement.':'Both in a single payment.'}</p><div class="dg-row"><button type="button" class="dg-buy">${F?'Acheter':'Buy'} · ${money(PRICE.both)}</button></div><p class="dg-msg" role="status"></p></div>`;
+ if(!h)h=`<div class="dg"><p>${F?'Aucun fichier téléchargeable pour cette édition.':'No downloadable files for this edition.'}</p></div>`;
+ panel.innerHTML=h;panel.hidden=false;
+ panel.querySelectorAll('.dg-buy').forEach(b=>b.onclick=()=>{const c=b.closest('.dg');buy(slug,lang,c.dataset.k,c.querySelector('.dg-msg'));});
+ if(focus){const el=panel.querySelector(`[data-k="${focus}"]`)||panel;el.scrollIntoView({block:'center',behavior:'smooth'});}
+}
+function labels(){const F=fr();const d=document.getElementById('bcDl'),l=document.getElementById('bcListen');
+ const td=(F?'Télécharger EPUB · PDF · TXT · HTML':'Download EPUB · PDF · TXT · HTML')+' · '+money(PRICE.text);if(d&&d.textContent!==td)d.textContent=td;
+ const tl=(F?'Écouter le livre audio':'Listen to the audiobook')+' · '+money(PRICE.audio);if(l&&l.textContent!==tl)l.textContent=tl;}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('#bcDl,#bcListen');if(!b)return;e.preventDefault();e.stopImmediatePropagation();
+ const k=b.id==='bcDl'?'text':'audio';if(!panel.hidden&&panel.dataset.k===k){panel.hidden=true;panel.dataset.k='';return;}panel.dataset.k=k;render(k);},true);
+document.addEventListener('click',e=>{if(e.target.closest&&e.target.closest('.ed'))setTimeout(()=>{if(!panel.hidden)render();},50);});
+document.addEventListener('change',e=>{if(e.target.id==='uiLangSelect')setTimeout(()=>{labels();if(!panel.hidden)render();},80);});
+labels();new MutationObserver(labels).observe(document.querySelector('.hero')||document.body,{childList:true,subtree:true,characterData:true});
+const q=new URLSearchParams(location.search);
+if(q.get('buy')){panel.dataset.k=q.get('buy');setTimeout(()=>render(q.get('buy')),300);}
+if(q.get('dl')){
+ let p=null;try{p=JSON.parse(sessionStorage.getItem('bc.dl.pending')||'null')}catch{}
+ history.replaceState(null,'',location.pathname);
+ if(q.get('dl')==='cancel'){render(p&&p.kind);const m=panel.querySelector('.dg-msg');if(m)m.textContent=fr()?'Paiement annulé. Aucun débit.':'Payment cancelled. You were not charged.';}
+ else if(p&&p.id&&q.get('token')===p.id){render(p.kind);const m=panel.querySelector(`[data-k="${p.kind}"] .dg-msg`);if(m)m.textContent=fr()?'Vérification du paiement…':'Confirming payment…';
+  api('/dl/capture',{id:p.id}).then(r=>{(r.kind==='both'?['text','audio']:[r.kind]).forEach(k=>LS.set(key(r.slug,r.lang,k),r.token));try{sessionStorage.removeItem('bc.dl.pending')}catch{}render(r.kind==='both'?'text':r.kind);const m2=panel.querySelector(`[data-k="${r.kind==='both'?'text':r.kind}"] .dg-msg`);if(m2)m2.textContent=fr()?'Merci ! Paiement confirmé.':'Thank you! Payment confirmed.';})
+  .catch(e=>{const m3=panel.querySelector(`[data-k="${p.kind}"] .dg-msg`);if(m3)m3.textContent=e.message+(fr()?' · Référence : ':' · Reference: ')+p.id;});}
+}
+})();
