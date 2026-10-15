@@ -501,6 +501,43 @@ jobs:
                       f.write_text(t.replace('home-original.png', 'home-original.webp'), encoding='utf-8', errors='surrogateescape')
                       print('webp:', f)
           PY
+      - name: Paid downloads wording (read free, files from US$0.50)
+        run: |
+          python3 - <<'PYWORD'
+          import json, re
+          from pathlib import Path
+          EY = {"EN": "Read free online · public domain · 7 languages", "FR": "Lecture gratuite en ligne · domaine public · 7 langues", "ES": "Lectura gratis en línea · dominio público · 7 idiomas", "PT": "Leitura grátis online · domínio público · 7 línguas", "PB": "Leitura grátis online · domínio público · 7 idiomas", "AR": "قراءة مجانية على الإنترنت · ملكية عامة · 7 لغات", "ZH": "免费在线阅读 · 公有领域 · 7 种语言", "ZT": "免費線上閱讀 · 公有領域 · 7 種語言", "JA": "オンラインで無料で読める · パブリックドメイン · 7言語", "RU": "Читайте онлайн бесплатно · общественное достояние · 7 языков", "UK": "Читайте онлайн безкоштовно · суспільне надбання · 7 мов", "SR": "Бесплатно читање онлајн · јавно добро · 7 језика", "DE": "Kostenlos online lesen · gemeinfrei · 7 Sprachen", "SQ": "Lexim falas online · domen publik · 7 gjuhë", "EU": "Doan irakurri sarean · domeinu publikoa · 7 hizkuntza", "CA": "Lectura gratuïta en línia · domini públic · 7 llengües", "HI": "ऑनलाइन मुफ़्त पढ़ें · सार्वजनिक डोमेन · 7 भाषाएँ", "IT": "Lettura gratuita online · pubblico dominio · 7 lingue", "KO": "온라인 무료 읽기 · 퍼블릭 도메인 · 7개 언어", "RO": "Lectură gratuită online · domeniu public · 7 limbi", "SV": "Läs gratis online · fri från upphovsrätt · 7 språk", "TR": "Çevrimiçi ücretsiz okuma · kamu malı · 7 dil"}
+          H1 = {"EN": "Classic books to read free online, download and listen to", "FR": "Des livres classiques à lire gratuitement en ligne, à télécharger et à écouter", "ES": "Libros clásicos para leer gratis en línea, descargar y escuchar", "PT": "Livros clássicos para ler grátis online, descarregar e ouvir", "PB": "Livros clássicos para ler grátis online, baixar e ouvir", "AR": "كتب كلاسيكية للقراءة المجانية على الإنترنت وللتنزيل والاستماع", "ZH": "免费在线阅读的经典名著，还可下载和收听", "ZT": "免費線上閱讀的經典名著，還可下載和收聽", "JA": "オンラインで無料で読める古典名作。ダウンロードも朗読も", "RU": "Классика: читайте онлайн бесплатно, скачивайте и слушайте", "UK": "Класика: читайте онлайн безкоштовно, завантажуйте й слухайте", "SR": "Класици: читајте бесплатно онлајн, преузмите и слушајте", "DE": "Klassiker kostenlos online lesen, herunterladen und hören", "SQ": "Libra klasike për t'i lexuar falas online, shkarkuar dhe dëgjuar", "EU": "Liburu klasikoak: irakurri doan sarean, deskargatu eta entzun", "CA": "Llibres clàssics per llegir gratis en línia, descarregar i escoltar", "HI": "क्लासिक किताबें: ऑनलाइन मुफ़्त पढ़ें, डाउनलोड करें और सुनें", "IT": "Classici da leggere gratis online, scaricare e ascoltare", "KO": "온라인에서 무료로 읽고, 내려받고, 듣는 고전", "RO": "Cărți clasice de citit gratuit online, de descărcat și de ascultat", "SV": "Klassiker att läsa gratis online, ladda ner och lyssna på", "TR": "Çevrimiçi ücretsiz okunacak, indirilecek ve dinlenecek klasikler"}
+          LEAD = {"EN": "{n} great classics by Austen, Dickens, Tolstoy, Hugo, Shelley and more. Read free online; PDF and EPUB for US$0.50, audiobook for US$1.", "FR": "{n} grands classiques d'Austen, Dickens, Tolstoï, Hugo, Shelley et bien d'autres. Lecture gratuite en ligne ; PDF et EPUB à 0,50 $US, livre audio à 1 $US.", "ES": "{n} grandes clásicos de Austen, Dickens, Tolstói, Hugo, Shelley y muchos más. Lectura gratis en línea; PDF y EPUB por 0,50 US$, audiolibro por 1 US$.", "DE": "{n} große Klassiker von Austen, Dickens, Tolstoi, Hugo, Shelley und vielen mehr. Kostenlos online lesen; PDF und EPUB für 0,50 US$, Hörbuch für 1 US$.", "IT": "{n} grandi classici di Austen, Dickens, Tolstoj, Hugo, Shelley e molti altri. Lettura gratuita online; PDF ed EPUB a 0,50 US$, audiolibro a 1 US$.", "PT": "{n} grandes clássicos de Austen, Dickens, Tolstói, Hugo, Shelley e muitos mais. Leitura grátis online; PDF e EPUB por 0,50 US$, audiolivro por 1 US$.", "PB": "{n} grandes clássicos de Austen, Dickens, Tolstói, Hugo, Shelley e muitos mais. Leitura grátis online; PDF e EPUB por 0,50 US$, audiolivro por 1 US$.", "AR": "{n} من روائع الأدب الكلاسيكي لأوستن وديكنز وتولستوي وهوغو وشيلي وغيرهم. القراءة على الإنترنت مجانية؛ PDF وEPUB مقابل 0.50 دولار، والكتاب الصوتي مقابل دولار واحد."}
+          def setkey(t, k, vals):
+              tag = '"' + k + '": '
+              i = t.find(tag)
+              if i < 0:
+                  return t
+              j = i + len(tag)
+              d, end = json.JSONDecoder().raw_decode(t, j)
+              d.update(vals)
+              return t[:j] + json.dumps(d, ensure_ascii=False) + t[end:]
+          idx = Path('_site/index.html')
+          if idx.exists():
+              t = idx.read_text(encoding='utf-8', errors='surrogateescape')
+              t = t.replace('BookClassics — free classic books to read, download and listen to', 'BookClassics — classic books to read free online, download and listen to')
+              t = t.replace('Read great public-domain classics for free: read online, download in EPUB, PDF, TXT or HTML, or listen to the audiobook.', 'Read great public-domain classics free online. Download PDF and EPUB for US$0.50, or the audiobook for US$1.')
+              t = t.replace('>Free · public domain · 7 languages<', '>' + EY['EN'] + '<').replace('>Free classic books to read, download and listen to<', '>' + H1['EN'] + '<')
+              t = t.replace('Read online, download in EPUB, PDF, TXT or HTML, or press play on the audiobook.</p>', 'Read free online; PDF and EPUB for US$0.50, audiobook for US$1.</p>')
+              for k, v in (('hx.eyebrow', EY), ('hx.h1', H1), ('hx.lead', LEAD)):
+                  t = setkey(t, k, v)
+              idx.write_text(t, encoding='utf-8', errors='surrogateescape')
+          pat = re.compile(r'Read (.{1,200}?) for free: online, or download in ([A-Z, ]+?)( — with the audiobook)?\. ')
+          n = 0
+          for p in Path('_site').rglob('*.html'):
+              t = p.read_text(encoding='utf-8', errors='surrogateescape')
+              u = pat.sub(lambda m: f'Read {m.group(1)} free online. Download {m.group(2)} for US$0.50' + (', or the audiobook for US$1' if m.group(3) else '') + '. ', t)
+              u = u.replace('free to read online, download in EPUB, PDF, TXT or HTML, and often to listen to as audiobooks', 'free to read online, with PDF and EPUB downloads for US$0.50 and audiobooks for US$1')
+              if u != t:
+                  p.write_text(u, encoding='utf-8', errors='surrogateescape'); n += 1
+          print('paid-download wording on', n, 'pages')
+          PYWORD
       - name: Apply shared book presentation to every page
         run: |
           python3 - <<'PYCODE'
