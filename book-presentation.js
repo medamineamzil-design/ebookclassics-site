@@ -283,7 +283,7 @@ const fr=()=>(document.getElementById('uiLangSelect')?.value||document.documentE
 const css=document.createElement('style');css.textContent='#bcLaunchOfferWrap,#bcLaunchPrices{display:none!important}.bc-hide{display:none!important}.bc-soon{margin:14px 0 18px;color:#5b6b60;font:14px/1.5 system-ui,sans-serif}.bc-cart-orders{display:grid;gap:8px;margin:12px 0}.bc-cart-orders a{display:block;text-align:center;padding:11px 14px;border-radius:10px;background:#244c3b;color:#fff;text-decoration:none;font:600 14px system-ui,sans-serif}';
 document.head.append(css);
 let ok=null;const LG={};
-fetch(FILES,{cache:'no-store'}).then(r=>r.json()).then(d=>{ok={};for(const [k,v] of Object.entries(d)){if(v&&v.bv_interior&&v.bv_cover&&v.price_usd&&!k.endsWith('-hardcover')){ok[k]=Number(v.price_usd);if(v.bv_lang)LG[k]=v.bv_lang;}}apply();}).catch(()=>{ok={};apply();});
+fetch(FILES,{cache:'no-store'}).then(r=>r.json()).then(d=>{ok={};for(const [k,v] of Object.entries(d)){if(v&&v.bv_interior&&v.bv_cover&&(v.price_usd||v.bv_pages)&&!k.endsWith('-hardcover')){ok[k]=Number(v.price_usd||[[64,11.9],[120,13.9],[250,15.9],[400,18.9],[550,21.9],[750,24.9],[900,27.9],[1e9,32.9]].find(t=>v.bv_pages<=t[0])[1]);if(v.bv_lang)LG[k]=v.bv_lang;}}apply();}).catch(()=>{ok={};apply();});
 const money=n=>fr()?n.toFixed(2).replace('.',',')+' $US':'US$'+n.toFixed(2);
 const slugOfPage=()=>{const p=location.pathname.split('/').filter(Boolean);return p[0]==='books'&&p[1]?p[1]:null;};
 function apply(){
