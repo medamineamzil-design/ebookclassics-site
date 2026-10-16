@@ -222,7 +222,8 @@ def main():
 
     cat = {int(r["Text#"]): r for r in G.rows() if r.get("Text#", "").isdigit()}
     books, skipped, authors_n = [], [], {}
-    for gid in popular_ids(40):
+    # 240 pages x 25 = les 6 000 livres anglais les plus lus (les 1 000 premiers sont presque tous deja publies ou ecartes)
+    for gid in popular_ids(240):
         if len(books) >= nb:
             break
         r = cat.get(gid)
