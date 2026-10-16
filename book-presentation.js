@@ -393,3 +393,80 @@ if(q.get('dl')){
   .catch(e=>{const m3=panel.querySelector(`[data-k="${p.kind}"] .dg-msg`);if(m3)m3.textContent=e.message+(fr()?' · Référence : ':' · Reference: ')+p.id;});}
 }
 })();
+
+/* Multi-book checkout: one parcel, -10% (2 books), -15% (3), -20% (4+); no discount for France. */
+(()=>{'use strict';
+const API='https://bookclassics-shop.medamine-amzil.workers.dev';
+const KEY='bookclassics.printCart.v1';
+const FILES='https://raw.githubusercontent.com/medamineamzil-design/ebookclassics-files/main/print.json';
+const T=[[64,11.9],[120,13.9],[250,15.9],[400,18.9],[550,21.9],[750,24.9],[900,27.9],[1e9,32.9]];
+const fr=()=>(document.getElementById('uiLangSelect')?.value||document.documentElement.lang||'').toUpperCase().startsWith('FR');
+const money=n=>fr()?Number(n).toFixed(2).replace('.',',')+' $US':'US$'+Number(n).toFixed(2);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const rate=(n,cc)=>cc==='FR'?0:n>=4?.2:n===3?.15:n===2?.1:0;
+const COUNTRIES=[['US','United States','États-Unis'],['GB','United Kingdom','Royaume-Uni'],['CA','Canada','Canada'],['AU','Australia','Australie'],['NZ','New Zealand','Nouvelle-Zélande'],['IE','Ireland','Irlande'],['FR','France','France'],['BE','Belgium','Belgique'],['CH','Switzerland','Suisse'],['LU','Luxembourg','Luxembourg'],['DE','Germany','Allemagne'],['AT','Austria','Autriche'],['NL','Netherlands','Pays-Bas'],['ES','Spain','Espagne'],['PT','Portugal','Portugal'],['IT','Italy','Italie'],['DK','Denmark','Danemark'],['SE','Sweden','Suède'],['NO','Norway','Norvège'],['FI','Finland','Finlande'],['PL','Poland','Pologne'],['GR','Greece','Grèce'],['MA','Morocco','Maroc'],['AE','United Arab Emirates','Émirats arabes unis'],['SA','Saudi Arabia','Arabie saoudite'],['IN','India','Inde'],['SG','Singapore','Singapour'],['MY','Malaysia','Malaisie'],['JP','Japan','Japon'],['KR','South Korea','Corée du Sud'],['ZA','South Africa','Afrique du Sud'],['NG','Nigeria','Nigeria'],['KE','Kenya','Kenya'],['MX','Mexico','Mexique'],['BR','Brazil','Brésil']];
+let PJ=null;fetch(FILES,{cache:'no-store'}).then(r=>r.json()).then(d=>{PJ=d;paint();}).catch(()=>{PJ={};});
+const priceOf=s=>{const v=PJ&&PJ[s];if(!v||!v.bv_interior||!(v.price_usd||v.bv_pages))return null;return Number(v.price_usd||T.find(t=>v.bv_pages<=t[0])[1]);};
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');return {raw:s,items:Array.isArray(s.items)?s.items:[]};}catch{return {raw:{},items:[]};}}
+function store(items){const {raw}=load();raw.items=items;try{localStorage.setItem(KEY,JSON.stringify(raw));}catch{}const c=document.querySelector('#bcCartOpen .bc-cart-count');if(c)c.textContent=items.reduce((n,x)=>n+(x.qty||0),0);}
+let form={},quoted=null,msg='',busy=false;
+try{form=JSON.parse(sessionStorage.getItem('bc.cart.form')||'{}')}catch{}
+const css=document.createElement('style');css.textContent='#bcCart .bcx h2{font:28px Georgia;margin:0}#bcCart .bcx-head{display:flex;justify-content:space-between;align-items:center;gap:12px}#bcCart .bcx-row{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #e0d6bd}#bcCart .bcx-t{font:17px Georgia}#bcCart .bcx-p{font-size:13px;color:#5b6b60}#bcCart .bcx-q{display:flex;align-items:center;gap:6px}#bcCart .bcx-q button{padding:4px 10px}#bcCart .bcx-tiers{margin:12px 0;padding:10px 12px;border-radius:10px;background:#f3ead2;font-size:13px}#bcCart .bcx-sum{margin:12px 0;font-size:14px}#bcCart .bcx-sum div{display:flex;justify-content:space-between}#bcCart .bcx-sum .tot{font-weight:700;font-size:16px;border-top:1px solid #e0d6bd;margin-top:6px;padding-top:6px}#bcCart .bcx-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}#bcCart .bcx-grid label{display:block;font-size:13px;font-weight:600}#bcCart .bcx-grid .w{grid-column:1/-1}#bcCart .bcx-grid input,#bcCart .bcx-grid select{display:block;width:100%;box-sizing:border-box;margin-top:4px;padding:9px;border:1px solid #c9b77e;border-radius:8px;font:inherit;background:#fff}#bcCart .bcx-go{background:#244c3b!important;color:#fff!important;border:0!important;border-radius:999px!important;padding:11px 18px!important;font-weight:700!important}#bcCart .bcx-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}#bcCart .bcx-msg{white-space:pre-line;margin-top:10px;font-size:14px}@media(max-width:480px){#bcCart .bcx-grid{grid-template-columns:1fr}}';document.head.append(css);
+const fields=()=>[['name',fr()?'Nom complet':'Full name','w',1],['street1',fr()?'Adresse':'Address','w',1],['street2',fr()?'Complément d’adresse':'Address line 2','w',0],['city',fr()?'Ville':'City','',1],['postcode',fr()?'Code postal':'Postal code','',1],['state_code',fr()?'État / région — code':'State / region code','',0],['phone_number',fr()?'Téléphone':'Phone','',1],['email','Email','w',1]];
+function paint(){
+ const d=document.getElementById('bcCart');if(!d)return;
+ const F=fr();const {items}=load();
+ const list=items.filter(x=>x&&x.slug);const n=list.reduce((s,x)=>s+(x.qty||0),0);const cnt=document.querySelector('#bcCartOpen .bc-cart-count');if(cnt&&cnt.textContent!==String(n))cnt.textContent=n;
+ const sub=list.reduce((s,x)=>s+(priceOf(x.slug)||0)*(x.qty||0),0);const cc=form.country_code||'';const r=rate(n,cc);
+ let h=`<div class="bcx" data-bcx="1"><div class="bcx-head"><h2>${F?'Votre panier':'Your cart'}</h2><button type="button" data-x="close" aria-label="${F?'Fermer':'Close'}">×</button></div>`;
+ if(!list.length){h+=`<p>${F?'Votre panier est vide. Ajoutez un livre depuis sa fiche.':'Your cart is empty. Add a book from its page.'}</p>${msg?`<p class="bcx-msg">${esc(msg)}</p>`:''}</div>`;d.innerHTML=h;wire(d);return;}
+ h+=list.map((x,i)=>{const p=priceOf(x.slug);return `<div class="bcx-row"><div><div class="bcx-t">${esc(x.title||x.slug)}</div><div class="bcx-p">${p?(F?'Broché · ':'Paperback · ')+money(p):(PJ?(F?'Version imprimée indisponible':'Print edition unavailable'):'…')}</div></div><div class="bcx-q"><button type="button" data-q="${i}" data-d="-1" aria-label="−">−</button><span>${x.qty}</span><button type="button" data-q="${i}" data-d="1" aria-label="+" ${x.qty>=10?'disabled':''}>+</button></div><button type="button" data-rm="${i}">${F?'Retirer':'Remove'}</button></div>`;}).join('');
+ h+=`<div class="bcx-tiers">${F?'Un seul colis, livraison suivie incluse · 2 livres −10 % · 3 livres −15 % · 4 livres et plus −20 %':'One parcel, tracked delivery included · 2 books −10% · 3 books −15% · 4+ books −20%'}${cc==='FR'?`<br>${F?'France : pas de remise (prix unique du livre).':'France: no discount (fixed book price law).'}`:''}</div>`;
+ const q=quoted;
+ h+=`<div class="bcx-sum"><div><span>${n} ${F?(n>1?'livres':'livre'):(n>1?'books':'book')}</span><span>${money(q?q.subtotal:sub)}</span></div>`+((q?Number(q.discount):sub*r)>0?`<div><span>${F?'Remise':'Discount'} −${Math.round((q?q.rate:r)*100)} %</span><span>−${money(q?q.discount:Math.round(sub*r*100)/100)}</span></div>`:'')+`<div class="tot"><span>${q?(F?'Total à payer':'Total to pay'):(F?'Total estimé':'Estimated total')}</span><span>${money(q?q.total:Math.round((sub-sub*r)*100)/100)}</span></div>${q&&q.min_days?`<div><span>${F?'Livraison suivie':'Tracked delivery'}</span><span>${q.min_days}–${q.max_days} ${F?'jours ouvrés après impression':'business days after printing'}</span></div>`:''}</div>`;
+ h+=`<form class="bcx-form"><div class="bcx-grid">${fields().map(([k,l,w,req])=>`<label class="${w}">${l}<input name="${k}" ${req?'required':''} maxlength="120" value="${esc(form[k]||'')}" ${k==='email'?'type="email"':k==='phone_number'?'type="tel"':''}></label>`).join('')}<label class="w">${F?'Pays de livraison':'Delivery country'}<select name="country_code" required><option value="">${F?'Choisir un pays':'Choose a country'}</option>${COUNTRIES.map(c=>`<option value="${c[0]}" ${cc===c[0]?'selected':''}>${F?c[2]:c[1]}</option>`).join('')}</select></label></div>
+ <div class="bcx-btns"><button type="submit" class="bcx-go" ${busy?'disabled':''}>${F?'Calculer le total':'Calculate total'}</button>${q?`<button type="button" class="bcx-go" data-x="pay" ${busy?'disabled':''}>${F?'Payer':'Pay'} ${money(q.total)} · PayPal / ${F?'carte':'card'}</button>`:''}</div></form><p class="bcx-msg" role="status">${esc(msg)}</p></div>`;
+ d.innerHTML=h;wire(d);
+}
+function wire(d){
+ d.querySelector('[data-x=close]')?.addEventListener('click',()=>d.close());
+ d.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{const {items}=load();const it=items.filter(x=>x&&x.slug)[+b.dataset.q];if(!it)return;it.qty=Math.max(0,Math.min(10,(it.qty||1)+(+b.dataset.d)));store(items.filter(x=>x&&x.slug&&x.qty>0));quoted=null;msg='';paint();});
+ d.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{const {items}=load();const l=items.filter(x=>x&&x.slug);l.splice(+b.dataset.rm,1);store(l);quoted=null;msg='';paint();});
+ const f=d.querySelector('.bcx-form');if(!f)return;
+ f.oninput=()=>{form=Object.fromEntries(new FormData(f));try{sessionStorage.setItem('bc.cart.form',JSON.stringify(form))}catch{};if(quoted){quoted=null;msg='';paint();}};
+ f.querySelector('select').onchange=()=>{form=Object.fromEntries(new FormData(f));try{sessionStorage.setItem('bc.cart.form',JSON.stringify(form))}catch{};quoted=null;msg='';paint();};
+ f.onsubmit=async e=>{e.preventDefault();if(busy)return;form=Object.fromEntries(new FormData(f));busy=true;msg=fr()?'Calcul de l’impression et de la livraison…':'Calculating printing and delivery…';paint();
+  try{quoted=await api('/cart/quote',{items:payload(),address:form});msg='';}catch(err){quoted=null;msg=err.message;}busy=false;paint();};
+ d.querySelector('[data-x=pay]')?.addEventListener('click',async()=>{if(busy)return;busy=true;msg=fr()?'Ouverture du paiement sécurisé…':'Opening secure payment…';paint();
+  try{const o=await api('/cart/create',{items:payload(),address:form});const u=new URL(o.approval_url);if(u.protocol!=='https:'||!['www.paypal.com','www.sandbox.paypal.com'].includes(u.hostname))throw Error('PayPal');try{sessionStorage.setItem('bc.cart.pending',o.id)}catch{};location.assign(u.href);}
+  catch(err){busy=false;msg=err.message;paint();}});
+}
+const payload=()=>load().items.filter(x=>x&&x.slug&&x.qty>0&&priceOf(x.slug)).map(x=>({slug:x.slug,qty:x.qty}));
+async function api(path,data){const r=await fetch(API+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),cache:'no-store'});const j=await r.json().catch(()=>({}));if(!r.ok)throw Error(j.error||(fr()?'Service indisponible. Réessayez plus tard.':'Service unavailable. Please try again later.'));return j;}
+/* take over the cart dialog whenever the old basket renders into it */
+function hook(){const d=document.getElementById('bcCart');if(!d||d.dataset.bcxHooked)return !!d;d.dataset.bcxHooked='1';
+ new MutationObserver(()=>{if(!d.querySelector('[data-bcx]'))paint();}).observe(d,{childList:true});
+ new MutationObserver(()=>{if(d.open){quoted=quoted;paint();}}).observe(d,{attributes:true,attributeFilter:['open']});
+ if(!d.querySelector('[data-bcx]'))paint();return true;}
+if(!hook()){const mo=new MutationObserver(()=>{if(hook())mo.disconnect();});mo.observe(document.documentElement,{childList:true,subtree:true});}
+document.addEventListener('change',e=>{if(e.target.id==='uiLangSelect')setTimeout(paint,90);});
+/* own the add-to-cart and cart buttons (the old basket keeps a stale copy of the items) */
+document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('#bcAddCart,#bcCartOpen');if(!t)return;const d=document.getElementById('bcCart');if(!d)return;e.preventDefault();e.stopImmediatePropagation();
+ if(t.id==='bcAddCart'){const slug=location.pathname.split('/').filter(Boolean)[1];const title=(document.querySelector('main .hero h1')||document.querySelector('h1'))?.textContent.trim()||slug;const {items}=load();const l=items.filter(x=>x&&x.slug);const f=l.find(x=>x.slug===slug);if(f)f.qty=Math.min(10,(f.qty||1)+1);else l.push({slug,title,edition:(window.bookclassicsLaunchTitlePrices?.[slug]?.[0])||'pb',qty:1});store(l);quoted=null;msg=fr()?'Livre ajouté au panier.':'Book added to your cart.';}
+ if(!d.open)d.showModal();paint();},true);
+/* discount hint under "Add to cart" */
+function hint(){const a=document.getElementById('bcAddCart');if(!a||document.getElementById('bcxHint'))return;const p=document.createElement('p');p.id='bcxHint';p.style.cssText='font:13px system-ui;color:#5b6b60;margin:6px 0 0';a.after(p);const set=()=>{p.textContent=fr()?'Plusieurs livres, un seul colis : −10 % dès 2 livres, −15 % pour 3, −20 % dès 4.':'Several books, one parcel: −10% for 2 books, −15% for 3, −20% for 4 or more.';};set();document.addEventListener('change',e=>{if(e.target.id==='uiLangSelect')setTimeout(set,90);});}
+new MutationObserver(hint).observe(document.documentElement,{childList:true,subtree:true});hint();
+/* PayPal return */
+const qs=new URLSearchParams(location.search);
+if(qs.get('cart')){const st=qs.get('cart'),tok=qs.get('token');let pend=null;try{pend=sessionStorage.getItem('bc.cart.pending')}catch{}
+ history.replaceState(null,'',location.pathname+location.hash);
+ const show=()=>{const d=document.getElementById('bcCart');if(!d){setTimeout(show,300);return;}if(!d.open)d.showModal();paint();};
+ if(st==='cancel'){msg=fr()?'Paiement annulé. Aucun débit.':'Payment cancelled. You were not charged.';show();}
+ else if(tok&&tok===pend){msg=fr()?'Vérification du paiement et envoi à l’imprimeur…':'Confirming payment and sending to the printer…';busy=true;show();
+  api('/cart/capture',{id:tok}).then(r=>{busy=false;try{sessionStorage.removeItem('bc.cart.pending')}catch{};store([]);quoted=null;
+   msg=r.ok?(fr()?`Merci ! Paiement confirmé et commande transmise à l’imprimeur (${r.books} livres).\nRéférence : ${r.order}`:`Thank you! Payment confirmed and order sent to the printer (${r.books} books).\nReference: ${r.order}`)
+     :(fr()?`Paiement confirmé, mais la transmission à l’imprimeur n’est pas confirmée. Ne payez pas une deuxième fois : écrivez à contact@bookclassics.org.\nRéférence : ${r.order}`:`Payment confirmed, but the order could not be sent to the printer. Do not pay again: write to contact@bookclassics.org.\nReference: ${r.order}`);paint();})
+  .catch(err=>{busy=false;msg=err.message+(fr()?'\nRéférence : ':'\nReference: ')+tok;paint();});}
+}
+})();
